@@ -427,6 +427,169 @@ editMenu = (id, updates) =>
 
 removeMenu = (id) => this.db.collection("menus").doc(id).delete();
 
+// // POST ACTIONS --------------
+menu
+getSinglePost = (id) => this.db.collection("posts").doc(id).get();
+
+getPosts = (lastRefKey) => {
+  let didTimeout = false;
+
+  return new Promise((resolve, reject) => {
+    (async () => {
+      if (lastRefKey) {
+        try {
+          const query = this.db
+            .collection("posts")
+            .orderBy(app.firestore.FieldPath.documentId())
+            .startAfter(lastRefKey)
+            .limit(12);
+
+          const snapshot = await query.get();
+          const posts = [];
+          snapshot.forEach((doc) =>
+            posts.push({ id: doc.id, ...doc.data() })
+          );
+          const lastKey = snapshot.docs[snapshot.docs.length - 1];
+
+          resolve({ posts, lastKey });
+        } catch (e) {
+          reject(e?.message || ":( Failed to fetch posts.");
+        }
+      } else {
+        const timeout = setTimeout(() => {
+          didTimeout = true;
+          reject(new Error("Request timeout, please try again"));
+        }, 15000);
+
+        try {
+          const totalQuery = await this.db.collection("posts").get();
+          const total = totalQuery.docs.length;
+          const query = this.db
+            .collection("posts")
+            .orderBy(app.firestore.FieldPath.documentId())
+            .limit(12);
+          const snapshot = await query.get();
+
+          clearTimeout(timeout);
+          if (!didTimeout) {
+            const posts = [];
+            snapshot.forEach((doc) =>
+              posts.push({ id: doc.id, ...doc.data() })
+            );
+            const lastKey = snapshot.docs[snapshot.docs.length - 1];
+
+            resolve({ posts, lastKey, total });
+          }
+        } catch (e) {
+          if (didTimeout) return;
+          reject(e?.message || ":( Failed to fetch posts.");
+        }
+      }
+    })();
+  });
+};
+
+searchPosts = (searchKey) => {
+  let didTimeout = false;
+
+  return new Promise((resolve, reject) => {
+    (async () => {
+      const postsRef = this.db.collection("posts");
+
+      const timeout = setTimeout(() => {
+        didTimeout = true;
+        reject(new Error("Request timeout, please try again"));
+      }, 15000);
+
+      try {
+        const searchedNameRef = postsRef
+          .orderBy("name_lower")
+          .where("name_lower", ">=", searchKey)
+          .where("name_lower", "<=", `${searchKey}\uf8ff`)
+          .limit(12);
+        const searchedKeywordsRef = postsRef
+          .orderBy("dateAdded", "desc")
+          .where("keywords", "array-contains-any", searchKey.split(" "))
+          .limit(12);
+
+        // const totalResult = await totalQueryRef.get();
+        const nameSnaps = await searchedNameRef.get();
+        const keywordsSnaps = await searchedKeywordsRef.get();
+        // const total = totalResult.docs.length;
+
+        clearTimeout(timeout);
+        if (!didTimeout) {
+          const searchedNamePosts = [];
+          const searchedKeywordsPosts = [];
+          let lastKey = null;
+
+          if (!nameSnaps.empty) {
+            nameSnaps.forEach((doc) => {
+              searchedNamePosts.push({ id: doc.id, ...doc.data() });
+            });
+            lastKey = nameSnaps.docs[nameSnaps.docs.length - 1];
+          }
+
+          if (!keywordsSnaps.empty) {
+            keywordsSnaps.forEach((doc) => {
+              searchedKeywordsPosts.push({ id: doc.id, ...doc.data() });
+            });
+          }
+
+          // MERGE POSTS
+          const mergedPosts = [
+            ...searchedNamePosts,
+            ...searchedKeywordsPosts,
+          ];
+          const hash = {};
+
+          mergedPosts.forEach((post) => {
+            hash[post.id] = post;
+          });
+
+          resolve({ posts: Object.values(hash), lastKey });
+        }
+      } catch (e) {
+        if (didTimeout) return;
+        reject(e);
+      }
+    })();
+  });
+};
+
+getFeaturedPosts = (itemsCount = 12) =>
+  this.db
+    .collection("posts")
+    .where("isFeatured", "==", true)
+    .limit(itemsCount)
+    .get();
+
+getRecommendedPosts = (itemsCount = 12) =>
+  this.db
+    .collection("posts")
+    .where("isRecommended", "==", true)
+    .limit(itemsCount)
+    .get();
+
+addPost = (id, post) =>
+  this.db.collection("posts").doc(id).set(post);
+
+generateKey = () => this.db.collection("posts").doc().id;
+
+storeImage = async (id, folder, imageFile) => {
+  const snapshot = await this.storage.ref(folder).child(id).put(imageFile);
+  const downloadURL = await snapshot.ref.getDownloadURL();
+
+  return downloadURL;
+};
+
+deleteImage = (id) => this.storage.ref("posts").child(id).delete();
+
+editPost = (id, updates) =>
+  this.db.collection("posts").doc(id).update(updates);
+
+removePost = (id) => this.db.collection("posts").doc(id).delete();
+
 }
 
 const firebaseInstance = new Firebase();

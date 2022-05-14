@@ -97,6 +97,10 @@ const AppRouter = () => (
           path={ROUTES.ADMIN_MENUS}
         />
         <AdminRoute
+          component={view.Posts}
+          path={ROUTES.ADMIN_POSTS}
+        />
+        <AdminRoute
           component={view.AddProduct}
           path={ROUTES.ADD_PRODUCT}
         />
@@ -105,12 +109,20 @@ const AppRouter = () => (
           path={ROUTES.ADD_MENU}
         />
         <AdminRoute
+          component={view.AddPost}
+          path={ROUTES.ADD_POST}
+        />
+        <AdminRoute
           component={view.EditProduct}
           path={`${ROUTES.EDIT_PRODUCT}/:id`}
         />
         <AdminRoute
           component={view.EditMenu}
           path={`${ROUTES.EDIT_MENU}/:id`}
+        />
+        <AdminRoute
+          component={view.EditPost}
+          path={`${ROUTES.EDIT_POST}/:id`}
         />
         <PublicRoute component={view.PageNotFound} />
       </Switch>

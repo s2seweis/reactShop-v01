@@ -7,6 +7,7 @@ export { default as Filters } from './Filters';
 
 export { default as FiltersToggle } from './FiltersToggle';
 export { default as FiltersToogleMenu } from './FiltersToggleMenu';
+export { default as FiltersTooglePost } from './FiltersTogglePost';
 
 
 export { default as Footer } from './Footer';
