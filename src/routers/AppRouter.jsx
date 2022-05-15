@@ -30,6 +30,11 @@ const AppRouter = () => (
           path={ROUTES.HOME}
         />
         <Route
+          component={view.Post}
+          exact
+          path={ROUTES.POST}
+        />
+        <Route
           component={view.Shop}
           exact
           path={ROUTES.SHOP}
@@ -60,6 +65,10 @@ const AppRouter = () => (
         <Route
           component={view.ViewProduct}
           path={ROUTES.VIEW_PRODUCT}
+        />
+        <Route
+          component={view.ViewPost}
+          path={ROUTES.VIEW_POST}
         />
         <ClientRoute
           component={view.UserAccount}

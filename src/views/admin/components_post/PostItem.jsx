@@ -33,15 +33,15 @@ const PostItem = ({ post }) => {
 
   return (
     <SkeletonTheme
-      color="#e1e1e1"
-      highlightColor="#f2f2f2"
+      color="#ffffff"
+      highlightColor="#e6dcdc"
     >
       <div
         className={`item item-s ${!post.id && 'item-loading'}`}
         ref={postRef}
       >
         <div className="grid grid-count-6">
-          <div className="grid-col item-img-wrapper">
+          <div className="grid-col post-item-img-wrapper">
             {post.image ? (
               <ImageLoader
                 alt={post.name}

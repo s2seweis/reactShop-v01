@@ -9,7 +9,7 @@
   
   &:hover {
     border: 1px solid $border-color-focus;
-    box-shadow: 2px 5px 10px rgba(0, 0, 0, .1);
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.1);
     z-index: 1;
   }
 }
@@ -91,6 +91,12 @@
   width: 80px;
   height: 50px;
   margin-left: $s-size;
+}
+
+.post-item-img-wrapper {
+  width: 80px;
+  height: 50px;
+  margin-right: $m-size;
 }
 
 .item-img {

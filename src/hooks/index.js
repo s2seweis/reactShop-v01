@@ -10,5 +10,7 @@ export { default as useMenu } from './useMenu';
 export { default as usePost } from './usePost';
 
 export { default as useRecommendedProducts } from './useRecommendedProducts';
+export { default as useRecommendedPosts } from './useRecommendedPosts';
+
 export { default as useScrollTop } from './useScrollTop';
 

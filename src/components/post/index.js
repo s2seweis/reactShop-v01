@@ -6,7 +6,11 @@ export { default as FeaturedPost } from './PostFeatured';
 
 // export { default as ProductGrid } from './ProductGrid';
 
+export { default as PostGrid } from './PostGrid';
+
 // export { default as ProductItem } from './ProductItem';
+
+export { default as PostItem } from './PostItem';
 
 // export { default as ProductList } from './ProductList';
 // export { default as MenuList } from './MenuList';

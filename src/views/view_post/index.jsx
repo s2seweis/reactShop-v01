@@ -1,41 +1,41 @@
 import { ArrowLeftOutlined, LoadingOutlined } from '@ant-design/icons';
 import { ColorChooser, ImageLoader, MessageDisplay } from 'components/common';
-import { ProductShowcaseGrid } from 'components/product';
-import { RECOMMENDED_PRODUCTS, SHOP } from 'constants/routes';
+import { PostShowcaseGrid } from 'components/post';
+import { RECOMMENDED_POSTS, POST } from 'constants/routes';
 import { displayMoney } from 'helpers/utils';
 import {
   useBasket,
   useDocumentTitle,
-  useProduct,
-  useRecommendedProducts,
+  usePost,
+  useRecommendedPosts,
   useScrollTop
 } from 'hooks';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Select from 'react-select';
 
-const ViewProduct = () => {
+const ViewPost = () => {
   const { id } = useParams();
-  const { product, isLoading, error } = useProduct(id);
+  const { post, isLoading, error } = usePost(id);
   const { addToBasket, isItemOnBasket } = useBasket(id);
   useScrollTop();
-  useDocumentTitle(`View ${product?.name || 'Item'}`);
+  useDocumentTitle(`View ${post?.name || 'Item'}`);
 
-  const [selectedImage, setSelectedImage] = useState(product?.image || '');
+  const [selectedImage, setSelectedImage] = useState(post?.image || '');
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
 
   const {
-    recommendedProducts,
-    fetchRecommendedProducts,
+    recommendedPosts,
+    fetchRecommendedPosts,
     isLoading: isLoadingFeatured,
     error: errorFeatured
-  } = useRecommendedProducts(6);
+  } = useRecommendedPosts(6);
   const colorOverlay = useRef(null);
 
   useEffect(() => {
-    setSelectedImage(product?.image);
-  }, [product]);
+    setSelectedImage(post?.image);
+  }, [post]);
 
   const onSelectedSizeChange = (newValue) => {
     setSelectedSize(newValue.value);
@@ -49,14 +49,14 @@ const ViewProduct = () => {
   };
 
   const handleAddToBasket = () => {
-    addToBasket({ ...product, selectedColor, selectedSize: selectedSize || product.sizes[0] });
+    addToBasket({ ...post, selectedColor, selectedSize: selectedSize || post.sizes[0] });
   };
 
   return (
     <main className="content">
       {isLoading && (
         <div className="loader">
-          <h4>Loading Product...</h4>
+          <h4>Loading Post...</h4>
           <br />
           <LoadingOutlined style={{ fontSize: '3rem' }} />
         </div>
@@ -64,18 +64,18 @@ const ViewProduct = () => {
       {error && (
         <MessageDisplay message={error} />
       )}
-      {(product && !isLoading) && (
+      {(post && !isLoading) && (
         <div className="product-view">
-          <Link to={SHOP}>
+          <Link to={POST}>
             <h3 className="button-link d-inline-flex">
               <ArrowLeftOutlined />
-              &nbsp; Back to shop1
+              &nbsp; Back to shop
             </h3>
           </Link>
           <div className="product-modal">
-            {product.imageCollection.length !== 0 && (
+            {post.imageCollection.length !== 0 && (
               <div className="product-modal-image-collection">
-                {product.imageCollection.map((image) => (
+                {post.imageCollection.map((image) => (
                   <div
                     className="product-modal-image-collection-wrapper"
                     key={image.id}
@@ -87,22 +87,39 @@ const ViewProduct = () => {
                       src={image.url}
                     />
                   </div>
+                  // {post.imageCollection.length !== 0 
+                    // <div className="product-modal-image-collection">
+                    //   {post.imageCollection.map((image) => (
+                    //     <div
+                    //       className="product-modal-image-collection-wrapper"
+                    //       key={image.id}
+                    //       onClick={() => setSelectedImage(image.url)}
+                    //       role="presentation"
+                    //     >
+                    //       <ImageLoader
+                    //         className="product-modal-image-collection-img"
+                    //         src={image.url}
+                    //       />
+                    //     </div>
+                    //   ))}
+                    // </div>
+                  // }
                 ))}
               </div>
             )}
             <div className="product-modal-image-wrapper">
               {selectedColor && <input type="color" disabled ref={colorOverlay} id="color-overlay" />}
               <ImageLoader
-                alt={product.name}
+                alt={post.name}
                 className="product-modal-image"
                 src={selectedImage}
               />
             </div>
             <div className="product-modal-details">
               <br />
-              <span className="text-subtle">{product.brand}</span>
-              <h1 className="margin-top-0">{product.name}</h1>
-              <span>{product.description}</span>
+              <span className="text-subtle">{post.brand}</span>
+              <h1 className="margin-top-0">{post.name}</h1>
+              <span>{post.description}</span>
               <br />
               <br />
               <div className="divider" />
@@ -114,30 +131,30 @@ const ViewProduct = () => {
                 <Select
                   placeholder="--Select Size--"
                   onChange={onSelectedSizeChange}
-                  options={product.sizes.sort((a, b) => (a < b ? -1 : 1)).map((size) => ({ label: `${size} mm`, value: size }))}
+                  options={post.sizes.sort((a, b) => (a < b ? -1 : 1)).map((size) => ({ label: `${size} mm`, value: size }))}
                   styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
                 />
               </div>
               <br />
-              {product.availableColors.length >= 1 && (
+              {post.availableColors.length >= 1 && (
                 <div>
                   <span className="text-subtle">Choose Color</span>
                   <br />
                   <br />
                   <ColorChooser
-                    availableColors={product.availableColors}
+                    availableColors={post.availableColors}
                     onSelectedColorChange={onSelectedColorChange}
                   />
                 </div>
               )}
-              <h1>{displayMoney(product.price)}</h1>
+              <h1>{displayMoney(post.price)}</h1>
               <div className="product-modal-action">
                 <button
-                  className={`button button-small ${isItemOnBasket(product.id) ? 'button-border button-border-gray' : ''}`}
+                  className={`button button-small ${isItemOnBasket(post.id) ? 'button-border button-border-gray' : ''}`}
                   onClick={handleAddToBasket}
                   type="button"
                 >
-                  {isItemOnBasket(product.id) ? 'Remove From Basket' : 'Add To Basket'}
+                  {isItemOnBasket(post.id) ? 'Remove From Basket' : 'Add To Basket'}
                 </button>
               </div>
             </div>
@@ -145,16 +162,16 @@ const ViewProduct = () => {
           <div style={{ marginTop: '10rem' }}>
             <div className="display-header">
               <h1>Recommended</h1>
-              <Link to={RECOMMENDED_PRODUCTS}>See All</Link>
+              <Link to={RECOMMENDED_POSTS}>See All</Link>
             </div>
             {errorFeatured && !isLoadingFeatured ? (
               <MessageDisplay
                 message={error}
-                action={fetchRecommendedProducts}
+                action={fetchRecommendedPosts}
                 buttonLabel="Try Again"
               />
             ) : (
-              <ProductShowcaseGrid products={recommendedProducts} skeletonCount={3} />
+              <PostShowcaseGrid posts={recommendedPosts} skeletonCount={3} />
             )}
           </div>
         </div>
@@ -163,4 +180,4 @@ const ViewProduct = () => {
   );
 };
 
-export default ViewProduct;
+export default ViewPost;
