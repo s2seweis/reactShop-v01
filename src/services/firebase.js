@@ -428,7 +428,7 @@ editMenu = (id, updates) =>
 removeMenu = (id) => this.db.collection("menus").doc(id).delete();
 
 // // POST ACTIONS --------------
-menu
+
 getSinglePost = (id) => this.db.collection("posts").doc(id).get();
 
 getPosts = (lastRefKey) => {

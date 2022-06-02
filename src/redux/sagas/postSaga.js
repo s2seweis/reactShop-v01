@@ -71,7 +71,7 @@ function* postSaga({ type, payload }) {
 
         const { imageCollection } = payload;
         const key = yield call(firebase.generateKey);
-        const downloadURL = yield call(firebase.storeImage, key, 'posts', payload.image);
+        const downloadURL = yield call(firebase.storeImage, key, 'posts', payload.image1);
         const image = { id: key, url: downloadURL };
         let images = [];
 
@@ -86,7 +86,7 @@ function* postSaga({ type, payload }) {
 
         const post = {
           ...payload,
-          image: downloadURL,
+          image1: downloadURL,
           imageCollection: [image, ...images]
         };
 

@@ -1,4 +1,4 @@
-.product-grid {
+.post-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   grid-gap: $s-size;
@@ -9,16 +9,16 @@
   }
 }
 
-.product-list-header {
+.post-list-header {
   width: 100%;
   margin-bottom: $line-height;
 }
 
-.product-list-header-title {
+.post-list-header-title {
   text-align: center;
 }
 
-.product-list-header-actions {
+.post-list-header-actions {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,17 +28,17 @@
   }
 }
 
-.product-list-search {
+.post-list-search {
   @include mobile {
     margin-top: 7rem !important;
   }
 }
 
-.product-list-title {
+.post-list-title {
   flex-grow: 1;
 }
 
-.product-list-wrapper {
+.post-list-wrapper {
   flex-grow: 1;
   position: relative;
 
@@ -47,9 +47,9 @@
   }
 }
 
-.product-card {
-  max-width: 400px;
-  height: 600px;
+.post-card {
+  max-width: 1000px;
+  height: 1400px;
   border: 1px solid $border-color;
   text-align: center;
   position: relative;
@@ -68,20 +68,20 @@
   }
 }
 
-.product-card:hover .product-card-content {
+.post-card:hover .post-card-content {
   transform: translateY(-10px);
 }
 
-.product-card:hover .product-card-button {
+.post-card:hover .post-card-button {
   bottom: 0;
 }
 
-.product-card:hover .product-card-img-wrapper {
-  height: 8rem;
+.post-card:hover .post-card-img-wrapper {
+  height: 20rem;
   padding: 1rem;
 }
 
-.product-card-check {
+.post-card-check {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -89,31 +89,31 @@
   z-index: 1;
 }
 
-.product-loading {
+.post-loading {
   animation: none;
 }
 
-.product-loading:hover {
+.post-loading:hover {
   cursor: default;
 }
 
-.product-loading:hover .product-card-content {
+.post-loading:hover .post-card-content {
   transform: none;
 }
 
-.product-loading:hover .product-card-img-wrapper {
+.post-loading:hover .post-card-img-wrapper {
   width: 90%;
   height: 100px;
 }
 
-.product-card-content {
+.post-card-content {
   padding: 0;
   transition: all .4s ease-in-out;
 }
 
-.product-card-img-wrapper {
+.post-card-img-wrapper {
   width: 100%;
-  height: 100px;
+  height: 250px;
   padding: 0 $m-size;
   margin: auto;
   position: relative;
@@ -125,15 +125,15 @@
   }
 }
 
-.product-details {
+.post-details {
   padding: $m-size;
 }
 
-.product-card-price {
+.post-card-price {
   color: $black;
 }
 
-.product-card-name {
+.post-card-name {
   width: 100%;
   height: 20px;
   margin: 0;
@@ -142,7 +142,7 @@
   text-overflow: ellipsis; 
 }
 
-.product-card-brand {
+.post-card-brand {
   margin-top: 0;
   font-size: $font-small;
   color: $gray-20;
@@ -153,7 +153,7 @@
   }
 }
 
-.product-card-button {
+.post-card-button {
   // text-transform: uppercase;
   position: absolute;
   bottom: -100%;
@@ -166,17 +166,17 @@
   }
 }
 
-.product-card-img {
+.post-card-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.product-list-empty-filters {
+.post-list-empty-filters {
   margin-top: $xxl-size;
 }
 
-.product-applied-filters {
+.post-applied-filters {
   padding: $s-size;
   display: flex;
   align-items: center;
@@ -187,8 +187,8 @@
   }
 }
 
-// PRODUCT MODAL -------------------------------------------------
-.product-view {
+// post MODAL -------------------------------------------------
+.post-view {
   margin: 0 5rem;
 
   @include tablet {
@@ -199,7 +199,7 @@
 }
 
 
-.product-modal {
+.post-modal {
   width: 100%;
   display: flex;
   background: #fff;
@@ -211,8 +211,8 @@
   }
 }
 
-.product-modal-image-wrapper {
-  width: 10rem;
+.post-modal-image-wrapper {
+  width: 40rem;
   // height: 40rem;
   height: inherit;
   flex-grow: 1;
@@ -235,7 +235,7 @@
   }
 }
 
-.product-modal-image-collection {
+.post-modal-image-collection {
   width: 150px;
   height: inherit;
   background: #fff;
@@ -255,21 +255,21 @@
   }
 }
 
-.product-modal-image-collection::-webkit-scrollbar {
+.post-modal-image-collection::-webkit-scrollbar {
   width: 10px;
 }
 
-.product-modal-image-collection::-webkit-scrollbar-thumb {
+.post-modal-image-collection::-webkit-scrollbar-thumb {
   background-color: #1a1a1a;
   outline: 1px solid #f8f8f8;
   // border-radius: .6rem;
 }
 
-.product-modal-image-collection::-webkit-scrollbar-track {
+.post-modal-image-collection::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,.2);
 }
 
-.product-modal-image-collection-wrapper {
+.post-modal-image-collection-wrapper {
   width: 100%;
   height: 100px;
   border: 1px solid #e1e1e1;
@@ -286,19 +286,19 @@
   }
 }
 
-.product-modal-image-collection-img {
+.post-modal-image-collection-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.product-modal-image {
+.post-modal-image {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.product-modal-details {
+.post-modal-details {
   width: 500px;
   padding: $l-size;
 
@@ -310,7 +310,7 @@
   }
 }
 
-.product-modal-action {
+.post-modal-action {
   display: flex;
   margin-top: $m-size;
 
@@ -323,33 +323,33 @@
   }
 }
 
-// PRODUCT FORM --------------------
+// post FORM --------------------
 
-.product-form {
+.post-form {
   width: 100%;
   display: flex;
   // grid-template-columns: repeat(3, 1fr);
   // grid-gap: $s-size;
 }
 
-.product-form-field {
+.post-form-field {
   width: 100%;
 }
 
-.product-form-inputs {
+.post-form-inputs {
   width: 75%;
   display: flex;
   flex-direction: column;
 }
 
-.product-form-file {
+.post-form-file {
   width: 25%;
   margin-left: $l-size;
   display: flex;
   flex-direction: column;
 }
 
-.product-form-image-wrapper {
+.post-form-image-wrapper {
   width: 100%;
   height: 200px;
   position: relative;
@@ -357,12 +357,12 @@
   border: 1px solid #cacaca;
 }
 
-.product-form-collection {
+.post-form-collection {
   width: 100%;
   position: relative;
 }
 
-.product-form-delete-image {
+.post-form-delete-image {
   color: red;
   border: none;
   background: none;
@@ -380,7 +380,7 @@
   }
 }
 
-.product-form-collection-image {
+.post-form-collection-image {
   width: 100px;
   height: 100px;
   position: relative;
@@ -396,23 +396,23 @@
   }
 }
 
-.product-form-image-preview {
+.post-form-image-preview {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-// PRODUCT SEARCH ------------------
+// post SEARCH ------------------
 // 
 
-.product-search {
+.post-search {
   width: 100%;
   position: relative;
   background: $background-color;
   z-index: map-get($z-index, 'search');
 }
 
-.product-search-header {
+.post-search-header {
   width: 100%;
   height: 6rem;
   background: $white;
@@ -426,12 +426,12 @@
   z-index: map-get($z-index, 'navigation');
 }
 
-.product-search-body {
+.post-search-body {
   padding: 0 $m-size 6rem $m-size;
   overflow-y: scroll;
 }
 
-.product-search-input {
+.post-search-input {
   width: 100%;
   border: none !important;
   flex-grow: 1;
@@ -443,20 +443,20 @@
   }
 }
 
-.product-search-wrapper {
+.post-search-wrapper {
   width: 100%;
   position: relative;
   overflow: hidden;
   margin-left: $m-size;
 }
 
-.product-search-button {
+.post-search-button {
   opacity: 1 !important;
   margin-left: 0 !important;
   margin-right: $s-size;
 }
 
-.product-search-recent-header {
+.post-search-recent-header {
   width: 100%;
   display: flex;
 
@@ -464,12 +464,12 @@
   h5:last-child { text-align: right; }
 }
 
-.product-search-filter {
+.post-search-filter {
   position: relative;
   padding: $s-size 0;
 }
 
-.product-search-filter-sub {
+.post-search-filter-sub {
   width: 100%;
   position: relative;
 
@@ -483,12 +483,12 @@
   }
 }
 
-.product-search-recent {
+.post-search-recent {
   border-bottom: 1px solid $border-color;
   margin-bottom: $s-size;
 }
 
-// ---------------------------- FEATURED PRODUCTS ----------------------------
+// ---------------------------- FEATURED postS ----------------------------
 .display {
   margin: 5rem;
   margin-top: 10rem;
@@ -509,7 +509,7 @@
   }
 }
 
-.product-display-grid {
+.post-display-grid {
   width: 100%;
   height: auto;
   display: grid;
@@ -517,7 +517,7 @@
   grid-gap: 2rem;
 }
 
-.product-display {
+.post-display {
   width: 100%;
   max-height: 30rem;
   border: 1px solid $border-color;
@@ -525,13 +525,13 @@
   &:hover {
     cursor: pointer;
 
-    .product-display-img img {
+    .post-display-img img {
       transform: scale(1.1);
     }
   }
 }
 
-.product-display-img {
+.post-display-img {
   width: 100%;
   height: 20rem;
   background: #f1f1f1;
@@ -546,7 +546,7 @@
   }
 }
 
-.product-display-details {
+.post-display-details {
   padding: 2rem;
   
   h2 {

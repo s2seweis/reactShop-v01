@@ -68,10 +68,10 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
     isFileLoading,
     onFileChange,
     removeImage
-  } = useFileHandler({ image: {}, imageCollection: post?.imageCollection || [] });
+  } = useFileHandler({ image1: {}, imageCollection: post?.imageCollection || [] });
 
   const onSubmitForm = (form) => {
-    if (imageFile.image.file || post.imageUrl) {
+    if (imageFile.image1.file || post.imageUrl) {
       onSubmit({
         ...form,
         quantity: 1,
@@ -79,7 +79,7 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
         // of name here instead in firebase functions
         name_lower: form.name.toLowerCase(),
         dateAdded: new Date().getTime(),
-        image: imageFile?.image?.file || post.imageUrl,
+        image1: imageFile?.image1?.file || post.imageUrl,
         imageCollection: imageFile.imageCollection
       });
     } else {
@@ -288,7 +288,7 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
                       disabled={isLoading}
                       hidden
                       id="product-input-file"
-                      onChange={(e) => onFileChange(e, { name: 'image', type: 'single' })}
+                      onChange={(e) => onFileChange(e, { name: 'image1', type: 'single' })}
                       readOnly={isLoading}
                       type="file"
                     />
@@ -297,11 +297,11 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
                 )}
               </div>
               <div className="product-form-image-wrapper">
-                {(imageFile.image.url || post.image) && (
+                {(imageFile.image1.url || post.image1) && (
                   <ImageLoader
                     alt=""
                     className="product-form-image-preview"
-                    src={imageFile.image.url || post.image}
+                    src={imageFile.image1.url || post.image1}
                   />
                 )}
               </div>
@@ -323,7 +323,7 @@ PostForm.propTypes = {
     keywords: PropType.arrayOf(PropType.string),
     imageCollection: PropType.arrayOf(PropType.object),
     sizes: PropType.arrayOf(PropType.string),
-    image: PropType.string,
+    image1: PropType.string,
     imageUrl: PropType.string,
     isFeatured: PropType.bool,
     isRecommended: PropType.bool,

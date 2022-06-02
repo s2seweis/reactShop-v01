@@ -42,11 +42,11 @@ const PostItem = ({ post }) => {
       >
         <div className="grid grid-count-6">
           <div className="grid-col post-item-img-wrapper">
-            {post.image ? (
+            {post.image1 ? (
               <ImageLoader
                 alt={post.name}
                 className="item-img"
-                src={post.image}
+                src={post.image1}
               />
             ) : <Skeleton width={50} height={30} />}
           </div>
@@ -121,7 +121,7 @@ PostItem.propTypes = {
     keywords: PropType.arrayOf(PropType.string),
     imageCollection: PropType.arrayOf(PropType.object),
     sizes: PropType.arrayOf(PropType.string),
-    image: PropType.string,
+    image1: PropType.string,
     imageUrl: PropType.string,
     isFeatured: PropType.bool,
     isRecommended: PropType.bool,

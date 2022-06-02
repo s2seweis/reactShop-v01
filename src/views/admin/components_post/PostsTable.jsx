@@ -9,7 +9,7 @@ const PostsTable = ({ filteredPosts }) => (
       <div className="grid grid-product grid-count-6">
         {/* <div className="grid-col" /> */}
         <div className="grid-col">
-          <h5>Image</h5>
+          <h5>Image1</h5>
         </div>
         <div className="grid-col">
           <h5>Name</h5>

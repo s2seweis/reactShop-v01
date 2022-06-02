@@ -39,7 +39,7 @@ const AddPost = () => {
             description: '',
             keywords: [],
             sizes: [],
-            image: '',
+            image1: '',
             isFeatured: false,
             isRecommended: false,
             availableColors: [],
