@@ -11,6 +11,9 @@ const PostsTable = ({ filteredPosts }) => (
         <div className="grid-col">
           <h5>Image1</h5>
         </div>
+        {/* <div className="grid-col">
+          <h5>Image2</h5>
+        </div> */}
         <div className="grid-col">
           <h5>Name</h5>
         </div>

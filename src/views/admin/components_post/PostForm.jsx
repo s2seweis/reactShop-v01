@@ -1,13 +1,19 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { CheckOutlined, LoadingOutlined } from '@ant-design/icons';
-import { ImageLoader } from 'components/common';
+import {
+  ImageLoader,
+  ImageLoader2
+}
+  from 'components/common';
 import {
   CustomColorInput, CustomCreatableSelect, CustomInput, CustomTextarea
 } from 'components/formik';
 import {
   Field, FieldArray, Form, Formik
 } from 'formik';
-import { useFileHandler } from 'hooks';
+
+import { useFileHandler1, useFileHandler2 } from 'hooks';
+
 import PropType from 'prop-types';
 import React from 'react';
 import * as Yup from 'yup';
@@ -64,14 +70,21 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
   };
 
   const {
-    imageFile,
-    isFileLoading,
-    onFileChange,
-    removeImage
-  } = useFileHandler({ image1: {}, imageCollection: post?.imageCollection || [] });
+    imageFile1,
+    isFileLoading1,
+    onFileChange1,
+    removeImage1,
+  } = useFileHandler1({ image1: {} });
+
+  const {
+    imageFile2,
+    isFileLoading2,
+    onFileChange2,
+    removeImage2
+  } = useFileHandler2({ image2: {}, imageCollection: post?.imageCollection || [] });
 
   const onSubmitForm = (form) => {
-    if (imageFile.image1.file || post.imageUrl) {
+    if (imageFile1.image1.file1, imageFile2.image2.file2 || post.imageUrl) {
       onSubmit({
         ...form,
         quantity: 1,
@@ -79,8 +92,9 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
         // of name here instead in firebase functions
         name_lower: form.name.toLowerCase(),
         dateAdded: new Date().getTime(),
-        image1: imageFile?.image1?.file || post.imageUrl,
-        imageCollection: imageFile.imageCollection
+        image1: imageFile1?.image1?.file1 || post.imageUrl,
+        image2: imageFile2?.image2?.file2 || post.imageUrl,
+        imageCollection: imageFile2.imageCollection
       });
     } else {
       // eslint-disable-next-line no-alert
@@ -192,14 +206,14 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
               </div>
               <div className="product-form-field">
                 <span className="d-block padding-s">Image Collection</span>
-                {!isFileLoading && (
+                {!isFileLoading2 && (
                   <label htmlFor="product-input-file-collection">
                     <input
                       disabled={isLoading}
                       hidden
                       id="product-input-file-collection"
                       multiple
-                      onChange={(e) => onFileChange(e, { name: 'imageCollection', type: 'multiple' })}
+                      onChange={(e) => onFileChange2(e, { name2: 'imageCollection', type: 'multiple' })}
                       readOnly={isLoading}
                       type="file"
                     />
@@ -207,21 +221,22 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
                   </label>
                 )}
               </div>
+
               <div className="product-form-collection">
                 <>
-                  {imageFile.imageCollection.length >= 1 && (
-                    imageFile.imageCollection.map((image) => (
+                  {imageFile2.imageCollection.length >= 1 && (
+                    imageFile2.imageCollection.map((image2) => (
                       <div
                         className="product-form-collection-image"
-                        key={image.id}
+                        key={image2.id}
                       >
                         <ImageLoader
                           alt=""
-                          src={image.url}
+                          src={image2.url}
                         />
                         <button
                           className="product-form-delete-image"
-                          onClick={() => removeImage({ id: image.id, name: 'imageCollection' })}
+                          onClick={() => removeImage2({ id: image2.id, name: 'imageCollection' })}
                           title="Delete Image"
                           type="button"
                         >
@@ -232,6 +247,8 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
                   )}
                 </>
               </div>
+
+
               <br />
               <div className="d-flex">
                 <div className="product-form-field">
@@ -278,34 +295,65 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
                 </button>
               </div>
             </div>
-            {/* ----THUBMNAIL ---- */}
+            {/* ----THUBMNAIL ----1 */}
             <div className="product-form-file">
               <div className="product-form-field">
-                <span className="d-block padding-s">* Thumbnail</span>
-                {!isFileLoading && (
-                  <label htmlFor="product-input-file">
+                <span className="d-block padding-s">* Thumbnail 1</span>
+                {!isFileLoading1 && (
+                  <label htmlFor="product-input-file1">
                     <input
                       disabled={isLoading}
                       hidden
-                      id="product-input-file"
-                      onChange={(e) => onFileChange(e, { name: 'image1', type: 'single' })}
+                      id="product-input-file1"
+                      onChange={(e) => onFileChange1(e, { name1: 'image1', type: 'single' })}
                       readOnly={isLoading}
                       type="file"
                     />
-                    Choose Image
+                    Choose Image 1
                   </label>
                 )}
               </div>
               <div className="product-form-image-wrapper">
-                {(imageFile.image1.url || post.image1) && (
+                {(imageFile1.image1.url || post.image1) && (
                   <ImageLoader
                     alt=""
                     className="product-form-image-preview"
-                    src={imageFile.image1.url || post.image1}
+                    src={imageFile1.image1.url || post.image1}
                   />
                 )}
               </div>
             </div>
+            {/* ----THUBMNAIL ----2 */}
+            <div className="product-form-file">
+              <div className="product-form-field">
+                <span className="d-block padding-s">* Thumbnail 2</span>
+                {!isFileLoading2 && (
+                  <label htmlFor="product-input-file2">
+                    <input
+                      disabled={isLoading}
+                      hidden
+                      id="product-input-file2"
+                      onChange={(e) => onFileChange2(e, { name2: 'image2', type: 'single' })}
+                      readOnly={isLoading}
+                      type="file"
+                    />
+                    Choose Image 2
+                  </label>
+                )}
+              </div>
+              <div className="product-form-image-wrapper">
+                {(imageFile2.image2.url || post.image2) && (
+                  <ImageLoader
+                    alt=""
+                    className="product-form-image-preview"
+                    src={imageFile2.image2.url || post.image2}
+                  />
+                )}
+              </div>
+            </div>
+
+            {/* ----THUBMNAIL ----END */}
+           
           </Form>
         )}
       </Formik>
@@ -324,6 +372,7 @@ PostForm.propTypes = {
     imageCollection: PropType.arrayOf(PropType.object),
     sizes: PropType.arrayOf(PropType.string),
     image1: PropType.string,
+    image2: PropType.string,
     imageUrl: PropType.string,
     isFeatured: PropType.bool,
     isRecommended: PropType.bool,
@@ -334,3 +383,4 @@ PostForm.propTypes = {
 };
 
 export default PostForm;
+

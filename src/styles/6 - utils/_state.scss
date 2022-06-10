@@ -22,8 +22,15 @@
 .is-img-loading {
   opacity: 0;
 }
+.is-img-loading2 {
+  opacity: 0;
+}
 
 .is-img-loaded {
+  animation: fadeIn .3s ease;
+  opacity: 1;
+}
+.is-img-loaded2 {
   animation: fadeIn .3s ease;
   opacity: 1;
 }

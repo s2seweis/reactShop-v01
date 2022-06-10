@@ -21,7 +21,7 @@ const ViewPost = () => {
   useScrollTop();
   useDocumentTitle(`View ${post?.name || 'Item'}`);
 
-  const [selectedImage, setSelectedImage] = useState(post?.image || '');
+  const [selectedImage, setSelectedImage] = useState(post?.image1 || '');
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
 
@@ -34,7 +34,7 @@ const ViewPost = () => {
   const colorOverlay = useRef(null);
 
   useEffect(() => {
-    setSelectedImage(post?.image);
+    setSelectedImage(post?.image1);
   }, [post]);
 
   const onSelectedSizeChange = (newValue) => {

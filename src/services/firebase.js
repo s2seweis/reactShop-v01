@@ -576,11 +576,12 @@ addPost = (id, post) =>
 
 generateKey = () => this.db.collection("posts").doc().id;
 
-storeImage = async (id, folder, imageFile) => {
-  const snapshot = await this.storage.ref(folder).child(id).put(imageFile);
-  const downloadURL = await snapshot.ref.getDownloadURL();
+storeImage = async (id, folder, imageFile1, imageFile2) => {
+  const snapshot = await this.storage.ref(folder).child(id).put(imageFile1, imageFile2);
+  const downloadURL1 = await snapshot.ref.getDownloadURL();
+  const downloadURL2 = await snapshot.ref.getDownloadURL();
 
-  return downloadURL;
+  return downloadURL1, downloadURL2;
 };
 
 deleteImage = (id) => this.storage.ref("posts").child(id).delete();

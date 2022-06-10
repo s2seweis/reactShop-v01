@@ -10,11 +10,11 @@ const useFileHandler1 = (initState) => {
   // const [isFileLoading1, setFileLoading1] = useState(false);
 
   const removeImage1 = ({ id, name1 }) => {
-    const item1 = imageFile1[name1].filter((item) => item.id !== id);
+    const items1 = imageFile1[name1].filter((item1) => item1.id !== id);
 
     setImageFile1({
       ...imageFile1,
-      [name1]: item1
+      [name1]: items1
     });
   };
   // const removeImage1 = ({ id, name1 }) => {

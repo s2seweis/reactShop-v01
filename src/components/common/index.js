@@ -12,6 +12,7 @@ export { default as FiltersTooglePost } from './FiltersTogglePost';
 
 export { default as Footer } from './Footer';
 export { default as ImageLoader } from './ImageLoader';
+export { default as ImageLoader2 } from './ImageLoader2';
 export { default as MessageDisplay } from './MessageDisplay';
 export { default as MobileNavigation } from './MobileNavigation';
 export { default as Modal } from './Modal';

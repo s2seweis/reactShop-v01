@@ -71,13 +71,15 @@ function* postSaga({ type, payload }) {
 
         const { imageCollection } = payload;
         const key = yield call(firebase.generateKey);
-        const downloadURL = yield call(firebase.storeImage, key, 'posts', payload.image1);
-        const image = { id: key, url: downloadURL };
+        const downloadURL1 = yield call(firebase.storeImage, key, 'posts', payload.image1 );
+        const downloadURL2 = yield call(firebase.storeImage, key, 'posts', payload.image2 );
+        const image1 = { id: key, url: downloadURL1 };
+        const image2 = { id: key, url: downloadURL2 };
         let images = [];
 
         if (imageCollection.length !== 0) {
           const imageKeys = yield all(imageCollection.map(() => firebase.generateKey));
-          const imageUrls = yield all(imageCollection.map((img, i) => firebase.storeImage(imageKeys[i](), 'posts', img.file)));
+          const imageUrls = yield all(imageCollection.map((img, i) => firebase.storeImage(imageKeys[i](), 'posts', img.file2)));
           images = imageUrls.map((url, i) => ({
             id: imageKeys[i](),
             url
@@ -86,8 +88,9 @@ function* postSaga({ type, payload }) {
 
         const post = {
           ...payload,
-          image1: downloadURL,
-          imageCollection: [image, ...images]
+          image1: downloadURL1,
+          image2: downloadURL2,
+          imageCollection: [image2, ...images]
         };
 
         yield call(firebase.addPost, key, post);
@@ -208,3 +211,5 @@ function* postSaga({ type, payload }) {
 }
 
 export default postSaga;
+
+

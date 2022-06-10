@@ -40,6 +40,7 @@ const AddPost = () => {
             keywords: [],
             sizes: [],
             image1: '',
+            image2: '',
             isFeatured: false,
             isRecommended: false,
             availableColors: [],
