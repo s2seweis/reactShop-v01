@@ -383,4 +383,3 @@ PostForm.propTypes = {
 };
 
 export default PostForm;
-

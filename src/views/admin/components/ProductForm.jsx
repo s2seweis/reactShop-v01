@@ -7,7 +7,7 @@ import {
 import {
   Field, FieldArray, Form, Formik
 } from 'formik';
-import { useFileHandler3 } from 'hooks';
+import { useFileHandler } from 'hooks';
 import PropType from 'prop-types';
 import React from 'react';
 import * as Yup from 'yup';
@@ -68,7 +68,7 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
     isFileLoading,
     onFileChange,
     removeImage
-  } = useFileHandler3({ image: {}, imageCollection: product?.imageCollection || [] });
+  } = useFileHandler({ image: {}, imageCollection: product?.imageCollection || [] });
 
   const onSubmitForm = (form) => {
     if (imageFile.image.file || product.imageUrl) {

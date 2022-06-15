@@ -2,121 +2,121 @@
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-const useFileHandler1 = (initState) => {
-  const [imageFile1, setImageFile1] = useState(initState);
-  const [isFileLoading1, setFileLoading1] = useState(false);
+const useFileHandler = (initState) => {
+  const [imageFile, setImageFile] = useState(initState);
+  const [isFileLoading, setFileLoading] = useState(false);
 
-  // const [imageFile1, setImageFile1] = useState(initState);
-  // const [isFileLoading1, setFileLoading1] = useState(false);
+  // const [imageFile, setImageFile] = useState(initState);
+  // const [isFileLoading, setFileLoading] = useState(false);
 
-  const removeImage1 = ({ id, name1 }) => {
-    const item1 = imageFile1[name1].filter((item) => item.id !== id);
+  const removeImage = ({ id, name }) => {
+    const items = imageFile[name].filter((item) => item.id !== id);
 
-    setImageFile1({
-      ...imageFile1,
-      [name1]: item1
+    setImageFile({
+      ...imageFile,
+      [name]: items
     });
   };
-  // const removeImage1 = ({ id, name1 }) => {
-  //   const items2 = imageFile1[name1].filter((item) => item.id !== id);
+  // const removeImage = ({ id, name }) => {
+  //   const items2 = imageFile[name].filter((item) => item.id !== id);
 
-  //   setImageFile1({
-  //     ...imageFile1,
-  //     [name1]: items2
+  //   setImageFile({
+  //     ...imageFile,
+  //     [name]: items2
   //   });
   // };
 
-  const onFileChange1 = (event, { name1, type }) => {
+  const onFileChange = (event, { name, type }) => {
     const val = event.target.value;
     const img = event.target.files[0];
     const size = img.size / 1024 / 1024;
     const regex = /(\.jpg|\.jpeg|\.png)$/i;
 
-    setFileLoading1(true);
+    setFileLoading(true);
     if (!regex.exec(val)) {
       alert('File type must be JPEG or PNG', 'error');
-      setFileLoading1(false);
+      setFileLoading(false);
     } else if (size > 0.5) {
       alert('File size exceeded 500kb, consider optimizing your image', 'error');
-      setFileLoading1(false);
+      setFileLoading(false);
     } else if (type === 'multiple') {
-      Array.from(event.target.files).forEach((file1) => {
+      Array.from(event.target.files).forEach((file) => {
         const reader = new FileReader();
         reader.addEventListener('load', (e) => {
-          setImageFile1((oldFiles) => ({
+          setImageFile((oldFiles) => ({
             ...oldFiles,
-            [name1]: [...oldFiles[name1], { file1, url: e.target.result, id: uuidv4() }]
+            [name]: [...oldFiles[name], { file, url: e.target.result, id: uuidv4() }]
           }));
         });
-        reader.readAsDataURL(file1);
+        reader.readAsDataURL(file);
       });
 
-      setFileLoading1(false);
+      setFileLoading(false);
     } else { // type is single
       const reader = new FileReader();
 
       reader.addEventListener('load', (e) => {
-        setImageFile1({
-          ...imageFile1,
-          [name1]: { file1: img, url: e.target.result }
+        setImageFile({
+          ...imageFile,
+          [name]: { file: img, url: e.target.result }
         });
-        setFileLoading1(false);
+        setFileLoading(false);
       });
       reader.readAsDataURL(img);
     }
   };
-  // const onFileChange1 = (event, { name1, type }) => {
+  // const onFileChange = (event, { name, type }) => {
   //   const val = event.target.value;
   //   const img = event.target.files[0];
   //   const size = img.size / 1024 / 1024;
   //   const regex = /(\.jpg|\.jpeg|\.png)$/i;
 
-  //   setFileLoading1(true);
+  //   setFileLoading(true);
   //   if (!regex.exec(val)) {
   //     alert('File type must be JPEG or PNG', 'error');
-  //     setFileLoading1(false);
+  //     setFileLoading(false);
   //   } else if (size > 0.5) {
   //     alert('File size exceeded 500kb, consider optimizing your image', 'error');
-  //     setFileLoading1(false);
+  //     setFileLoading(false);
   //   } else if (type === 'multiple') {
   //     Array.from(event.target.files).forEach((file) => {
   //       const reader = new FileReader();
   //       reader.addEventListener('load', (e) => {
-  //         setImageFile1((oldFiles) => ({
+  //         setImageFile((oldFiles) => ({
   //           ...oldFiles,
-  //           [name1]: [...oldFiles[name1], { file, url: e.target.result, id: uuidv4() }]
+  //           [name]: [...oldFiles[name], { file, url: e.target.result, id: uuidv4() }]
   //         }));
   //       });
   //       reader.readAsDataURL(file);
   //     });
 
-  //     setFileLoading1(false);
+  //     setFileLoading(false);
   //   } else { // type is single
   //     const reader = new FileReader();
 
   //     reader.addEventListener('load', (e) => {
-  //       setImageFile1({
-  //         ...imageFile1,
-  //         [name1]: { file: img, url: e.target.result }
+  //       setImageFile({
+  //         ...imageFile,
+  //         [name]: { file: img, url: e.target.result }
   //       });
-  //       setFileLoading1(false);
+  //       setFileLoading(false);
   //     });
   //     reader.readAsDataURL(img);
   //   }
   // };
 
   return {
-    imageFile1,
-    setImageFile1,
-    isFileLoading1,
-    onFileChange1,
-    removeImage1,
-    // imageFile1,
-    // setImageFile1,
-    // isFileLoading1,
-    // onFileChange1,
-    // removeImage1
+    imageFile,
+    setImageFile,
+    isFileLoading,
+    onFileChange,
+    removeImage,
+    // imageFile,
+    // setImageFile,
+    // isFileLoading,
+    // onFileChange,
+    // removeImage
   };
 };
 
-export default useFileHandler1;
+export default useFileHandler;

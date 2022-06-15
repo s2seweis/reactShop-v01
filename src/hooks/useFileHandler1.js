@@ -9,16 +9,16 @@ const useFileHandler1 = (initState) => {
   // const [imageFile1, setImageFile1] = useState(initState);
   // const [isFileLoading1, setFileLoading1] = useState(false);
 
-  const removeImage1 = ({ id, name1 }) => {
-    const items1 = imageFile1[name1].filter((item1) => item1.id !== id);
+  const removeImage1 = ({ id1, name1 }) => {
+    const items1 = imageFile1[name1].filter((item1) => item1.id1 !== id1);
 
     setImageFile1({
       ...imageFile1,
       [name1]: items1
     });
   };
-  // const removeImage1 = ({ id, name1 }) => {
-  //   const items2 = imageFile1[name1].filter((item) => item.id !== id);
+  // const removeImage1 = ({ id1, name1 }) => {
+  //   const items2 = imageFile1[name1].filter((item) => item.id1 !== id1);
 
   //   setImageFile1({
   //     ...imageFile1,
@@ -45,7 +45,7 @@ const useFileHandler1 = (initState) => {
         reader.addEventListener('load', (e) => {
           setImageFile1((oldFiles) => ({
             ...oldFiles,
-            [name1]: [...oldFiles[name1], { file1, url: e.target.result, id: uuidv4() }]
+            [name1]: [...oldFiles[name1], { file1, url: e.target.result, id1: uuidv4() }]
           }));
         });
         reader.readAsDataURL(file1);
@@ -84,7 +84,7 @@ const useFileHandler1 = (initState) => {
   //       reader.addEventListener('load', (e) => {
   //         setImageFile1((oldFiles) => ({
   //           ...oldFiles,
-  //           [name1]: [...oldFiles[name1], { file, url: e.target.result, id: uuidv4() }]
+  //           [name1]: [...oldFiles[name1], { file, url: e.target.result, id1: uuidv4() }]
   //         }));
   //       });
   //       reader.readAsDataURL(file);

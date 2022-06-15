@@ -574,15 +574,25 @@ getRecommendedPosts = (itemsCount = 12) =>
 addPost = (id, post) =>
   this.db.collection("posts").doc(id).set(post);
 
+generateKey1 = () => this.db.collection("posts").doc().id;
 generateKey = () => this.db.collection("posts").doc().id;
 
-storeImage = async (id, folder, imageFile1, imageFile2) => {
-  const snapshot = await this.storage.ref(folder).child(id).put(imageFile1, imageFile2);
+storeImage = async (id, folder, imageFile) => {
+  const snapshot = await this.storage.ref(folder).child(id).put(imageFile);
   const downloadURL1 = await snapshot.ref.getDownloadURL();
   const downloadURL2 = await snapshot.ref.getDownloadURL();
 
   return downloadURL1, downloadURL2;
 };
+
+storeImage1 = async (id, folder, imageFile) => {
+  const snapshot = await this.storage.ref(folder).child(id).put(imageFile);
+  const downloadURL1 = await snapshot.ref.getDownloadURL();
+  const downloadURL2 = await snapshot.ref.getDownloadURL();
+
+  return downloadURL1, downloadURL2;
+};
+
 
 deleteImage = (id) => this.storage.ref("posts").child(id).delete();
 

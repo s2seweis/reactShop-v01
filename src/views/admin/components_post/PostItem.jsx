@@ -47,7 +47,7 @@ const PostItem = ({ post }) => {
               <ImageLoader
                 alt={post.name}
                 className="item-img"
-                src={post.image}
+                src={post.image1}
               />
             ) : <Skeleton width={50} height={30} />}
           </div>
