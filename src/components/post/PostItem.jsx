@@ -47,6 +47,37 @@ const PostItem = ({ post, isItemOnBasket, addToBasket }) => {
               />
             ) : <Skeleton width="100%" height="90%" />}
           </div>
+
+          <div class="row-images">
+
+          <div class="column-images">
+          <div className="product-card-img-wrapper">
+            {post.image2 ? (
+              <ImageLoader
+                alt={post.name}
+                className="product-card-img"
+                src={post.image2}
+              />
+            ) : <Skeleton width="100%" height="90%" />}
+          </div>
+          </div>
+
+          <div class="column-images">
+          <div className="product-card-img-wrapper">
+            {post.image3 ? (
+              <ImageLoader
+                alt={post.name}
+                className="product-card-img"
+                src={post.image3}
+              />
+            ) : <Skeleton width="100%" height="90%" />}
+          </div>
+          </div>
+          
+          </div>
+
+
+
           <div className="product-details">
             <h5 className="product-card-name text-overflow-ellipsis margin-auto">
               {post.name || <Skeleton width={80} />}
@@ -73,7 +104,7 @@ const PostItem = ({ post, isItemOnBasket, addToBasket }) => {
         )}
 
       </div>
-    </SkeletonTheme>
+    </SkeletonTheme >
   );
 };
 

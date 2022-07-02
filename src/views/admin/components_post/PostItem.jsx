@@ -41,7 +41,7 @@ const PostItem = ({ post }) => {
         className={`item item-s ${!post.id && 'item-loading'}`}
         ref={postRef}
       >
-        <div className="grid grid-count-6">
+        <div className="grid grid-count-9">
           <div className="grid-col post-item-img-wrapper">
             {post.image1 ? (
               <ImageLoader
@@ -57,6 +57,15 @@ const PostItem = ({ post }) => {
                 alt={post.name}
                 className="item-img"
                 src={post.image2}
+              />
+            ) : <Skeleton width={50} height={30} />}
+          </div>
+          <div className="grid-col post-item-img-wrapper">
+            {post.image3 ? (
+              <ImageLoader
+                alt={post.name}
+                className="item-img"
+                src={post.image3}
               />
             ) : <Skeleton width={50} height={30} />}
           </div>
@@ -133,6 +142,7 @@ PostItem.propTypes = {
     sizes: PropType.arrayOf(PropType.string),
     image1: PropType.string,
     image2: PropType.string,
+    image3: PropType.string,
     imageUrl: PropType.string,
     isFeatured: PropType.bool,
     isRecommended: PropType.bool,

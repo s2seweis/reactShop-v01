@@ -573,26 +573,40 @@ getRecommendedPosts = (itemsCount = 12) =>
 
 addPost = (id, post) =>
   this.db.collection("posts").doc(id).set(post);
+  
+  generateKey3 = () => this.db.collection("posts").doc().id;
+  generateKey2 = () => this.db.collection("posts").doc().id;
+  generateKey1 = () => this.db.collection("posts").doc().id;
+  
+  
+  storeImage1 = async (id, folder, imageFile) => {
+    const snapshot = await this.storage.ref(folder).child(id).put(imageFile);
+    const downloadURL1 = await snapshot.ref.getDownloadURL();
+    const downloadURL2 = await snapshot.ref.getDownloadURL();
+    const downloadURL3 = await snapshot.ref.getDownloadURL();
 
-generateKey1 = () => this.db.collection("posts").doc().id;
-generateKey = () => this.db.collection("posts").doc().id;
+    
+    return downloadURL1, downloadURL2, downloadURL3;
+  };
+  
+  storeImage2 = async (id, folder, imageFile) => {
+    const snapshot = await this.storage.ref(folder).child(id).put(imageFile);
+    const downloadURL1 = await snapshot.ref.getDownloadURL();
+    const downloadURL2 = await snapshot.ref.getDownloadURL();
+    const downloadURL3 = await snapshot.ref.getDownloadURL();
 
-storeImage = async (id, folder, imageFile) => {
-  const snapshot = await this.storage.ref(folder).child(id).put(imageFile);
-  const downloadURL1 = await snapshot.ref.getDownloadURL();
-  const downloadURL2 = await snapshot.ref.getDownloadURL();
-
-  return downloadURL1, downloadURL2;
-};
-
-storeImage1 = async (id, folder, imageFile) => {
-  const snapshot = await this.storage.ref(folder).child(id).put(imageFile);
-  const downloadURL1 = await snapshot.ref.getDownloadURL();
-  const downloadURL2 = await snapshot.ref.getDownloadURL();
-
-  return downloadURL1, downloadURL2;
-};
-
+    
+    return downloadURL1, downloadURL2, downloadURL3;
+  };
+  
+  storeImage3 = async (id, folder, imageFile) => {
+    const snapshot = await this.storage.ref(folder).child(id).put(imageFile);
+    const downloadURL1 = await snapshot.ref.getDownloadURL();
+    const downloadURL2 = await snapshot.ref.getDownloadURL();
+    const downloadURL3 = await snapshot.ref.getDownloadURL();
+    
+    return downloadURL1, downloadURL2, downloadURL3;
+  };
 
 deleteImage = (id) => this.storage.ref("posts").child(id).delete();
 

@@ -1,3 +1,19 @@
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column-images {
+  float: left;
+  width: 50%;
+  padding: 5px 5px 5px 5px;
+}
+
+/* Clear floats after image containers */
+.row-images::after {
+  content: "";
+  clear: both;
+  display: table;
+  
+}
+
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -107,18 +123,19 @@
 }
 
 .product-card-content {
-  padding: 0;
+  padding: 5px;
   transition: all .4s ease-in-out;
 }
 
 .product-card-img-wrapper {
   width: 100%;
   height: 100px;
-  padding: 0 $m-size;
+  padding: 5px $m-size;
   margin: auto;
   position: relative;
   background: #f6f6f6;
   transition: all .4s ease-in-out;
+  
 
   @include mobile {
     height: 8rem;
@@ -212,7 +229,7 @@
 }
 
 .product-modal-image-wrapper {
-  width: 10rem;
+  width: 30rem;
   // height: 40rem;
   height: inherit;
   flex-grow: 1;

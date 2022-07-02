@@ -20,7 +20,7 @@ const BasketItem = ({ product }) => {
           <ImageLoader
             alt={product.name}
             className="basket-item-img"
-            src={product.image}
+            src={product.image1}
           />
         </div>
         <div className="basket-item-details">
@@ -83,7 +83,7 @@ BasketItem.propTypes = {
     selectedColor: PropType.string,
     imageCollection: PropType.arrayOf(PropType.string),
     sizes: PropType.arrayOf(PropType.number),
-    image: PropType.string,
+    image1: PropType.string,
     imageUrl: PropType.string,
     isFeatured: PropType.bool,
     isRecommended: PropType.bool,

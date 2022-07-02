@@ -12,7 +12,7 @@ import {
   Field, FieldArray, Form, Formik
 } from 'formik';
 
-import { useFileHandler1, useFileHandler2 } from 'hooks';
+import { useFileHandler1, useFileHandler2, useFileHandler3 } from 'hooks';
 
 import PropType from 'prop-types';
 import React from 'react';
@@ -76,6 +76,7 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
     removeImage1,
   } = useFileHandler1({ image1: {} });
 
+  
   const {
     imageFile2,
     isFileLoading2,
@@ -83,8 +84,15 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
     removeImage2
   } = useFileHandler2({ image2: {}, imageCollection: post?.imageCollection || [] });
 
+  const {
+    imageFile3,
+    isFileLoading3,
+    onFileChange3,
+    removeImage3,
+  } = useFileHandler3({ image3: {} });
+  
   const onSubmitForm = (form) => {
-    if (imageFile1.image1.file1, imageFile2.image2.file2 || post.imageUrl) {
+    if (imageFile1.image1.file1, imageFile2.image2.file2, imageFile3.image3.file3 || post.imageUrl) {
       onSubmit({
         ...form,
         quantity: 1,
@@ -94,6 +102,7 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
         dateAdded: new Date().getTime(),
         image1: imageFile1?.image1?.file1 || post.imageUrl,
         image2: imageFile2?.image2?.file2 || post.imageUrl,
+        image3: imageFile3?.image3?.file3 || post.imageUrl,
         imageCollection: imageFile2.imageCollection
       });
     } else {
@@ -351,6 +360,34 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
                 )}
               </div>
             </div>
+            {/* ----THUBMNAIL ----3 */}
+            <div className="product-form-file">
+              <div className="product-form-field">
+                <span className="d-block padding-s">* Thumbnail 3</span>
+                {!isFileLoading3 && (
+                  <label htmlFor="product-input-file3">
+                    <input
+                      disabled={isLoading}
+                      hidden
+                      id="product-input-file3"
+                      onChange={(e) => onFileChange3(e, { name3: 'image3', type: 'single' })}
+                      readOnly={isLoading}
+                      type="file"
+                    />
+                    Choose Image 3
+                  </label>
+                )}
+              </div>
+              <div className="product-form-image-wrapper">
+                {(imageFile3.image3.url || post.image3) && (
+                  <ImageLoader
+                    alt=""
+                    className="product-form-image-preview"
+                    src={imageFile3.image3.url || post.image3}
+                  />
+                )}
+              </div>
+            </div>
 
             {/* ----THUBMNAIL ----END */}
            
@@ -373,6 +410,7 @@ PostForm.propTypes = {
     sizes: PropType.arrayOf(PropType.string),
     image1: PropType.string,
     image2: PropType.string,
+    image3: PropType.string,
     imageUrl: PropType.string,
     isFeatured: PropType.bool,
     isRecommended: PropType.bool,

@@ -11,6 +11,7 @@ export const ADMIN_DASHBOARD = '/admin/dashboard';
 export const ADMIN_PRODUCTS = '/admin/products';
 export const ADMIN_MENUS = '/admin/menus';
 export const ADMIN_POSTS = '/admin/posts';
+export const ADMIN_USERS = '/admin/users';
 
 export const ADD_PRODUCT = '/admin/add';
 export const ADD_MENU = '/admin/add-menu';
