@@ -33,7 +33,7 @@ const UserProfile = (props) => {
             onClick={() => props.history.push(ACCOUNT_EDIT)}
             type="button"
           >
-            Edit Account
+            Edit Account1
           </button>
         </div>
         <div className="user-profile-details">

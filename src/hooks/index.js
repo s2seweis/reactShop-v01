@@ -13,9 +13,11 @@ export { default as useModal } from './useModal';
 export { default as useProduct } from './useProduct';
 export { default as useMenu } from './useMenu';
 export { default as usePost } from './usePost';
+export { default as useUser1 } from './useUser1';
 
 export { default as useRecommendedProducts } from './useRecommendedProducts';
 export { default as useRecommendedPosts } from './useRecommendedPosts';
+export { default as useRecommendedUsers1 } from './useRecommendedUsers1';
 
 export { default as useScrollTop } from './useScrollTop';
 

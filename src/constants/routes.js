@@ -1,8 +1,11 @@
 export const HOME = '/';
 export const SHOP = '/shop';
 export const POST = '/post';
+export const USER1 = '/user1';
 export const FEATURED_PRODUCTS = '/featured';
 export const RECOMMENDED_PRODUCTS = '/recommended';
+export const RECOMMENDED_USERS1 = '/recommended-users1';
+
 export const RECOMMENDED_POSTS = '/recommended-posts';
 export const ACCOUNT = '/account';
 export const ACCOUNT_EDIT = '/account/edit';
@@ -11,17 +14,19 @@ export const ADMIN_DASHBOARD = '/admin/dashboard';
 export const ADMIN_PRODUCTS = '/admin/products';
 export const ADMIN_MENUS = '/admin/menus';
 export const ADMIN_POSTS = '/admin/posts';
-export const ADMIN_USERS = '/admin/users';
+export const ADMIN_USERS1 = '/admin/users1';
 
 export const ADD_PRODUCT = '/admin/add';
 export const ADD_MENU = '/admin/add-menu';
 export const ADD_POST = '/admin/add-post';
+export const ADD_USER1 = '/admin/add-user1';
 
 export const ADD_USER = '/admin/add-user';
 
 export const EDIT_PRODUCT = '/admin/edit';
 export const EDIT_MENU = '/admin/edit-menu';
 export const EDIT_POST = '/admin/edit-post';
+export const EDIT_USER1 = '/admin/edit-user1';
 
 export const SEARCH = '/search/:searchKey';
 export const SIGNIN = '/signin';
@@ -34,3 +39,4 @@ export const CHECKOUT_STEP_3 = '/checkout/step3';
 
 export const VIEW_PRODUCT = '/product/:id';
 export const VIEW_POST = '/post/:id';
+export const VIEW_USER1 = '/user1/:id';

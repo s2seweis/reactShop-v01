@@ -5,6 +5,7 @@ import authSaga from './authSaga';
 import productSaga from './productSaga';
 import menuSaga from './menuSaga';
 import postSaga from './postSaga';
+import user1Saga from './user1Saga';
 
 import profileSaga from './profileSaga';
 
@@ -46,6 +47,14 @@ function* rootSaga() {
     ACTION.EDIT_POST,
     ACTION.GET_POSTS
   ], postSaga);
+
+  yield takeLatest([
+    ACTION.ADD_USER1,
+    ACTION.SEARCH_USER1,
+    ACTION.REMOVE_USER1,
+    ACTION.EDIT_USER1,
+    ACTION.GET_USERS1
+  ], user1Saga);
 
   yield takeLatest([
     ACTION.UPDATE_EMAIL,
