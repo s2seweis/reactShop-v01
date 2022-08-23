@@ -274,7 +274,8 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
                 >
                   {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
                   &nbsp;
-                  {isLoading ? 'Saving Product' : 'Save Product'}
+                  {isLoading ? 'Saving Product' : 'Save Product1'}
+                  
                 </button>
               </div>
             </div>

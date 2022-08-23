@@ -1,5 +1,5 @@
 import {
-  RESET_CHECKOUT, SET_CHECKOUT_PAYMENT_DETAILS, SET_CHECKOUT_SHIPPING_DETAILS
+  RESET_CHECKOUT, SET_CHECKOUT_PAYMENT_DETAILS, SET_CHECKOUT_SHIPPING_DETAILS, SET_CHECKOUT_BASKET_DETAILS, SET_ORDER_DETAILS
 } from 'constants/constants';
 
 const defaultState = {
@@ -15,6 +15,16 @@ const defaultState = {
 
 export default (state = defaultState, action) => {
   switch (action.type) {
+    case SET_ORDER_DETAILS:
+      return {
+        ...state,
+        order: action.payload
+      };
+    case SET_CHECKOUT_BASKET_DETAILS:
+      return {
+        ...state,
+        data: action.payload
+      };
     case SET_CHECKOUT_SHIPPING_DETAILS:
       return {
         ...state,

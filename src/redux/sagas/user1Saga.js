@@ -109,44 +109,44 @@ function* user1Saga({ type, payload }) {
         const { image, imageCollection } = payload.updates;
         let newUpdates = { ...payload.updates };
 
-        if (image.constructor === File && typeof image === 'object') {
-          try {
-            yield call(firebase.deleteImage, payload.id);
-          } catch (e) {
-            console.error('Failed to delete image ', e);
-          }
+        // if (image.constructor === File && typeof image === 'object') {
+        //   try {
+        //     yield call(firebase.deleteImage, payload.id);
+        //   } catch (e) {
+        //     console.error('Failed to delete image ', e);
+        //   }
 
-          const url = yield call(firebase.storeImage, payload.id, 'users1', image);
-          newUpdates = { ...newUpdates, image: url };
-        }
+        //   const url = yield call(firebase.storeImage, payload.id, 'users1', image);
+        //   newUpdates = { ...newUpdates, image: url };
+        // }
 
-        if (imageCollection.length > 1) {
-          const existingUploads = [];
-          const newUploads = [];
+        // if (imageCollection.length > 1) {
+        //   const existingUploads = [];
+        //   const newUploads = [];
 
-          imageCollection.forEach((img) => {
-            if (img.file) {
-              newUploads.push(img);
-            } else {
-              existingUploads.push(img);
-            }
-          });
+        //   imageCollection.forEach((img) => {
+        //     if (img.file) {
+        //       newUploads.push(img);
+        //     } else {
+        //       existingUploads.push(img);
+        //     }
+        //   });
 
-          const imageKeys = yield all(newUploads.map(() => firebase.generateKey));
-          const imageUrls = yield all(newUploads.map((img, i) => firebase.storeImage(imageKeys[i](), 'users1', img.file)));
-          const images = imageUrls.map((url, i) => ({
-            id: imageKeys[i](),
-            url
-          }));
-          newUpdates = { ...newUpdates, imageCollection: [...existingUploads, ...images] };
-        } else {
-          newUpdates = {
-            ...newUpdates,
-            imageCollection: [{ id: new Date().getTime(), url: newUpdates.image }]
-          };
+        //   const imageKeys = yield all(newUploads.map(() => firebase.generateKey));
+        //   const imageUrls = yield all(newUploads.map((img, i) => firebase.storeImage(imageKeys[i](), 'users1', img.file)));
+        //   const images = imageUrls.map((url, i) => ({
+        //     id: imageKeys[i](),
+        //     url
+        //   }));
+        //   newUpdates = { ...newUpdates, imageCollection: [...existingUploads, ...images] };
+        // } else {
+        //   newUpdates = {
+        //     ...newUpdates,
+        //     imageCollection: [{ id: new Date().getTime(), url: newUpdates.image }]
+        //   };
           // add image thumbnail to image collection from newUpdates to
           // make sure you're adding the url not the file object.
-        }
+        // }
 
         yield call(firebase.editUser1, payload.id, newUpdates);
         yield put(editUser1Success({

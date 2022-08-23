@@ -16,7 +16,6 @@ const User1Item = ({ user1 }) => {
   const history = useHistory();
   const user1Ref = useRef(null);
 
-  const profile = useSelector((state) => state.profile);
 
   const onClickEdit = () => {
     history.push(`${EDIT_USER1}/${user1.id}`);
@@ -69,10 +68,13 @@ const User1Item = ({ user1 }) => {
           <div className="grid-col">
             <span className="text-overflow-ellipsis">{user1.address || <Skeleton width={50} />}</span>
           </div>
+          {/* <div className="grid-col">
+            <span className="text-overflow-ellipsis">{user1.mobile || <Skeleton width={50} />}</span>
+          </div> */}
 
           <div className="grid-col">
-            {profile.mobile ? (
-              <h5>{profile.mobile.value}</h5>
+            {user1.mobile ? (
+              <h5>{user1.mobile.value}</h5>
             ) : (
               <h5 className="text-subtle text-italic">Mobile not set</h5>
             )}
@@ -140,7 +142,7 @@ User1Item.propTypes = {
     role: PropType.string,
     email: PropType.string,
     address: PropType.string,
-    // mobile: PropType.string,
+    mobile: PropType.number,
     // price: PropType.number,
     // maxQuantity: PropType.number,
     description: PropType.string,

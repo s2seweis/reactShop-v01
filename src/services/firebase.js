@@ -94,8 +94,13 @@ class Firebase {
       });
     });
 
-  saveBasketItems = (items, userId) =>
+    saveBasketItems = (items, userId) =>
     this.db.collection("users").doc(userId).update({ basket: items });
+
+    clearBasket = (basket, userId) =>
+    this.db.collection("users").doc(userId).delete({ basket });
+
+
 
   setAuthPersistence = () =>
     this.auth.setPersistence(app.auth.Auth.Persistence.LOCAL);
@@ -410,6 +415,11 @@ class Firebase {
 
   addMenu = (id, menu) =>
     this.db.collection("menus").doc(id).set(menu);
+
+  addOrder = (id, order) =>
+    this.db.collection("orders").doc(id).set(order);
+
+
 
   generateKey = () => this.db.collection("menus").doc().id;
 
@@ -761,7 +771,7 @@ class Firebase {
       .get();
 
   addUser1 = (id, user1) =>
-    this.db.collection("users1").doc(id).set(user1);
+    this.db.collection("users").doc(id).set(user1);
 
   generateKey = () => this.db.collection("users1").doc().id;
 
@@ -775,9 +785,9 @@ class Firebase {
   deleteImage = (id) => this.storage.ref("users1").child(id).delete();
 
   editUser1 = (id, updates) =>
-    this.db.collection("users1").doc(id).update(updates);
+    this.db.collection("users").doc(id).update(updates);
 
-  removeUser1 = (id) => this.db.collection("users1").doc(id).delete();
+  removeUser1 = (id) => this.db.collection("users").doc(id).delete();
 
 }
 

@@ -24,6 +24,7 @@ export { default as SignUp } from './auth/signup';
 export { default as CheckOutStep1 } from './checkout/step1';
 export { default as CheckOutStep2 } from './checkout/step2';
 export { default as CheckOutStep3 } from './checkout/step3';
+export { default as CheckOutStep4 } from './checkout/step4';
 export { default as PageNotFound } from './error/PageNotFound';
 export { default as FeaturedProducts } from './featured';
 export { default as Home } from './home';

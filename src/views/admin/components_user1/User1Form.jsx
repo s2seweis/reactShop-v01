@@ -68,15 +68,15 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
 
 
 
-  const {
-    imageFile,
-    isFileLoading,
-    onFileChange,
-    removeImage
-  } = useFileHandler({ image: {}, imageCollection: user1?.imageCollection || [] });
+  // const {
+  //   imageFile,
+  //   isFileLoading,
+  //   onFileChange,
+  //   removeImage
+  // } = useFileHandler({ image: {}, imageCollection: user1?.imageCollection || [] });
 
   const onSubmitForm = (form) => {
-    if (imageFile.image.file || user1.imageUrl) {
+     {
       onSubmit({
         ...form,
         // quantity: 1,
@@ -84,14 +84,29 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
         // of name here instead in firebase functions
         name_lower: form.fullname.toLowerCase(),
         dateAdded: new Date().getTime(),
-        image: imageFile?.image?.file || user1.imageUrl,
-        imageCollection: imageFile.imageCollection
+        // image: imageFile?.image?.file || user1.imageUrl,
+        // imageCollection: imageFile.imageCollection
       });
-    } else {
-      // eslint-disable-next-line no-alert
-      alert('User1 thumbnail image is required.');
-    }
+    } 
   };
+
+  // const onSubmitForm = (form) => {
+  //   if (imageFile.image.file || user1.imageUrl) {
+  //     onSubmit({
+  //       ...form,
+  //       // quantity: 1,
+  //       // due to firebase function billing policy, let's add lowercase version
+  //       // of name here instead in firebase functions
+  //       name_lower: form.fullname.toLowerCase(),
+  //       dateAdded: new Date().getTime(),
+  //       image: imageFile?.image?.file || user1.imageUrl,
+  //       imageCollection: imageFile.imageCollection
+  //     });
+  //   } else {
+  //     // eslint-disable-next-line no-alert
+  //     alert('User1 thumbnail image is required.');
+  //   }
+  // };
 
   return (
     <div>
@@ -215,7 +230,7 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
                   component={CustomColorInput}
                 />
               </div> */}
-              <div className="product-form-field">
+              {/* <div className="product-form-field">
                 <span className="d-block padding-s">Image Collection</span>
                 {!isFileLoading && (
                   <label htmlFor="product-input-file-collection">
@@ -231,8 +246,8 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
                     Choose Images
                   </label>
                 )}
-              </div>
-              <div className="product-form-collection">
+              </div> */}
+              {/* <div className="product-form-collection">
                 <>
                   {imageFile.imageCollection.length >= 1 && (
                     imageFile.imageCollection.map((image) => (
@@ -256,7 +271,7 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
                     ))
                   )}
                 </>
-              </div>
+              </div> */}
               <br />
               {/* <div className="d-flex">
                 <div className="product-form-field">
@@ -304,7 +319,7 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
               </div>
             </div>
             {/* ----THUBMNAIL ---- */}
-            <div className="product-form-file">
+            {/* <div className="product-form-file">
               <div className="product-form-field">
                 <span className="d-block padding-s">* Thumbnail</span>
                 {!isFileLoading && (
@@ -330,7 +345,7 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
                   />
                 )}
               </div>
-            </div>
+            </div> */}
           </Form>
         )}
       </Formik>
@@ -348,10 +363,10 @@ User1Form.propTypes = {
     address: PropType.string,
     mobile: PropType.string,
     // keywords: PropType.arrayOf(PropType.string),
-    imageCollection: PropType.arrayOf(PropType.object),
+    // imageCollection: PropType.arrayOf(PropType.object),
     // sizes: PropType.arrayOf(PropType.string),
-    image: PropType.string,
-    imageUrl: PropType.string
+    // image: PropType.string,
+    // imageUrl: PropType.string
     // isFeatured: PropType.bool,
     // isRecommended: PropType.bool,
     // availableColors: PropType.arrayOf(PropType.string)

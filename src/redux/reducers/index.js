@@ -8,15 +8,19 @@ import productReducer from './productReducer';
 import menuReducer from './menuReducer';
 import postReducer from './postReducer';
 
+import orderReducer from './orderReducer';
+
 import user1Reducer from './user1Reducer';
 
 import profileReducer from './profileReducer';
-import userReducer from './userReducer';
+// import userReducer from './userReducer';
 
 const rootReducer = {
   products: productReducer,
   menus: menuReducer,
   posts: postReducer,
+  
+  order: orderReducer,
 
   users1: user1Reducer,
 
@@ -24,7 +28,7 @@ const rootReducer = {
   auth: authReducer,
   profile: profileReducer,
   filter: filterReducer,
-  users: userReducer,
+  // users: userReducer,
   checkout: checkoutReducer,
   app: miscReducer
 };

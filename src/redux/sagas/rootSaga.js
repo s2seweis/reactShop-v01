@@ -7,12 +7,19 @@ import menuSaga from './menuSaga';
 import postSaga from './postSaga';
 import user1Saga from './user1Saga';
 
+// import orderSaga from './orderSaga';
+
+import checkoutSaga from './checkoutSaga';
+
 import profileSaga from './profileSaga';
+
+import basketSaga from './basketSaga';
 
 function* rootSaga() {
   yield takeLatest([
     ACTION.SIGNIN,
     ACTION.SIGNUP,
+    ACTION.SIGNUP_SUCCESS,
     ACTION.SIGNOUT,
     ACTION.SIGNIN_WITH_GOOGLE,
     ACTION.SIGNIN_WITH_FACEBOOK,
@@ -31,6 +38,18 @@ function* rootSaga() {
     ACTION.EDIT_PRODUCT,
     ACTION.GET_PRODUCTS
   ], productSaga);
+
+  // yield takeLatest([
+  //   ACTION.PLACE_ORDER
+  // ], orderSaga);
+
+  yield takeLatest([
+    ACTION.SET_ORDER_DETAILS,
+    ACTION.SET_CHECKOUT_BASKET_DETAILS,
+    ACTION.SET_CHECKOUT_SHIPPING_DETAILS,
+    ACTION.SET_CHECKOUT_PAYMENT_DETAILS,
+    ACTION.RESET_CHECKOUT
+  ], checkoutSaga);
 
   yield takeLatest([
     ACTION.ADD_MENU,
@@ -60,6 +79,10 @@ function* rootSaga() {
     ACTION.UPDATE_EMAIL,
     ACTION.UPDATE_PROFILE
   ], profileSaga);
+
+  yield takeLatest([
+    ACTION.CLEAR_BASKET
+  ], basketSaga);
 }
 
 export default rootSaga;

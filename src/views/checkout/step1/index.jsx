@@ -10,19 +10,30 @@ import { useHistory } from 'react-router-dom';
 import { StepTracker } from '../components';
 import withCheckout from '../hoc/withCheckout';
 
+import { setBasketDetails } from 'redux/actions/checkoutActions';
+
+
 const OrderSummary = ({ basket, subtotal }) => {
   useDocumentTitle('Check Out Step 1 | Salinaka');
   useScrollTop();
   const dispatch = useDispatch();
   const history = useHistory();
   const onClickPrevious = () => history.push('/');
-  const onClickNext = () => history.push(CHECKOUT_STEP_2);
+  // const onClickNext = () => history.push(CHECKOUT_STEP_2);
+
+  const onClickNext = (form) => {
+    dispatch(setBasketDetails({
+      basket: basket,
+      subtotal: subtotal
+    }));
+    history.push(CHECKOUT_STEP_2);
+  };
 
   return (
     <div className="checkout">
       <StepTracker current={1} />
       <div className="checkout-step-1">
-        <h3 className="text-center">Order Summary</h3>
+        <h3 className="text-center">Basket</h3>
         <span className="d-block text-center">Review items in your basket.</span>
         <br />
         <div className="checkout-items">
