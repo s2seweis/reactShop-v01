@@ -7,8 +7,6 @@ import menuSaga from './menuSaga';
 import postSaga from './postSaga';
 import user1Saga from './user1Saga';
 
-// import orderSaga from './orderSaga';
-
 import checkoutSaga from './checkoutSaga';
 
 import profileSaga from './profileSaga';
@@ -39,9 +37,6 @@ function* rootSaga() {
     ACTION.GET_PRODUCTS
   ], productSaga);
 
-  // yield takeLatest([
-  //   ACTION.PLACE_ORDER
-  // ], orderSaga);
 
   yield takeLatest([
     ACTION.SET_ORDER_DETAILS,

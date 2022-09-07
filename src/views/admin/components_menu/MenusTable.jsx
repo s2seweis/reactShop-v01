@@ -21,7 +21,7 @@ const MenusTable = ({ filteredMenus }) => (
           <h5>Date Added</h5>
         </div>
         <div className="grid-col">
-          <h5>Qty</h5>
+          <h5>Qty1</h5>
         </div>
       </div>
     )}

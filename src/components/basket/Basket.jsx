@@ -22,7 +22,7 @@ const Basket = () => {
   const didMount = useDidMount();
 
   useEffect(() => {
-    if (didMount && firebase.auth.currentUser && basket.length === 0 || basket.length !== 0 ) {
+    if (didMount && firebase.auth.currentUser && basket.length >= 0 ) {
       firebase.saveBasketItems(basket, firebase.auth.currentUser.uid)
         .then(() => {
           console.log('Item saved to basket');
@@ -31,6 +31,10 @@ const Basket = () => {
           console.log(e);
         });
     }
+    else {
+      
+    }
+    
   }, [basket.length]);
 
   const onCheckOut = () => {
@@ -98,7 +102,7 @@ const Basket = () => {
                   onClick={onClickToggle}
                   role="presentation"
                 >
-                  Close
+                  Close1
                 </span>
               )}
             </BasketToggle>

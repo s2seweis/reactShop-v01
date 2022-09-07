@@ -271,7 +271,7 @@ class Firebase {
 
   // // MENU ACTIONS --------------
 
-  getSingleMenu = (id) => this.db.collection("menus").doc(id).get();
+  getSingleMenu = (id) => this.db.collection("orders").doc(id).get();
 
   getMenus = (lastRefKey) => {
     let didTimeout = false;
@@ -281,7 +281,7 @@ class Firebase {
         if (lastRefKey) {
           try {
             const query = this.db
-              .collection("menus")
+              .collection("orders")
               .orderBy(app.firestore.FieldPath.documentId())
               .startAfter(lastRefKey)
               .limit(12);
@@ -304,10 +304,10 @@ class Firebase {
           }, 15000);
 
           try {
-            const totalQuery = await this.db.collection("menus").get();
+            const totalQuery = await this.db.collection("orders").get();
             const total = totalQuery.docs.length;
             const query = this.db
-              .collection("menus")
+              .collection("orders")
               .orderBy(app.firestore.FieldPath.documentId())
               .limit(12);
             const snapshot = await query.get();

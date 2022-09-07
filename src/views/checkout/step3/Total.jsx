@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { setPaymentDetails } from 'redux/actions/checkoutActions';
 
-import { placeOrderInit } from 'redux/actions/orderActions';
+// import { placeOrderInit } from 'redux/actions/orderActions';
 
 
 

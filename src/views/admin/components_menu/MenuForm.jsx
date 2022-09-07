@@ -12,6 +12,9 @@ import PropType from 'prop-types';
 import React from 'react';
 import * as Yup from 'yup';
 
+import { BasketItem } from 'components/basket';
+
+
 // Default brand names that I used. You can use what you want
 const brandOptions = [
   { value: 'Salt Maalat', label: 'Salt Maalat' },
@@ -26,11 +29,11 @@ const FormSchema = Yup.object().shape({
     .max(60, 'Menu name must only be less than 60 characters.'),
   brand: Yup.string()
     .required('Brand name is required.'),
-  price: Yup.number()
+  subtotal: Yup.number()
     .positive('Price is invalid.')
     .integer('Price should be an integer.')
     .required('Price is required.'),
-  description: Yup.string()
+  id: Yup.string()
     .required('Description is required.'),
   maxQuantity: Yup.number()
     .positive('Max quantity is invalid.')
@@ -42,6 +45,9 @@ const FormSchema = Yup.object().shape({
   sizes: Yup.array()
     .of(Yup.number())
     .min(1, 'Please enter a size for this menu.'),
+  // basket: Yup.array()
+  //   .of(Yup.number())
+  //   .min(1, 'Please enter a size for this menu.'),
   isFeatured: Yup.boolean(),
   isRecommended: Yup.boolean(),
   availableColors: Yup.array()
@@ -49,14 +55,15 @@ const FormSchema = Yup.object().shape({
     .min(1, 'Please add a default color for this menu.')
 });
 
-const MenuForm = ({ menu, onSubmit, isLoading }) => {
+const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
   const initFormikValues = {
     name: menu?.name || '',
     brand: menu?.brand || '',
-    price: menu?.price || 0,
+    subtotal: menu?.subtotal || 0,
     maxQuantity: menu?.maxQuantity || 0,
-    description: menu?.description || '',
+    id: menu?.id || '',
     keywords: menu?.keywords || [],
+    basket: menu?.basket || [],
     sizes: menu?.sizes || [],
     isFeatured: menu?.isFeatured || false,
     isRecommended: menu?.isRecommended || false,
@@ -127,8 +134,8 @@ const MenuForm = ({ menu, onSubmit, isLoading }) => {
               <div className="product-form-field">
                 <Field
                   disabled={isLoading}
-                  name="description"
-                  id="description"
+                  name="id"
+                  id="id"
                   rows={3}
                   label="* Product Description"
                   component={CustomTextarea}
@@ -138,8 +145,8 @@ const MenuForm = ({ menu, onSubmit, isLoading }) => {
                 <div className="product-form-field">
                   <Field
                     disabled={isLoading}
-                    name="price"
-                    id="price"
+                    name="subtotal"
+                    id="subtotal"
                     type="number"
                     label="* Price"
                     component={CustomInput}
@@ -170,9 +177,10 @@ const MenuForm = ({ menu, onSubmit, isLoading }) => {
                   />
                 </div>
                 &nbsp;
+
                 <div className="product-form-field">
                   <CustomCreatableSelect
-                    defaultValue={values.keywords.map((key) => ({ value: key, label: key }))}
+                    defaultValue={values.sizes.map((key) => ({ value: key, label: key }))}
                     name="sizes"
                     iid="sizes"
                     type="number"
@@ -182,6 +190,40 @@ const MenuForm = ({ menu, onSubmit, isLoading }) => {
                     label="* Sizes (Millimeter)"
                   />
                 </div>
+
+                {/* //Attempt 1 */}
+
+                <div className="product-form-field">
+                  {/* <CustomCreatableSelect */}
+                    defaultValue={values.basket.map((product) => (
+                      <BasketItem
+                        basket={basket}
+                        // dispatch={dispatch}
+                        key={product.id}
+                        product={product}
+                      />
+                    ))}
+                
+                </div>
+
+
+                {/* <div className="checkout-items">
+                  {basket.map((product) => (
+                    <BasketItem
+                      basket={basket}
+                      dispatch={dispatch}
+                      key={product.id}
+                      product={product}
+                    />
+                  ))}
+                </div> */}
+
+
+
+
+
+
+
               </div>
               <div className="product-form-field">
                 <FieldArray
@@ -190,6 +232,8 @@ const MenuForm = ({ menu, onSubmit, isLoading }) => {
                   component={CustomColorInput}
                 />
               </div>
+
+
               <div className="product-form-field">
                 <span className="d-block padding-s">Image Collection</span>
                 {!isFileLoading && (
@@ -207,6 +251,8 @@ const MenuForm = ({ menu, onSubmit, isLoading }) => {
                   </label>
                 )}
               </div>
+
+
               <div className="product-form-collection">
                 <>
                   {imageFile.imageCollection.length >= 1 && (
@@ -279,7 +325,7 @@ const MenuForm = ({ menu, onSubmit, isLoading }) => {
               </div>
             </div>
             {/* ----THUBMNAIL ---- */}
-            <div className="product-form-file">
+            {/* <div className="product-form-file">
               <div className="product-form-field">
                 <span className="d-block padding-s">* Thumbnail</span>
                 {!isFileLoading && (
@@ -305,7 +351,7 @@ const MenuForm = ({ menu, onSubmit, isLoading }) => {
                   />
                 )}
               </div>
-            </div>
+            </div> */}
           </Form>
         )}
       </Formik>
@@ -317,11 +363,12 @@ MenuForm.propTypes = {
   menu: PropType.shape({
     name: PropType.string,
     brand: PropType.string,
-    price: PropType.number,
+    subtotal: PropType.number,
     maxQuantity: PropType.number,
-    description: PropType.string,
+    id: PropType.string,
     keywords: PropType.arrayOf(PropType.string),
     imageCollection: PropType.arrayOf(PropType.object),
+    basket: PropType.arrayOf(PropType.object),
     sizes: PropType.arrayOf(PropType.string),
     image: PropType.string,
     imageUrl: PropType.string,

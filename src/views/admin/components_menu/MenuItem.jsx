@@ -51,13 +51,13 @@ const MenuItem = ({ menu }) => {
             ) : <Skeleton width={50} height={30} />}
           </div>
           <div className="grid-col">
-            <span className="text-overflow-ellipsis">{menu.name || <Skeleton width={50} />}</span>
+            <span className="text-overflow-ellipsis">{menu.subtotal || <Skeleton width={50} />}</span>
           </div>
           <div className="grid-col">
-            <span>{menu.brand || <Skeleton width={50} />}</span>
+            <span>{menu.id || <Skeleton width={50} />}</span>
           </div>
           <div className="grid-col">
-            <span>{menu.price ? displayMoney(menu.price) : <Skeleton width={30} />}</span>
+            <span>{menu.basket ? displayMoney(menu.price) : <Skeleton width={30} />}</span>
           </div>
           <div className="grid-col">
             <span>
@@ -113,11 +113,11 @@ const MenuItem = ({ menu }) => {
 MenuItem.propTypes = {
   menu: PropType.shape({
     id: PropType.string,
-    name: PropType.string,
+    subtotal: PropType.number,
     brand: PropType.string,
-    price: PropType.number,
+    basket: PropType.string,
     maxQuantity: PropType.number,
-    description: PropType.string,
+    id: PropType.string,
     keywords: PropType.arrayOf(PropType.string),
     imageCollection: PropType.arrayOf(PropType.object),
     sizes: PropType.arrayOf(PropType.string),

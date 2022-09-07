@@ -116,7 +116,7 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
                   <CustomCreatableSelect
                     defaultValue={{ label: values.brand, value: values.brand }}
                     name="brand"
-                    iid="brand"
+                    id="brand"
                     options={brandOptions}
                     disabled={isLoading}
                     placeholder="Select/Create Brand"
@@ -162,7 +162,7 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
                   <CustomCreatableSelect
                     defaultValue={values.keywords.map((key) => ({ value: key, label: key }))}
                     name="keywords"
-                    iid="keywords"
+                    id="keywords"
                     isMulti
                     disabled={isLoading}
                     placeholder="Create/Select Keywords"
@@ -172,9 +172,9 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
                 &nbsp;
                 <div className="product-form-field">
                   <CustomCreatableSelect
-                    defaultValue={values.keywords.map((key) => ({ value: key, label: key }))}
+                    defaultValue={values.sizes.map((key) => ({ value: key, label: key }))}
                     name="sizes"
-                    iid="sizes"
+                    id="sizes"
                     type="number"
                     isMulti
                     disabled={isLoading}
