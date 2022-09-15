@@ -13,26 +13,34 @@ const OrderItem = ({ product }) => {
   const onRemoveFromBasket = () => dispatch(removeFromBasket(product.id));
 
   return (
-    <div className="basket-item">
-      <OrderItemControl product={product} />
-      <div className="basket-item-wrapper">
+    <div className="order-item-list">
+      {/* <OrderItemControl product={product} /> */}
+      <div className="order-item-wrapper">
 
-        <div className="basket-item-img-wrapper">
+        <div className="order-item-img-wrapper">
 
-          <ImageLoader
-            alt={product.name}
-            className="basket-item-img"
-            src={product.image}
-          />
 
-        </div>
-
-        <div className="basket-item-details">
           <Link to={`/product/${product.id}`} onClick={() => document.body.classList.remove('is-basket-open')}>
             <h4 className="underline basket-item-name">
               {product.name}
             </h4>
           </Link>
+
+
+          {/* <ImageLoader
+            alt={product.name}
+            className="basket-item-img"
+            src={product.image}
+          /> */}
+
+        </div>
+
+        <div className="basket-item-details">
+          {/* <Link to={`/product/${product.id}`} onClick={() => document.body.classList.remove('is-basket-open')}>
+            <h4 className="underline basket-item-name">
+              {product.name}
+            </h4>
+          </Link> */}
           <div className="basket-item-specs">
             <div>
               <span className="spec-title">Quantity</span>
@@ -46,6 +54,9 @@ const OrderItem = ({ product }) => {
                 mm
               </h5>
             </div>
+
+
+
             <div>
               <span className="spec-title">Color</span>
               <div style={{
@@ -56,11 +67,31 @@ const OrderItem = ({ product }) => {
               }}
               />
             </div>
+
+
+
+            <div>
+              <span className="spec-title">Price</span>
+              <h5 className="my-0">
+                {product.price}
+                {' '}
+                $
+              </h5>
+            </div>
+
+
           </div>
         </div>
-        <div className="basket-item-price">
+
+
+
+        {/* <div className="basket-item-price">
+        
           <h4 className="my-0">{displayMoney(product.price * product.quantity)}</h4>
-        </div>
+        </div> */}
+
+
+
         {/* <button
           className="basket-item-remove button button-border button-border-gray button-small"
           onClick={onRemoveFromBasket}
