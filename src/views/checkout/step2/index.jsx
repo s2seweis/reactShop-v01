@@ -77,13 +77,33 @@ const ShippingDetails = ({ profile, shipping, subtotal }) => {
             validationSchema={FormSchema}
             onSubmit={onSubmitForm}
           >
+
+
+
+
             {() => (
+
+
+
               <Form>
+
+
+
                 <ShippingForm />
+
+
+
                 <br />
+
+
+
                 {/*  ---- TOTAL --------- */}
                 <ShippingTotal subtotal={subtotal} />
+
+
                 <br />
+
+                
                 {/*  ----- NEXT/PREV BUTTONS --------- */}
                 <div className="checkout-shipping-action">
                   <button
@@ -104,8 +124,13 @@ const ShippingDetails = ({ profile, shipping, subtotal }) => {
                     <ArrowRightOutlined />
                   </button>
                 </div>
+
+
+
               </Form>
             )}
+
+
           </Formik>
         </div>
       </div>

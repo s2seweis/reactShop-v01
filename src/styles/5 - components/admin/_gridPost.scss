@@ -1,11 +1,13 @@
 .grid {
   align-items: center;
   position: relative;
+  justify-content: center;
   // border: 1px solid transparent;
 }
 
 .grid-col {
   position: relative;
+  justify-content: center;
 }
 
 .post-admin-header {

@@ -1,6 +1,17 @@
 .checkout {
   width: 100%;
   animation: slide-up .5s ease;
+  // justify-content: center;
+
+  @include mobile {
+    margin-top: 2rem;
+  }
+}
+
+.order {
+  width: 100%;
+  animation: slide-up .5s ease;
+  // justify-content: center;
 
   @include mobile {
     margin-top: 2rem;

@@ -27,6 +27,7 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
       payment: payment,
       shipping: shipping,
       subtotal: subtotal,
+      dateAdded: new Date().getTime(),
       // Total: Total
 
     }));

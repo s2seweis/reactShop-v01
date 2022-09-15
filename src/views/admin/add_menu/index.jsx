@@ -18,7 +18,7 @@ const AddMenu = () => {
   };
 
   return (
-    <div className="product-form-container">
+    <div className="order-form-container">
       <h2>Add New Menu1</h2>
       <Suspense fallback={(
         <div className="loader" style={{ minHeight: '80vh' }}>

@@ -9,7 +9,7 @@ import { editMenu } from 'redux/actions/menuActions';
 const MenuForm = lazy(() => import('../components_menu/MenuForm'));
 
 const EditMenu = ({ match }) => {
-  useDocumentTitle('Edit Menu | Salinaka');
+  useDocumentTitle('Order Summary | Salinaka');
   useScrollTop();
   const { menu, error, isLoading } = useMenu(match.params.id);
   const dispatch = useDispatch();
@@ -21,7 +21,10 @@ const EditMenu = ({ match }) => {
   return (
     <div className="product-form-container">
       {error && <Redirect to="/dashboard/menus" />}
-      <h2>Edit Menu3</h2>
+
+
+      
+
       {menu && (
         <Suspense fallback={(
           <div className="loader" style={{ minHeight: '80vh' }}>

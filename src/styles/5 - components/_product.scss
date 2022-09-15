@@ -18,7 +18,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   grid-gap: $s-size;
-  justify-content: center;
+  place-items: center;
 
   @include mobile {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -66,6 +66,27 @@
 .product-card {
   max-width: 400px;
   height: 600px;
+  border: 1px solid $border-color;
+  text-align: center;
+  position: relative;
+  background: $white;
+  // box-shadow: 0 10px 15px rgba(0, 0, 0, .05);
+  overflow: hidden;
+  // margin: auto;
+  // animation: slide-up .3s ease;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @include mobile {
+    height: 200px;
+  }
+}
+// for the order component
+.address-order-card {
+  max-width: 250px;
+  height: 250px;
   border: 1px solid $border-color;
   text-align: center;
   position: relative;
@@ -344,13 +365,48 @@
 
 .product-form {
   width: 100%;
-  display: flex;
-  // grid-template-columns: repeat(3, 1fr);
-  // grid-gap: $s-size;
+  // display: flex;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: $s-size;
+}
+
+.order-form {
+  width: 100%;
+  // display: flex;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: $s-size;
 }
 
 .product-form-field {
   width: 100%;
+  margin-right: 20px;
+  
+}
+
+.order-form-field {
+  width: 100%;
+  margin-right: 0px;
+  margin-left: 0px;
+  word-break: break-all; 
+  align-content: center;
+  justify-content: center;
+}
+
+.order-form-field-1 {
+  display: flex;
+  width: 100%;
+  margin-right: 0px;
+  margin-left: 0px;
+  // align-content: center;
+  justify-content:center;
+}
+.order-form-field-2 {
+  display: flex;
+  width: 100%;
+  margin-right: 0px;
+  margin-left: 0px;
+  // align-content: center;
+  justify-content:center;
 }
 
 .product-form-inputs {

@@ -1,11 +1,32 @@
 .grid {
   align-items: center;
   position: relative;
+  justify-content: center;
   // border: 1px solid transparent;
 }
 
 .grid-col {
   position: relative;
+  justify-content: center;
+}
+
+.grid-col-break {
+  position: relative;
+  justify-content: center;
+  max-width: 100px;
+  min-width: 50px;
+  word-break: break-all;
+}
+
+
+
+
+
+
+// test
+.p {
+  max-width: 100px;
+  word-break: break-all;
 }
 
 .product-admin-header {
@@ -32,6 +53,8 @@
 
 .product-admin-items {
   padding: 0 $l-size;
+  justify-content: center;
+
 }
 
 .product-admin-filter-wrapper {
@@ -51,4 +74,8 @@
 
 .product-form-container {
   padding: $l-size;
+}
+
+.order-form-container {
+  padding: 100px 100px 100px 100px;;
 }

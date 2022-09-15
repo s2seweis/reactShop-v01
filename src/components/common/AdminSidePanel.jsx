@@ -19,7 +19,7 @@ const SideNavigation = () => (
           className="sidenavigation-menu"
           to={ADMIN_MENUS}
         >
-          Menus
+          Orders1
         </NavLink>
 
         <NavLink

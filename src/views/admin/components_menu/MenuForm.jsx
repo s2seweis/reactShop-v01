@@ -12,7 +12,13 @@ import PropType from 'prop-types';
 import React from 'react';
 import * as Yup from 'yup';
 
-import { BasketItem } from 'components/basket';
+import { OrderItem } from 'components/basket';
+
+import { useSelector } from 'react-redux';
+
+import { displayActionMessage, displayDate, displayMoney } from 'helpers/utils';
+
+
 
 
 // Default brand names that I used. You can use what you want
@@ -67,8 +73,14 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
     sizes: menu?.sizes || [],
     isFeatured: menu?.isFeatured || false,
     isRecommended: menu?.isRecommended || false,
-    availableColors: menu?.availableColors || []
+    mobile: menu.mobile || {},
+    availableColors: menu?.availableColors || [],
+    address: menu.address || '',
+
+
   };
+
+  const menus = useSelector((state) => state.menus);
 
   const {
     imageFile,
@@ -104,10 +116,12 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
         onSubmit={onSubmitForm}
       >
         {({ values, setValues }) => (
-          <Form className="product-form">
-            <div className="product-form-inputs">
-              <div className="d-flex">
-                <div className="product-form-field">
+          <Form className="order-form">
+            {/* <div className="product-form-inputs"> */}
+            {/* <div className="d-flex"> */}
+
+
+            {/* <div className="product-form-field">
                   <Field
                     disabled={isLoading}
                     name="name"
@@ -117,9 +131,12 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                     style={{ textTransform: 'capitalize' }}
                     component={CustomInput}
                   />
-                </div>
-                &nbsp;
-                <div className="product-form-field">
+                </div> */}
+
+            {/* &nbsp; */}
+
+
+            {/* <div className="product-form-field">
                   <CustomCreatableSelect
                     defaultValue={{ label: values.brand, value: values.brand }}
                     name="brand"
@@ -129,9 +146,13 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                     placeholder="Select/Create Brand"
                     label="* Brand"
                   />
-                </div>
-              </div>
-              <div className="product-form-field">
+                </div> */}
+
+
+            {/* </div> */}
+
+
+            {/* <div className="product-form-field">
                 <Field
                   disabled={isLoading}
                   name="id"
@@ -140,20 +161,26 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                   label="* Product Description"
                   component={CustomTextarea}
                 />
-              </div>
-              <div className="d-flex">
-                <div className="product-form-field">
+              </div> */}
+
+
+            {/* Subtotal */}
+
+            {/* <div className="d-flex"> */}
+            {/* <div className="product-form-field">
                   <Field
                     disabled={isLoading}
                     name="subtotal"
                     id="subtotal"
                     type="number"
-                    label="* Price"
+                    label="* Total"
                     component={CustomInput}
                   />
-                </div>
-                &nbsp;
-                <div className="product-form-field">
+                </div> */}
+
+
+            {/* &nbsp; */}
+            {/* <div className="product-form-field">
                   <Field
                     disabled={isLoading}
                     name="maxQuantity"
@@ -162,10 +189,15 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                     label="* Max Quantity"
                     component={CustomInput}
                   />
-                </div>
-              </div>
-              <div className="d-flex">
-                <div className="product-form-field">
+                </div> */}
+            {/* </div> */}
+
+
+
+
+            {/* <div className="d-flex"> */}
+
+            {/* <div className="product-form-field">
                   <CustomCreatableSelect
                     defaultValue={values.keywords.map((key) => ({ value: key, label: key }))}
                     name="keywords"
@@ -175,10 +207,12 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                     placeholder="Create/Select Keywords"
                     label="* Keywords"
                   />
-                </div>
-                &nbsp;
+                </div> */}
 
-                <div className="product-form-field">
+
+            {/* &nbsp; */}
+
+            {/* <div className="product-form-field">
                   <CustomCreatableSelect
                     defaultValue={values.sizes.map((key) => ({ value: key, label: key }))}
                     name="sizes"
@@ -189,52 +223,21 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                     placeholder="Create/Select Sizes"
                     label="* Sizes (Millimeter)"
                   />
-                </div>
-
-                {/* //Attempt 1 */}
-
-                <div className="product-form-field">
-                  {/* <CustomCreatableSelect */}
-                    defaultValue={values.basket.map((product) => (
-                      <BasketItem
-                        basket={basket}
-                        // dispatch={dispatch}
-                        key={product.id}
-                        product={product}
-                      />
-                    ))}
-                
-                </div>
-
-
-                {/* <div className="checkout-items">
-                  {basket.map((product) => (
-                    <BasketItem
-                      basket={basket}
-                      dispatch={dispatch}
-                      key={product.id}
-                      product={product}
-                    />
-                  ))}
                 </div> */}
 
+            {/* </div> */}
 
 
-
-
-
-
-              </div>
-              <div className="product-form-field">
+            {/* <div className="product-form-field">
                 <FieldArray
                   name="availableColors"
                   disabled={isLoading}
                   component={CustomColorInput}
                 />
-              </div>
+              </div> */}
 
 
-              <div className="product-form-field">
+            {/* <div className="product-form-field">
                 <span className="d-block padding-s">Image Collection</span>
                 {!isFileLoading && (
                   <label htmlFor="product-input-file-collection">
@@ -250,10 +253,10 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                     Choose Images
                   </label>
                 )}
-              </div>
+              </div> */}
 
 
-              <div className="product-form-collection">
+            {/* <div className="product-form-collection">
                 <>
                   {imageFile.imageCollection.length >= 1 && (
                     imageFile.imageCollection.map((image) => (
@@ -277,10 +280,14 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                     ))
                   )}
                 </>
-              </div>
-              <br />
-              <div className="d-flex">
-                <div className="product-form-field">
+              </div> */}
+
+
+            <br />
+            {/* <div className="d-flex"> */}
+
+
+            {/* <div className="product-form-field">
                   <input
                     checked={values.isFeatured}
                     className=""
@@ -293,8 +300,10 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                       &nbsp; Add to Featured &nbsp;
                     </h5>
                   </label>
-                </div>
-                <div className="product-form-field">
+                </div> */}
+
+
+            {/* <div className="product-form-field">
                   <input
                     checked={values.isRecommended}
                     className=""
@@ -307,12 +316,16 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                       &nbsp; Add to Recommended &nbsp;
                     </h5>
                   </label>
-                </div>
-              </div>
-              <br />
-              <br />
-              <br />
-              <div className="product-form-field product-form-submit">
+                </div> */}
+
+
+            {/* </div> */}
+            <br />
+            <br />
+            <br />
+
+
+            {/* <div className="product-form-field product-form-submit">
                 <button
                   className="button"
                   disabled={isLoading}
@@ -322,8 +335,248 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                   &nbsp;
                   {isLoading ? 'Saving Menu' : 'Save Menu'}
                 </button>
+                
+              </div> */}
+
+
+            {/* </div> */}
+
+
+
+
+
+            {/* OrderItem */}
+
+
+
+
+            <div className="order">
+
+
+
+              {/* Invoice */}
+
+
+              <div className="d-flex-address">
+
+                <div className="address-item-line-1 ">
+
+
+                  <div className="order-form-field-1">
+
+
+
+                    <h1>Invoice</h1>
+
+
+                  </div>
+
+
+                </div>
+
+                <div className="address-item-line ">
+
+
+
+
+                  <div className="order-form-field">
+                    <h3>Payment:</h3>
+                    {/* <br /> */}
+                    {menu.payment ? (
+                      <h5>{menu.payment.type}</h5>
+                    ) : (
+                      <h5 className="text-subtle text-italic">Address not found</h5>
+                    )}
+
+                  </div>
+
+
+
+                </div>
+
+
+
               </div>
+
+
+
+              {/* date and id */}
+
+              <div className="d-flex-address">
+
+                <div className="address-item-line ">
+
+
+                  <div className="order-form-field">
+
+
+
+                    <h3>Order Date</h3>
+                    {/* <p>&nbsp;</p> */}
+                    <h5>
+                      {menu.dateAdded ? displayDate(menu.dateAdded) : <Skeleton width={50} />}
+
+                    </h5>
+                  </div>
+
+
+                </div>
+
+                <div className="address-item-line ">
+
+
+                  <div className="order-form-field">
+                    {/* word-break: break-all; */}
+
+
+                    <h3>Order ID</h3>
+                    {/* <p>&nbsp;</p> */}
+                    <h5>
+                      {menu.id || <Skeleton width={50} />}
+                    </h5>
+                  </div>
+
+
+                </div>
+
+
+
+              </div>
+
+
+
+
+
+              {/* Dispatcher & Receiver */}
+
+
+              <div className="d-flex-address">
+
+                <div className="address-item ">
+
+
+                  <div className="order-form-field">
+
+
+
+                    {/* <p>&nbsp;</p> */}
+                    <h3>Dispatcher:</h3>
+                    <h5>Danone Waters (UK & Ireland) Limited</h5>
+                    <h5>6th Floor, Building 7 Chiswick Park</h5>
+                    <h5>566 Chiswick High Road</h5>
+                    <h5>London</h5>
+                    <h5>W4 5YG</h5>
+                  </div>
+
+
+                </div>
+
+
+                <div className="address-item ">
+                  <div className="order-form-field">
+                    <h3>Receiver:</h3>
+                    {/* <br /> */}
+                    {menu.shipping ? (
+                      <h5>{menu.shipping.fullname}</h5>
+                    ) : (
+                      <h5 className="text-subtle text-italic">Address not found</h5>
+                    )}
+
+                  </div>
+
+                  <div className="order-form-field">
+                    <h3>Address:</h3>
+                    {/* <br /> */}
+                    {menu.shipping ? (
+                      <h5>{menu.shipping.address}</h5>
+                    ) : (
+                      <h3 className="text-subtle text-italic">Address not found</h3>
+                    )}
+                  </div>
+
+
+
+
+                  <div className="order-form-field">
+
+                    <h3>Mobile:</h3>
+                    {/* <br /> */}
+                    {menu.shipping ? (
+                      <h5>{menu.shipping.mobile.value}</h5>
+                    ) : (
+                      <h5 className="text-subtle text-italic">Address not found</h5>
+                    )}
+                  </div>
+
+
+
+                </div>
+              </div>
+
+
+
+              <div className="order-form-field">
+                {/* <span>Rechnung</span> */}
+                <p>&nbsp;</p>
+                {values.basket.map((product) => (
+                  <OrderItem
+                    basket={basket}
+
+                    key={product.id}
+                    product={product}
+                  />
+                ))}
+
+              </div>
+
+
+
+              <div className="d-flex-address">
+
+                <div className="address-item-line">
+
+
+                  <div className="order-form-field">
+
+
+                    <p>&nbsp;</p>
+                    {/* <h1>Notes</h1> */}
+
+
+                  </div>
+
+
+                </div>
+
+                <div className="address-item-line-2">
+
+
+
+
+                  <div className="order-form-field-2">
+                    <h3>Total:</h3>
+
+                    <h1 className="order-form-field-2">
+                      {menu.subtotal || <Skeleton width={50} />}
+                    </h1>
+
+
+                  </div>
+
+
+
+                </div>
+
+
+
+              </div>
+
+
+
             </div>
+
+
+
             {/* ----THUBMNAIL ---- */}
             {/* <div className="product-form-file">
               <div className="product-form-field">
@@ -374,6 +627,21 @@ MenuForm.propTypes = {
     imageUrl: PropType.string,
     isFeatured: PropType.bool,
     isRecommended: PropType.bool,
+    address: PropType.string,
+    mobile: PropType.object,
+
+
+    // mobile: PropType.object,
+
+    // shipping: PropType.shape({
+    //   fullname: PropType.string,
+    //   email: PropType.string,
+    //   address: PropType.string,
+    //   mobile: PropType.object,
+    //   isInternational: PropType.bool,
+    //   isDone: PropType.bool
+    // }),
+
     availableColors: PropType.arrayOf(PropType.string)
   }).isRequired,
   onSubmit: PropType.func.isRequired,
