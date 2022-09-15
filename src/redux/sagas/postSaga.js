@@ -70,29 +70,44 @@ function* postSaga({ type, payload }) {
         yield initRequest();
 
         const { imageCollection } = payload;
-        const key = yield call(firebase.generateKey);
-        const downloadURL = yield call(firebase.storeImage, key, 'posts', payload.image);
-        const image = { id: key, url: downloadURL };
+        
+        const key3 = yield call(firebase.generateKey3);
+        const key2 = yield call(firebase.generateKey2);
+        const key1 = yield call(firebase.generateKey1);
+        
+        const downloadURL3 = yield call(firebase.storeImage3, key3, 'posts', payload.image3 );
+        const downloadURL2 = yield call(firebase.storeImage2, key2, 'posts', payload.image2 );
+        const downloadURL1 = yield call(firebase.storeImage1, key1, 'posts', payload.image1 );
+
+        const image3 = { id3: key3, url: downloadURL3 };
+        const image2 = { id2: key2, url: downloadURL2 };
+        const image1 = { id1: key1, url: downloadURL1 };
+
         let images = [];
 
         if (imageCollection.length !== 0) {
-          const imageKeys = yield all(imageCollection.map(() => firebase.generateKey));
-          const imageUrls = yield all(imageCollection.map((img, i) => firebase.storeImage(imageKeys[i](), 'posts', img.file)));
+          const imageKeys = yield all(imageCollection.map(() => firebase.generateKey2));
+          const imageUrls = yield all(imageCollection.map((img, i) => firebase.storeImage2(imageKeys[i](), 'posts', img.file2)));
           images = imageUrls.map((url, i) => ({
-            id: imageKeys[i](),
+            id2: imageKeys[i](),
             url
           }));
         }
+      
 
         const post = {
           ...payload,
-          image: downloadURL,
-          imageCollection: [image, ...images]
+          image1: downloadURL1,
+          image2: downloadURL2,
+          image3: downloadURL3,
+          imageCollection: [image2, image1, image3, ...images]
         };
 
-        yield call(firebase.addPost, key, post);
+        yield call(firebase.addPost, key2, post);
         yield put(addPostSuccess({
-          id: key,
+          id2: key2,
+          // id1: key1,
+          
           ...post
         }));
         yield handleAction(ADMIN_POSTS, 'Item succesfully added', 'success');

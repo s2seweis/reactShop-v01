@@ -33,40 +33,60 @@ const MenuItem = ({ menu }) => {
 
   return (
     <SkeletonTheme
-      color="#e1e1e1"
-      highlightColor="#f2f2f2"
+      color="#5294e0"
+      highlightColor="a1633f"
+      duration={4}
+
+
     >
       <div
         className={`item item-s ${!menu.id && 'item-loading'}`}
         ref={menuRef}
       >
-        <div className="grid grid-count-6">
-          <div className="grid-col item-img-wrapper">
-            {menu.image ? (
-              <ImageLoader
-                alt={menu.name}
-                className="item-img"
-                src={menu.image}
-              />
-            ) : <Skeleton width={50} height={30} />}
-          </div>
-          <div className="grid-col">
-            <span className="text-overflow-ellipsis">{menu.name || <Skeleton width={50} />}</span>
-          </div>
-          <div className="grid-col">
-            <span>{menu.brand || <Skeleton width={50} />}</span>
-          </div>
-          <div className="grid-col">
-            <span>{menu.price ? displayMoney(menu.price) : <Skeleton width={30} />}</span>
-          </div>
+        <div className="grid grid-count-4">
+
+
+
+
           <div className="grid-col">
             <span>
-              {menu.dateAdded ? displayDate(menu.dateAdded) : <Skeleton width={30} />}
+              {menu.dateAdded ? displayDate(menu.dateAdded) : <Skeleton width={50} />}
+
             </span>
           </div>
+
+
           <div className="grid-col">
-            <span>{menu.maxQuantity || <Skeleton width={20} />}</span>
+            <span>
+              {menu.shipping ? (
+                <span>{menu.shipping.address}</span>
+              ) : <Skeleton width={50} />}
+            </span>
+
           </div>
+
+
+          {/* {menu.shipping ? (
+              <h5>{menu.shipping.address}</h5>
+            ) :  <Skeleton width={50} />} */}
+
+
+          <div className="grid-col-break">
+            
+            <span>{menu.id || <Skeleton width={50} />}</span>
+
+          </div>
+
+          <div className="grid-col">
+            <span className="text-overflow-ellipsis">{menu.subtotal || <Skeleton width={50} />}</span>
+          </div>
+
+
+
+
+
+
+
         </div>
         {menu.id && (
           <div className="item-action">
@@ -75,7 +95,7 @@ const MenuItem = ({ menu }) => {
               onClick={onClickEdit}
               type="button"
             >
-              Edit1
+              Invoice
             </button>
             &nbsp;
             <button
@@ -83,7 +103,7 @@ const MenuItem = ({ menu }) => {
               onClick={onDeleteMenu}
               type="button"
             >
-              Delete
+              Print
             </button>
             <div className="item-action-confirm">
               <h5>Are you sure you want to delete this?</h5>
@@ -113,11 +133,11 @@ const MenuItem = ({ menu }) => {
 MenuItem.propTypes = {
   menu: PropType.shape({
     id: PropType.string,
-    name: PropType.string,
+    subtotal: PropType.number,
     brand: PropType.string,
-    price: PropType.number,
+    basket: PropType.string,
     maxQuantity: PropType.number,
-    description: PropType.string,
+    id: PropType.string,
     keywords: PropType.arrayOf(PropType.string),
     imageCollection: PropType.arrayOf(PropType.object),
     sizes: PropType.arrayOf(PropType.string),

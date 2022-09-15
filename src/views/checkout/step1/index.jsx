@@ -10,19 +10,31 @@ import { useHistory } from 'react-router-dom';
 import { StepTracker } from '../components';
 import withCheckout from '../hoc/withCheckout';
 
+import { setBasketDetails } from 'redux/actions/checkoutActions';
+
+
 const OrderSummary = ({ basket, subtotal }) => {
   useDocumentTitle('Check Out Step 1 | Salinaka');
   useScrollTop();
   const dispatch = useDispatch();
   const history = useHistory();
   const onClickPrevious = () => history.push('/');
-  const onClickNext = () => history.push(CHECKOUT_STEP_2);
+  // const onClickNext = () => history.push(CHECKOUT_STEP_2);
+
+  const onClickNext = (form) => {
+    dispatch(setBasketDetails({
+      basket: basket,
+      subtotal: subtotal,
+      dateAdded: new Date().getTime(),
+    }));
+    history.push(CHECKOUT_STEP_2);
+  };
 
   return (
     <div className="checkout">
       <StepTracker current={1} />
       <div className="checkout-step-1">
-        <h3 className="text-center">Order Summary</h3>
+        <h3 className="text-center">Basket</h3>
         <span className="d-block text-center">Review items in your basket.</span>
         <br />
         <div className="checkout-items">
@@ -35,6 +47,17 @@ const OrderSummary = ({ basket, subtotal }) => {
             />
           ))}
         </div>
+
+        {/* adding the date to the order */}
+
+        {/* <span>Date Joined</span>
+        <br />
+        {profile.dateJoined ? (
+          <h5>{displayDate(profile.dateJoined)}</h5>
+        ) : (
+          <h5 className="text-subtle text-italic">Not available</h5>
+        )} */}
+
         <br />
         <div className="basket-total text-right">
           <p className="basket-total-title">Subtotal:</p>

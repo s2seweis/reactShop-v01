@@ -2,10 +2,7 @@
 import {
   DownOutlined, LoadingOutlined, LogoutOutlined, UserOutlined
 } from '@ant-design/icons';
-
 import { ACCOUNT } from 'constants/routes';
-import { HOME } from 'constants/routes';
-
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -84,21 +81,6 @@ const UserNav = () => {
           Sign Out
           <LogoutOutlined />
         </h6>
-        <h6
-          className="user-nav-sub-link margin-0 d-flex"
-          onClick={() => dispatch(signOut())}
-          role="presentation"
-        >
-          Sign Out
-          <LogoutOutlined />
-        </h6>
-        <Link
-            to={HOME}
-            className="user-nav-sub-link"
-          >
-            Back to home
-            <UserOutlined />
-          </Link>
       </div>
     </div>
   );

@@ -24,7 +24,25 @@
 
 .d-flex {
   display: flex;
-  align-items: center;
+  justify-content: center;
+  // flex-direction: column;
+  align-items: flex-start;
+
+  // align-content: center;
+
+  gap: 50px;
+}
+
+
+.d-flex-address {
+  display: flex;
+  justify-content: flex-start;
+  // flex-direction: column;
+  align-items: flex-start;
+
+  // align-content: center;
+
+  gap: 5px;
 }
 
 .d-flex-center {
@@ -223,14 +241,34 @@
 
 .grid-count-4 {
   display: grid;
-  grid-gap: $s-size;
+  grid-gap: $l-size;
+  justify-content: center;
   grid-template-columns: repeat(4, 1fr);
+  place-items: center;
 }
 
 .grid-count-6 {
   display: grid;
   grid-gap: $s-size;
   grid-template-columns: repeat(6, 1fr);
+}
+
+.grid-count-7 {
+  display: grid;
+  grid-gap: $s-size;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.grid-count-8 {
+  display: grid;
+  grid-gap: $s-size;
+  grid-template-columns: repeat(8, 1fr);
+}
+
+.grid-count-9 {
+  display: grid;
+  grid-gap: $s-size;
+  grid-template-columns: repeat(9, 1fr);
 }
 
 .position-relative {

@@ -21,7 +21,7 @@ const ViewPost = () => {
   useScrollTop();
   useDocumentTitle(`View ${post?.name || 'Item'}`);
 
-  const [selectedImage, setSelectedImage] = useState(post?.image || '');
+  const [selectedImage, setSelectedImage] = useState(post?.image1 || '');
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
 
@@ -34,7 +34,7 @@ const ViewPost = () => {
   const colorOverlay = useRef(null);
 
   useEffect(() => {
-    setSelectedImage(post?.image);
+    setSelectedImage(post?.image1);
   }, [post]);
 
   const onSelectedSizeChange = (newValue) => {
@@ -86,27 +86,33 @@ const ViewPost = () => {
                       className="product-modal-image-collection-img"
                       src={image.url}
                     />
+
+                    
                   </div>
                   // {post.imageCollection.length !== 0 
-                    // <div className="product-modal-image-collection">
-                    //   {post.imageCollection.map((image) => (
-                    //     <div
-                    //       className="product-modal-image-collection-wrapper"
-                    //       key={image.id}
-                    //       onClick={() => setSelectedImage(image.url)}
-                    //       role="presentation"
-                    //     >
-                    //       <ImageLoader
-                    //         className="product-modal-image-collection-img"
-                    //         src={image.url}
-                    //       />
-                    //     </div>
-                    //   ))}
-                    // </div>
+                  // <div className="product-modal-image-collection">
+                  //   {post.imageCollection.map((image) => (
+                  //     <div
+                  //       className="product-modal-image-collection-wrapper"
+                  //       key={image.id}
+                  //       onClick={() => setSelectedImage(image.url)}
+                  //       role="presentation"
+                  //     >
+                  //       <ImageLoader
+                  //         className="product-modal-image-collection-img"
+                  //         src={image.url}
+                  //       />
+                  //     </div>
+                  //   ))}
+                  // </div>
                   // }
                 ))}
+
+
               </div>
             )}
+
+
             <div className="product-modal-image-wrapper">
               {selectedColor && <input type="color" disabled ref={colorOverlay} id="color-overlay" />}
               <ImageLoader

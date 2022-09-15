@@ -6,10 +6,15 @@ import { PostItem } from '.';
 const PostsTable = ({ filteredPosts }) => (
   <div>
     {filteredPosts.length > 0 && (
-      <div className="grid grid-product grid-count-6">
-        {/* <div className="grid-col" /> */}
+      <div className="grid grid-product grid-count-9">
         <div className="grid-col">
-          <h5>Image</h5>
+          <h5>Image1</h5>
+        </div>
+        <div className="grid-col">
+          <h5>Image2</h5>
+        </div>
+        <div className="grid-col">
+          <h5>Image3</h5>
         </div>
         <div className="grid-col">
           <h5>Name</h5>

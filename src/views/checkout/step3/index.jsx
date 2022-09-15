@@ -8,8 +8,11 @@ import { Redirect } from 'react-router-dom';
 import * as Yup from 'yup';
 import { StepTracker } from '../components';
 import withCheckout from '../hoc/withCheckout';
+
 import CreditPayment from './CreditPayment';
 import PayPalPayment from './PayPalPayment';
+import CashPayment from './CashPayment';
+
 import Total from './Total';
 
 const FormSchema = Yup.object().shape({
@@ -38,7 +41,8 @@ const Payment = ({ shipping, payment, subtotal }) => {
     cardnumber: payment.cardnumber || '',
     expiry: payment.expiry || '',
     ccv: payment.ccv || '',
-    type: payment.type || 'paypal'
+    // type: payment.type || 'paypal',
+    // typeCash: payment.typeCash || 'cash'
   };
 
   const onConfirm = () => {
@@ -59,6 +63,14 @@ const Payment = ({ shipping, payment, subtotal }) => {
           if (form.type === 'paypal') {
             displayActionMessage('Feature not ready yet :)', 'info');
           }
+
+          else if (form.type === 'cash') {
+            displayActionMessage('Feature in work :)', 'info');
+          }
+
+          else {
+            displayActionMessage('maybe next time:)', 'info');
+          }
         }}
         onSubmit={onConfirm}
       >
@@ -66,6 +78,7 @@ const Payment = ({ shipping, payment, subtotal }) => {
           <Form className="checkout-step-3">
             <CreditPayment />
             <PayPalPayment />
+            <CashPayment />
             <Total
               isInternational={shipping.isInternational}
               subtotal={subtotal}

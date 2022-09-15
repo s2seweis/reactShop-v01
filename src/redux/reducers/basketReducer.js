@@ -15,8 +15,10 @@ export default (state = [], action) => {
         : [action.payload, ...state];
     case REMOVE_FROM_BASKET:
       return state.filter((product) => product.id !== action.payload);
+      
     case CLEAR_BASKET:
       return [];
+
     case ADD_QTY_ITEM:
       return state.map((product) => {
         if (product.id === action.payload) {

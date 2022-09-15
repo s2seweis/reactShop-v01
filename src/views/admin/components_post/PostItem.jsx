@@ -1,4 +1,5 @@
 import { ImageLoader } from 'components/common';
+// import { ImageLoader2 } from 'components/common/imageLoader2';
 import { EDIT_POST } from 'constants/routes';
 import { displayActionMessage, displayDate, displayMoney } from 'helpers/utils';
 import PropType from 'prop-types';
@@ -40,13 +41,31 @@ const PostItem = ({ post }) => {
         className={`item item-s ${!post.id && 'item-loading'}`}
         ref={postRef}
       >
-        <div className="grid grid-count-6">
+        <div className="grid grid-count-9">
           <div className="grid-col post-item-img-wrapper">
-            {post.image ? (
+            {post.image1 ? (
               <ImageLoader
                 alt={post.name}
                 className="item-img"
-                src={post.image}
+                src={post.image1}
+              />
+            ) : <Skeleton width={50} height={30} />}
+          </div>
+          <div className="grid-col post-item-img-wrapper">
+            {post.image2 ? (
+              <ImageLoader
+                alt={post.name}
+                className="item-img"
+                src={post.image2}
+              />
+            ) : <Skeleton width={50} height={30} />}
+          </div>
+          <div className="grid-col post-item-img-wrapper">
+            {post.image3 ? (
+              <ImageLoader
+                alt={post.name}
+                className="item-img"
+                src={post.image3}
               />
             ) : <Skeleton width={50} height={30} />}
           </div>
@@ -121,7 +140,9 @@ PostItem.propTypes = {
     keywords: PropType.arrayOf(PropType.string),
     imageCollection: PropType.arrayOf(PropType.object),
     sizes: PropType.arrayOf(PropType.string),
-    image: PropType.string,
+    image1: PropType.string,
+    image2: PropType.string,
+    image3: PropType.string,
     imageUrl: PropType.string,
     isFeatured: PropType.bool,
     isRecommended: PropType.bool,

@@ -2,7 +2,7 @@
 import { BasketItem, BasketToggle } from 'components/basket';
 import { Boundary, Modal } from 'components/common';
 import { CHECKOUT_STEP_1 } from 'constants/routes';
-import firebase from 'firebase/firebase';
+import firebase from 'services/firebase';
 import { calculateTotal, displayMoney } from 'helpers/utils';
 import { useDidMount, useModal } from 'hooks';
 import React, { useEffect } from 'react';
@@ -22,7 +22,7 @@ const Basket = () => {
   const didMount = useDidMount();
 
   useEffect(() => {
-    if (didMount && firebase.auth.currentUser && basket.length !== 0) {
+    if (didMount && firebase.auth.currentUser && basket.length >= 0 ) {
       firebase.saveBasketItems(basket, firebase.auth.currentUser.uid)
         .then(() => {
           console.log('Item saved to basket');
@@ -31,6 +31,10 @@ const Basket = () => {
           console.log(e);
         });
     }
+    else {
+      
+    }
+    
   }, [basket.length]);
 
   const onCheckOut = () => {
@@ -84,7 +88,7 @@ const Basket = () => {
         <div className="basket-list">
           <div className="basket-header">
             <h3 className="basket-header-title">
-              My Basket &nbsp;
+              My Basket1 &nbsp;
               <span>
                 (
                 {` ${basket.length} ${basket.length > 1 ? 'items' : 'item'}`}
@@ -98,7 +102,7 @@ const Basket = () => {
                   onClick={onClickToggle}
                   role="presentation"
                 >
-                  Close
+                  Close1
                 </span>
               )}
             </BasketToggle>
@@ -128,7 +132,7 @@ const Basket = () => {
         </div>
         <div className="basket-checkout">
           <div className="basket-total">
-            <p className="basket-total-title">Subtotal Amout:</p>
+            <p className="basket-total-title">Subtotal Amount:</p>
             <h2 className="basket-total-amount">
               {displayMoney(calculateTotal(basket.map((product) => product.price * product.quantity)))}
             </h2>

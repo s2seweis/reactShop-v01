@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 const UserProfile = (props) => {
+  // profile = users, in firebase
   const profile = useSelector((state) => state.profile);
 
   return (
@@ -33,7 +34,7 @@ const UserProfile = (props) => {
             onClick={() => props.history.push(ACCOUNT_EDIT)}
             type="button"
           >
-            Edit Account
+            Edit Account1
           </button>
         </div>
         <div className="user-profile-details">
@@ -41,6 +42,9 @@ const UserProfile = (props) => {
           <span>Email</span>
           <br />
           <h5>{profile.email}</h5>
+
+
+
           <span>Address</span>
           <br />
           {profile.address ? (
@@ -48,6 +52,18 @@ const UserProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Address not set</h5>
           )}
+
+
+          <span>Address</span>
+          <br />
+          {profile.role ? (
+            <h5>{profile.role}</h5>
+          ) : (
+            <h5 className="text-subtle text-italic">Address not set</h5>
+          )}
+
+          {/* map object */}
+
           <span>Mobile</span>
           <br />
           {profile.mobile ? (
@@ -55,6 +71,25 @@ const UserProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Mobile not set</h5>
           )}
+
+          <span>Country</span>
+          <br />
+          {profile.mobile ? (
+            <h5>{profile.mobile.country}</h5>
+          ) : (
+            <h5 className="text-subtle text-italic">Mobile not set</h5>
+          )}
+
+          <span>Country Code</span>
+          <br />
+          {profile.mobile ? (
+            <h5>{profile.mobile.countryCode}</h5>
+          ) : (
+            <h5 className="text-subtle text-italic">Mobile not set</h5>
+          )}
+
+
+
           <span>Date Joined</span>
           <br />
           {profile.dateJoined ? (
@@ -62,6 +97,19 @@ const UserProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Not available</h5>
           )}
+
+          <span>Date Added</span>
+          <br />
+          {profile.dateAdded ? (
+            <h5>{displayDate(profile.dateAdded)}</h5>
+          ) : (
+            <h5 className="text-subtle text-italic">Not available</h5>
+          )}
+
+
+
+
+
         </div>
       </div>
     </div>

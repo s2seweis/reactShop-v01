@@ -12,27 +12,29 @@ const MenusNavbar = (props) => {
   return (
     <div className="product-admin-header">
       <h3 className="product-admin-header-title">
-        Menus &nbsp;
+        Orders2 &nbsp;
         (
         {`${menusCount} / ${totalMenusCount}`}
         )
       </h3>
       <SearchBar />
             &nbsp;
-      <FiltersToogleMenu>
+      {/* <FiltersToogleMenu>
         <button className="button-muted button-small" type="button">
           <FilterOutlined />
           &nbsp;More Filters
         </button>
-      </FiltersToogleMenu>
-      <button
+      </FiltersToogleMenu> */}
+      
+  
+      {/* <button
         className="button button-small"
         onClick={() => history.push(ADD_MENU)}
         type="button"
       >
         <PlusOutlined />
         &nbsp; Add New Menu2
-      </button>
+      </button> */}
     </div>
   );
 };

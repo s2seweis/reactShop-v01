@@ -92,6 +92,10 @@ const AppRouter = () => (
           component={view.CheckOutStep3}
           path={ROUTES.CHECKOUT_STEP_3}
         />
+        <ClientRoute
+          component={view.CheckOutStep4}
+          path={ROUTES.CHECKOUT_STEP_4}
+        />
         <AdminRoute
           component={view.Dashboard}
           exact
@@ -110,6 +114,10 @@ const AppRouter = () => (
           path={ROUTES.ADMIN_POSTS}
         />
         <AdminRoute
+          component={view.Users1}
+          path={ROUTES.ADMIN_USERS1}
+        />
+        <AdminRoute
           component={view.AddProduct}
           path={ROUTES.ADD_PRODUCT}
         />
@@ -120,6 +128,10 @@ const AppRouter = () => (
         <AdminRoute
           component={view.AddPost}
           path={ROUTES.ADD_POST}
+        />
+        <AdminRoute
+          component={view.AddUser1}
+          path={ROUTES.ADD_USER1}
         />
         <AdminRoute
           component={view.EditProduct}
@@ -133,6 +145,10 @@ const AppRouter = () => (
           component={view.EditPost}
           path={`${ROUTES.EDIT_POST}/:id`}
         />
+        <AdminRoute
+          component={view.EditUser1}
+          path={`${ROUTES.EDIT_USER1}/:id`}
+        />
         <PublicRoute component={view.PageNotFound} />
       </Switch>
       <Footer />
@@ -141,3 +157,5 @@ const AppRouter = () => (
 );
 
 export default AppRouter;
+
+// okay
