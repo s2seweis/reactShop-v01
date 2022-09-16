@@ -134,6 +134,23 @@ min-height: 350px;
   // height: 175px;
 }
 
+
+.address-item-line-3 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  border: 1px solid $border-color;
+  // margin-bottom: $s-size;
+  background: #F9F7F7;
+  // @include bezier-transition();
+  // animation: slide-up .5s ease;
+  min-width: 50%;
+  min-height: 100px;
+
+  // max-width: 400px;
+  // height: 175px;
+}
+
 .basket-item-wrapper {
   width: 100%;
   // display: flex;

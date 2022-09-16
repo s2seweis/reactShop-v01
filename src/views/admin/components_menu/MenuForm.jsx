@@ -18,11 +18,24 @@ import { useSelector } from 'react-redux';
 
 import { displayActionMessage, displayDate, displayMoney } from 'helpers/utils';
 
+
+
+
+
 import { useMediaQuery } from 'react-responsive';
+
+
+
 
 import MediaQuery from 'react-responsive';
 
+
+
+
 import * as Mui from '@material-ui/core';
+
+
+
 
 import {
   createTheme,
@@ -30,6 +43,11 @@ import {
   MuiThemeProvider,
   Typography
 } from "@material-ui/core";
+import { HTML5_FMT } from 'moment/moment';
+
+
+
+
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -98,7 +116,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
   };
-
+  // React Responsive - Test 1
 
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-width: 1224px)'
@@ -108,6 +126,29 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
   const isPortrait = useMediaQuery({ query: '(orientation: portrait)' });
   const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' });
+
+
+  // Test 2
+
+  // const isMobileDevice = useMediaQuery({
+  //   query: "(min-device-width: 480px)",
+  // });
+
+  // const isTabletDevice = useMediaQuery({
+  //   query: "(min-device-width: 768px)",
+  // });
+
+  // const isLaptop = useMediaQuery({
+  //   query: "(min-device-width: 1024px)",
+  // });
+
+  // const isDesktop = useMediaQuery({
+  //   query: "(min-device-width: 1200px)",
+  // });
+
+  // const isBigScreen = useMediaQuery({
+  //   query: "(min-device-width: 1201px )",
+  // });
 
 
 
@@ -376,7 +417,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
 
-            {/* OrderItem */}
+            {/* orderItem */}
 
 
 
@@ -385,7 +426,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
 
-              {/* Invoice */}
+              {/* invoice */}
 
 
               <div className="d-flex-address">
@@ -410,8 +451,8 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
 
-                  <div className="order-form-field-3">
-                    <h5>Payment:</h5>
+                  <div className="order-form-field">
+                    <h3>Payment:</h3>
                     {/* <br /> */}
                     {menu.payment ? (
                       <h5>{menu.payment.type}</h5>
@@ -431,7 +472,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
 
-              {/* date and id */}
+              {/* date/Id */}
 
               <div className="d-flex-address">
 
@@ -584,12 +625,12 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
 
-                  <div className="order-form-field-2">
+                  <div className="order-form-field">
                     <h3>Total:</h3>
 
-                    <h1 className="order-form-field-2">
+                    <h5 className="order-form-field">
                       {menu.subtotal || <Skeleton width={50} />}
-                    </h1>
+                    </h5>
 
 
                   </div>
@@ -605,48 +646,102 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
               {/* instead of desktop, laptop, bigscrren, phone => we use div */}
+              {/* React-Responsive Test 1 */}
 
               <div>
                 <h1>Device Test!</h1>
-                {isDesktopOrLaptop && <p>You are a desktop or laptop</p>}
-                {isBigScreen && <p>You  have a huge screen</p>}
-                {isTabletOrMobile && <p>You are a tablet or mobile phone</p>}
+                {isDesktopOrLaptop &&
+
+
+
+                  <div className="address-item-line-1 ">
+                    <div className="order-form-field-1">
+                      <h5>Test 100</h5>
+                    </div>
+                  </div>
+
+
+                }
+
+                {isBigScreen &&
+
+
+                  <p>You  have a huge screen</p>
+
+
+                }
+                {isTabletOrMobile &&
+
+
+                  <div className="address-item-line-1 ">
+                    <div className="order-form-field-4">
+                      <h5>Test 1000</h5>
+                    </div>
+                  </div>
+
+
+                }
                 <p>Your are in {isPortrait ? 'portrait' : 'landscape'} orientation</p>
                 {isRetina && <p>You are retina</p>}
               </div>
 
 
 
-              <div>
+
+              {/* Test 2 */}
+
+              {/* <h1>React Responsive - a guide</h1>
+              {isMobileDevice && <Mobile />}
+              {isTabletDevice && <>
+                <TabletMobile />
+                {isDesktop && <Desktop />}
+                {isLaptop && <Laptop />}
+                {isBigScreen && <BigScreen />}
+              </>}
+
+
+
+              <div className="order-form-field-2">
                 <h1>Device Test!</h1>
-                <MediaQuery minWidth={1224}>
-                  <p>You are a desktop or laptop</p>
-                  <MediaQuery minWidth={1824}>
-                    <p>You also have a huge screen</p>
-                  </MediaQuery>
-                </MediaQuery>
-                <MediaQuery minResolution="2dppx">
-                  {/* You can also use a function (render prop) as a child */}
-                  {(matches) =>
-                    matches
-                      ? <p>You are retina</p>
-                      : <p>You are not retina</p>
-                  }
-                </MediaQuery>
+                <p>Whoops! I'm in big screen mode.</p>
+                <p>This is the base of the pyramid</p>
               </div>
 
+              <div className="order-form-field-3">
+                <h1>Device Test!</h1>
+                <p>Whoops! I'm in desktop mode.</p>
+                <p>But if you see anything below me, i am now in Laptop mode</p>
+              </div> */}
 
 
-              {/* <Mui.Typography>Test</Mui.Typography> */}
 
 
 
 
-              <MuiThemeProvider theme={theme}>
+
+              {/* Material-UI */}
+
+              {/* <MuiThemeProvider theme={theme}>
                 <Typography variant="h3" gutterBottom> {heading} </Typography>
                 <Typography variant="h4" gutterBottom> {text} </Typography>
+              </MuiThemeProvider> */}
 
-              </MuiThemeProvider>
+
+
+
+              {/* Responsive Div Conainers */}
+
+              <h1>Div Test!</h1>
+
+
+              <div className="container">
+                <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+                <div>5</div>
+                <div>6</div>
+              </div>
 
 
 
