@@ -2,7 +2,7 @@
   "name": "ecommerce-react",
   "version": "1.2.0",
   "main": "index.js",
-  "author": "Julius Guevarra",
+  "author": "Sebastian Hans Weissenborn ",
   "keywords": [
     "react-webpack",
     "boilerplate",
@@ -62,6 +62,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
+    "@material-ui/core": "^4.12.4",
     "firebase": "^8.4.3",
     "formik": "^2.2.6",
     "history": "^4.10.0",
@@ -75,6 +76,7 @@
     "react-modal": "^3.13.1",
     "react-phone-input-2": "^2.14.0",
     "react-redux": "^7.2.4",
+    "react-responsive": "^9.0.0-beta.10",
     "react-router-dom": "^5.2.0",
     "react-select": "^4.3.0",
     "redux": "^4.1.0",

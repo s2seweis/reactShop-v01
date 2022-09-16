@@ -103,8 +103,8 @@ min-height: 350px;
 }
 
 .address-item-line-1 {
-  // display: flex;
-  align-items: flex-start;
+  display: flex;
+  align-items: center;
   justify-content: center;
   border: 1px solid $border-color;
   // margin-bottom: $s-size;
@@ -112,7 +112,7 @@ min-height: 350px;
   // @include bezier-transition();
   // animation: slide-up .5s ease;
   min-width: 50%;
-  min-height: 100px;
+  min-height: 128px;
 
   // max-width: 400px;
   // height: 175px;

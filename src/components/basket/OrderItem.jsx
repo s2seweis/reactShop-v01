@@ -55,8 +55,6 @@ const OrderItem = ({ product }) => {
               </h5>
             </div>
 
-
-
             <div>
               <span className="spec-title">Color</span>
               <div style={{

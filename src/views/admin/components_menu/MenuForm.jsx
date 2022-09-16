@@ -18,6 +18,25 @@ import { useSelector } from 'react-redux';
 
 import { displayActionMessage, displayDate, displayMoney } from 'helpers/utils';
 
+import { useMediaQuery } from 'react-responsive';
+
+import MediaQuery from 'react-responsive';
+
+import * as Mui from '@material-ui/core';
+
+import {
+  createTheme,
+  responsiveFontSizes,
+  MuiThemeProvider,
+  Typography
+} from "@material-ui/core";
+
+let theme = createTheme();
+theme = responsiveFontSizes(theme);
+
+const heading = "OUR WORK";
+const text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+
 
 
 
@@ -79,6 +98,18 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
   };
+
+
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 1224px)'
+  });
+
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1824px)' });
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const isPortrait = useMediaQuery({ query: '(orientation: portrait)' });
+  const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' });
+
+
 
   const menus = useSelector((state) => state.menus);
 
@@ -366,8 +397,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
 
-                    <h1>Invoice</h1>
-                    <h1>Invoice Test</h1>
+                    <h5>Invoice</h5>
 
 
                   </div>
@@ -380,8 +410,8 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
 
-                  <div className="order-form-field">
-                    <h3>Payment:</h3>
+                  <div className="order-form-field-3">
+                    <h5>Payment:</h5>
                     {/* <br /> */}
                     {menu.payment ? (
                       <h5>{menu.payment.type}</h5>
@@ -574,6 +604,54 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
 
+              {/* instead of desktop, laptop, bigscrren, phone => we use div */}
+
+              <div>
+                <h1>Device Test!</h1>
+                {isDesktopOrLaptop && <p>You are a desktop or laptop</p>}
+                {isBigScreen && <p>You  have a huge screen</p>}
+                {isTabletOrMobile && <p>You are a tablet or mobile phone</p>}
+                <p>Your are in {isPortrait ? 'portrait' : 'landscape'} orientation</p>
+                {isRetina && <p>You are retina</p>}
+              </div>
+
+
+
+              <div>
+                <h1>Device Test!</h1>
+                <MediaQuery minWidth={1224}>
+                  <p>You are a desktop or laptop</p>
+                  <MediaQuery minWidth={1824}>
+                    <p>You also have a huge screen</p>
+                  </MediaQuery>
+                </MediaQuery>
+                <MediaQuery minResolution="2dppx">
+                  {/* You can also use a function (render prop) as a child */}
+                  {(matches) =>
+                    matches
+                      ? <p>You are retina</p>
+                      : <p>You are not retina</p>
+                  }
+                </MediaQuery>
+              </div>
+
+
+
+              {/* <Mui.Typography>Test</Mui.Typography> */}
+
+
+
+
+              <MuiThemeProvider theme={theme}>
+                <Typography variant="h3" gutterBottom> {heading} </Typography>
+                <Typography variant="h4" gutterBottom> {text} </Typography>
+
+              </MuiThemeProvider>
+
+
+
+
+
             </div>
 
 
@@ -609,7 +687,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
           </Form>
         )}
       </Formik>
-    </div>
+    </div >
   );
 };
 
