@@ -439,19 +439,110 @@
   padding-top: 2%;
 }
 
-// Test Responsive Containers
+// Test Div 1 Responsive Containers
 
 
 .container {  
+  // display: flex;
+  display: grid;  
+  grid-gap: 5px;  
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-rows: repeat(2, 100px); 
+  // justify-content: center; 
+}
+
+.container-red {  
   display: grid;  
   grid-gap: 5px;  
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-template-rows: repeat(2, 100px);  
+  background: #b4393f;
+  // justify-content: center; 
+}
+.container-blue {  
+  display: grid;  
+  grid-gap: 5px;  
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-rows: repeat(2, 100px);  
+  background: #1d4fe4;
+  // justify-content: center; 
+}
+.container-green {  
+  display: grid;  
+  grid-gap: 5px;  
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-rows: repeat(2, 100px);  
+  background: #3bc333;
+  // justify-content: center; 
+}
+.container-yellow {  
+  display: grid;  
+  grid-gap: 5px;  
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-rows: repeat(2, 100px);  
+  background: #ffea00;
+  // justify-content: center; 
+}
+.container-orange {  
+  display: grid;  
+  grid-gap: 5px;  
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-rows: repeat(2, 100px);  
+  background: #e49b1d;
+  max-height: 100px;
+  // justify-content: center; 
+}
+.container-pink {  
+  display: grid;  
+  grid-gap: 5px;  
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-rows: repeat(2, 100px);  
+  background: #9727cf;
+  max-height: 100px;
+  // justify-content: center; 
 }
 
+.container-center {  
+  display: flex;
+  // display: grid;  
+  grid-gap: 5px;  
+  // grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  // grid-template-rows: repeat(2, 100px);  
+  // background: #b4393f;
+  justify-content: center;
+  align-items: center; 
+}
 
+// Test Div 2 
 
+.wrapper {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px;
+}
 
+.item1 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.item3 {
+  grid-row-start: 2;
+  grid-row-end: 4;
+}
+
+.item4 {
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+
+// Test Div 3
+
+.container-test3 {  
+  display: grid;  
+  grid-template-columns: 100px 100px;  
+  grid-template-rows: 50px 50px 50px;  
+}
 
 
 

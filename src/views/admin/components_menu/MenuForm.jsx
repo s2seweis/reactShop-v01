@@ -649,7 +649,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
               {/* React-Responsive Test 1 */}
 
               <div>
-                <h1>Device Test!</h1>
+                <h1>Device Test! - React Responsive</h1>
                 {isDesktopOrLaptop &&
 
 
@@ -731,10 +731,90 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
               {/* Responsive Div Conainers */}
 
-              <h1>Div Test!</h1>
+              <h1>Div Test 1 - CSS</h1>
 
 
               <div className="container">
+
+                <div className="container-red">
+
+                  <div className="container-center">one</div>
+
+                </div>
+
+
+                <div className="container-blue">
+
+                  <div className="container-center">two</div>
+
+                </div>
+
+
+
+                <div className="container-green">
+
+                  <div className="container-center">three</div>
+
+                </div>
+
+
+                <div className="container-yellow">
+
+                  <div className="container-center">four</div>
+
+                </div>
+
+
+                <div className="container-orange">
+
+                  <div className="container-center">five</div>
+
+                </div>
+
+
+
+                <div className="container-pink">
+
+                  <div className="container-center">six</div>
+
+                </div>
+
+
+
+              </div>
+
+
+
+              <h1>Div Test 2 - CSS</h1>
+
+              <div class="wrapper">
+
+
+                <div className="item1">
+                  1
+                </div>
+
+
+
+                <div>2</div>
+
+                <div className="item3">
+                  3
+                </div>
+
+
+
+                <div className="item4">
+                  4
+                </div>
+                <div>5</div>
+                <div>6</div>
+              </div>
+
+
+              <h1>Div Test 3 - CSS</h1>
+
+              <div class="container-test3">
                 <div>1</div>
                 <div>2</div>
                 <div>3</div>
@@ -742,9 +822,6 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                 <div>5</div>
                 <div>6</div>
               </div>
-
-
-
 
 
             </div>
