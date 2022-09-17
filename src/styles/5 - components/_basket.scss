@@ -35,7 +35,7 @@
   align-items: center;
   border: 1px solid $border-color;
   margin-bottom: $s-size;
-    background: $white;
+  background: $white;
 
   @include bezier-transition();
   animation: slide-up .5s ease;
@@ -47,7 +47,9 @@
   align-items: center;
   border: 1px solid $border-color;
   margin-bottom: $s-size;
-    background: $white;
+  background: $white;
+
+  min-width: 300px;
 
   @include bezier-transition();
   animation: slide-up .5s ease;
@@ -65,8 +67,8 @@
   // @include bezier-transition();
   // animation: slide-up .5s ease;
 
-min-width: 200px;
-min-height: 350px;
+  min-width: 200px;
+  min-height: 350px;
 
   // max-width: 400px;
   // height: 350px;
@@ -171,7 +173,7 @@ min-height: 350px;
 
   display: grid;
   // grid-template-columns: 100px 1fr 80px 40px;
-  grid-template-columns: 100px 1fr ;
+  grid-template-columns: 100px 1fr;
 }
 
 
@@ -257,7 +259,7 @@ min-height: 350px;
   width: 142px;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; 
+  text-overflow: ellipsis;
   position: relative;
 }
 

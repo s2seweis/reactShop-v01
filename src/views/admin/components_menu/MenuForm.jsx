@@ -731,6 +731,11 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
               {/* Responsive Div Conainers */}
 
+
+              {/* test:
+              grid-column-start: 1;
+              grid-column-end: 4; */}
+
               <h1>Div Test 1 - CSS</h1>
 
 
@@ -758,7 +763,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                 </div>
 
 
-                <div className="container-yellow">
+                {/* <div className="container-yellow">
 
                   <div className="container-center">four</div>
 
@@ -777,7 +782,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
                   <div className="container-center">six</div>
 
-                </div>
+                </div> */}
 
 
 
