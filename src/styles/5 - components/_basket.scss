@@ -49,7 +49,7 @@
   margin-bottom: $s-size;
   background: $white;
 
-  min-width: 300px;
+  min-width: 230px;
 
   @include bezier-transition();
   animation: slide-up .5s ease;
@@ -166,24 +166,17 @@
 
 .order-item-wrapper {
   width: 100%;
-  // display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 $s-size;
-
-  display: grid;
-  // grid-template-columns: 100px 1fr 80px 40px;
-  grid-template-columns: 100px 1fr;
+  min-height: 150px;
+  // display: grid;
+  // grid-template-columns: 100px 1fr;
 }
 
 
 
 .basket-item-specs {
-  // display: flex;
   display: grid;
-  align-items: flex-start;
-  justify-content: center;
   grid-template-columns: repeat(4, 1fr);
+  margin-left: 20px;
 
   .spec-title {
     color: #8d8d8d;

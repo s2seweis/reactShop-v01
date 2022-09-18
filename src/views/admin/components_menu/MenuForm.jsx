@@ -829,7 +829,85 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
               </div>
 
 
+
+
+
+
+
+
+
+              <h1>Div Test -orderItem - CSS</h1>
+
+
+              <div className="container">
+
+                <div className="container-red">
+
+                  <div className="container-center">one</div>
+
+                </div>
+
+
+                <div className="container-blue">
+
+                  <div className="container-center">two</div>
+
+                </div>
+
+
+
+                <div className="container-green">
+
+                  <div className="container-center">three</div>
+
+                </div>
+
+
+                {/* <div className="container-yellow">
+
+                  <div className="container-center">four</div>
+
+                </div>
+
+
+                <div className="container-orange">
+
+                  <div className="container-center">five</div>
+
+                </div>
+
+
+
+                <div className="container-pink">
+
+                  <div className="container-center">six</div>
+
+                </div> */}
+
+
+
+              </div>
+
+
+
+              <div className="order-form-field">
+                {/* <span>Rechnung</span> */}
+                <p>&nbsp;</p>
+                {values.basket.map((product) => (
+                  <OrderItem
+                    basket={basket}
+
+                    key={product.id}
+                    product={product}
+                  />
+                ))}
+
+              </div>
+
+
             </div>
+
+
 
 
 

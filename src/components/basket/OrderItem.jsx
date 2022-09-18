@@ -17,14 +17,19 @@ const OrderItem = ({ product }) => {
       {/* <OrderItemControl product={product} /> */}
       <div className="order-item-wrapper">
 
-        <div className="order-item-img-wrapper">
+        {/* <div className="order-item-img-wrapper"> */}
 
 
-          <Link to={`/product/${product.id}`} onClick={() => document.body.classList.remove('is-basket-open')}>
-            <h4 className="underline basket-item-name">
+          {/* <Link to={`/product/${product.id}`} onClick={() => document.body.classList.remove('is-basket-open')}> */}
+
+           <div>
+              {/* <span className="spec-title"></span> */}
+              <h5 className="my-0-orderitem">{product.name}</h5>
+            </div>
+            {/* <h5>
               {product.name}
-            </h4>
-          </Link>
+            </h5> */}
+          {/* </Link> */}
 
 
           {/* <ImageLoader
@@ -33,7 +38,7 @@ const OrderItem = ({ product }) => {
             src={product.image}
           /> */}
 
-        </div>
+        {/* </div> */}
 
         <div className="basket-item-details">
           {/* <Link to={`/product/${product.id}`} onClick={() => document.body.classList.remove('is-basket-open')}>
@@ -41,11 +46,30 @@ const OrderItem = ({ product }) => {
               {product.name}
             </h4>
           </Link> */}
+
+
+
+
+          
           <div className="basket-item-specs">
+
+
+
+            
+
+            {/* <div>
+              <span className="spec-title"></span>
+              <h5 className="my-0-orderitem">{product.name}</h5>
+            </div> */}
+
             <div>
               <span className="spec-title">Quantity</span>
               <h5 className="my-0">{product.quantity}</h5>
             </div>
+
+
+
+
             <div>
               <span className="spec-title">Size</span>
               <h5 className="my-0">
