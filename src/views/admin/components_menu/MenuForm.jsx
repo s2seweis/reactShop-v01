@@ -431,14 +431,14 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
               <div className="d-flex-address">
 
-                <div className="address-item-line-1 ">
+                <div className="address-item-line ">
 
 
-                  <div className="order-form-field-1">
+                  <div className="order-form-field">
 
 
 
-                    <h5>Invoice</h5>
+                    <h3>Invoice</h3>
 
 
                   </div>
@@ -586,8 +586,8 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
               </div>
 
 
-
               <div className="order-form-field">
+              <h3>Ordered Articles</h3>
                 {/* <span>Rechnung</span> */}
                 <p>&nbsp;</p>
                 {values.basket.map((product) => (
@@ -603,19 +603,23 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
 
-              <div className="d-flex-address">
+              <div className="d-flex-total">
 
-                <div className="address-item-line">
+                <div className="address-item-line-2">
+
+
 
 
                   <div className="order-form-field">
+                    {/* <h3>Total:</h3>
 
-
-                    <p>&nbsp;</p>
-                    {/* <h1>Notes</h1> */}
+                    <h5 className="order-form-field">
+                      {menu.subtotal || <Skeleton width={50} />}
+                    </h5> */}
 
 
                   </div>
+
 
 
                 </div>
