@@ -123,7 +123,7 @@
 
 .address-item-line-2 {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   border: 1px solid $border-color;
   // margin-bottom: $s-size;
@@ -131,7 +131,7 @@
   // @include bezier-transition();
   // animation: slide-up .5s ease;
   min-width: 50%;
-  min-height: 100px;
+  min-height: 150px;
 
   // max-width: 400px;
   // height: 175px;

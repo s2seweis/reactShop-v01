@@ -629,10 +629,12 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
 
-                  <div className="order-form-field">
-                    <h3>Total:</h3>
+                  <div className="order-form-field-total">
+                    {/* <h3>Total:</h3> */}
 
-                    <h5 className="order-form-field">
+                    <h5 className="order-form-field-total">
+                                          {/* <h3>Total:</h3> */}
+
                       {menu.subtotal || <Skeleton width={50} />}
                     </h5>
 
@@ -823,14 +825,14 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
               <h1>Div Test 3 - CSS</h1>
 
-              <div class="container-test3">
+              {/* <div class="container-test3">
                 <div>1</div>
                 <div>2</div>
                 <div>3</div>
                 <div>4</div>
                 <div>5</div>
                 <div>6</div>
-              </div>
+              </div> */}
 
 
 
