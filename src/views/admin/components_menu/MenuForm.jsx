@@ -610,10 +610,10 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
 
-                  <div className="order-form-field">
-                    {/* <h3>Total:</h3>
+                  <div className="order-form-field-total">
+                    <h2>Total:</h2>
 
-                    <h5 className="order-form-field">
+                    {/* <h5 className="order-form-field">
                       {menu.subtotal || <Skeleton width={50} />}
                     </h5> */}
 
@@ -632,11 +632,11 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                   <div className="order-form-field-total">
                     {/* <h3>Total:</h3> */}
 
-                    <h5 className="order-form-field-total">
-                                          {/* <h3>Total:</h3> */}
+                    <h2 className="order-form-field-total">
+                                          
 
                       {menu.subtotal || <Skeleton width={50} />}
-                    </h5>
+                    </h2>
 
 
                   </div>
@@ -654,7 +654,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
               {/* instead of desktop, laptop, bigscrren, phone => we use div */}
               {/* React-Responsive Test 1 */}
 
-              <div>
+              {/* <div>
                 <h1>Device Test! - React Responsive</h1>
                 {isDesktopOrLaptop &&
 
@@ -689,7 +689,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                 }
                 <p>Your are in {isPortrait ? 'portrait' : 'landscape'} orientation</p>
                 {isRetina && <p>You are retina</p>}
-              </div>
+              </div> */}
 
 
 
@@ -742,7 +742,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
               grid-column-start: 1;
               grid-column-end: 4; */}
 
-              <h1>Div Test 1 - CSS</h1>
+              {/* <h1>Div Test 1 - CSS</h1>
 
 
               <div className="container">
@@ -769,7 +769,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                 </div>
 
 
-                {/* <div className="container-yellow">
+                <div className="container-yellow">
 
                   <div className="container-center">four</div>
 
@@ -788,15 +788,15 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
                   <div className="container-center">six</div>
 
-                </div> */}
+                </div>
 
 
 
-              </div>
+              </div> */}
 
 
 
-              <h1>Div Test 2 - CSS</h1>
+              {/* <h1>Div Test 2 - CSS</h1>
 
               <div class="wrapper">
 
@@ -820,10 +820,10 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                 </div>
                 <div>5</div>
                 <div>6</div>
-              </div>
+              </div> */}
 
 
-              <h1>Div Test 3 - CSS</h1>
+              {/* <h1>Div Test 3 - CSS</h1> */}
 
               {/* <div class="container-test3">
                 <div>1</div>
@@ -842,10 +842,10 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
 
-              <h1>Div Test -orderItem - CSS</h1>
+              {/* <h1>Div Test -orderItem - CSS</h1> */}
 
 
-              <div className="container">
+              {/* <div className="container">
 
                 <div className="container-red">
 
@@ -869,7 +869,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                 </div>
 
 
-                {/* <div className="container-yellow">
+                <div className="container-yellow">
 
                   <div className="container-center">four</div>
 
@@ -888,17 +888,17 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
                   <div className="container-center">six</div>
 
-                </div> */}
+                </div>
 
 
 
-              </div>
+              </div> */}
 
 
 
-              <div className="order-form-field">
+              {/* <div className="order-form-field"> */}
                 {/* <span>Rechnung</span> */}
-                <p>&nbsp;</p>
+                {/* <p>&nbsp;</p>
                 {values.basket.map((product) => (
                   <OrderItem
                     basket={basket}
@@ -908,7 +908,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                   />
                 ))}
 
-              </div>
+              </div> */}
 
 
             </div>

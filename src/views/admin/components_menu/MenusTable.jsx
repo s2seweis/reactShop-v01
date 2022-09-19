@@ -8,9 +8,11 @@ const MenusTable = ({ filteredMenus }) => (
     {filteredMenus.length > 0 && (
 
       // grid grid-count-4
-      <div className="grid grid-product grid-count-4">
+      <div className="grid grid-product grid-count-4-top">
         {/* <div className="grid-col" /> */}
-        <div className="grid-col">
+
+        
+        {/* <div className="grid-col">
           <h5>Date</h5>
         </div>
         <div className="grid-col">
@@ -21,7 +23,7 @@ const MenusTable = ({ filteredMenus }) => (
         </div>
         <div className="grid-col">
           <h5>Total</h5>
-        </div>
+        </div> */}
 
 
         {/* <div className="grid-col">

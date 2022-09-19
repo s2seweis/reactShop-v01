@@ -28,7 +28,7 @@ const Menus = () => {
         menusCount={store.menus.items.length}
         totalMenusCount={store.menus.total}
       />
-      <div className="product-admin-items">
+      <div className="order-admin-items">
         <MenuList {...store}>
           <MenuAppliedFilters filter={store.filter} />
           <MenusTable filteredMenus={store.filteredMenus} />

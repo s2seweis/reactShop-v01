@@ -49,6 +49,9 @@ const MenuItem = ({ menu }) => {
 
 
           <div className="grid-col">
+
+          <h4>Date</h4>
+
             <span>
               {menu.dateAdded ? displayDate(menu.dateAdded) : <Skeleton width={50} />}
 
@@ -57,6 +60,10 @@ const MenuItem = ({ menu }) => {
 
 
           <div className="grid-col">
+
+          <h4>Address</h4>
+
+
             <span>
               {menu.shipping ? (
                 <span>{menu.shipping.address}</span>
@@ -72,12 +79,17 @@ const MenuItem = ({ menu }) => {
 
 
           <div className="grid-col-break">
+
+          <h4>ID</h4>
             
             <span>{menu.id || <Skeleton width={50} />}</span>
 
           </div>
 
           <div className="grid-col">
+
+          <h4>Total</h4>
+
             <span className="text-overflow-ellipsis">{menu.subtotal || <Skeleton width={50} />}</span>
           </div>
 

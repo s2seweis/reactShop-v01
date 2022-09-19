@@ -32,7 +32,7 @@
 .product-admin-header {
   display: flex;
   align-items: center;
-  padding: 0 $l-size;
+  // padding: 0 $l-size;
   border-bottom: 1px solid $border-color;
   background: $white;
   position: sticky;
@@ -43,6 +43,7 @@
 
 .product-admin-header-title {
   flex-grow: 1;
+  padding: 0 $s-size;
 }
 
 .product-admin-filter {
@@ -53,6 +54,12 @@
 
 .product-admin-items {
   padding: 0 $l-size;
+  justify-content: center;
+
+}
+
+.order-admin-items {
+  padding: 10px;
   justify-content: center;
 
 }

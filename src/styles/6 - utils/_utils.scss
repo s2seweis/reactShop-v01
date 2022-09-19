@@ -253,9 +253,18 @@
 .grid-count-4 {
   display: grid;
   grid-gap: $l-size;
-  justify-content: center;
+  // justify-content: center;
   grid-template-columns: repeat(4, 1fr);
-  place-items: center;
+  // place-items: center;
+  align-items:flex-start;
+}
+.grid-count-4-top {
+  display: grid;
+  grid-gap: $l-size;
+  justify-content: flex-start;
+  grid-template-columns: repeat(4, 1fr);
+  // place-items: center;
+  margin-left: $s-size; 
 }
 
 .grid-count-6 {

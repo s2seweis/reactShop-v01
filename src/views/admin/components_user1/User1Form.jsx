@@ -317,6 +317,17 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
                   {isLoading ? 'Saving Product' : 'Save Product'}
                 </button>
               </div>
+              {/* <div className="product-form-field product-form-submit">
+                <button
+                  className="button"
+                  disabled={isLoading}
+                  type="submit"
+                >
+                  {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
+                  &nbsp;
+                  {isLoading ? 'Saving Product' : 'Zurück'}
+                </button>
+              </div> */}
             </div>
             {/* ----THUBMNAIL ---- */}
             {/* <div className="product-form-file">
