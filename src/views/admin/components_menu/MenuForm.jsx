@@ -35,6 +35,14 @@ import MediaQuery from 'react-responsive';
 import * as Mui from '@material-ui/core';
 
 
+import { ADMIN_MENUS } from 'constants/routes';
+
+// import { ArrowLeftOutlined, CheckOutlined, LoadingOutlined } from '@ant-design/icons';
+
+import { useHistory } from 'react-router-dom';
+
+
+
 
 
 import {
@@ -127,6 +135,8 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
   const isPortrait = useMediaQuery({ query: '(orientation: portrait)' });
   const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' });
 
+  const history = useHistory();
+
 
   // Test 2
 
@@ -146,7 +156,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
   //   query: "(min-device-width: 1200px)",
   // });
 
-  // const isBigScreen = useMediaQuery({
+  // const isBigScreen1 = useMediaQuery({
   //   query: "(min-device-width: 1201px )",
   // });
 
@@ -425,6 +435,18 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
             <div className="order">
 
 
+              <button
+                className="button button-muted w-100-mobile"
+                disabled={isLoading}
+                onClick={() => history.push(ADMIN_MENUS)}
+                type="button"
+              >
+                {/* <ArrowLeftOutlined /> */}
+                &nbsp;
+                Back to Profile
+              </button>
+
+
 
               {/* invoice */}
 
@@ -587,7 +609,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
               <div className="order-form-field">
-              <h3>Ordered Articles</h3>
+                <h3>Ordered Articles</h3>
                 {/* <span>Rechnung</span> */}
                 <p>&nbsp;</p>
                 {values.basket.map((product) => (
@@ -633,7 +655,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                     {/* <h3>Total:</h3> */}
 
                     <h2 className="order-form-field-total">
-                                          
+
 
                       {menu.subtotal || <Skeleton width={50} />}
                     </h2>
@@ -654,7 +676,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
               {/* instead of desktop, laptop, bigscrren, phone => we use div */}
               {/* React-Responsive Test 1 */}
 
-              {/* <div>
+              <div>
                 <h1>Device Test! - React Responsive</h1>
                 {isDesktopOrLaptop &&
 
@@ -689,7 +711,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                 }
                 <p>Your are in {isPortrait ? 'portrait' : 'landscape'} orientation</p>
                 {isRetina && <p>You are retina</p>}
-              </div> */}
+              </div>
 
 
 
@@ -702,7 +724,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                 <TabletMobile />
                 {isDesktop && <Desktop />}
                 {isLaptop && <Laptop />}
-                {isBigScreen && <BigScreen />}
+                {isBigScreen1 && <BigScreen />}
               </>}
 
 
@@ -897,8 +919,8 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
               {/* <div className="order-form-field"> */}
-                {/* <span>Rechnung</span> */}
-                {/* <p>&nbsp;</p>
+              {/* <span>Rechnung</span> */}
+              {/* <p>&nbsp;</p>
                 {values.basket.map((product) => (
                   <OrderItem
                     basket={basket}

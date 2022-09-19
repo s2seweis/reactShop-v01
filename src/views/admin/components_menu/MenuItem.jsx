@@ -101,7 +101,7 @@ const MenuItem = ({ menu }) => {
 
         </div>
         {menu.id && (
-          <div className="item-action">
+          <div className="item-action-order">
             <button
               className="button button-border button-small"
               onClick={onClickEdit}
