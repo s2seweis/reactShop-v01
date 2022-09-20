@@ -3,11 +3,11 @@
   padding: $s-size;
   border: 1px solid transparent;
   justify-content: center;
-  
+
   &:nth-child(even) {
     background: $white;
   }
-  
+
   &:hover {
     border: 1px solid $border-color-focus;
     box-shadow: 2px 5px 10px rgba(41, 162, 13, 0.1);
@@ -19,10 +19,11 @@
   padding: 0;
 }
 
-.item:hover > .item-action {
+.item:hover>.item-action {
   display: flex;
 }
-.item:hover > .item-action-order {
+
+.item:hover>.item-action-order {
   display: flex;
 }
 
@@ -55,20 +56,39 @@
 }
 
 .item-action-order {
-  // position: absolute;
-  width: 200px;
+  position: absolute;
   right: 0;
   top: 0;
-  left:0;
+  bottom: 0;
+  padding: $s-size;
+  background: $white;
+  grid-column: span 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  display: none;
+
+
+  @media (max-width: $mobile) {
+    position: relative;
+  width: 100%;
+  right: 0;
+  top: 0;
+  left: 0;
   bottom: 0;
   // padding: $s-size;
   background: $white;
   // grid-column: span 2;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   // display: none;
+  }
+
 }
+
+
+
 
 .item-action-confirm {
   width: 350px;

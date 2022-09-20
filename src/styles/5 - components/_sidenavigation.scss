@@ -1,15 +1,13 @@
 .sidenavigation {
   min-width: 200px;
-  // max-width: 200px;
   height: 100%;
   background: $black; 
   position: relative;
   padding-top: 1rem;
   border-right: 1px solid $border-color;
   display: flex;
-  // justify-content: center;
 
-  // test media querry 
+  // 1. test media querry
 
   @media (max-width: $mobile) {
     min-width: 100px;
@@ -29,7 +27,6 @@
   height: 100%;
   flex-direction: column;
   display: flex;
-  // justify-content: center;
 }
 
 .sidenavigation-menu {

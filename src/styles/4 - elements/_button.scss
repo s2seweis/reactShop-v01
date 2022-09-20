@@ -18,6 +18,26 @@
     text-decoration: none;
   }
 }
+.button-back {
+  background: $button-color;
+  padding: $m-size;
+  border: 1px solid $button-color;
+  color: $white;
+  font-weight: bold;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 25%;
+  @include bezier-transition(all, .3s, ease);
+
+  &:hover {
+    cursor: pointer;
+    background: $button-hover;
+    border: 1px solid $button-hover;
+    text-decoration: none;
+  }
+}
 
 .button-sign-up {
   background: $button-color;
