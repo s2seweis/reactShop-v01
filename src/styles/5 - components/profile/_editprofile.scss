@@ -1,10 +1,11 @@
 .edit-user {
   width: 600px;
   height: auto;
-  padding: $m-size;
+  // padding: $m-size;
   margin: auto;
   display: flex;
   flex-direction: column;
+  padding: 0;
 
   @include mobile {
     width: 100%;

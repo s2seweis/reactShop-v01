@@ -4,7 +4,7 @@ import PropType from 'prop-types';
 import React from 'react';
 import PhoneInput from 'react-phone-input-2';
 
-const CustomMobileInput = (props) => {
+const CustomMobileInput = (props, authProvider, isLoading) => {
   const [field, meta, helpers] = useField(props);
   const { label, placeholder, defaultValue } = props;
   const { touched, error } = meta;
@@ -28,7 +28,13 @@ const CustomMobileInput = (props) => {
       ) : (
         <label className="label-input" htmlFor={field.name}>{label}</label>
       )}
+
+
+
       <PhoneInput
+
+      // disables for the MenuForm
+        disabled={authProvider !== 'password' || isLoading}
         name={field.name}
         country="ph"
         inputClass="input-form d-block"

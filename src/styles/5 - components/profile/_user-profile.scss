@@ -85,6 +85,15 @@
   }
 }
 
+.order-details {
+  padding: 9.5rem $m-size $l-size;
+  padding-top: 0;
+
+  & > div {
+    margin-bottom: $s-size;
+  }
+}
+
 .user-profile-name {
   text-transform: capitalize;
 }

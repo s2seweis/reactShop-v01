@@ -1,5 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import { CheckOutlined, LoadingOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
+
 import { ImageLoader } from 'components/common';
 import {
   CustomColorInput, CustomCreatableSelect, CustomInput, CustomTextarea, CustomMobileInput
@@ -111,7 +113,7 @@ const FormSchema = Yup.object().shape({
 
 
 
-const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
+const MenuForm = ({ menu, onSubmit, isLoading, basket, authProvider }) => {
   const initFormikValues = {
     name: menu?.name || '',
     fullname: menu?.shipping.fullname || '',
@@ -122,12 +124,16 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
     subtotal: menu?.subtotal || 0,
     maxQuantity: menu?.maxQuantity || 0,
     id: menu?.id || '',
+    // dateAdded: menu?.dateAdded || '',
+    payment: menu?.payment.type || '',
     keywords: menu?.keywords || [],
     basket: menu?.basket || [],
     sizes: menu?.sizes || [],
     isFeatured: menu?.isFeatured || false,
     isRecommended: menu?.isRecommended || false,
-    mobile: menu.mobile || {},
+    mobile: menu.shipping.mobile || {},
+    dateAdded: displayDate(menu.dateAdded) || {},
+    // mobile: menu.mobile || {},
     availableColors: menu?.availableColors || [],
     // address: menu.address || '',
 
@@ -207,12 +213,12 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
         onSubmit={onSubmitForm}
       >
         {({ values, setValues }) => (
-          <Form className="order-form">
+          <Form className="edit-user">
             {/* <div className="product-form-inputs"> */}
             {/* <div className="d-flex"> */}
 
 
-            <div className="product-form-field">
+            {/* <div className="product-form-field">
                   <Field
                     disabled={isLoading}
                     name="fullname"
@@ -222,7 +228,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                     style={{ textTransform: 'capitalize' }}
                     component={CustomInput}
                   />
-                </div>
+                </div> */}
 
             {/* &nbsp; */}
 
@@ -374,7 +380,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
               </div> */}
 
 
-            <br />
+
             {/* <div className="d-flex"> */}
 
 
@@ -411,9 +417,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
             {/* </div> */}
-            <br />
-            <br />
-            <br />
+
 
 
             {/* <div className="product-form-field product-form-submit">
@@ -436,70 +440,186 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
 
-            {/* orderItem */}
+            <button
+              className="button-back-new button-muted w-100-mobile"
+              disabled={isLoading}
+              onClick={() => history.push(ADMIN_MENUS)}
+              type="button"
+            >
+              <ArrowLeftOutlined />
+              &nbsp;
+              Back
+            </button>
 
 
 
 
 
+            <div className="user-tab">
 
 
-            <div className="user-profile-details">
-              <Field
-                disabled={isLoading}
-                name="fullname"
-                type="text"
-                label="* Full Name"
-                placeholder="Enter your full name"
-                component={CustomInput}
-                style={{ textTransform: 'capitalize' }}
-              />
-              <Field
-                // disabled={authProvider !== 'password' || isLoading}
-                name="email"
-                type="email"
-                label="* Email Address"
-                placeholder="test@example.com"
-                component={CustomInput}
-              />
-              <Field
-                disabled={isLoading}
-                name="address"
-                type="address"
-                label="* Full Name"
-                placeholder="Enter your full name"
-                component={CustomInput}
-                // style={{ textTransform: 'capitalize' }}
-              />
-              <CustomMobileInput
-                defaultValue={values.mobile}
-                name="mobile"
-                disabled={isLoading}
-                label="Mobile Number (Will be used for checkout)"
-              />
-              <br />
-              <div className="edit-user-action">
+              <div className="order-details">
+
+
+
+
                 <button
-                  className="button button-muted w-100-mobile"
+                  className="button-back button-muted w-100-mobile"
                   disabled={isLoading}
-                  onClick={() => history.push(ACCOUNT)}
+                  // onClick={() => history.push(ADMIN_MENUS)}
                   type="button"
                 >
                   {/* <ArrowLeftOutlined /> */}
                   &nbsp;
-                  Back to Profile
+                  Order
                 </button>
-                {/* <button
-                  className="button w-100-mobile"
+
+
+
+                <Field
+                  disabled={authProvider !== 'password' || isLoading}
+                  name="dateAdded"
+                  type="text"
+                  label="* Date Added"
+                  placeholder="dateAdded"
+                  component={CustomInput}
+                // style={{ textTransform: 'capitalize' }}
+                />
+                <Field
+                  disabled={authProvider !== 'password' || isLoading}
+                  name="payment"
+                  type="text"
+                  label="* Payment"
+                  placeholder="date Added"
+                  component={CustomInput}
+                  style={{ textTransform: 'capitalize' }}
+                />
+                <Field
+                  disabled={authProvider !== 'password' || isLoading}
+                  name="id"
+                  type="text"
+                  label="* Order Number"
+                  placeholder="Enter your full name"
+                  component={CustomInput}
+                // style={{ textTransform: 'capitalize' }}
+                />
+                <Field
+                  disabled={authProvider !== 'password' || isLoading}
+                  name="fullname"
+                  type="text"
+                  label="* Full Name"
+                  placeholder="Enter your full name"
+                  component={CustomInput}
+                  style={{ textTransform: 'capitalize' }}
+                />
+                <Field
+                  disabled={authProvider !== 'password' || isLoading}
+                  name="email"
+                  type="email"
+                  label="* Email Address"
+                  placeholder="test@example.com"
+                  component={CustomInput}
+                />
+                <Field
+                  disabled={authProvider !== 'password' || isLoading}
+                  name="address"
+                  type="address"
+                  label="* Address"
+                  placeholder="Enter your full name"
+                  component={CustomInput}
+                // style={{ textTransform: 'capitalize' }}
+                />
+
+
+                
+                
+                <CustomMobileInput
+                  disabled={authProvider !== 'password' || isLoading}
+                  defaultValue={values.mobile}
+                  name="mobile"
+                  label="Mobile Number"
+                />
+
+
+
+                <button
+                  className="button-back button-muted w-100-mobile"
                   disabled={isLoading}
-                  onClick={submitForm}
+                  // onClick={() => history.push(ADMIN_MENUS)}
                   type="button"
                 >
-                  {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
+                  {/* <ArrowLeftOutlined /> */}
                   &nbsp;
-                  {isLoading ? 'Updating Profile' : 'Update Profile'}
-                </button> */}
+                  Order Summary
+                </button>
+
+
+
+
+                <div className="order-form-field">
+                  {/* <h3>Ordered Articles</h3> */}
+                  {/* <span>Rechnung</span> */}
+                  {/* <p>&nbsp;</p> */}
+                  {values.basket.map((product) => (
+                    <OrderItem
+                      basket={basket}
+
+                      key={product.id}
+                      product={product}
+                    />
+                  ))}
+
+                </div>
+
+                <div className="d-flex-total">
+
+                  <div className="address-item-line-2">
+
+
+
+
+                    <div className="order-form-field-total">
+                      <h2>Total:</h2>
+
+                      {/* <h5 className="order-form-field">
+                      {menu.subtotal || <Skeleton width={50} />}
+                    </h5> */}
+
+
+                    </div>
+
+
+
+                  </div>
+
+                  <div className="address-item-line-2">
+
+
+
+
+                    <div className="order-form-field-total">
+                      {/* <h3>Total:</h3> */}
+
+                      <h2 className="order-form-field-total">
+
+
+                        {menu.subtotal || <Skeleton width={50} />}
+                      </h2>
+
+
+                    </div>
+
+
+
+                  </div>
+
+
+
+                </div>
+
+
               </div>
+
             </div>
 
 
@@ -514,23 +634,23 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
             <div className="order">
 
 
-              <button
+              {/* <button
                 className="button-back button-muted w-100-mobile"
                 disabled={isLoading}
                 onClick={() => history.push(ADMIN_MENUS)}
                 type="button"
               >
-                {/* <ArrowLeftOutlined /> */}
+                <ArrowLeftOutlined />
                 &nbsp;
                 Back to Profile
-              </button>
+              </button> */}
 
 
 
-              {/* invoice */}
 
 
-              <div className="d-flex-address">
+
+              {/* <div className="d-flex-address">
 
                 <div className="address-item-line ">
 
@@ -554,7 +674,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
                   <div className="order-form-field">
                     <h3>Payment:</h3>
-                    {/* <br /> */}
+                    
                     {menu.payment ? (
                       <h5>{menu.payment.type}</h5>
                     ) : (
@@ -569,13 +689,13 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
 
-              </div>
+              </div> */}
 
 
 
-              {/* date/Id */}
 
-              <div className="d-flex-address">
+
+              {/* <div className="d-flex-address">
 
                 <div className="address-item-line ">
 
@@ -585,7 +705,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
                     <h3>Order Date</h3>
-                    {/* <p>&nbsp;</p> */}
+                    
                     <h5>
                       {menu.dateAdded ? displayDate(menu.dateAdded) : <Skeleton width={50} />}
 
@@ -599,11 +719,11 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
                   <div className="order-form-field">
-                    {/* word-break: break-all; */}
+                    
 
 
                     <h3>Order ID</h3>
-                    {/* <p>&nbsp;</p> */}
+                    
                     <h5>
                       {menu.id || <Skeleton width={50} />}
                     </h5>
@@ -614,7 +734,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
 
-              </div>
+              </div> */}
 
 
 
@@ -623,7 +743,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
               {/* Dispatcher & Receiver */}
 
 
-              <div className="d-flex-address">
+              {/* <div className="d-flex-address">
 
                 <div className="address-item ">
 
@@ -632,7 +752,6 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
 
-                    {/* <p>&nbsp;</p> */}
                     <h3>Dispatcher:</h3>
                     <h5>Danone Waters (UK & Ireland) Limited</h5>
                     <h5>6th Floor, Building 7 Chiswick Park</h5>
@@ -648,7 +767,6 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                 <div className="address-item ">
                   <div className="order-form-field">
                     <h3>Receiver:</h3>
-                    {/* <br /> */}
                     {menu.shipping ? (
                       <h5>{menu.shipping.fullname}</h5>
                     ) : (
@@ -657,7 +775,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
                   </div>
 
-                  {/* <div className="order-form-field">
+                  <div className="order-form-field">
                     <h3>Address:</h3>
                     <br />
                     {menu.shipping ? (
@@ -665,7 +783,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                     ) : (
                       <h3 className="text-subtle text-italic">Address not found</h3>
                     )}
-                  </div> */}
+                  </div>
 
 
 
@@ -673,7 +791,6 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                   <div className="order-form-field">
 
                     <h3>Mobile:</h3>
-                    {/* <br /> */}
                     {menu.shipping ? (
                       <h5>{menu.shipping.mobile.value}</h5>
                     ) : (
@@ -684,78 +801,21 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
                 </div>
-              </div>
-
-
-              <div className="order-form-field">
-                <h3>Ordered Articles</h3>
-                {/* <span>Rechnung</span> */}
-                <p>&nbsp;</p>
-                {values.basket.map((product) => (
-                  <OrderItem
-                    basket={basket}
-
-                    key={product.id}
-                    product={product}
-                  />
-                ))}
-
-              </div>
-
-
-
-              <div className="d-flex-total">
-
-                <div className="address-item-line-2">
+              </div> */}
 
 
 
 
-                  <div className="order-form-field-total">
-                    <h2>Total:</h2>
-
-                    {/* <h5 className="order-form-field">
-                      {menu.subtotal || <Skeleton width={50} />}
-                    </h5> */}
-
-
-                  </div>
 
 
 
-                </div>
-
-                <div className="address-item-line-2">
-
-
-
-
-                  <div className="order-form-field-total">
-                    {/* <h3>Total:</h3> */}
-
-                    <h2 className="order-form-field-total">
-
-
-                      {menu.subtotal || <Skeleton width={50} />}
-                    </h2>
-
-
-                  </div>
-
-
-
-                </div>
-
-
-
-              </div>
 
 
 
               {/* instead of desktop, laptop, bigscrren, phone => we use div */}
               {/* React-Responsive Test 1 */}
 
-              <div>
+              {/* <div>
                 <h1>Device Test! - React Responsive</h1>
                 {isDesktopOrLaptop &&
 
@@ -790,7 +850,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                 }
                 <p>Your are in {isPortrait ? 'portrait' : 'landscape'} orientation</p>
                 {isRetina && <p>You are retina</p>}
-              </div>
+              </div> */}
 
 
 
@@ -997,19 +1057,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
 
 
-              {/* <div className="order-form-field"> */}
-              {/* <span>Rechnung</span> */}
-              {/* <p>&nbsp;</p>
-                {values.basket.map((product) => (
-                  <OrderItem
-                    basket={basket}
 
-                    key={product.id}
-                    product={product}
-                  />
-                ))}
-
-              </div> */}
 
 
             </div>
