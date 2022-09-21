@@ -42,7 +42,63 @@ const MenuItem = ({ menu }) => {
       <div
         className={`item item-s ${!menu.id && 'item-loading'}`}
         ref={menuRef}
+
+
+
       >
+
+
+
+
+        {/* <div className="grid grid-count-4">
+
+
+
+
+          <div className="grid-col">
+
+            <h4>Date</h4>
+
+            
+          </div>
+
+
+          <div className="grid-col">
+
+            <h4>Address</h4>
+
+
+           
+
+          </div>
+
+
+
+
+          <div className="grid-col-break">
+
+            <h4>ID</h4>
+
+
+          </div>
+
+          <div className="grid-col">
+
+            <h4>Total</h4>
+
+          </div>
+
+
+
+
+
+
+
+        </div> */}
+
+
+
+        
         <div className="grid grid-count-4">
 
 
@@ -50,7 +106,7 @@ const MenuItem = ({ menu }) => {
 
           <div className="grid-col">
 
-          <h4>Date</h4>
+            {/* <h4>Date</h4> */}
 
             <span>
               {menu.dateAdded ? displayDate(menu.dateAdded) : <Skeleton width={50} />}
@@ -61,7 +117,7 @@ const MenuItem = ({ menu }) => {
 
           <div className="grid-col">
 
-          <h4>Address</h4>
+            {/* <h4>Address</h4> */}
 
 
             <span>
@@ -80,15 +136,15 @@ const MenuItem = ({ menu }) => {
 
           <div className="grid-col-break">
 
-          <h4>ID</h4>
-            
+            {/* <h4>ID</h4> */}
+
             <span>{menu.id || <Skeleton width={50} />}</span>
 
           </div>
 
           <div className="grid-col">
 
-          <h4>Total</h4>
+            {/* <h4>Total</h4> */}
 
             <span className="text-overflow-ellipsis">{menu.subtotal || <Skeleton width={50} />}</span>
           </div>
@@ -100,6 +156,10 @@ const MenuItem = ({ menu }) => {
 
 
         </div>
+
+
+
+
         {menu.id && (
           <div className="item-action-order">
             <button

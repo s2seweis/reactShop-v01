@@ -258,7 +258,18 @@
   // place-items: center;
   align-items:flex-start;
 }
+.grid-count-4-table {
+  padding: 10px;
+  display: grid;
+  grid-gap: $l-size;
+  // justify-content: center;
+  grid-template-columns: repeat(4, 1fr);
+  // place-items: center;
+  align-items:flex-start;
+}
+
 .grid-count-4-top {
+  // padding: 0 $s-size;
   display: grid;
   grid-gap: $l-size;
   justify-content: flex-start;

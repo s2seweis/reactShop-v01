@@ -107,9 +107,17 @@ const FormSchema = Yup.object().shape({
     .min(1, 'Please add a default color for this menu.')
 });
 
+
+
+
+
 const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
   const initFormikValues = {
     name: menu?.name || '',
+    fullname: menu?.shipping.fullname || '',
+    address: menu?.shipping.address || '',
+    email: menu?.shipping.email || '',
+    // address: menu?.shipping.address || '',
     brand: menu?.brand || '',
     subtotal: menu?.subtotal || 0,
     maxQuantity: menu?.maxQuantity || 0,
@@ -121,7 +129,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
     isRecommended: menu?.isRecommended || false,
     mobile: menu.mobile || {},
     availableColors: menu?.availableColors || [],
-    address: menu.address || '',
+    // address: menu.address || '',
 
 
   };
@@ -204,17 +212,17 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
             {/* <div className="d-flex"> */}
 
 
-            {/* <div className="product-form-field">
+            <div className="product-form-field">
                   <Field
                     disabled={isLoading}
-                    name="name"
+                    name="fullname"
                     type="text"
-                    label="* Product Name"
+                    label="* Full Name"
                     placeholder="Gago"
                     style={{ textTransform: 'capitalize' }}
                     component={CustomInput}
                   />
-                </div> */}
+                </div>
 
             {/* &nbsp; */}
 
@@ -446,22 +454,22 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
                 component={CustomInput}
                 style={{ textTransform: 'capitalize' }}
               />
-              {/* <Field
-                disabled={authProvider !== 'password' || isLoading}
+              <Field
+                // disabled={authProvider !== 'password' || isLoading}
                 name="email"
                 type="email"
                 label="* Email Address"
                 placeholder="test@example.com"
                 component={CustomInput}
-              /> */}
+              />
               <Field
                 disabled={isLoading}
                 name="address"
-                type="text"
-                label="Address (Will be used for checkout)"
-                placeholder="#245 Brgy. Maligalig, Arayat Pampanga, Philippines"
+                type="address"
+                label="* Full Name"
+                placeholder="Enter your full name"
                 component={CustomInput}
-                style={{ textTransform: 'capitalize' }}
+                // style={{ textTransform: 'capitalize' }}
               />
               <CustomMobileInput
                 defaultValue={values.mobile}
@@ -649,15 +657,15 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 
                   </div>
 
-                  <div className="order-form-field">
+                  {/* <div className="order-form-field">
                     <h3>Address:</h3>
-                    {/* <br /> */}
+                    <br />
                     {menu.shipping ? (
                       <h5>{menu.shipping.address}</h5>
                     ) : (
                       <h3 className="text-subtle text-italic">Address not found</h3>
                     )}
-                  </div>
+                  </div> */}
 
 
 
@@ -1048,6 +1056,9 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket }) => {
 MenuForm.propTypes = {
   menu: PropType.shape({
     name: PropType.string,
+    email: PropType.string,
+    address: PropType.string,
+    fullname: PropType.string,
     brand: PropType.string,
     subtotal: PropType.number,
     maxQuantity: PropType.number,
@@ -1060,7 +1071,6 @@ MenuForm.propTypes = {
     imageUrl: PropType.string,
     isFeatured: PropType.bool,
     isRecommended: PropType.bool,
-    address: PropType.string,
     mobile: PropType.object,
 
 

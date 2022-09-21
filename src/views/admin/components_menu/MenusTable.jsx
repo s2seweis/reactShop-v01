@@ -7,12 +7,17 @@ const MenusTable = ({ filteredMenus }) => (
   <div>
     {filteredMenus.length > 0 && (
 
-      // grid grid-count-4
-      <div className="grid grid-product grid-count-4-top">
+
+// padding: 0 $s-size;
+
+
+      
+      <div className="grid grid-count-4-table">
+
         {/* <div className="grid-col" /> */}
 
         
-        {/* <div className="grid-col">
+        <div className="grid-col">
           <h5>Date</h5>
         </div>
         <div className="grid-col">
@@ -23,7 +28,7 @@ const MenusTable = ({ filteredMenus }) => (
         </div>
         <div className="grid-col">
           <h5>Total</h5>
-        </div> */}
+        </div>
 
 
         {/* <div className="grid-col">
@@ -31,6 +36,7 @@ const MenusTable = ({ filteredMenus }) => (
         </div> */}
 
       </div>
+
     )}
     {filteredMenus.length === 0 ? new Array(10).fill({}).map((menu, index) => (
       <MenuItem
