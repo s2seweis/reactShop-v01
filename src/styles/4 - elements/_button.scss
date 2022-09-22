@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 100px;
+  // min-width: 100px;
   @include bezier-transition(all, .3s, ease);
 
   &:hover {
@@ -82,12 +82,12 @@
 }
 
 .button:disabled {
-  opacity: .5;
+  // opacity: .5;
 
-  &:hover {
-    cursor: not-allowed;   
-    // background: none;
-  }
+  // &:hover {
+  //   cursor: not-allowed;   
+  //   // background: none;
+  // }
 }
 
 .button-link {
@@ -113,6 +113,18 @@
     border: 1px solid $border-color-focus;
   }
 }
+
+// .button-muted-new {
+//   @extend .button;
+//   background: $background-color-01;
+//   color: lighten($paragraph-color, 20%);
+//   border: 1px solid $border-color;
+
+//   &:hover {
+//     background: $background-color;
+//     border: 1px solid $border-color-focus;
+//   }
+// }
 
 .button-block {
   display: block;

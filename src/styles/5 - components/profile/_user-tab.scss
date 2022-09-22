@@ -1,5 +1,5 @@
 .user-tab {
-  width: 700px;
+  width: 500px;
   height: 100%;
   margin: 0 auto;
   margin-top: 3rem;
@@ -10,6 +10,28 @@
     width: 100%;
     margin-top: 6rem;
   }
+}
+.user-tab-new {
+  width: 650px;
+  height: 100%;
+  // margin: 0 auto;
+  margin-top: 3rem;
+  background: $white;
+  border: 1px solid $border-color;
+
+  @media (max-width: $mobile) {
+
+
+    width: auto;
+    height: 100%;
+    // margin: 0 auto;
+    margin-top: 3rem;
+    background: $white;
+    border: 1px solid $border-color;
+
+  }
+
+ 
 }
 
 .user-tab-content {

@@ -442,7 +442,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket, authProvider }) => {
 
             <button
               className="button-back-new button-muted w-100-mobile"
-              disabled={isLoading}
+              // disabled={authProvider !== 'password' || isLoading}
               onClick={() => history.push(ADMIN_MENUS)}
               type="button"
             >
@@ -455,7 +455,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket, authProvider }) => {
 
 
 
-            <div className="user-tab">
+            <div className="user-tab-new">
 
 
               <div className="order-details">
@@ -464,8 +464,8 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket, authProvider }) => {
 
 
                 <button
-                  className="button-back button-muted w-100-mobile"
-                  disabled={isLoading}
+                  className="button-back button-muted-new w-100-mobile"
+                  disabled={authProvider !== 'password' || isLoading}
                   // onClick={() => history.push(ADMIN_MENUS)}
                   type="button"
                 >
@@ -531,8 +531,8 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket, authProvider }) => {
                 />
 
 
-                
-                
+
+
                 <CustomMobileInput
                   disabled={authProvider !== 'password' || isLoading}
                   defaultValue={values.mobile}
@@ -543,8 +543,8 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket, authProvider }) => {
 
 
                 <button
-                  className="button-back button-muted w-100-mobile"
-                  disabled={isLoading}
+                  className="button-back button-muted-new w-100-mobile"
+                  disabled={authProvider !== 'password' || isLoading}
                   // onClick={() => history.push(ADMIN_MENUS)}
                   type="button"
                 >
@@ -604,6 +604,8 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket, authProvider }) => {
 
 
                         {menu.subtotal || <Skeleton width={50} />}
+                        {' '}
+                        $
                       </h2>
 
 

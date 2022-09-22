@@ -31,6 +31,16 @@ const Menus = () => {
       <div className="order-admin-items">
         <MenuList {...store}>
           <MenuAppliedFilters filter={store.filter} />
+          <button
+                  className="button-back button-muted-new w-100-mobile"
+                  // disabled={authProvider !== 'password' || isLoading}
+                  // onClick={() => history.push(ADMIN_MENUS)}
+                  type="button"
+                >
+                  {/* <ArrowLeftOutlined /> */}
+                  &nbsp;
+                  Order
+                </button>
           <MenusTable filteredMenus={store.filteredMenus} />
         </MenuList>
       </div>
