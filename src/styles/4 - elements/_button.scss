@@ -144,6 +144,7 @@
 
 .button-danger {
   background: red;
+  width: 100px;
   color: #fff;
 
   &:hover {
@@ -162,6 +163,7 @@
 }
 
 .button-small {
+  width: 100px;
   font-size: $font-small;
   padding: $s-size $m-size;
 }

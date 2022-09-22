@@ -38,6 +38,14 @@ const SideNavigation = () => (
           Users
         </NavLink>
 
+        <NavLink
+          activeClassName="sidenavigation-menu-active"
+          className="sidenavigation-menu"
+          to={ADMIN_USERS1}
+        >
+          Settings Settings
+        </NavLink>
+
       </div>
      
     </div>
