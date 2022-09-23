@@ -6,7 +6,7 @@ export * as miscActions from './miscActions';
 
 export * as productActions from './productActions';
 
-export * as settingsActions from './settingsActions';
+export * as settingActions from './settingActions';
 
 export * as menuActions from './menuActions';
 

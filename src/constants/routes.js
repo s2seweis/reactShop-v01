@@ -15,10 +15,10 @@ export const ADMIN_PRODUCTS = '/admin/products';
 export const ADMIN_MENUS = '/admin/menus';
 export const ADMIN_POSTS = '/admin/posts';
 export const ADMIN_USERS1 = '/admin/users1';
-export const ADMIN_SETTINGS = '/admin/settings';
+export const ADMIN_SETTING = '/admin/setting';
 
 export const ADD_PRODUCT = '/admin/add';
-export const ADD_SETTINGS = '/admin/settings';
+export const ADD_SETTING = '/admin/setting';
 export const ADD_MENU = '/admin/add-menu';
 export const ADD_POST = '/admin/add-post';
 export const ADD_USER1 = '/admin/add-user1';
@@ -26,7 +26,7 @@ export const ADD_USER1 = '/admin/add-user1';
 export const ADD_USER = '/admin/add-user';
 
 export const EDIT_PRODUCT = '/admin/edit';
-export const EDIT_SETTINGS = '/admin/edit-settings';
+export const EDIT_SETTING = '/admin/edit-setting';
 export const EDIT_MENU = '/admin/edit-menu';
 export const EDIT_POST = '/admin/edit-post';
 export const EDIT_USER1 = '/admin/edit-user1';
@@ -42,6 +42,6 @@ export const CHECKOUT_STEP_3 = '/checkout/step3';
 export const CHECKOUT_STEP_4 = '/checkout/step4';
 
 export const VIEW_PRODUCT = '/product/:id';
-export const VIEW_SETTINGS = '/settings/:id';
+export const VIEW_SETTING = '/setting/:id';
 export const VIEW_POST = '/post/:id';
 export const VIEW_USER1 = '/user1/:id';

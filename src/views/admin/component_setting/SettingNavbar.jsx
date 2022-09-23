@@ -1,18 +1,18 @@
 import { FilterOutlined, PlusOutlined } from '@ant-design/icons';
 import { FiltersToggle, SearchBar } from 'components/common';
-import { ADD_SETTINGS } from 'constants/routes';
+import { ADD_SETTING } from 'constants/routes';
 import PropType from 'prop-types';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-const SettingsNavbar = (props) => {
+const SettingNavbar = (props) => {
   const { productsCount, totalProductsCount } = props;
   const history = useHistory();
 
   return (
     <div className="product-admin-header">
       <h3 className="product-admin-header-title">
-        Settings &nbsp;
+        Setting &nbsp;
         (
         {`${productsCount} / ${totalProductsCount}`}
         )
@@ -31,15 +31,15 @@ const SettingsNavbar = (props) => {
         type="button"
       >
         <PlusOutlined />
-        &nbsp; Add New Settings
+        &nbsp; Add New Setting
       </button>
     </div>
   );
 };
 
-SettingsNavbar.propTypes = {
+SettingNavbar.propTypes = {
   productsCount: PropType.number.isRequired,
   totalProductsCount: PropType.number.isRequired
 };
 
-export default SettingsNavbar;
+export default SettingNavbar;

@@ -3,7 +3,7 @@ import { takeLatest } from 'redux-saga/effects';
 import authSaga from './authSaga';
 
 import productSaga from './productSaga';
-import settingsSaga from './settingsSaga';
+import settingSaga from './settingSaga';
 import menuSaga from './menuSaga';
 import postSaga from './postSaga';
 import user1Saga from './user1Saga';
@@ -44,7 +44,7 @@ function* rootSaga() {
     ACTION.REMOVE_PRODUCT,
     ACTION.EDIT_PRODUCT,
     ACTION.GET_PRODUCTS
-  ], settingsSaga);
+  ], settingSaga);
 
 
   yield takeLatest([

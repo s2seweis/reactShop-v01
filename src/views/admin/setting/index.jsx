@@ -6,7 +6,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { selectFilter } from 'selectors/selector';
-import { SettingsNavbar } from '../components_settings';
+import { SettingNavbar } from '../component_setting';
 import ProductsTable from '../components/ProductsTable';
 
 const Products = () => {
@@ -22,7 +22,7 @@ const Products = () => {
 
   return (
     <Boundary>
-      <SettingsNavbar
+      <SettingNavbar
         productsCount={store.products.items.length}
         totalProductsCount={store.products.total}
       />
