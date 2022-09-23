@@ -272,9 +272,9 @@ class Firebase {
 
  // // SETTING ACTIONS --------------
 
-  getSingleProduct = (id) => this.db.collection("products").doc(id).get();
+  getSingleSetting = (id) => this.db.collection("settings").doc(id).get();
 
-  getProducts = (lastRefKey) => {
+  getSettings = (lastRefKey) => {
     let didTimeout = false;
 
     return new Promise((resolve, reject) => {
@@ -282,21 +282,21 @@ class Firebase {
         if (lastRefKey) {
           try {
             const query = this.db
-              .collection("products")
+              .collection("settings")
               .orderBy(app.firestore.FieldPath.documentId())
               .startAfter(lastRefKey)
               .limit(12);
 
             const snapshot = await query.get();
-            const products = [];
+            const settings = [];
             snapshot.forEach((doc) =>
-              products.push({ id: doc.id, ...doc.data() })
+              settings.push({ id: doc.id, ...doc.data() })
             );
             const lastKey = snapshot.docs[snapshot.docs.length - 1];
 
-            resolve({ products, lastKey });
+            resolve({ settings, lastKey });
           } catch (e) {
-            reject(e?.message || ":( Failed to fetch products.");
+            reject(e?.message || ":( Failed to fetch settings.");
           }
         } else {
           const timeout = setTimeout(() => {
@@ -305,39 +305,39 @@ class Firebase {
           }, 15000);
 
           try {
-            const totalQuery = await this.db.collection("products").get();
+            const totalQuery = await this.db.collection("settings").get();
             const total = totalQuery.docs.length;
             const query = this.db
-              .collection("products")
+              .collection("settings")
               .orderBy(app.firestore.FieldPath.documentId())
               .limit(12);
             const snapshot = await query.get();
 
             clearTimeout(timeout);
             if (!didTimeout) {
-              const products = [];
+              const settings = [];
               snapshot.forEach((doc) =>
-                products.push({ id: doc.id, ...doc.data() })
+                settings.push({ id: doc.id, ...doc.data() })
               );
               const lastKey = snapshot.docs[snapshot.docs.length - 1];
 
-              resolve({ products, lastKey, total });
+              resolve({ settings, lastKey, total });
             }
           } catch (e) {
             if (didTimeout) return;
-            reject(e?.message || ":( Failed to fetch products.");
+            reject(e?.message || ":( Failed to fetch settings.");
           }
         }
       })();
     });
   };
 
-  searchProducts = (searchKey) => {
+  searchSettings = (searchKey) => {
     let didTimeout = false;
 
     return new Promise((resolve, reject) => {
       (async () => {
-        const productsRef = this.db.collection("products");
+        const settingsRef = this.db.collection("settings");
 
         const timeout = setTimeout(() => {
           didTimeout = true;
@@ -345,12 +345,12 @@ class Firebase {
         }, 15000);
 
         try {
-          const searchedNameRef = productsRef
+          const searchedNameRef = settingsRef
             .orderBy("name_lower")
             .where("name_lower", ">=", searchKey)
             .where("name_lower", "<=", `${searchKey}\uf8ff`)
             .limit(12);
-          const searchedKeywordsRef = productsRef
+          const searchedKeywordsRef = settingsRef
             .orderBy("dateAdded", "desc")
             .where("keywords", "array-contains-any", searchKey.split(" "))
             .limit(12);
@@ -362,35 +362,35 @@ class Firebase {
 
           clearTimeout(timeout);
           if (!didTimeout) {
-            const searchedNameProducts = [];
-            const searchedKeywordsProducts = [];
+            const searchedNameSettings = [];
+            const searchedKeywordsSettings = [];
             let lastKey = null;
 
             if (!nameSnaps.empty) {
               nameSnaps.forEach((doc) => {
-                searchedNameProducts.push({ id: doc.id, ...doc.data() });
+                searchedNameSettings.push({ id: doc.id, ...doc.data() });
               });
               lastKey = nameSnaps.docs[nameSnaps.docs.length - 1];
             }
 
             if (!keywordsSnaps.empty) {
               keywordsSnaps.forEach((doc) => {
-                searchedKeywordsProducts.push({ id: doc.id, ...doc.data() });
+                searchedKeywordsSettings.push({ id: doc.id, ...doc.data() });
               });
             }
 
             // MERGE PRODUCTS
-            const mergedProducts = [
-              ...searchedNameProducts,
-              ...searchedKeywordsProducts,
+            const mergedSettings = [
+              ...searchedNameSettings,
+              ...searchedKeywordsSettings,
             ];
             const hash = {};
 
-            mergedProducts.forEach((product) => {
-              hash[product.id] = product;
+            mergedSettings.forEach((setting) => {
+              hash[setting.id] = setting;
             });
 
-            resolve({ products: Object.values(hash), lastKey });
+            resolve({ settings: Object.values(hash), lastKey });
           }
         } catch (e) {
           if (didTimeout) return;
@@ -400,24 +400,24 @@ class Firebase {
     });
   };
 
-  getFeaturedProducts = (itemsCount = 12) =>
+  getFeaturedSettings = (itemsCount = 12) =>
     this.db
-      .collection("products")
+      .collection("Settings")
       .where("isFeatured", "==", true)
       .limit(itemsCount)
       .get();
 
-  getRecommendedProducts = (itemsCount = 12) =>
+  getRecommendedSettings = (itemsCount = 12) =>
     this.db
-      .collection("products")
+      .collection("settings")
       .where("isRecommended", "==", true)
       .limit(itemsCount)
       .get();
 
   addProduct = (id, product) =>
-    this.db.collection("products").doc(id).set(product);
+    this.db.collection("settings").doc(id).set(product);
 
-  generateKey = () => this.db.collection("products").doc().id;
+  generateKey = () => this.db.collection("settings").doc().id;
 
   storeImage = async (id, folder, imageFile) => {
     const snapshot = await this.storage.ref(folder).child(id).put(imageFile);
@@ -426,12 +426,12 @@ class Firebase {
     return downloadURL;
   };
 
-  deleteImage = (id) => this.storage.ref("products").child(id).delete();
+  deleteImage = (id) => this.storage.ref("settings").child(id).delete();
 
   editProduct = (id, updates) =>
-    this.db.collection("products").doc(id).update(updates);
+    this.db.collection("settings").doc(id).update(updates);
 
-  removeProduct = (id) => this.db.collection("products").doc(id).delete();
+  removeProduct = (id) => this.db.collection("settings").doc(id).delete();
 
 
   // // SETTING ACTIONS --------------END
