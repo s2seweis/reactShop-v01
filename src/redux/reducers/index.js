@@ -5,6 +5,7 @@ import filterReducer from './filterReducer';
 import miscReducer from './miscReducer';
 
 import productReducer from './productReducer';
+import settingsReducer from './settingsReducer';
 import menuReducer from './menuReducer';
 import postReducer from './postReducer';
 
@@ -15,6 +16,7 @@ import profileReducer from './profileReducer';
 
 const rootReducer = {
   products: productReducer,
+  settings: productReducer,
   menus: menuReducer,
   posts: postReducer,
   

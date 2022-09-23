@@ -106,6 +106,10 @@ const AppRouter = () => (
           path={ROUTES.ADMIN_PRODUCTS}
         />
         <AdminRoute
+          component={view.Settings}
+          path={ROUTES.ADMIN_SETTINGS}
+        />
+        <AdminRoute
           component={view.Menus}
           path={ROUTES.ADMIN_MENUS}
         />
@@ -122,6 +126,10 @@ const AppRouter = () => (
           path={ROUTES.ADD_PRODUCT}
         />
         <AdminRoute
+          component={view.AddSettings}
+          path={ROUTES.ADD_SETTINGS}
+        />
+        <AdminRoute
           component={view.AddMenu}
           path={ROUTES.ADD_MENU}
         />
@@ -136,6 +144,10 @@ const AppRouter = () => (
         <AdminRoute
           component={view.EditProduct}
           path={`${ROUTES.EDIT_PRODUCT}/:id`}
+        />
+        <AdminRoute
+          component={view.EditSettings}
+          path={`${ROUTES.EDIT_SETTINGS}/:id`}
         />
         <AdminRoute
           component={view.EditMenu}

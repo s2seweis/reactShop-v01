@@ -11,6 +11,7 @@ export { default as useFileHandler3 } from './useFileHandler3';
 export { default as useModal } from './useModal';
 
 export { default as useProduct } from './useProduct';
+export { default as useSettings } from './useSettings';
 export { default as useMenu } from './useMenu';
 export { default as usePost } from './usePost';
 export { default as useUser1 } from './useUser1';
