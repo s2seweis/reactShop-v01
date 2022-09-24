@@ -33,7 +33,7 @@ const SettingList = (props) => {
 
   if (filteredSettings.length === 0 && !isLoading) {
     return (
-      <MessageDisplay message={requestStatus?.message || 'No products found.'} />
+      <MessageDisplay message={requestStatus?.message || 'No settings found.'} />
     );
   } if (filteredSettings.length === 0 && requestStatus) {
     return (
