@@ -1,34 +1,34 @@
 import { useBasket } from 'hooks';
 import PropType from 'prop-types';
 import React from 'react';
-import ProductItem from './ProductItem';
+import SettingItem from './SettingItem';
 
-const ProductGrid = ({ products }) => {
+const SettingGrid = ({ settings }) => {
   const { addToBasket, isItemOnBasket } = useBasket();
 
   return (
     <div className="product-grid">
-      {products.length === 0 ? new Array(12).fill({}).map((product, index) => (
-        <ProductItem
+      {settings.length === 0 ? new Array(12).fill({}).map((setting, index) => (
+        <SettingItem
           // eslint-disable-next-line react/no-array-index-key
           key={`product-skeleton ${index}`}
-          product={product}
+          setting={setting}
         />
-      )) : products.map((product) => (
-        <ProductItem
-          key={product.id}
+      )) : settings.map((setting) => (
+        <SettingItem
+          key={setting.id}
           isItemOnBasket={isItemOnBasket}
           addToBasket={addToBasket}
-          product={product}
+          setting={setting}
         />
       ))}
     </div>
   );
 };
 
-ProductGrid.propTypes = {
+SettingGrid.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  products: PropType.array.isRequired
+  settings: PropType.array.isRequired
 };
 
-export default ProductGrid;
+export default SettingGrid;

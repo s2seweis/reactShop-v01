@@ -49,18 +49,18 @@ const FormSchema = Yup.object().shape({
     .min(1, 'Please add a default color for this product.')
 });
 
-const ProductForm = ({ product, onSubmit, isLoading }) => {
+const SettingsForm = ({ setting, onSubmit, isLoading }) => {
   const initFormikValues = {
-    name: product?.name || '',
-    brand: product?.brand || '',
-    price: product?.price || 0,
-    maxQuantity: product?.maxQuantity || 0,
-    description: product?.description || '',
-    keywords: product?.keywords || [],
-    sizes: product?.sizes || [],
-    isFeatured: product?.isFeatured || false,
-    isRecommended: product?.isRecommended || false,
-    availableColors: product?.availableColors || []
+    name: setting?.name || '',
+    brand: setting?.brand || '',
+    price: setting?.price || 0,
+    maxQuantity: setting?.maxQuantity || 0,
+    description: setting?.description || '',
+    keywords: setting?.keywords || [],
+    sizes: setting?.sizes || [],
+    isFeatured: setting?.isFeatured || false,
+    isRecommended: setting?.isRecommended || false,
+    availableColors: setting?.availableColors || []
   };
 
   const {
@@ -68,10 +68,10 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
     isFileLoading,
     onFileChange,
     removeImage
-  } = useFileHandler({ image: {}, imageCollection: product?.imageCollection || [] });
+  } = useFileHandler({ image: {}, imageCollection: setting?.imageCollection || [] });
 
   const onSubmitForm = (form) => {
-    if (imageFile.image.file || product.imageUrl) {
+    if (imageFile.image.file || setting.imageUrl) {
       onSubmit({
         ...form,
         quantity: 1,
@@ -79,7 +79,7 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
         // of name here instead in firebase functions
         name_lower: form.name.toLowerCase(),
         dateAdded: new Date().getTime(),
-        image: imageFile?.image?.file || product.imageUrl,
+        image: imageFile?.image?.file || setting.imageUrl,
         imageCollection: imageFile.imageCollection
       });
     } else {
@@ -298,11 +298,11 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
                 )}
               </div>
               <div className="product-form-image-wrapper">
-                {(imageFile.image.url || product.image) && (
+                {(imageFile.image.url || setting.image) && (
                   <ImageLoader
                     alt=""
                     className="product-form-image-preview"
-                    src={imageFile.image.url || product.image}
+                    src={imageFile.image.url || setting.image}
                   />
                 )}
               </div>
@@ -314,8 +314,8 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
   );
 };
 
-ProductForm.propTypes = {
-  product: PropType.shape({
+SettingsForm.propTypes = {
+  setting: PropType.shape({
     name: PropType.string,
     brand: PropType.string,
     price: PropType.number,
@@ -334,4 +334,4 @@ ProductForm.propTypes = {
   isLoading: PropType.bool.isRequired
 };
 
-export default ProductForm;
+export default SettingsForm;

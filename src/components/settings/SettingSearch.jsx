@@ -4,16 +4,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { clearRecentSearch, removeSelectedRecent, setTextFilter } from 'redux/actions/filterActions';
 
-const ProductSearch = () => {
+const SettingSearch = () => {
   const history = useHistory();
 
   const {
-    productsLength, filter, products, isLoading
+    settingsLength, filter, settings, isLoading
   } = useSelector((state) => ({
     filter: state.filter,
-    products: state.products.items,
+    settings: state.settings.items,
     isLoading: state.app.loading,
-    productsLength: state.products.length
+    settingsLength: state.settings.length
   }));
   const dispatch = useDispatch();
   const searchInput = useRef(null);
@@ -27,14 +27,14 @@ const ProductSearch = () => {
     const val = e.target.value.trim();
     input = val;
 
-    if (val === '' && productsLength !== 0) {
+    if (val === '' && settingsLength !== 0) {
       dispatch(setTextFilter(val));
       history.push('/');
     }
   };
 
   const onKeyUp = (e) => {
-    if (e.keyCode === 13 && productsLength !== 0) {
+    if (e.keyCode === 13 && settingsLength !== 0) {
       dispatch(setTextFilter(input));
       history.push('/');
     }
@@ -106,8 +106,8 @@ const ProductSearch = () => {
             dispatch={dispatch}
             filter={filter}
             isLoading={isLoading}
-            products={products}
-            productsLength={productsLength}
+            settings={settings}
+            settingsLength={settingsLength}
           />
         </div>
       </div>
@@ -115,4 +115,4 @@ const ProductSearch = () => {
   );
 };
 
-export default ProductSearch;
+export default SettingSearch;

@@ -3,23 +3,23 @@ import { useDocumentTitle, useScrollTop } from 'hooks';
 import React, { lazy, Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { addProduct } from 'redux/actions/productActions';
+import { addSetting } from 'redux/actions/settingActions';
 
-const ProductForm = lazy(() => import('../components/ProductForm'));
+const SettingForm = lazy(() => import('../component_setting/SettingForm'));
 
-const AddProduct = () => {
+const AddSetting = () => {
   useScrollTop();
-  useDocumentTitle('Add New Product | Salinaka');
+  useDocumentTitle('Add New Setting | Salinaka');
   const isLoading = useSelector((state) => state.app.loading);
   const dispatch = useDispatch();
 
-  const onSubmit = (product) => {
-    dispatch(addProduct(product));
+  const onSubmit = (setting) => {
+    dispatch(addSetting(setting));
   };
 
   return (
     <div className="product-form-container">
-      <h2>Add New Product1</h2>
+      <h2>Add New Setting1</h2>
       <Suspense fallback={(
         <div className="loader" style={{ minHeight: '80vh' }}>
           <h6>Loading ... </h6>
@@ -29,10 +29,10 @@ const AddProduct = () => {
       )}
       >
       
-        <ProductForm
+        <SettingForm
           isLoading={isLoading}
           onSubmit={onSubmit}
-          product={{
+          setting={{
             name: '',
             brand: '',
             price: 0,
@@ -52,4 +52,4 @@ const AddProduct = () => {
   );
 };
 
-export default withRouter(AddProduct);
+export default withRouter(AddSetting);

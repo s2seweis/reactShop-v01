@@ -4,6 +4,8 @@ export const POST = '/post';
 export const USER1 = '/user1';
 export const FEATURED_PRODUCTS = '/featured';
 export const RECOMMENDED_PRODUCTS = '/recommended';
+export const RECOMMENDED_SETTINGS = '/recommended-settings';
+
 export const RECOMMENDED_USERS1 = '/recommended-users1';
 
 export const RECOMMENDED_POSTS = '/recommended-posts';
@@ -15,7 +17,7 @@ export const ADMIN_PRODUCTS = '/admin/products';
 export const ADMIN_MENUS = '/admin/menus';
 export const ADMIN_POSTS = '/admin/posts';
 export const ADMIN_USERS1 = '/admin/users1';
-export const ADMIN_SETTING = '/admin/setting';
+export const ADMIN_SETTINGS = '/admin/settings';
 
 export const ADD_PRODUCT = '/admin/add';
 export const ADD_SETTING = '/admin/setting';

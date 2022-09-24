@@ -58,3 +58,6 @@ export const selectMin = (posts) => {
 
   return Math.floor(low.price);
 };
+
+
+

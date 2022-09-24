@@ -16,7 +16,7 @@ import profileReducer from './profileReducer';
 
 const rootReducer = {
   products: productReducer,
-  setting: productReducer,
+  settings: settingReducer,
   menus: menuReducer,
   posts: postReducer,
   

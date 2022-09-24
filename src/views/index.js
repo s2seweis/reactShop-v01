@@ -19,7 +19,7 @@ export { default as Products } from './admin/products';
 export { default as Menus } from './admin/menus';
 export { default as Posts } from './admin/posts';
 export { default as Users1 } from './admin/users1';
-export { default as Setting } from './admin/setting';
+export { default as Setting } from './admin/settings';
 
 export { default as ForgotPassword } from './auth/forgot_password';
 export { default as SignIn } from './auth/signin';

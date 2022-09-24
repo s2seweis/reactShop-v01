@@ -1,32 +1,32 @@
 import {
-  ADD_PRODUCT,
+  ADD_SETTING,
   ADD_USER,
-  ADD_PRODUCT_SUCCESS,
-  CANCEL_GET_PRODUCTS,
+  ADD_SETTING_SUCCESS,
+  CANCEL_GET_SETTINGS,
   CLEAR_SEARCH_STATE,
 
-  EDIT_PRODUCT,
+  EDIT_SETTING,
   EDIT_MENU,
 
-  EDIT_PRODUCT_SUCCESS,
+  EDIT_SETTING_SUCCESS,
 
-  GET_PRODUCTS,
+  GET_SETTINGS,
   // GET_MENUS,
   
-  GET_PRODUCTS_SUCCESS,
+  GET_SETTINGS_SUCCESS,
 
-  REMOVE_PRODUCT,
+  REMOVE_SETTING,
   REMOVE_MENU,
 
-  REMOVE_PRODUCT_SUCCESS,
+  REMOVE_SETTING_SUCCESS,
   // REMOVE_USER_SUCCESS,
 
-  SEARCH_PRODUCT,
-  SEARCH_PRODUCT_SUCCESS
+  SEARCH_SETTING,
+  SEARCH_SETTING_SUCCESS
 } from 'constants/constants';
 
-export const getProducts = (lastRef) => ({
-  type: GET_PRODUCTS,
+export const getSettings = (lastRef) => ({
+  type: GET_SETTINGS,
   payload: lastRef
 });
 
@@ -35,18 +35,18 @@ export const getProducts = (lastRef) => ({
 //   payload: lastRef
 // });
 
-export const getProductsSuccess = (products) => ({
-  type: GET_PRODUCTS_SUCCESS,
-  payload: products
+export const getSettingsSuccess = (settings) => ({
+  type: GET_SETTINGS_SUCCESS,
+  payload: settings
 });
 
-export const cancelGetProducts = () => ({
-  type: CANCEL_GET_PRODUCTS
+export const cancelGetSettings = () => ({
+  type: CANCEL_GET_SETTINGS
 });
 
-export const addProduct = (product) => ({
-  type: ADD_PRODUCT,
-  payload: product
+export const addSetting = (setting) => ({
+  type: ADD_SETTING,
+  payload: setting
 });
 
 export const addUser = (user) => ({
@@ -54,25 +54,25 @@ export const addUser = (user) => ({
   payload: user
 });
 
-export const searchProduct = (searchKey) => ({
-  type: SEARCH_PRODUCT,
+export const searchSetting = (searchKey) => ({
+  type: SEARCH_SETTING,
   payload: {
     searchKey
   }
 });
 
-export const searchProductSuccess = (products) => ({
-  type: SEARCH_PRODUCT_SUCCESS,
-  payload: products
+export const searchSettingSuccess = (settings) => ({
+  type: SEARCH_SETTING_SUCCESS,
+  payload: settings
 });
 
 export const clearSearchState = () => ({
   type: CLEAR_SEARCH_STATE
 });
 
-export const addProductSuccess = (product) => ({
-  type: ADD_PRODUCT_SUCCESS,
-  payload: product
+export const addSettingSuccess = (setting) => ({
+  type: ADD_SETTING_SUCCESS,
+  payload: setting
 });
 
 // export const addUserSuccess = (user) => ({
@@ -80,8 +80,8 @@ export const addProductSuccess = (product) => ({
 //   payload: user
 // });
 
-export const removeProduct = (id) => ({
-  type: REMOVE_PRODUCT,
+export const removeSetting = (id) => ({
+  type: REMOVE_SETTING,
   payload: id
 });
 
@@ -90,8 +90,8 @@ export const removeMenu = (id) => ({
   payload: id
 });
 
-export const removeProductSuccess = (id) => ({
-  type: REMOVE_PRODUCT_SUCCESS,
+export const removeSettingSuccess = (id) => ({
+  type: REMOVE_SETTING_SUCCESS,
   payload: id
 });
 
@@ -100,8 +100,8 @@ export const removeProductSuccess = (id) => ({
 //   payload: id
 // });
 
-export const editProduct = (id, updates) => ({
-  type: EDIT_PRODUCT,
+export const editSetting = (id, updates) => ({
+  type: EDIT_SETTING,
   payload: {
     id,
     updates
@@ -124,8 +124,8 @@ export const editMenu = (id, updates) => ({
 //   }
 // });
 
-export const editProductSuccess = (updates) => ({
-  type: EDIT_PRODUCT_SUCCESS,
+export const editSettingSuccess = (updates) => ({
+  type: EDIT_SETTING_SUCCESS,
   payload: updates
 });
 

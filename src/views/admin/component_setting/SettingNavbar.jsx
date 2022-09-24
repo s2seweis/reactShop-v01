@@ -5,8 +5,8 @@ import PropType from 'prop-types';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-const SettingNavbar = (props) => {
-  const { productsCount, totalProductsCount } = props;
+const SettingsNavbar = (props) => {
+  const { settingsCount, totalSettingsCount } = props;
   const history = useHistory();
 
   return (
@@ -14,7 +14,7 @@ const SettingNavbar = (props) => {
       <h3 className="product-admin-header-title">
         Setting &nbsp;
         (
-        {`${productsCount} / ${totalProductsCount}`}
+        {`${settingsCount} / ${totalSettingsCount}`}
         )
       </h3>
       <SearchBar />
@@ -27,7 +27,7 @@ const SettingNavbar = (props) => {
       </FiltersToggle>
       <button
         className="button button-small"
-        onClick={() => history.push(ADD_PRODUCT)}
+        onClick={() => history.push(ADD_SETTING)}
         type="button"
       >
         <PlusOutlined />
@@ -37,9 +37,9 @@ const SettingNavbar = (props) => {
   );
 };
 
-SettingNavbar.propTypes = {
-  productsCount: PropType.number.isRequired,
-  totalProductsCount: PropType.number.isRequired
+SettingsNavbar.propTypes = {
+  settingsCount: PropType.number.isRequired,
+  totalSettingsCount: PropType.number.isRequired
 };
 
-export default SettingNavbar;
+export default SettingsNavbar;

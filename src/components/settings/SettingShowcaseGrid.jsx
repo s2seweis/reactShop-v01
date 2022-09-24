@@ -1,32 +1,32 @@
 /* eslint-disable react/forbid-prop-types */
-import { FeaturedProduct } from 'components/product';
+import { FeaturedSetting } from 'components/settings';
 import PropType from 'prop-types';
 import React from 'react';
 
-const ProductShowcase = ({ products, skeletonCount }) => (
+const SettingShowcase = ({ settings, skeletonCount }) => (
   <div className="product-display-grid">
-    {(products.length === 0) ? new Array(skeletonCount).fill({}).map((product, index) => (
-      <FeaturedProduct
+    {(settings.length === 0) ? new Array(skeletonCount).fill({}).map((setting, index) => (
+      <FeaturedSetting
         // eslint-disable-next-line react/no-array-index-key
         key={`product-skeleton ${index}`}
-        product={product}
+        setting={setting}
       />
-    )) : products.map((product) => (
-      <FeaturedProduct
-        key={product.id}
-        product={product}
+    )) : settings.map((setting) => (
+      <FeaturedSetting
+        key={setting.id}
+        setting={setting}
       />
     ))}
   </div>
 );
 
-ProductShowcase.defaultProps = {
+SettingShowcase.defaultProps = {
   skeletonCount: 4
 };
 
-ProductShowcase.propTypes = {
-  products: PropType.array.isRequired,
+SettingShowcase.propTypes = {
+  settings: PropType.array.isRequired,
   skeletonCount: PropType.number
 };
 
-export default ProductShowcase;
+export default SettingShowcase;

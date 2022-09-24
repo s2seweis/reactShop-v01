@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import firebase from 'services/firebase';
 
-const useProduct = (id) => {
+const useSetting = (id) => {
   // get and check if product exists in store
-  const storeProduct = useSelector((state) => state.products.items.find((item) => item.id === id));
+  const storeSetting = useSelector((state) => state.settings.items.find((item) => item.id === id));
 
-  const [product, setProduct] = useState(storeProduct);
+  const [setting, setSetting] = useState(storeSetting);
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const didMount = useDidMount(true);
@@ -15,19 +15,19 @@ const useProduct = (id) => {
   useEffect(() => {
     (async () => {
       try {
-        if (!product || product.id !== id) {
+        if (!setting || setting.id !== id) {
           setLoading(true);
-          const doc = await firebase.getSingleProduct(id);
+          const doc = await firebase.getSingleSetting(id);
 
           if (doc.exists) {
             const data = { ...doc.data(), id: doc.ref.id };
 
             if (didMount) {
-              setProduct(data);
+              setSetting(data);
               setLoading(false);
             }
           } else {
-            setError('Product not found.');
+            setError('Setting not found.');
           }
         }
       } catch (err) {
@@ -39,7 +39,7 @@ const useProduct = (id) => {
     })();
   }, [id]);
 
-  return { product, isLoading, error };
+  return { setting, isLoading, error };
 };
 
-export default useProduct;
+export default useSetting;

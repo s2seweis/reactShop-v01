@@ -1,8 +1,8 @@
 import {
-  ADD_PRODUCT_SUCCESS,
-  CLEAR_SEARCH_STATE, EDIT_PRODUCT_SUCCESS,
-  GET_PRODUCTS_SUCCESS, REMOVE_PRODUCT_SUCCESS,
-  SEARCH_PRODUCT_SUCCESS
+  ADD_SETTING_SUCCESS,
+  CLEAR_SEARCH_STATE, EDIT_SETTING_SUCCESS,
+  GET_SETTINGS_SUCCESS, REMOVE_SETTING_SUCCESS,
+  SEARCH_SETTING_SUCCESS
 } from 'constants/constants';
 
 const initState = {
@@ -15,51 +15,51 @@ export default (state = {
   lastRefKey: null,
   total: 0,
   items: [],
-  searchedProducts: initState
+  searchedSettings: initState
 }, action) => {
   switch (action.type) {
-    case GET_PRODUCTS_SUCCESS:
+    case GET_SETTINGS_SUCCESS:
       return {
         ...state,
         lastRefKey: action.payload.lastKey,
         total: action.payload.total,
-        items: [...state.items, ...action.payload.products]
+        items: [...state.items, ...action.payload.settings]
       };
-    case ADD_PRODUCT_SUCCESS:
+    case ADD_SETTING_SUCCESS:
       return {
         ...state,
         items: [...state.items, action.payload]
       };
-    case SEARCH_PRODUCT_SUCCESS:
+    case SEARCH_SETTING_SUCCESS:
       return {
         ...state,
-        searchedProducts: {
+        searchedSettings: {
           lastRefKey: action.payload.lastKey,
           total: action.payload.total,
-          items: [...state.searchedProducts.items, ...action.payload.products]
+          items: [...state.searchedSettings.items, ...action.payload.settings]
         }
       };
     case CLEAR_SEARCH_STATE:
       return {
         ...state,
-        searchedProducts: initState
+        searchedSettings: initState
       };
-    case REMOVE_PRODUCT_SUCCESS:
+    case REMOVE_SETTING_SUCCESS:
       return {
         ...state,
-        items: state.items.filter((product) => product.id !== action.payload)
+        items: state.items.filter((setting) => setting.id !== action.payload)
       };
-    case EDIT_PRODUCT_SUCCESS:
+    case EDIT_SETTING_SUCCESS:
       return {
         ...state,
-        items: state.items.map((product) => {
-          if (product.id === action.payload.id) {
+        items: state.items.map((setting) => {
+          if (setting.id === action.payload.id) {
             return {
-              ...product,
+              ...setting,
               ...action.payload.updates
             };
           }
-          return product;
+          return setting;
         })
       };
     default:

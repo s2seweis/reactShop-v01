@@ -4,29 +4,29 @@ import React from 'react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { useHistory } from 'react-router-dom';
 
-const ProductFeatured = ({ product }) => {
+const SettingFeatured = ({ setting }) => {
   const history = useHistory();
   const onClickItem = () => {
-    if (!product) return;
+    if (!setting) return;
 
-    history.push(`/product/${product.id}`);
+    history.push(`/setting/${setting.id}`);
   };
 
   return (
     <SkeletonTheme color="#e1e1e1" highlightColor="#f2f2f2">
       <div className="product-display" onClick={onClickItem} role="presentation">
         <div className="product-display-img">
-          {product.image ? (
+          {setting.image ? (
             <ImageLoader
               className="product-card-img"
-              src={product.image}
+              src={setting.image}
             />
           ) : <Skeleton width="100%" height="100%" />}
         </div>
         <div className="product-display-details">
-          <h2>{product.name || <Skeleton width={80} />}</h2>
+          <h2>{setting.name || <Skeleton width={80} />}</h2>
           <p className="text-subtle text-italic">
-            {product.brand || <Skeleton width={40} />}
+            {setting.brand || <Skeleton width={40} />}
           </p>
         </div>
       </div>
@@ -34,8 +34,8 @@ const ProductFeatured = ({ product }) => {
   );
 };
 
-ProductFeatured.propTypes = {
-  product: PropType.shape({
+SettingFeatured.propTypes = {
+  setting: PropType.shape({
     image: PropType.string,
     name: PropType.string,
     id: PropType.string,
@@ -43,4 +43,4 @@ ProductFeatured.propTypes = {
   }).isRequired
 };
 
-export default ProductFeatured;
+export default SettingFeatured;

@@ -4,23 +4,23 @@ import PropType from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setLoading } from 'redux/actions/miscActions';
-import { getProducts } from 'redux/actions/productActions';
+import { getSettings } from 'redux/actions/settingActions';
 
-const ProductList = (props) => {
+const SettingList = (props) => {
   const {
-    products, filteredProducts, isLoading, requestStatus, children
+   settings, filteredSettings, isLoading, requestStatus, children
   } = props;
   const [isFetching, setFetching] = useState(false);
   const dispatch = useDispatch();
 
-  const fetchProducts = () => {
+  const fetchSettings = () => {
     setFetching(true);
-    dispatch(getProducts(products.lastRefKey));
+    dispatch(getSettings(settings.lastRefKey));
   };
 
   useEffect(() => {
-    if (products.items.length === 0 || !products.lastRefKey) {
-      fetchProducts();
+    if (settings.items.length === 0 || !settings.lastRefKey) {
+      fetchSettings();
     }
 
     window.scrollTo(0, 0);
@@ -29,17 +29,17 @@ const ProductList = (props) => {
 
   useEffect(() => {
     setFetching(false);
-  }, [products.lastRefKey]);
+  }, [settings.lastRefKey]);
 
-  if (filteredProducts.length === 0 && !isLoading) {
+  if (filteredSettings.length === 0 && !isLoading) {
     return (
       <MessageDisplay message={requestStatus?.message || 'No products found.'} />
     );
-  } if (filteredProducts.length === 0 && requestStatus) {
+  } if (filteredSettings.length === 0 && requestStatus) {
     return (
       <MessageDisplay
         message={requestStatus?.message || 'Something went wrong :('}
-        action={fetchProducts}
+        action={fetchSettings}
         buttonLabel="Try Again"
       />
     );
@@ -47,13 +47,13 @@ const ProductList = (props) => {
   return (
     <Boundary>
       {children}
-      {/* Show 'Show More' button if products length is less than total products */}
-      {products.items.length < products.total && (
+      {/* Show 'Show More' button if settings length is less than total settings */}
+      {settings.items.length < settings.total && (
         <div className="d-flex-center padding-l">
           <button
             className="button button-small"
             disabled={isFetching}
-            onClick={fetchProducts}
+            onClick={fetchSettings}
             type="button"
           >
             {isFetching ? 'Fetching Items...' : 'Show More Items'}
@@ -64,13 +64,13 @@ const ProductList = (props) => {
   );
 };
 
-ProductList.defaultProps = {
+SettingList.defaultProps = {
   requestStatus: null
 };
 
-ProductList.propTypes = {
-  products: PropType.object.isRequired,
-  filteredProducts: PropType.array.isRequired,
+SettingList.propTypes = {
+  settings: PropType.object.isRequired,
+  filteredSettings: PropType.array.isRequired,
   isLoading: PropType.bool.isRequired,
   requestStatus: PropType.string,
   children: PropType.oneOfType([
@@ -79,4 +79,4 @@ ProductList.propTypes = {
   ]).isRequired
 };
 
-export default ProductList;
+export default SettingList;

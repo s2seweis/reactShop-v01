@@ -70,6 +70,10 @@ const AppRouter = () => (
           component={view.ViewPost}
           path={ROUTES.VIEW_POST}
         />
+        <Route
+          component={view.ViewSetting}
+          path={ROUTES.VIEW_SETTING}
+        />
         <ClientRoute
           component={view.UserAccount}
           exact
@@ -107,7 +111,7 @@ const AppRouter = () => (
         />
         <AdminRoute
           component={view.Setting}
-          path={ROUTES.ADMIN_SETTING}
+          path={ROUTES.ADMIN_SETTINGS}
         />
         <AdminRoute
           component={view.Menus}

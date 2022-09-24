@@ -1,34 +1,34 @@
 import { ImageLoader } from 'components/common';
-import { EDIT_PRODUCT } from 'constants/routes';
+import { EDIT_SETTING } from 'constants/routes';
 import { displayActionMessage, displayDate, displayMoney } from 'helpers/utils';
 import PropType from 'prop-types';
 import React, { useRef } from 'react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { useDispatch } from 'react-redux';
 import { useHistory, withRouter } from 'react-router-dom';
-import { removeProduct } from 'redux/actions/productActions';
+import { removeSetting } from 'redux/actions/settingActions';
 
-const ProductItem = ({ product }) => {
+const SettingItem = ({ setting }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const productRef = useRef(null);
+  const settingRef = useRef(null);
 
   const onClickEdit = () => {
-    history.push(`${EDIT_PRODUCT}/${product.id}`);
+    history.push(`${EDIT_SETTING}/${setting.id}`);
   };
 
-  const onDeleteProduct = () => {
-    productRef.current.classList.toggle('item-active');
+  const onDeleteSetting = () => {
+    settingRef.current.classList.toggle('item-active');
   };
 
   const onConfirmDelete = () => {
-    dispatch(removeProduct(product.id));
+    dispatch(removeSetting(setting.id));
     displayActionMessage('Item successfully deleted');
-    productRef.current.classList.remove('item-active');
+    settingRef.current.classList.remove('item-active');
   };
 
   const onCancelDelete = () => {
-    productRef.current.classList.remove('item-active');
+    settingRef.current.classList.remove('item-active');
   };
 
   return (
@@ -37,38 +37,38 @@ const ProductItem = ({ product }) => {
       highlightColor="#f2f2f2"
     >
       <div
-        className={`item item-products ${!product.id && 'item-loading'}`}
-        ref={productRef}
+        className={`item item-products ${!setting.id && 'item-loading'}`}
+        ref={settingRef}
       >
         <div className="grid grid-count-6">
           <div className="grid-col item-img-wrapper">
-            {product.image ? (
+            {setting.image ? (
               <ImageLoader
-                alt={product.name}
+                alt={setting.name}
                 className="item-img"
-                src={product.image}
+                src={setting.image}
               />
             ) : <Skeleton width={50} height={30} />}
           </div>
           <div className="grid-col">
-            <span className="text-overflow-ellipsis">{product.name || <Skeleton width={50} />}</span>
+            <span className="text-overflow-ellipsis">{setting.name || <Skeleton width={50} />}</span>
           </div>
           <div className="grid-col">
-            <span>{product.brand || <Skeleton width={50} />}</span>
+            <span>{setting.brand || <Skeleton width={50} />}</span>
           </div>
           <div className="grid-col">
-            <span>{product.price ? displayMoney(product.price) : <Skeleton width={30} />}</span>
+            <span>{setting.price ? displayMoney(setting.price) : <Skeleton width={30} />}</span>
           </div>
           <div className="grid-col">
             <span>
-              {product.dateAdded ? displayDate(product.dateAdded) : <Skeleton width={30} />}
+              {setting.dateAdded ? displayDate(setting.dateAdded) : <Skeleton width={30} />}
             </span>
           </div>
           <div className="grid-col">
-            <span>{product.maxQuantity || <Skeleton width={20} />}</span>
+            <span>{setting.maxQuantity || <Skeleton width={20} />}</span>
           </div>
         </div>
-        {product.id && (
+        {setting.id && (
           <div className="item-action">
             <button
               className="button button-border button-small"
@@ -80,7 +80,7 @@ const ProductItem = ({ product }) => {
             &nbsp;
             <button
               className="button button-border button-small button-danger"
-              onClick={onDeleteProduct}
+              onClick={onDeleteSetting}
               type="button"
             >
               Delete
@@ -110,8 +110,8 @@ const ProductItem = ({ product }) => {
   );
 };
 
-ProductItem.propTypes = {
-  product: PropType.shape({
+SettingItem.propTypes = {
+  setting: PropType.shape({
     id: PropType.string,
     name: PropType.string,
     brand: PropType.string,
@@ -130,4 +130,4 @@ ProductItem.propTypes = {
   }).isRequired
 };
 
-export default withRouter(ProductItem);
+export default withRouter(SettingItem);

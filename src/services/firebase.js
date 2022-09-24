@@ -414,8 +414,8 @@ class Firebase {
       .limit(itemsCount)
       .get();
 
-  addProduct = (id, product) =>
-    this.db.collection("settings").doc(id).set(product);
+  addSetting = (id, setting) =>
+    this.db.collection("settings").doc(id).set(setting);
 
   generateKey = () => this.db.collection("settings").doc().id;
 
@@ -428,10 +428,10 @@ class Firebase {
 
   deleteImage = (id) => this.storage.ref("settings").child(id).delete();
 
-  editProduct = (id, updates) =>
+  editSetting = (id, updates) =>
     this.db.collection("settings").doc(id).update(updates);
 
-  removeProduct = (id) => this.db.collection("settings").doc(id).delete();
+  removeSetting = (id) => this.db.collection("settings").doc(id).delete();
 
 
   // // SETTING ACTIONS --------------END

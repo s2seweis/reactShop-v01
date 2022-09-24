@@ -1,12 +1,12 @@
 /* eslint-disable indent */
 import {
-  ADD_PRODUCT,
-  EDIT_PRODUCT,
-  GET_PRODUCTS,
-  REMOVE_PRODUCT,
-  SEARCH_PRODUCT
+  ADD_SETTING,
+  EDIT_SETTING,
+  GET_SETTINGS,
+  REMOVE_SETTING,
+  SEARCH_SETTING
 } from 'constants/constants';
-import { ADMIN_PRODUCTS } from 'constants/routes';
+import { ADMIN_SETTINGS } from 'constants/routes';
 import { displayActionMessage } from 'helpers/utils';
 import {
   all, call, put, select
@@ -15,11 +15,15 @@ import { setLoading, setRequestStatus } from 'redux/actions/miscActions';
 import { history } from 'routers/AppRouter';
 import firebase from 'services/firebase';
 import {
-  addProductSuccess,
-  clearSearchState, editProductSuccess, getProductsSuccess,
-  removeProductSuccess,
-  searchProductSuccess
-} from '../actions/productActions';
+  addSettingSuccess,
+  clearSearchState, editSettingSuccess, getSettingsSuccess,
+  removeSettingSuccess,
+  searchSettingSuccess
+} from '../actions/settingActions';
+
+
+
+
 
 function* initRequest() {
   yield put(setLoading(true));
@@ -28,7 +32,7 @@ function* initRequest() {
 
 function* handleError(e) {
   yield put(setLoading(false));
-  yield put(setRequestStatus(e?.message || 'Failed to fetch products'));
+  yield put(setRequestStatus(e?.message || 'Failed to fetch settings'));
   console.log('ERROR: ', e);
 }
 
@@ -37,21 +41,21 @@ function* handleAction(location, message, status) {
   yield call(displayActionMessage, message, status);
 }
 
-function* productSaga({ type, payload }) {
+function* settingSaga({ type, payload }) {
   switch (type) {
-    case GET_PRODUCTS:
+    case GET_SETTINGS:
       try {
         yield initRequest();
         const state = yield select();
-        const result = yield call(firebase.getProducts, payload);
+        const result = yield call(firebase.getSettings, payload);
 
-        if (result.products.length === 0) {
+        if (result.settings.length === 0) {
           handleError('No items found.');
         } else {
-          yield put(getProductsSuccess({
-            products: result.products,
-            lastKey: result.lastKey ? result.lastKey : state.products.lastRefKey,
-            total: result.total ? result.total : state.products.total
+          yield put(getSettingsSuccess({
+            settings: result.settings,
+            lastKey: result.lastKey ? result.lastKey : state.settings.lastRefKey,
+            total: result.total ? result.total : state.settings.total
           }));
           yield put(setRequestStatus(''));
         }
@@ -63,37 +67,37 @@ function* productSaga({ type, payload }) {
       }
       break;
 
-    case ADD_PRODUCT: {
+    case ADD_SETTING: {
       try {
         yield initRequest();
 
         const { imageCollection } = payload;
         const key = yield call(firebase.generateKey);
-        const downloadURL = yield call(firebase.storeImage, key, 'products', payload.image);
+        const downloadURL = yield call(firebase.storeImage, key, 'settings', payload.image);
         const image = { id: key, url: downloadURL };
         let images = [];
 
         if (imageCollection.length !== 0) {
           const imageKeys = yield all(imageCollection.map(() => firebase.generateKey));
-          const imageUrls = yield all(imageCollection.map((img, i) => firebase.storeImage(imageKeys[i](), 'products', img.file)));
+          const imageUrls = yield all(imageCollection.map((img, i) => firebase.storeImage(imageKeys[i](), 'settings', img.file)));
           images = imageUrls.map((url, i) => ({
             id: imageKeys[i](),
             url
           }));
         }
 
-        const product = {
+        const setting = {
           ...payload,
           image: downloadURL,
           imageCollection: [image, ...images]
         };
 
-        yield call(firebase.addProduct, key, product);
-        yield put(addProductSuccess({
+        yield call(firebase.addSetting, key, setting);
+        yield put(addSettingSuccess({
           id: key,
-          ...product
+          ...setting
         }));
-        yield handleAction(ADMIN_PRODUCTS, 'Item succesfully added', 'success');
+        yield handleAction(ADMIN_SETTINGS, 'Item succesfully added', 'success');
         yield put(setLoading(false));
       } catch (e) {
         yield handleError(e);
@@ -101,7 +105,7 @@ function* productSaga({ type, payload }) {
       }
       break;
     }
-    case EDIT_PRODUCT: {
+    case EDIT_SETTING: {
       try {
         yield initRequest();
 
@@ -115,7 +119,7 @@ function* productSaga({ type, payload }) {
             console.error('Failed to delete image ', e);
           }
 
-          const url = yield call(firebase.storeImage, payload.id, 'products', image);
+          const url = yield call(firebase.storeImage, payload.id, 'settings', image);
           newUpdates = { ...newUpdates, image: url };
         }
 
@@ -132,7 +136,7 @@ function* productSaga({ type, payload }) {
           });
 
           const imageKeys = yield all(newUploads.map(() => firebase.generateKey));
-          const imageUrls = yield all(newUploads.map((img, i) => firebase.storeImage(imageKeys[i](), 'products', img.file)));
+          const imageUrls = yield all(newUploads.map((img, i) => firebase.storeImage(imageKeys[i](), 'settings', img.file)));
           const images = imageUrls.map((url, i) => ({
             id: imageKeys[i](),
             url
@@ -147,12 +151,12 @@ function* productSaga({ type, payload }) {
           // make sure you're adding the url not the file object.
         }
 
-        yield call(firebase.editProduct, payload.id, newUpdates);
-        yield put(editProductSuccess({
+        yield call(firebase.editSetting, payload.id, newUpdates);
+        yield put(editSettingSuccess({
           id: payload.id,
           updates: newUpdates
         }));
-        yield handleAction(ADMIN_PRODUCTS, 'Item succesfully edited', 'success');
+        yield handleAction(ADMIN_SETTINGS, 'Item succesfully edited', 'success');
         yield put(setLoading(false));
       } catch (e) {
         yield handleError(e);
@@ -160,36 +164,36 @@ function* productSaga({ type, payload }) {
       }
       break;
     }
-    case REMOVE_PRODUCT: {
+    case REMOVE_SETTING: {
       try {
         yield initRequest();
-        yield call(firebase.removeProduct, payload);
-        yield put(removeProductSuccess(payload));
+        yield call(firebase.removeSetting, payload);
+        yield put(removeSettingSuccess(payload));
         yield put(setLoading(false));
-        yield handleAction(ADMIN_PRODUCTS, 'Item succesfully removed', 'success');
+        yield handleAction(ADMIN_SETTINGS, 'Item succesfully removed', 'success');
       } catch (e) {
         yield handleError(e);
         yield handleAction(undefined, `Item failed to remove: ${e.message}`, 'error');
       }
       break;
     }
-    case SEARCH_PRODUCT: {
+    case SEARCH_SETTING: {
       try {
         yield initRequest();
         // clear search data
         yield put(clearSearchState());
 
         const state = yield select();
-        const result = yield call(firebase.searchProducts, payload.searchKey);
+        const result = yield call(firebase.searchSettings, payload.searchKey);
 
-        if (result.products.length === 0) {
-          yield handleError({ message: 'No product found.' });
+        if (result.settings.length === 0) {
+          yield handleError({ message: 'No setting found.' });
           yield put(clearSearchState());
         } else {
-          yield put(searchProductSuccess({
-            products: result.products,
-            lastKey: result.lastKey ? result.lastKey : state.products.searchedProducts.lastRefKey,
-            total: result.total ? result.total : state.products.searchedProducts.total
+          yield put(searchSettingSuccess({
+            settings: result.settings,
+            lastKey: result.lastKey ? result.lastKey : state.settings.searchedSettings.lastRefKey,
+            total: result.total ? result.total : state.settings.searchedSettings.total
           }));
           yield put(setRequestStatus(''));
         }
@@ -205,4 +209,4 @@ function* productSaga({ type, payload }) {
   }
 }
 
-export default productSaga;
+export default settingSaga;

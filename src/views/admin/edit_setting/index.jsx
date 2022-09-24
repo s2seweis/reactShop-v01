@@ -1,28 +1,28 @@
 import { LoadingOutlined } from '@ant-design/icons';
-import { useDocumentTitle, useProduct, useScrollTop } from 'hooks';
+import { useDocumentTitle, useSetting, useScrollTop } from 'hooks';
 import PropType from 'prop-types';
 import React, { lazy, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
-import { editProduct } from 'redux/actions/productActions';
+import { editSetting } from 'redux/actions/settingActions';
 
-const ProductForm = lazy(() => import('../components/ProductForm'));
+const SettingForm = lazy(() => import('../component_setting/SettingForm'));
 
-const EditProduct = ({ match }) => {
-  useDocumentTitle('Edit Product | Salinaka');
+const EditSetting = ({ match }) => {
+  useDocumentTitle('Edit Setting | Salinaka');
   useScrollTop();
-  const { product, error, isLoading } = useProduct(match.params.id);
+  const { setting, error, isLoading } = useSetting(match.params.id);
   const dispatch = useDispatch();
 
   const onSubmitForm = (updates) => {
-    dispatch(editProduct(product.id, updates));
+    dispatch(editSetting(setting.id, updates));
   };
 
   return (
     <div className="product-form-container">
-      {error && <Redirect to="/dashboard/products" />}
-      <h2>Edit Product</h2>
-      {product && (
+      {error && <Redirect to="/dashboard/settings" />}
+      <h2>Edit Setting</h2>
+      {setting && (
         <Suspense fallback={(
           <div className="loader" style={{ minHeight: '80vh' }}>
             <h6>Loading ... </h6>
@@ -31,10 +31,10 @@ const EditProduct = ({ match }) => {
           </div>
         )}
         >
-          <ProductForm
+          <SettingForm
             isLoading={isLoading}
             onSubmit={onSubmitForm}
-            product={product}
+            setting={setting}
           />
         </Suspense>
       )}
@@ -42,7 +42,7 @@ const EditProduct = ({ match }) => {
   );
 };
 
-EditProduct.propTypes = {
+EditSetting.propTypes = {
   match: PropType.shape({
     params: PropType.shape({
       id: PropType.string
@@ -50,4 +50,4 @@ EditProduct.propTypes = {
   }).isRequired
 };
 
-export default withRouter(EditProduct);
+export default withRouter(EditSetting);

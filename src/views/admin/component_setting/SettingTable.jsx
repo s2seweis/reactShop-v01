@@ -1,11 +1,11 @@
 /* eslint-disable react/forbid-prop-types */
 import PropType from 'prop-types';
 import React from 'react';
-import { ProductItem } from '.';
+import { SettingItem } from '.';
 
-const ProductsTable = ({ filteredProducts }) => (
+const SettingsTable = ({ filteredSettings }) => (
   <div>
-    {filteredProducts.length > 0 && (
+    {filteredSettings.length > 0 && (
       <div className="grid grid-product grid-count-6">
         <div className="grid-col" />
         <div className="grid-col">
@@ -25,23 +25,23 @@ const ProductsTable = ({ filteredProducts }) => (
         </div>
       </div>
     )}
-    {filteredProducts.length === 0 ? new Array(10).fill({}).map((product, index) => (
-      <ProductItem
+    {filteredSettings.length === 0 ? new Array(10).fill({}).map((setting, index) => (
+      <SettingItem
         // eslint-disable-next-line react/no-array-index-key
         key={`product-skeleton ${index}`}
-        product={product}
+        setting={setting}
       />
-    )) : filteredProducts.map((product) => (
-      <ProductItem
-        key={product.id}
-        product={product}
+    )) : filteredSettings.map((setting) => (
+      <SettingItem
+        key={setting.id}
+        setting={setting}
       />
     ))}
   </div>
 );
 
-ProductsTable.propTypes = {
-  filteredProducts: PropType.array.isRequired
+SettingsTable.propTypes = {
+  filteredSettings: PropType.array.isRequired
 };
 
-export default ProductsTable;
+export default SettingsTable;

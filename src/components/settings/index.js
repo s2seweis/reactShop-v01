@@ -1,11 +1,10 @@
-export { default as AppliedFilters } from './ProductAppliedFilters';
-export { default as MenuAppliedFilters } from '../menu/MenuAppliedFilters';
+export { default as SettingAppliedFilters } from './SettingAppliedFilters';
 
-export { default as FeaturedProduct } from './ProductFeatured';
+export { default as FeaturedSetting } from './SettingFeatured';
 // export { default as FeaturedUser } from './UserFeatured';
-export { default as ProductGrid } from './ProductGrid';
-export { default as ProductItem } from './ProductItem';
-export { default as ProductList } from './ProductList';
-export { default as ProductSearch } from './ProductSearch';
-export { default as ProductShowcaseGrid } from './ProductShowcaseGrid';
+export { default as SettingGrid } from './SettingGrid';
+export { default as SettingItem } from './SettingItem';
+export { default as SettingList } from './SettingList';
+export { default as SettingSearch } from './SettingSearch';
+export { default as SettingShowcaseGrid } from './SettingShowcaseGrid';
 
