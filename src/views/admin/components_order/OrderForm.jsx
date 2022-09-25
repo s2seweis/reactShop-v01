@@ -38,7 +38,7 @@ import MediaQuery from 'react-responsive';
 import * as Mui from '@material-ui/core';
 
 
-import { ADMIN_MENUS } from 'constants/routes';
+import { ADMIN_ORDERS } from 'constants/routes';
 
 // import { ArrowLeftOutlined, CheckOutlined, LoadingOutlined } from '@ant-design/icons';
 
@@ -113,29 +113,29 @@ const FormSchema = Yup.object().shape({
 
 
 
-const MenuForm = ({ menu, onSubmit, isLoading, basket, authProvider }) => {
+const OrderForm = ({ order, onSubmit, isLoading, basket, authProvider }) => {
   const initFormikValues = {
-    name: menu?.name || '',
-    fullname: menu?.shipping.fullname || '',
-    address: menu?.shipping.address || '',
-    email: menu?.shipping.email || '',
-    // address: menu?.shipping.address || '',
-    brand: menu?.brand || '',
-    subtotal: menu?.subtotal || 0,
-    maxQuantity: menu?.maxQuantity || 0,
-    id: menu?.id || '',
-    // dateAdded: menu?.dateAdded || '',
-    payment: menu?.payment.type || '',
-    keywords: menu?.keywords || [],
-    basket: menu?.basket || [],
-    sizes: menu?.sizes || [],
-    isFeatured: menu?.isFeatured || false,
-    isRecommended: menu?.isRecommended || false,
-    mobile: menu.shipping.mobile || {},
-    dateAdded: displayDate(menu.dateAdded) || {},
-    // mobile: menu.mobile || {},
-    availableColors: menu?.availableColors || [],
-    // address: menu.address || '',
+    name: order?.name || '',
+    fullname: order?.shipping.fullname || '',
+    address: order?.shipping.address || '',
+    email: order?.shipping.email || '',
+    // address: order?.shipping.address || '',
+    brand: order?.brand || '',
+    subtotal: order?.subtotal || 0,
+    maxQuantity: order?.maxQuantity || 0,
+    id: order?.id || '',
+    // dateAdded: order?.dateAdded || '',
+    payment: order?.payment.type || '',
+    keywords: order?.keywords || [],
+    basket: order?.basket || [],
+    sizes: order?.sizes || [],
+    isFeatured: order?.isFeatured || false,
+    isRecommended: order?.isRecommended || false,
+    mobile: order.shipping.mobile || {},
+    dateAdded: displayDate(order.dateAdded) || {},
+    // mobile: order.mobile || {},
+    availableColors: order?.availableColors || [],
+    // address: order.address || '',
 
 
   };
@@ -177,17 +177,17 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket, authProvider }) => {
 
 
 
-  const menus = useSelector((state) => state.menus);
+  const orders = useSelector((state) => state.orders);
 
   const {
     imageFile,
     isFileLoading,
     onFileChange,
     removeImage
-  } = useFileHandler({ image: {}, imageCollection: menu?.imageCollection || [] });
+  } = useFileHandler({ image: {}, imageCollection: order?.imageCollection || [] });
 
   const onSubmitForm = (form) => {
-    if (imageFile.image.file || menu.imageUrl) {
+    if (imageFile.image.file || order.imageUrl) {
       onSubmit({
         ...form,
         quantity: 1,
@@ -195,7 +195,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket, authProvider }) => {
         // of name here instead in firebase functions
         name_lower: form.name.toLowerCase(),
         dateAdded: new Date().getTime(),
-        image: imageFile?.image?.file || menu.imageUrl,
+        image: imageFile?.image?.file || order.imageUrl,
         imageCollection: imageFile.imageCollection
       });
     } else {
@@ -443,7 +443,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket, authProvider }) => {
             <button
               className="button-back-new button-muted w-100-mobile"
               // disabled={authProvider !== 'password' || isLoading}
-              onClick={() => history.push(ADMIN_MENUS)}
+              onClick={() => history.push(ADMIN_ORDERS)}
               type="button"
             >
               <ArrowLeftOutlined />
@@ -466,7 +466,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket, authProvider }) => {
                 <button
                   className="button-back button-muted-new w-100-mobile"
                   disabled={authProvider !== 'password' || isLoading}
-                  // onClick={() => history.push(ADMIN_MENUS)}
+                  // onClick={() => history.push(ADMIN_ORDERS)}
                   type="button"
                 >
                   {/* <ArrowLeftOutlined /> */}
@@ -603,7 +603,7 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket, authProvider }) => {
                       <h2 className="order-form-field-total">
 
 
-                        {menu.subtotal || <Skeleton width={50} />}
+                        {order.subtotal || <Skeleton width={50} />}
                         {' '}
                         $
                       </h2>
@@ -1103,8 +1103,8 @@ const MenuForm = ({ menu, onSubmit, isLoading, basket, authProvider }) => {
   );
 };
 
-MenuForm.propTypes = {
-  menu: PropType.shape({
+OrderForm.propTypes = {
+  order: PropType.shape({
     name: PropType.string,
     email: PropType.string,
     address: PropType.string,
@@ -1141,4 +1141,4 @@ MenuForm.propTypes = {
   isLoading: PropType.bool.isRequired
 };
 
-export default MenuForm;
+export default OrderForm;

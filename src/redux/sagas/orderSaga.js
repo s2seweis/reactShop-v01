@@ -1,13 +1,13 @@
 /* eslint-disable indent */
 import {
-  ADD_MENU,
-  EDIT_MENU,
-  GET_MENUS,
-  REMOVE_MENU,
-  SEARCH_MENU
+  ADD_ORDER,
+  EDIT_ORDER,
+  GET_ORDERS,
+  REMOVE_ORDER,
+  SEARCH_ORDER
 } from 'constants/constants';
 
-import { ADMIN_MENUS } from 'constants/routes';
+import { ADMIN_ORDERS } from 'constants/routes';
 import { displayActionMessage } from 'helpers/utils';
 import {
   all, call, put, select
@@ -16,11 +16,11 @@ import { setLoading, setRequestStatus } from 'redux/actions/miscActions';
 import { history } from 'routers/AppRouter';
 import firebase from 'services/firebase';
 import {
-  addMenuSuccess,
-  clearSearchState, editMenuSuccess, getMenusSuccess,
-  removeMenuSuccess,
-  searchMenuSuccess
-} from '../actions/menuActions';
+  addOrderSuccess,
+  clearSearchState, editOrderSuccess, getOrdersSuccess,
+  removeOrderSuccess,
+  searchOrderSuccess
+} from '../actions/orderActions';
 
 
 function* initRequest() {
@@ -30,7 +30,7 @@ function* initRequest() {
 
 function* handleError(e) {
   yield put(setLoading(false));
-  yield put(setRequestStatus(e?.message || 'Failed to fetch menus'));
+  yield put(setRequestStatus(e?.message || 'Failed to fetch orders'));
   console.log('ERROR: ', e);
 }
 
@@ -39,21 +39,21 @@ function* handleAction(location, message, status) {
   yield call(displayActionMessage, message, status);
 }
 
-function* menuSaga({ type, payload }) {
+function* orderSaga({ type, payload }) {
   switch (type) {
-    case GET_MENUS:
+    case GET_ORDERS:
       try {
         yield initRequest();
         const state = yield select();
-        const result = yield call(firebase.getMenus, payload);
+        const result = yield call(firebase.getOrders, payload);
 
-        if (result.menus.length === 0) {
+        if (result.orders.length === 0) {
           handleError('No items found.');
         } else {
-          yield put(getMenusSuccess({
-            menus: result.menus,
-            lastKey: result.lastKey ? result.lastKey : state.menus.lastRefKey,
-            total: result.total ? result.total : state.menus.total
+          yield put(getOrdersSuccess({
+            orders: result.orders,
+            lastKey: result.lastKey ? result.lastKey : state.orders.lastRefKey,
+            total: result.total ? result.total : state.orders.total
           }));
           yield put(setRequestStatus(''));
         }
@@ -65,37 +65,37 @@ function* menuSaga({ type, payload }) {
       }
       break;
 
-    case ADD_MENU: {
+    case ADD_ORDER: {
       try {
         yield initRequest();
 
         const { imageCollection } = payload;
         const key = yield call(firebase.generateKey);
-        const downloadURL = yield call(firebase.storeImage, key, 'menus', payload.image);
+        const downloadURL = yield call(firebase.storeImage, key, 'orders', payload.image);
         const image = { id: key, url: downloadURL };
         let images = [];
 
         if (imageCollection.length !== 0) {
           const imageKeys = yield all(imageCollection.map(() => firebase.generateKey));
-          const imageUrls = yield all(imageCollection.map((img, i) => firebase.storeImage(imageKeys[i](), 'menus', img.file)));
+          const imageUrls = yield all(imageCollection.map((img, i) => firebase.storeImage(imageKeys[i](), 'orders', img.file)));
           images = imageUrls.map((url, i) => ({
             id: imageKeys[i](),
             url
           }));
         }
 
-        const menu = {
+        const order = {
           ...payload,
           image: downloadURL,
           imageCollection: [image, ...images]
         };
 
-        yield call(firebase.addMenu, key, menu);
-        yield put(addMenuSuccess({
+        yield call(firebase.addOrder, key, order);
+        yield put(addOrderSuccess({
           id: key,
-          ...menu
+          ...order
         }));
-        yield handleAction(ADMIN_MENUS, 'Item succesfully added', 'success');
+        yield handleAction(ADMIN_ORDERS, 'Item succesfully added', 'success');
         yield put(setLoading(false));
       } catch (e) {
         yield handleError(e);
@@ -103,7 +103,7 @@ function* menuSaga({ type, payload }) {
       }
       break;
     }
-    case EDIT_MENU: {
+    case EDIT_ORDER: {
       try {
         yield initRequest();
 
@@ -117,7 +117,7 @@ function* menuSaga({ type, payload }) {
             console.error('Failed to delete image ', e);
           }
 
-          const url = yield call(firebase.storeImage, payload.id, 'menus', image);
+          const url = yield call(firebase.storeImage, payload.id, 'orders', image);
           newUpdates = { ...newUpdates, image: url };
         }
 
@@ -134,7 +134,7 @@ function* menuSaga({ type, payload }) {
           });
 
           const imageKeys = yield all(newUploads.map(() => firebase.generateKey));
-          const imageUrls = yield all(newUploads.map((img, i) => firebase.storeImage(imageKeys[i](), 'menus', img.file)));
+          const imageUrls = yield all(newUploads.map((img, i) => firebase.storeImage(imageKeys[i](), 'orders', img.file)));
           const images = imageUrls.map((url, i) => ({
             id: imageKeys[i](),
             url
@@ -149,12 +149,12 @@ function* menuSaga({ type, payload }) {
           // make sure you're adding the url not the file object.
         }
 
-        yield call(firebase.editMenu, payload.id, newUpdates);
-        yield put(editMenuSuccess({
+        yield call(firebase.editOrder, payload.id, newUpdates);
+        yield put(editOrderSuccess({
           id: payload.id,
           updates: newUpdates
         }));
-        yield handleAction(ADMIN_MENUS, 'Item succesfully edited', 'success');
+        yield handleAction(ADMIN_ORDERS, 'Item succesfully edited', 'success');
         yield put(setLoading(false));
       } catch (e) {
         yield handleError(e);
@@ -162,36 +162,36 @@ function* menuSaga({ type, payload }) {
       }
       break;
     }
-    case REMOVE_MENU: {
+    case REMOVE_ORDER: {
       try {
         yield initRequest();
-        yield call(firebase.removeMenu, payload);
-        yield put(removeMenuSuccess(payload));
+        yield call(firebase.removeOrder, payload);
+        yield put(removeOrderSuccess(payload));
         yield put(setLoading(false));
-        yield handleAction(ADMIN_MENUS, 'Item succesfully removed', 'success');
+        yield handleAction(ADMIN_ORDERS, 'Item succesfully removed', 'success');
       } catch (e) {
         yield handleError(e);
         yield handleAction(undefined, `Item failed to remove: ${e.message}`, 'error');
       }
       break;
     }
-    case SEARCH_MENU: {
+    case SEARCH_ORDER: {
       try {
         yield initRequest();
         // clear search data
         yield put(clearSearchState());
 
         const state = yield select();
-        const result = yield call(firebase.searchMenus, payload.searchKey);
+        const result = yield call(firebase.searchOrders, payload.searchKey);
 
-        if (result.menus.length === 0) {
-          yield handleError({ message: 'No menu found.' });
+        if (result.orders.length === 0) {
+          yield handleError({ message: 'No order found.' });
           yield put(clearSearchState());
         } else {
-          yield put(searchMenuSuccess({
-            menus: result.menus,
-            lastKey: result.lastKey ? result.lastKey : state.menus.searchedMenus.lastRefKey,
-            total: result.total ? result.total : state.menus.searchedMenus.total
+          yield put(searchOrderSuccess({
+            orders: result.orders,
+            lastKey: result.lastKey ? result.lastKey : state.orders.searchedOrders.lastRefKey,
+            total: result.total ? result.total : state.orders.searchedOrders.total
           }));
           yield put(setRequestStatus(''));
         }
@@ -207,4 +207,4 @@ function* menuSaga({ type, payload }) {
   }
 }
 
-export default menuSaga;
+export default orderSaga;

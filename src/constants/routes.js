@@ -14,14 +14,14 @@ export const ACCOUNT_EDIT = '/account/edit';
 export const ADMIN_DASHBOARD = '/admin/dashboard';
 
 export const ADMIN_PRODUCTS = '/admin/products';
-export const ADMIN_MENUS = '/admin/menus';
+export const ADMIN_ORDERS = '/admin/orders';
 export const ADMIN_POSTS = '/admin/posts';
 export const ADMIN_USERS1 = '/admin/users1';
 export const ADMIN_SETTINGS = '/admin/settings';
 
 export const ADD_PRODUCT = '/admin/add';
 export const ADD_SETTING = '/admin/setting';
-export const ADD_MENU = '/admin/add-menu';
+export const ADD_ORDER = '/admin/add-order';
 export const ADD_POST = '/admin/add-post';
 export const ADD_USER1 = '/admin/add-user1';
 
@@ -29,7 +29,7 @@ export const ADD_USER = '/admin/add-user';
 
 export const EDIT_PRODUCT = '/admin/edit';
 export const EDIT_SETTING = '/admin/edit-setting';
-export const EDIT_MENU = '/admin/edit-menu';
+export const EDIT_ORDER = '/admin/edit-order';
 export const EDIT_POST = '/admin/edit-post';
 export const EDIT_USER1 = '/admin/edit-user1';
 

@@ -114,8 +114,8 @@ const AppRouter = () => (
           path={ROUTES.ADMIN_SETTINGS}
         />
         <AdminRoute
-          component={view.Menus}
-          path={ROUTES.ADMIN_MENUS}
+          component={view.Orders}
+          path={ROUTES.ADMIN_ORDERS}
         />
         <AdminRoute
           component={view.Posts}
@@ -134,8 +134,8 @@ const AppRouter = () => (
           path={ROUTES.ADD_SETTING}
         />
         <AdminRoute
-          component={view.AddMenu}
-          path={ROUTES.ADD_MENU}
+          component={view.AddOrder}
+          path={ROUTES.ADD_ORDER}
         />
         <AdminRoute
           component={view.AddPost}
@@ -154,8 +154,8 @@ const AppRouter = () => (
           path={`${ROUTES.EDIT_SETTING}/:id`}
         />
         <AdminRoute
-          component={view.EditMenu}
-          path={`${ROUTES.EDIT_MENU}/:id`}
+          component={view.EditOrder}
+          path={`${ROUTES.EDIT_ORDER}/:id`}
         />
         <AdminRoute
           component={view.EditPost}

@@ -440,11 +440,13 @@ class Firebase {
 
 
 
-  // // MENU ACTIONS --------------
+  // // ORDER ACTIONS --------------
 
-  getSingleMenu = (id) => this.db.collection("orders").doc(id).get();
 
-  getMenus = (lastRefKey) => {
+
+  getSingleOrder = (id) => this.db.collection("orders").doc(id).get();
+
+  getOrders = (lastRefKey) => {
     let didTimeout = false;
 
     return new Promise((resolve, reject) => {
@@ -458,15 +460,15 @@ class Firebase {
               .limit(12);
 
             const snapshot = await query.get();
-            const menus = [];
+            const orders = [];
             snapshot.forEach((doc) =>
-              menus.push({ id: doc.id, ...doc.data() })
+              orders.push({ id: doc.id, ...doc.data() })
             );
             const lastKey = snapshot.docs[snapshot.docs.length - 1];
 
-            resolve({ menus, lastKey });
+            resolve({ orders, lastKey });
           } catch (e) {
-            reject(e?.message || ":( Failed to fetch menus.");
+            reject(e?.message || ":( Failed to fetch orders.");
           }
         } else {
           const timeout = setTimeout(() => {
@@ -485,29 +487,29 @@ class Firebase {
 
             clearTimeout(timeout);
             if (!didTimeout) {
-              const menus = [];
+              const orders = [];
               snapshot.forEach((doc) =>
-                menus.push({ id: doc.id, ...doc.data() })
+                orders.push({ id: doc.id, ...doc.data() })
               );
               const lastKey = snapshot.docs[snapshot.docs.length - 1];
 
-              resolve({ menus, lastKey, total });
+              resolve({ orders, lastKey, total });
             }
           } catch (e) {
             if (didTimeout) return;
-            reject(e?.message || ":( Failed to fetch menus.");
+            reject(e?.message || ":( Failed to fetch orders.");
           }
         }
       })();
     });
   };
 
-  searchMenus = (searchKey) => {
+  searchOrders = (searchKey) => {
     let didTimeout = false;
 
     return new Promise((resolve, reject) => {
       (async () => {
-        const menusRef = this.db.collection("menus");
+        const ordersRef = this.db.collection("orders");
 
         const timeout = setTimeout(() => {
           didTimeout = true;
@@ -515,12 +517,12 @@ class Firebase {
         }, 15000);
 
         try {
-          const searchedNameRef = menusRef
+          const searchedNameRef = ordersRef
             .orderBy("name_lower")
             .where("name_lower", ">=", searchKey)
             .where("name_lower", "<=", `${searchKey}\uf8ff`)
             .limit(12);
-          const searchedKeywordsRef = menusRef
+          const searchedKeywordsRef = ordersRef
             .orderBy("dateAdded", "desc")
             .where("keywords", "array-contains-any", searchKey.split(" "))
             .limit(12);
@@ -532,35 +534,35 @@ class Firebase {
 
           clearTimeout(timeout);
           if (!didTimeout) {
-            const searchedNameMenus = [];
-            const searchedKeywordsMenus = [];
+            const searchedNameOrders = [];
+            const searchedKeywordsOrders = [];
             let lastKey = null;
 
             if (!nameSnaps.empty) {
               nameSnaps.forEach((doc) => {
-                searchedNameMenus.push({ id: doc.id, ...doc.data() });
+                searchedNameOrders.push({ id: doc.id, ...doc.data() });
               });
               lastKey = nameSnaps.docs[nameSnaps.docs.length - 1];
             }
 
             if (!keywordsSnaps.empty) {
               keywordsSnaps.forEach((doc) => {
-                searchedKeywordsMenus.push({ id: doc.id, ...doc.data() });
+                searchedKeywordsOrders.push({ id: doc.id, ...doc.data() });
               });
             }
 
-            // MERGE MENUS
-            const mergedMenus = [
-              ...searchedNameMenus,
-              ...searchedKeywordsMenus,
+            // MERGE ORDERS
+            const mergedOrders = [
+              ...searchedNameOrders,
+              ...searchedKeywordsOrders,
             ];
             const hash = {};
 
-            mergedMenus.forEach((menu) => {
-              hash[menu.id] = menu;
+            mergedOrders.forEach((order) => {
+              hash[order.id] = order;
             });
 
-            resolve({ menus: Object.values(hash), lastKey });
+            resolve({ orders: Object.values(hash), lastKey });
           }
         } catch (e) {
           if (didTimeout) return;
@@ -570,29 +572,29 @@ class Firebase {
     });
   };
 
-  getFeaturedMenus = (itemsCount = 12) =>
+  getFeaturedOrders = (itemsCount = 12) =>
     this.db
-      .collection("menus")
+      .collection("orders")
       .where("isFeatured", "==", true)
       .limit(itemsCount)
       .get();
 
-  getRecommendedMenus = (itemsCount = 12) =>
+  getRecommendedOrders = (itemsCount = 12) =>
     this.db
-      .collection("menus")
+      .collection("orders")
       .where("isRecommended", "==", true)
       .limit(itemsCount)
       .get();
 
-  addMenu = (id, menu) =>
-    this.db.collection("menus").doc(id).set(menu);
+  // addOrder = (id, order) =>
+  //   this.db.collection("orders").doc(id).set(order);
 
   addOrder = (id, order) =>
     this.db.collection("orders").doc(id).set(order);
 
 
 
-  generateKey = () => this.db.collection("menus").doc().id;
+  generateKey = () => this.db.collection("orders").doc().id;
 
   storeImage = async (id, folder, imageFile) => {
     const snapshot = await this.storage.ref(folder).child(id).put(imageFile);
@@ -601,12 +603,12 @@ class Firebase {
     return downloadURL;
   };
 
-  deleteImage = (id) => this.storage.ref("menus").child(id).delete();
+  deleteImage = (id) => this.storage.ref("orders").child(id).delete();
 
-  editMenu = (id, updates) =>
-    this.db.collection("menus").doc(id).update(updates);
+  editOrder = (id, updates) =>
+    this.db.collection("orders").doc(id).update(updates);
 
-  removeMenu = (id) => this.db.collection("menus").doc(id).delete();
+  removeOrder = (id) => this.db.collection("orders").doc(id).delete();
 
   // // POST ACTIONS --------------
 

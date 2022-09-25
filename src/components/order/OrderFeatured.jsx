@@ -4,29 +4,29 @@ import React from 'react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { useHistory } from 'react-router-dom';
 
-const MenuFeatured = ({ menu }) => {
+const OrderFeatured = ({ order }) => {
   const history = useHistory();
   const onClickItem = () => {
-    if (!menu) return;
+    if (!order) return;
 
-    history.push(`/menu/${menu.id}`);
+    history.push(`/order/${order.id}`);
   };
 
   return (
     <SkeletonTheme color="#e1e1e1" highlightColor="#f2f2f2">
       <div className="product-display" onClick={onClickItem} role="presentation">
         <div className="product-display-img">
-          {menu.image ? (
+          {order.image ? (
             <ImageLoader
               className="product-card-img"
-              src={menu.image}
+              src={order.image}
             />
           ) : <Skeleton width="100%" height="100%" />}
         </div>
         <div className="product-display-details">
-          <h2>{menu.name || <Skeleton width={80} />}</h2>
+          <h2>{order.name || <Skeleton width={80} />}</h2>
           <p className="text-subtle text-italic">
-            {menu.brand || <Skeleton width={40} />}
+            {order.brand || <Skeleton width={40} />}
           </p>
         </div>
       </div>
@@ -34,8 +34,8 @@ const MenuFeatured = ({ menu }) => {
   );
 };
 
-MenuFeatured.propTypes = {
-  menu: PropType.shape({
+OrderFeatured.propTypes = {
+  order: PropType.shape({
     image: PropType.string,
     name: PropType.string,
     id: PropType.string,
@@ -43,4 +43,4 @@ MenuFeatured.propTypes = {
   }).isRequired
 };
 
-export default MenuFeatured;
+export default OrderFeatured;

@@ -4,7 +4,7 @@ import authSaga from './authSaga';
 
 import productSaga from './productSaga';
 import settingSaga from './settingSaga';
-import menuSaga from './menuSaga';
+import orderSaga from './orderSaga';
 import postSaga from './postSaga';
 import user1Saga from './user1Saga';
 
@@ -56,12 +56,12 @@ function* rootSaga() {
   ], checkoutSaga);
 
   yield takeLatest([
-    ACTION.ADD_MENU,
-    ACTION.SEARCH_MENU,
-    ACTION.REMOVE_MENU,
-    ACTION.EDIT_MENU,
-    ACTION.GET_MENUS
-  ], menuSaga);
+    ACTION.ADD_ORDER,
+    ACTION.SEARCH_ORDER,
+    ACTION.REMOVE_ORDER,
+    ACTION.EDIT_ORDER,
+    ACTION.GET_ORDERS
+  ], orderSaga);
 
   yield takeLatest([
     ACTION.ADD_POST,

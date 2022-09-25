@@ -8,7 +8,7 @@ export * as productActions from './productActions';
 
 export * as settingActions from './settingActions';
 
-export * as menuActions from './menuActions';
+export * as orderActions from './orderActions';
 
 export * as profileActions from './profileActions';
 export * as userActions from './userActions';

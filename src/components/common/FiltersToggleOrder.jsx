@@ -1,10 +1,10 @@
 import { useModal } from 'hooks';
 import PropType from 'prop-types';
 import React from 'react';
-import FiltersMenu from './FiltersMenu';
+import FiltersOrder from './FiltersOrder';
 import Modal from './Modal';
 
-const FiltersToggleMenu = ({ children }) => {
+const FiltersToggleOrder = ({ children }) => {
   const { isOpenModal, onOpenModal, onCloseModal } = useModal();
 
   return (
@@ -21,7 +21,7 @@ const FiltersToggleMenu = ({ children }) => {
         onRequestClose={onCloseModal}
       >
         <div className="filters-toggle-sub">
-          <FiltersMenu closeModal={onCloseModal} />
+          <FiltersOrder closeModal={onCloseModal} />
         </div>
         <button
           className="modal-close-button"
@@ -35,11 +35,11 @@ const FiltersToggleMenu = ({ children }) => {
   );
 };
 
-FiltersToggleMenu.propTypes = {
+FiltersToggleOrder.propTypes = {
   children: PropType.oneOfType([
     PropType.arrayOf(PropType.node),
     PropType.node
   ]).isRequired
 };
 
-export default FiltersToggleMenu;
+export default FiltersToggleOrder;

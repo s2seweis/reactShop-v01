@@ -1,12 +1,12 @@
 import { FilterOutlined, PlusOutlined } from '@ant-design/icons';
-import { FiltersToogleMenu, SearchBar } from 'components/common';
-import { ADD_MENU } from 'constants/routes';
+import { FiltersToogleOrder, SearchBar } from 'components/common';
+import { ADD_ORDER } from 'constants/routes';
 import PropType from 'prop-types';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-const MenusNavbar = (props) => {
-  const { menusCount, totalMenusCount } = props;
+const OrdersNavbar = (props) => {
+  const { ordersCount, totalOrdersCount } = props;
   const history = useHistory();
 
   return (
@@ -14,7 +14,7 @@ const MenusNavbar = (props) => {
       <h3 className="product-admin-header-title">
         Orders2 &nbsp;
         (
-        {`${menusCount} / ${totalMenusCount}`}
+        {`${ordersCount} / ${totalOrdersCount}`}
         )
       </h3>
       <SearchBar />
@@ -39,11 +39,11 @@ const MenusNavbar = (props) => {
   );
 };
 
-MenusNavbar.propTypes = {
-  menusCount: PropType.number.isRequired,
-  totalMenusCount: PropType.number.isRequired
+OrdersNavbar.propTypes = {
+  ordersCount: PropType.number.isRequired,
+  totalOrdersCount: PropType.number.isRequired
 };
 
-export default MenusNavbar;
+export default OrdersNavbar;
 
 // okay

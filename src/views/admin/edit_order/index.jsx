@@ -1,31 +1,31 @@
 import { LoadingOutlined } from '@ant-design/icons';
-import { useDocumentTitle, useMenu, useScrollTop } from 'hooks';
+import { useDocumentTitle, useOrder, useScrollTop } from 'hooks';
 import PropType from 'prop-types';
 import React, { lazy, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
-import { editMenu } from 'redux/actions/menuActions';
+import { editOrder } from 'redux/actions/orderActions';
 
-const MenuForm = lazy(() => import('../components_menu/MenuForm'));
+const OrderForm = lazy(() => import('../components_order/OrderForm'));
 
-const EditMenu = ({ match }) => {
+const EditOrder = ({ match }) => {
   useDocumentTitle('Order Summary | Salinaka');
   useScrollTop();
-  const { menu, error, isLoading } = useMenu(match.params.id);
+  const { order, error, isLoading } = useOrder(match.params.id);
   const dispatch = useDispatch();
 
   const onSubmitForm = (updates) => {
-    dispatch(editMenu(menu.id, updates));
+    dispatch(editOrder(order.id, updates));
   };
 
   return (
     <div className="product-form-container">
-      {error && <Redirect to="/dashboard/menus" />}
+      {error && <Redirect to="/dashboard/orders" />}
 
 
       
 
-      {menu && (
+      {order && (
         <Suspense fallback={(
           <div className="loader" style={{ minHeight: '80vh' }}>
             <h6>Loading ... </h6>
@@ -34,10 +34,10 @@ const EditMenu = ({ match }) => {
           </div>
         )}
         >
-          <MenuForm
+          <OrderForm
             isLoading={isLoading}
             onSubmit={onSubmitForm}
-            menu={menu}
+            order={order}
           />
         </Suspense>
       )}
@@ -45,7 +45,7 @@ const EditMenu = ({ match }) => {
   );
 };
 
-EditMenu.propTypes = {
+EditOrder.propTypes = {
   match: PropType.shape({
     params: PropType.shape({
       id: PropType.string
@@ -53,4 +53,4 @@ EditMenu.propTypes = {
   }).isRequired
 };
 
-export default withRouter(EditMenu);
+export default withRouter(EditOrder);

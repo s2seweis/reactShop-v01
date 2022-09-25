@@ -4,23 +4,23 @@ import PropType from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setLoading } from 'redux/actions/miscActions';
-import { getMenus } from 'redux/actions/menuActions';
+import { getOrders } from 'redux/actions/orderActions';
 
-const MenuList = (props) => {
+const OrderList = (props) => {
   const {
-    menus, filteredMenus, isLoading, requestStatus, children
+    orders, filteredOrders, isLoading, requestStatus, children
   } = props;
   const [isFetching, setFetching] = useState(false);
   const dispatch = useDispatch();
 
-  const fetchMenus = () => {
+  const fetchOrders = () => {
     setFetching(true);
-    dispatch(getMenus(menus.lastRefKey));
+    dispatch(getOrders(orders.lastRefKey));
   };
 
   useEffect(() => {
-    if (menus.items.length === 0 || !menus.lastRefKey) {
-      fetchMenus();
+    if (orders.items.length === 0 || !orders.lastRefKey) {
+      fetchOrders();
     }
 
     window.scrollTo(0, 0);
@@ -29,17 +29,17 @@ const MenuList = (props) => {
 
   useEffect(() => {
     setFetching(false);
-  }, [menus.lastRefKey]);
+  }, [orders.lastRefKey]);
 
-  if (filteredMenus.length === 0 && !isLoading) {
+  if (filteredOrders.length === 0 && !isLoading) {
     return (
-      <MessageDisplay message={requestStatus?.message || 'No menus found.'} />
+      <MessageDisplay message={requestStatus?.message || 'No orders found.'} />
     );
-  } if (filteredMenus.length === 0 && requestStatus) {
+  } if (filteredOrders.length === 0 && requestStatus) {
     return (
       <MessageDisplay
         message={requestStatus?.message || 'Something went wrong :('}
-        action={fetchMenus}
+        action={fetchOrders}
         buttonLabel="Try Again"
       />
     );
@@ -48,12 +48,12 @@ const MenuList = (props) => {
     <Boundary>
       {children}
       {/* Show 'Show More' button if products length is less than total products */}
-      {menus.items.length < menus.total && (
+      {orders.items.length < orders.total && (
         <div className="d-flex-center padding-l">
           <button
             className="button button-small"
             disabled={isFetching}
-            onClick={fetchMenus}
+            onClick={fetchOrders}
             type="button"
           >
             {isFetching ? 'Fetching Items...' : 'Show More Items'}
@@ -64,13 +64,13 @@ const MenuList = (props) => {
   );
 };
 
-MenuList.defaultProps = {
+OrderList.defaultProps = {
   requestStatus: null
 };
 
-MenuList.propTypes = {
-  menus: PropType.object.isRequired,
-  filteredMenus: PropType.array.isRequired,
+OrderList.propTypes = {
+  orders: PropType.object.isRequired,
+  filteredOrders: PropType.array.isRequired,
   isLoading: PropType.bool.isRequired,
   requestStatus: PropType.string,
   children: PropType.oneOfType([
@@ -79,4 +79,4 @@ MenuList.propTypes = {
   ]).isRequired
 };
 
-export default MenuList;
+export default OrderList;

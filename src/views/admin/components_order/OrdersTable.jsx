@@ -1,14 +1,14 @@
 /* eslint-disable react/forbid-prop-types */
 import PropType from 'prop-types';
 import React from 'react';
-import { MenuItem } from '.';
+import { OrderItem } from '.';
 
-const MenusTable = ({ filteredMenus }) => (
+const OrdersTable = ({ filteredOrders }) => (
 
   <div className="user-tab-new">
 
     <div>
-      {filteredMenus.length > 0 && (
+      {filteredOrders.length > 0 && (
 
 
         // padding: 0 $s-size;
@@ -41,24 +41,24 @@ const MenusTable = ({ filteredMenus }) => (
         </div>
 
       )}
-      {filteredMenus.length === 0 ? new Array(10).fill({}).map((menu, index) => (
-        <MenuItem
+      {filteredOrders.length === 0 ? new Array(10).fill({}).map((order, index) => (
+        <OrderItem
           // eslint-disable-next-line react/no-array-index-key
           key={`product-skeleton ${index}`}
-          menu={menu}
+          order={order}
         />
-      )) : filteredMenus.map((menu) => (
-        <MenuItem
-          key={menu.id}
-          menu={menu}
+      )) : filteredOrders.map((order) => (
+        <OrderItem
+          key={order.id}
+          order={order}
         />
       ))}
     </div>
    </div>
 );
 
-MenusTable.propTypes = {
-  filteredMenus: PropType.array.isRequired
+OrdersTable.propTypes = {
+  filteredOrders: PropType.array.isRequired
 };
 
-export default MenusTable;
+export default OrdersTable;

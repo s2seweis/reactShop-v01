@@ -1,38 +1,38 @@
 import {
   // ADD_PRODUCT,
-  ADD_MENU,
+  ADD_ORDER,
 
   // ADD_PRODUCT_SUCCESS,
-  ADD_MENU_SUCCESS,
+  ADD_ORDER_SUCCESS,
 
   // CANCEL_GET_PRODUCTS,
-  CANCEL_GET_MENUS,
+  CANCEL_GET_ORDERS,
 
   CLEAR_SEARCH_STATE,
 
   // EDIT_PRODUCT,
-  EDIT_MENU,
+  EDIT_ORDER,
 
   // EDIT_PRODUCT_SUCCESS,
-  EDIT_MENU_SUCCESS,
+  EDIT_ORDER_SUCCESS,
 
   // GET_PRODUCTS,
-  GET_MENUS,
+  GET_ORDERS,
   
   // GET_PRODUCTS_SUCCESS,
-  GET_MENUS_SUCCESS,
+  GET_ORDERS_SUCCESS,
 
   // REMOVE_PRODUCT,
-  REMOVE_MENU,
+  REMOVE_ORDER,
 
   // REMOVE_PRODUCT_SUCCESS,
-  REMOVE_MENU_SUCCESS,
+  REMOVE_ORDER_SUCCESS,
 
   // SEARCH_PRODUCT,
-  SEARCH_MENU,
+  SEARCH_ORDER,
   
   // SEARCH_PRODUCT_SUCCESS,
-  SEARCH_MENU_SUCCESS
+  SEARCH_ORDER_SUCCESS
 
 } from 'constants/constants';
 
@@ -41,8 +41,8 @@ import {
 // payload: lastRef
 // });
 
-export const getMenus = (lastRef) => ({
-  type: GET_MENUS,
+export const getOrders = (lastRef) => ({
+  type: GET_ORDERS,
   payload: lastRef
 });
 
@@ -51,17 +51,17 @@ export const getMenus = (lastRef) => ({
 //   payload: products
 // });
 
-export const getMenusSuccess = (menus) => ({
-  type: GET_MENUS_SUCCESS,
-  payload: menus
+export const getOrdersSuccess = (orders) => ({
+  type: GET_ORDERS_SUCCESS,
+  payload: orders
 });
 
 // export const cancelGetProducts = () => ({
 //   type: CANCEL_GET_PRODUCTS
 // });
 
-export const cancelGetMenus = () => ({
-  type: CANCEL_GET_MENUS
+export const cancelGetOrders = () => ({
+  type: CANCEL_GET_ORDERS
 });
 
 // export const addProduct = (product) => ({
@@ -69,9 +69,9 @@ export const cancelGetMenus = () => ({
 //   payload: product
 // });
 
-export const addMenu = (menu) => ({
-  type: ADD_MENU,
-  payload: menu
+export const addOrder= (order) => ({
+  type: ADD_ORDER,
+  payload: order
 });
 
 // export const searchProduct = (searchKey) => ({
@@ -81,8 +81,8 @@ export const addMenu = (menu) => ({
 //   }
 // });
 
-export const searchMenu = (searchKey) => ({
-  type: SEARCH_MENU,
+export const searchOrder = (searchKey) => ({
+  type: SEARCH_ORDER,
   payload: {
     searchKey
   }
@@ -93,9 +93,9 @@ export const searchMenu = (searchKey) => ({
 //   payload: products
 // });
 
-export const searchMenuSuccess = (menus) => ({
-  type: SEARCH_MENU_SUCCESS,
-  payload: menus
+export const searchOrderSuccess = (orders) => ({
+  type: SEARCH_ORDER_SUCCESS,
+  payload: orders
 });
 
 export const clearSearchState = () => ({
@@ -107,9 +107,9 @@ export const clearSearchState = () => ({
 //   payload: product
 // });
 
-export const addMenuSuccess = (menu) => ({
-  type: ADD_MENU_SUCCESS,
-  payload: menu
+export const addOrderSuccess = (order) => ({
+  type: ADD_ORDER_SUCCESS,
+  payload: order
 });
 
 // export const removeProduct = (id) => ({
@@ -117,8 +117,8 @@ export const addMenuSuccess = (menu) => ({
 //   payload: id
 // });
 
-export const removeMenu = (id) => ({
-  type: REMOVE_MENU,
+export const removeOrder = (id) => ({
+  type: REMOVE_ORDER,
   payload: id
 });
 
@@ -127,8 +127,8 @@ export const removeMenu = (id) => ({
 //   payload: id
 // });
 
-export const removeMenuSuccess = (id) => ({
-  type: REMOVE_MENU_SUCCESS,
+export const removeOrderSuccess = (id) => ({
+  type: REMOVE_ORDER_SUCCESS,
   payload: id
 });
 
@@ -140,8 +140,8 @@ export const removeMenuSuccess = (id) => ({
 //   }
 // });
 
-export const editMenu = (id, updates) => ({
-  type: EDIT_MENU,
+export const editOrder = (id, updates) => ({
+  type: EDIT_ORDER,
   payload: {
     id,
     updates
@@ -153,8 +153,8 @@ export const editMenu = (id, updates) => ({
 //   payload: updates
 // });
 
-export const editMenuSuccess = (updates) => ({
-  type: EDIT_MENU_SUCCESS,
+export const editOrderSuccess = (updates) => ({
+  type: EDIT_ORDER_SUCCESS,
   payload: updates
 });
 

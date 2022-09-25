@@ -5,14 +5,14 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, withRouter } from 'react-router-dom';
 import { applyFilter, resetFilter } from 'redux/actions/filterActions';
-import { selectMax, selectMin } from 'selectors/selector_menu';
+import { selectMax, selectMin } from 'selectors/selector_order';
 import PriceRange from './PriceRange';
 
-const FiltersMenu = ({ closeModal }) => {
-  const { filter, isLoading, menus } = useSelector((state) => ({
+const FiltersOrder = ({ closeModal }) => {
+  const { filter, isLoading, orders } = useSelector((state) => ({
     filter: state.filter,
     isLoading: state.app.loading,
-    menus: state.menus.items
+    orders: state.orders.items
   }));
   const [field, setFilter] = useState({
     brand: filter.brand,
@@ -24,8 +24,8 @@ const FiltersMenu = ({ closeModal }) => {
   const history = useHistory();
   const didMount = useDidMount();
 
-  const max = selectMax(menus);
-  const min = selectMin(menus);
+  const max = selectMax(orders);
+  const min = selectMin(orders);
 
   useEffect(() => {
     if (didMount && window.screen.width <= 480) {
@@ -83,13 +83,13 @@ const FiltersMenu = ({ closeModal }) => {
         <span>Brand</span>
         <br />
         <br />
-        {menus.length === 0 && isLoading ? (
+        {orders.length === 0 && isLoading ? (
           <h5 className="text-subtle">Loading Filter</h5>
         ) : (
           <select
             className="filters-brand"
             value={field.brand}
-            disabled={isLoading || menus.length === 0}
+            disabled={isLoading || orders.length === 0}
             onChange={onBrandFilterChange}
           >
             <option value="">All Brands</option>
@@ -107,7 +107,7 @@ const FiltersMenu = ({ closeModal }) => {
         <select
           className="filters-sort-by d-block"
           value={field.sortBy}
-          disabled={isLoading || menus.length === 0}
+          disabled={isLoading || orders.length === 0}
           onChange={onSortFilterChange}
         >
           <option value="">None</option>
@@ -121,9 +121,9 @@ const FiltersMenu = ({ closeModal }) => {
         <span>Price Range</span>
         <br />
         <br />
-        {(menus.length === 0 && isLoading) || max === 0 ? (
+        {(orders.length === 0 && isLoading) || max === 0 ? (
           <h5 className="text-subtle">Loading Filter</h5>
-        ) : menus.length === 1 ? (
+        ) : orders.length === 1 ? (
           <h5 className="text-subtle">No Price Range</h5>
         ) : (
           <PriceRange
@@ -133,14 +133,14 @@ const FiltersMenu = ({ closeModal }) => {
             initMax={field.maxPrice}
             isLoading={isLoading}
             onPriceChange={onPriceChange}
-            menusCount={menus.length}
+            ordersCount={orders.length}
           />
         )}
       </div>
       <div className="filters-action">
         <button
           className="filters-button button button-small"
-          disabled={isLoading || menus.length === 0}
+          disabled={isLoading || orders.length === 0}
           onClick={onApplyFilter}
           type="button"
         >
@@ -148,7 +148,7 @@ const FiltersMenu = ({ closeModal }) => {
         </button>
         <button
           className="filters-button button button-border button-small"
-          disabled={isLoading || menus.length === 0}
+          disabled={isLoading || orders.length === 0}
           onClick={onResetFilter}
           type="button"
         >
@@ -159,8 +159,8 @@ const FiltersMenu = ({ closeModal }) => {
   );
 };
 
-FiltersMenu.propTypes = {
+FiltersOrder.propTypes = {
   closeModal: PropType.func.isRequired
 };
 
-export default withRouter(FiltersMenu);
+export default withRouter(FiltersOrder);

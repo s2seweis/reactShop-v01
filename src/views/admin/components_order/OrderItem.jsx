@@ -1,34 +1,34 @@
 import { ImageLoader } from 'components/common';
-import { EDIT_MENU } from 'constants/routes';
+import { EDIT_ORDER } from 'constants/routes';
 import { displayActionMessage, displayDate, displayMoney } from 'helpers/utils';
 import PropType from 'prop-types';
 import React, { useRef } from 'react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { useDispatch } from 'react-redux';
 import { useHistory, withRouter } from 'react-router-dom';
-import { removeMenu } from 'redux/actions/menuActions';
+import { removeOrder } from 'redux/actions/orderActions';
 
-const MenuItem = ({ menu }) => {
+const OrderItem = ({ order }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const menuRef = useRef(null);
+  const orderRef = useRef(null);
 
   const onClickEdit = () => {
-    history.push(`${EDIT_MENU}/${menu.id}`);
+    history.push(`${EDIT_ORDER}/${order.id}`);
   };
 
-  const onDeleteMenu = () => {
-    menuRef.current.classList.toggle('item-active');
+  const onDeleteOrder = () => {
+    orderRef.current.classList.toggle('item-active');
   };
 
   const onConfirmDelete = () => {
-    dispatch(removeMenu(menu.id));
+    dispatch(removeOrder(order.id));
     displayActionMessage('Item successfully deleted');
-    menuRef.current.classList.remove('item-active');
+    orderRef.current.classList.remove('item-active');
   };
 
   const onCancelDelete = () => {
-    menuRef.current.classList.remove('item-active');
+    orderRef.current.classList.remove('item-active');
   };
 
   return (
@@ -40,8 +40,8 @@ const MenuItem = ({ menu }) => {
 
     >
       <div
-        className={`item item-s ${!menu.id && 'item-loading'}`}
-        ref={menuRef}
+        className={`item item-s ${!order.id && 'item-loading'}`}
+        ref={orderRef}
 
 
 
@@ -109,7 +109,7 @@ const MenuItem = ({ menu }) => {
             {/* <h4>Date</h4> */}
 
             <span>
-              {menu.dateAdded ? displayDate(menu.dateAdded) : <Skeleton width={50} />}
+              {order.dateAdded ? displayDate(order.dateAdded) : <Skeleton width={50} />}
 
             </span>
           </div>
@@ -121,16 +121,16 @@ const MenuItem = ({ menu }) => {
 
 
             <span>
-              {menu.shipping ? (
-                <span>{menu.shipping.address}</span>
+              {order.shipping ? (
+                <span>{order.shipping.address}</span>
               ) : <Skeleton width={50} />}
             </span>
 
           </div>
 
 
-          {/* {menu.shipping ? (
-              <h5>{menu.shipping.address}</h5>
+          {/* {order.shipping ? (
+              <h5>{order.shipping.address}</h5>
             ) :  <Skeleton width={50} />} */}
 
 
@@ -138,7 +138,7 @@ const MenuItem = ({ menu }) => {
 
             {/* <h4>ID</h4> */}
 
-            <span>{menu.id || <Skeleton width={50} />}</span>
+            <span>{order.id || <Skeleton width={50} />}</span>
 
           </div>
 
@@ -146,7 +146,7 @@ const MenuItem = ({ menu }) => {
 
             {/* <h4>Total</h4> */}
 
-            <span className="text-overflow-ellipsis">{menu.subtotal || <Skeleton width={50} />}</span>
+            <span className="text-overflow-ellipsis">{order.subtotal || <Skeleton width={50} />}</span>
           </div>
 
 
@@ -160,7 +160,7 @@ const MenuItem = ({ menu }) => {
 
 
 
-        {menu.id && (
+        {order.id && (
           <div className="item-action-order">
             <button
               className="button button-border button-small"
@@ -172,7 +172,7 @@ const MenuItem = ({ menu }) => {
             &nbsp;
             <button
               className="button button-border button-small button-danger"
-              onClick={onDeleteMenu}
+              onClick={onDeleteOrder}
               type="button"
             >
               Print
@@ -202,8 +202,8 @@ const MenuItem = ({ menu }) => {
   );
 };
 
-MenuItem.propTypes = {
-  menu: PropType.shape({
+OrderItem.propTypes = {
+  order: PropType.shape({
     id: PropType.string,
     subtotal: PropType.number,
     brand: PropType.string,
@@ -222,4 +222,4 @@ MenuItem.propTypes = {
   }).isRequired
 };
 
-export default withRouter(MenuItem);
+export default withRouter(OrderItem);

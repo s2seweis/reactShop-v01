@@ -3,20 +3,20 @@ export { default as UserAccount } from './account/user_account';
 
 export { default as AddProduct } from './admin/add_product';
 export { default as AddSetting } from './admin/add-setting';
-export { default as AddMenu } from './admin/add_menu';
+export { default as AddOrder } from './admin/add_order';
 export { default as AddPost } from './admin/add_post';
 export { default as AddUser1 } from './admin/add_user1';
 
 export { default as Dashboard } from './admin/dashboard';
 
 export { default as EditProduct } from './admin/edit_product';
-export { default as EditMenu } from './admin/edit_menu';
+export { default as EditOrder } from './admin/edit_order';
 export { default as EditPost } from './admin/edit_post';
 export { default as EditUser1 } from './admin/edit_user1';
 export { default as EditSetting } from './admin/edit_setting';
 
 export { default as Products } from './admin/products';
-export { default as Menus } from './admin/menus';
+export { default as Orders } from './admin/orders';
 export { default as Posts } from './admin/posts';
 export { default as Users1 } from './admin/users1';
 export { default as Setting } from './admin/settings';

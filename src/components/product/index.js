@@ -1,5 +1,5 @@
 export { default as AppliedFilters } from './ProductAppliedFilters';
-export { default as MenuAppliedFilters } from '../menu/MenuAppliedFilters';
+export { default as MenuAppliedFilters } from '../order/OrderAppliedFilters';
 
 export { default as FeaturedProduct } from './ProductFeatured';
 // export { default as FeaturedUser } from './UserFeatured';

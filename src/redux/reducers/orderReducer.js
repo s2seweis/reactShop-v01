@@ -1,8 +1,8 @@
 import {
-  ADD_MENU_SUCCESS,
-  CLEAR_SEARCH_STATE, EDIT_MENU_SUCCESS,
-  GET_MENUS_SUCCESS, REMOVE_MENU_SUCCESS,
-  SEARCH_MENU_SUCCESS
+  ADD_ORDER_SUCCESS,
+  CLEAR_SEARCH_STATE, EDIT_ORDER_SUCCESS,
+  GET_ORDERS_SUCCESS, REMOVE_ORDER_SUCCESS,
+  SEARCH_ORDER_SUCCESS
 } from 'constants/constants';
 
 const initState = {
@@ -15,51 +15,51 @@ export default (state = {
   lastRefKey: null,
   total: 0,
   items: [],
-  searchedMenus: initState
+  searchedOrders: initState
 }, action) => {
   switch (action.type) {
-    case GET_MENUS_SUCCESS:
+    case GET_ORDERS_SUCCESS:
       return {
         ...state,
         lastRefKey: action.payload.lastKey,
         total: action.payload.total,
-        items: [...state.items, ...action.payload.menus]
+        items: [...state.items, ...action.payload.orders]
       };
-    case ADD_MENU_SUCCESS:
+    case ADD_ORDER_SUCCESS:
       return {
         ...state,
         items: [...state.items, action.payload]
       };
-    case SEARCH_MENU_SUCCESS:
+    case SEARCH_ORDER_SUCCESS:
       return {
         ...state,
-        searchedMenus: {
+        searchedOrders: {
           lastRefKey: action.payload.lastKey,
           total: action.payload.total,
-          items: [...state.searchedMenus.items, ...action.payload.menus]
+          items: [...state.searchedOrders.items, ...action.payload.orders]
         }
       };
     case CLEAR_SEARCH_STATE:
       return {
         ...state,
-        searchedMenus: initState
+        searchedOrders: initState
       };
-    case REMOVE_MENU_SUCCESS:
+    case REMOVE_ORDER_SUCCESS:
       return {
         ...state,
-        items: state.items.filter((menu) => menu.id !== action.payload)
+        items: state.items.filter((order) => order.id !== action.payload)
       };
-    case EDIT_MENU_SUCCESS:
+    case EDIT_ORDER_SUCCESS:
       return {
         ...state,
-        items: state.items.map((menu) => {
-          if (menu.id === action.payload.id) {
+        items: state.items.map((order) => {
+          if (order.id === action.payload.id) {
             return {
-              ...menu,
+              ...order,
               ...action.payload.updates
             };
           }
-          return menu;
+          return order;
         })
       };
     default:

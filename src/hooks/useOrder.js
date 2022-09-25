@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import firebase from 'services/firebase';
 
-const useMenu = (id) => {
+const useOrder = (id) => {
   // get and check if menu exists in store
-  const storeMenu = useSelector((state) => state.menus.items.find((item) => item.id === id));
+  const storeOrder = useSelector((state) => state.orders.items.find((item) => item.id === id));
 
-  const [menu, setMenu] = useState(storeMenu);
+  const [order, setOrder] = useState(storeOrder);
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const didMount = useDidMount(true);
@@ -15,19 +15,19 @@ const useMenu = (id) => {
   useEffect(() => {
     (async () => {
       try {
-        if (!menu || menu.id !== id) {
+        if (!order || order.id !== id) {
           setLoading(true);
-          const doc = await firebase.getSingleMenu(id);
+          const doc = await firebase.getSingleOrder(id);
 
           if (doc.exists) {
             const data = { ...doc.data(), id: doc.ref.id };
 
             if (didMount) {
-              setMenu(data);
+              setOrder(data);
               setLoading(false);
             }
           } else {
-            setError('Menu not found.');
+            setError('Order not found.');
           }
         }
       } catch (err) {
@@ -39,7 +39,7 @@ const useMenu = (id) => {
     })();
   }, [id]);
 
-  return { menu, isLoading, error };
+  return { order, isLoading, error };
 };
 
-export default useMenu;
+export default useOrder;

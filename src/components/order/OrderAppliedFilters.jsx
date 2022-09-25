@@ -5,7 +5,7 @@ import React from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { applyFilter } from 'redux/actions/filterActions';
 
-const MenuAppliedFilters = ({ filteredMenusCount }) => {
+const OrderAppliedFilters = ({ filteredOrdersCount }) => {
   const filter = useSelector((state) => state.filter, shallowEqual);
   const fields = ['brand', 'minPrice', 'maxPrice', 'sortBy', 'keyword'];
   const isFiltered = fields.some((key) => !!filter[key]);
@@ -32,8 +32,8 @@ const MenuAppliedFilters = ({ filteredMenusCount }) => {
       <div className="product-list-header">
         <div className="product-list-header-title">
           <h5>
-            {filteredMenusCount > 0
-              && `Found ${filteredMenusCount} ${filteredMenusCount > 1 ? 'menus' : 'menu'}`}
+            {filteredOrdersCount > 0
+              && `Found ${filteredOrdersCount} ${filteredOrdersCount > 1 ? 'orders' : 'order'}`}
           </h5>
         </div>
       </div>
@@ -116,14 +116,14 @@ const MenuAppliedFilters = ({ filteredMenusCount }) => {
   );
 };
 
-MenuAppliedFilters.defaultProps = {
-  filteredMenusCount: 0
+OrderAppliedFilters.defaultProps = {
+  filteredOrdersCount: 0
 };
 
-MenuAppliedFilters.propTypes = {
-  filteredMenusCount: PropType.number
+OrderAppliedFilters.propTypes = {
+  filteredOrdersCount: PropType.number
 };
 
-export default MenuAppliedFilters;
+export default OrderAppliedFilters;
 
 // okay

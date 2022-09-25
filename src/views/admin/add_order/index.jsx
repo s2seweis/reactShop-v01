@@ -3,23 +3,23 @@ import { useDocumentTitle, useScrollTop } from 'hooks';
 import React, { lazy, Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { addMenu } from 'redux/actions/menuActions';
+import { addOrder } from 'redux/actions/orderActions';
 
-const MenuForm = lazy(() => import('../components_menu/MenuForm'));
+const OrderForm = lazy(() => import('../components_order/OrderForm'));
 
-const AddMenu = () => {
+const AddOrder = () => {
   useScrollTop();
-  useDocumentTitle('Add New Menu | Salinaka');
+  useDocumentTitle('Add New Order | Salinaka');
   const isLoading = useSelector((state) => state.app.loading);
   const dispatch = useDispatch();
 
-  const onSubmit = (menu) => {
-    dispatch(addMenu(menu));
+  const onSubmit = (order) => {
+    dispatch(addOrder(order));
   };
 
   return (
     <div className="order-form-container">
-      <h2>Add New Menu1</h2>
+      <h2>Add New Order1</h2>
       <Suspense fallback={(
         <div className="loader" style={{ minHeight: '80vh' }}>
           <h6>Loading ... </h6>
@@ -28,10 +28,10 @@ const AddMenu = () => {
         </div>
       )}
       >
-        <MenuForm
+        <OrderForm
           isLoading={isLoading}
           onSubmit={onSubmit}
-          menu={{
+          order={{
             name: '',
             brand: '',
             price: 0,
@@ -51,7 +51,7 @@ const AddMenu = () => {
   );
 };
 
-export default withRouter(AddMenu);
+export default withRouter(AddOrder);
 
 
 // okay

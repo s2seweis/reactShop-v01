@@ -5,9 +5,10 @@ export { default as Boundary } from './Boundary';
 export { default as ColorChooser } from './ColorChooser';
 export { default as Filters } from './Filters';
 export { default as FiltersUser1 } from './FiltersUser1';
+export { default as FiltersOrder } from './FiltersOrder';
 
 export { default as FiltersToggle } from './FiltersToggle';
-export { default as FiltersToogleMenu } from './FiltersToggleMenu';
+export { default as FiltersToogleOrder } from './FiltersToggleOrder';
 export { default as FiltersTooglePost } from './FiltersTogglePost';
 export { default as FiltersToogleUser1 } from './FiltersToggleUser1';
 
