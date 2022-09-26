@@ -100,6 +100,18 @@ const AppRouter = () => (
           component={view.CheckOutStep4}
           path={ROUTES.CHECKOUT_STEP_4}
         />
+
+
+
+        <AdminRoute
+          component={view.EditAccount}
+          exact
+          path={ROUTES.ADMIN_ACCOUNT_EDIT}
+        />
+
+
+
+
         <AdminRoute
           component={view.Dashboard}
           exact

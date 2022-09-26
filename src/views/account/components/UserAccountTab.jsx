@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 import { ImageLoader } from 'components/common';
-import { ACCOUNT_EDIT } from 'constants/routes';
+import { ADMIN_ACCOUNT_EDIT } from 'constants/routes';
 import { displayDate } from 'helpers/utils';
 import PropType from 'prop-types';
 import React from 'react';
@@ -31,7 +31,7 @@ const UserProfile = (props) => {
           </div>
           <button
             className="button button-small user-profile-edit"
-            onClick={() => props.history.push(ACCOUNT_EDIT)}
+            onClick={() => props.history.push(ADMIN_ACCOUNT_EDIT)}
             type="button"
           >
             Edit Account1

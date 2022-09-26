@@ -1,47 +1,43 @@
-/* eslint-disable react/forbid-prop-types */
-import PropType from 'prop-types';
-import React from 'react';
-import { SettingItem } from '.';
+/* eslint-disable react/no-multi-comp */
+import { LoadingOutlined } from '@ant-design/icons';
+import { useDocumentTitle, useScrollTop } from 'hooks';
+import React, { lazy, Suspense } from 'react';
+import UserTab from '../../../views/account/components/UserTab';
 
-const SettingsTable = ({ filteredSettings }) => (
-  <div>
-    {filteredSettings.length > 0 && (
-      <div className="grid grid-product grid-count-6">
-        <div className="grid-col" />
-        <div className="grid-col">
-          <h5>Name</h5>
-        </div>
-        <div className="grid-col">
-          <h5>Brand</h5>
-        </div>
-        <div className="grid-col">
-          <h5>Price</h5>
-        </div>
-        <div className="grid-col">
-          <h5>Date Added</h5>
-        </div>
-        <div className="grid-col">
-          <h5>Qty</h5>
-        </div>
-      </div>
-    )}
-    {filteredSettings.length === 0 ? new Array(10).fill({}).map((setting, index) => (
-      <SettingItem
-        // eslint-disable-next-line react/no-array-index-key
-        key={`product-skeleton ${index}`}
-        setting={setting}
-      />
-    )) : filteredSettings.map((setting) => (
-      <SettingItem
-        key={setting.id}
-        setting={setting}
-      />
-    ))}
+const UserAccountTab = lazy(() => import('../../../views/account/components/UserAccountTab'));
+const UserWishListTab = lazy(() => import('../../../views/account/components/UserWishListTab'));
+const UserOrdersTab = lazy(() => import('../../../views/account/components/UserOrdersTab'));
+
+const Loader = () => (
+  <div className="loader" style={{ minHeight: '80vh' }}>
+    <LoadingOutlined />
+    <h6>Loading ... </h6>
   </div>
 );
 
-SettingsTable.propTypes = {
-  filteredSettings: PropType.array.isRequired
+const UserAccount = () => {
+  useScrollTop();
+  useDocumentTitle('My Account | Salinaka');
+
+  return (
+    <UserTab>
+      <div index={0} label="Account">
+        <Suspense fallback={<Loader />}>
+          <UserAccountTab />
+        </Suspense>
+      </div>
+      <div index={1} label="My Wish List">
+        <Suspense fallback={<Loader />}>
+          <UserWishListTab />
+        </Suspense>
+      </div>
+      <div index={2} label="My Orders">
+        <Suspense fallback={<Loader />}>
+          <UserOrdersTab />
+        </Suspense>
+      </div>
+    </UserTab>
+  );
 };
 
-export default SettingsTable;
+export default UserAccount;

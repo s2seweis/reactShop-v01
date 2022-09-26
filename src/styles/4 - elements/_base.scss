@@ -76,6 +76,24 @@ h6 {
   padding: $top $pad-desktop;
   display: flex;
   animation: fadeIn .5s ease;
+  // justify-content: start;
+  
+
+  @media (max-width: $mobile) {
+    padding: 5rem $m-size;
+    flex-direction: column;
+  }
+}
+
+.content-profile {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  padding: $top $pad-desktop;
+  display: flex;
+  animation: fadeIn .5s ease;
+  // justify-content: center;
+  
 
   @media (max-width: $mobile) {
     padding: 5rem $m-size;

@@ -11,7 +11,14 @@ export const RECOMMENDED_USERS1 = '/recommended-users1';
 export const RECOMMENDED_POSTS = '/recommended-posts';
 export const ACCOUNT = '/account';
 export const ACCOUNT_EDIT = '/account/edit';
+
+
+export const ADMIN_ACCOUNT_EDIT = '/admin/account/edit';
+
+
+
 export const ADMIN_DASHBOARD = '/admin/dashboard';
+
 
 export const ADMIN_PRODUCTS = '/admin/products';
 export const ADMIN_ORDERS = '/admin/orders';
