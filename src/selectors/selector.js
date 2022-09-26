@@ -20,8 +20,24 @@ export const selectFilter = (products, filter) => {
   }).sort((a, b) => {
     if (filter.sortBy === 'name-desc') {
       return a.name < b.name ? 1 : -1;
+
+
+
     } else if (filter.sortBy === 'name-asc') {
       return a.name > b.name ? 1 : -1;
+
+
+    } else if (filter.sortBy === 'date-desc') {
+      return a.date > b.date ? 1 : +1;
+    }
+
+
+    else if (filter.sortBy === 'date-asc') {
+      return a.date > b.date ? 1 : -1;
+
+
+
+
     } else if (filter.sortBy === 'price-desc') {
       return a.price < b.price ? 1 : -1;
     }

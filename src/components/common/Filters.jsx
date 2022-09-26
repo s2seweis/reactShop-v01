@@ -113,6 +113,8 @@ const Filters = ({ closeModal }) => {
           <option value="">None</option>
           <option value="name-asc">Name Ascending A - Z</option>
           <option value="name-desc">Name Descending Z - A</option>
+          <option value="date-asc">Date Ascending </option>
+          <option value="date-desc">Date Descending </option>
           <option value="price-desc">Price High - Low</option>
           <option value="price-asc">Price Low - High</option>
         </select>

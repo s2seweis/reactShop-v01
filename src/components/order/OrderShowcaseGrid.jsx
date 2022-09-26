@@ -1,11 +1,11 @@
 /* eslint-disable react/forbid-prop-types */
-import { FeaturedOrder } from 'components/order';
+// import { FeaturedOrder } from 'components/order';
 import PropType from 'prop-types';
 import React from 'react';
 
 const OrderShowcase = ({ orders, skeletonCount }) => (
   <div className="product-display-grid">
-    {(orders.length === 0) ? new Array(skeletonCount).fill({}).map((order, index) => (
+    {/* {(orders.length === 0) ? new Array(skeletonCount).fill({}).map((order, index) => (
       <FeaturedOrder
         // eslint-disable-next-line react/no-array-index-key
         key={`product-skeleton ${index}`}
@@ -16,7 +16,7 @@ const OrderShowcase = ({ orders, skeletonCount }) => (
         key={order.id}
         order={order}
       />
-    ))}
+    ))} */}
   </div>
 );
 OrderShowcase.defaultProps = {

@@ -91,13 +91,12 @@ const OrderAppliedFilters = ({ filteredOrdersCount }) => {
             <span className="d-block">Sort By</span>
             <div className="pill padding-right-l">
               <h5 className="pill-content margin-0">
-                {filter.sortBy === 'price-desc'
-                  ? 'Price High - Low'
-                  : filter.sortBy === 'price-asc'
-                    ? 'Price Low - High'
-                    : filter.sortBy === 'name-desc'
-                      ? 'Name Z - A'
-                      : 'Name A - Z'}
+                {filter.sortBy === 'price-desc' ? 'Price High - Low' : filter.sortBy === 'price-asc' ? 'Price Low - High' :
+
+                  filter.sortBy === 'date-desc' ? 'Date High - Low' : filter.sortBy === 'date-asc' ? 'DateLow - High':
+                
+                filter.sortBy === 'name-desc' ? 'Name Z - A' : 'Name A - Z'}
+
               </h5>
               <div
                 className="pill-remove"
@@ -126,4 +125,4 @@ OrderAppliedFilters.propTypes = {
 
 export default OrderAppliedFilters;
 
-// okay
+// need to stay
