@@ -1,32 +1,12 @@
-import {
-  SET_ORDER_DETAILS
-} from 'constants/constants';
-
+import { SET_ORDER_DETAILS } from 'constants/constants';
 import { HOME} from 'constants/routes';
-
-
 import { setLoading, setRequestStatus } from 'redux/actions/miscActions';
-
-
 import firebase from 'services/firebase';
-
-import {
-  all, call, put, select
-} from 'redux-saga/effects';
-
+import {all, call, put, select} from 'redux-saga/effects';
 import { displayActionMessage } from 'helpers/utils';
-
 import PropType from 'prop-types';
-
 import { history } from 'routers/AppRouter';
-
 import { clearBasket } from 'redux/actions/basketActions';
-
-
-
-// import {
-//   placeOrderSuccess
-// } from '../actions/orderActions';
 
 
 function* handleError(e) {
@@ -39,7 +19,6 @@ function* handleAction(location, message, status) {
   if (location) yield call(history.push, location);
   yield call(displayActionMessage, message, status);
 }
-
 
 
 function* checkoutSaga({ type, payload }) {

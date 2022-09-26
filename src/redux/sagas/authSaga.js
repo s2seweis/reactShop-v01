@@ -1,11 +1,18 @@
 import {
+
   ON_AUTHSTATE_FAIL,
-  ON_AUTHSTATE_SUCCESS, RESET_PASSWORD,
+  ON_AUTHSTATE_SUCCESS, 
+  RESET_PASSWORD,
   SET_AUTH_PERSISTENCE,
-  SIGNIN, SIGNIN_WITH_FACEBOOK,
-  SIGNIN_WITH_GITHUB, SIGNIN_WITH_GOOGLE,
-  SIGNOUT, SIGNUP
+  SIGNIN, 
+  SIGNIN_WITH_FACEBOOK,
+  SIGNIN_WITH_GITHUB, 
+  SIGNIN_WITH_GOOGLE,
+  SIGNOUT, 
+  SIGNUP
+
 } from 'constants/constants';
+
 import { SIGNIN as ROUTE_SIGNIN } from 'constants/routes';
 import defaultAvatar from 'images/defaultAvatar.jpg';
 import defaultBanner from 'images/defaultBanner.jpg';

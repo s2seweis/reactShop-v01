@@ -1,8 +1,11 @@
 import {
+
   IS_AUTHENTICATING, 
-  LOADING, SET_AUTH_STATUS, 
+  LOADING, 
+  SET_AUTH_STATUS, 
   SET_REQUEST_STATUS, 
   // SET_USER_LOADING,
+  
 } from 'constants/constants';
 
 export const setLoading = (bool = true) => ({

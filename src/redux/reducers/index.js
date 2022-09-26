@@ -3,15 +3,11 @@ import basketReducer from './basketReducer';
 import checkoutReducer from './checkoutReducer';
 import filterReducer from './filterReducer';
 import miscReducer from './miscReducer';
-
 import productReducer from './productReducer';
 import settingReducer from './settingReducer';
 import orderReducer from './orderReducer';
 import postReducer from './postReducer';
-
-
 import user1Reducer from './user1Reducer';
-
 import profileReducer from './profileReducer';
 
 const rootReducer = {
@@ -19,10 +15,7 @@ const rootReducer = {
   settings: settingReducer,
   orders: orderReducer,
   posts: postReducer,
-  
-
   users1: user1Reducer,
-
   basket: basketReducer,
   auth: authReducer,
   profile: profileReducer,

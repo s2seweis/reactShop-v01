@@ -1,17 +1,13 @@
 import * as ACTION from 'constants/constants';
 import { takeLatest } from 'redux-saga/effects';
 import authSaga from './authSaga';
-
 import productSaga from './productSaga';
 import settingSaga from './settingSaga';
 import orderSaga from './orderSaga';
 import postSaga from './postSaga';
 import user1Saga from './user1Saga';
-
 import checkoutSaga from './checkoutSaga';
-
 import profileSaga from './profileSaga';
-
 import basketSaga from './basketSaga';
 
 function* rootSaga() {

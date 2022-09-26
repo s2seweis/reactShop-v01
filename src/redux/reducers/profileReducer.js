@@ -1,4 +1,12 @@
-import { CLEAR_PROFILE, SET_PROFILE, UPDATE_PROFILE_SUCCESS } from 'constants/constants';
+import { 
+  
+  CLEAR_PROFILE, 
+  SET_PROFILE, 
+  UPDATE_PROFILE_SUCCESS 
+
+} from 'constants/constants';
+
+
 // import profile from 'static/profile.jpg';
 // import banner from 'static/banner.jpg';
 

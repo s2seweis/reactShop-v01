@@ -1,4 +1,9 @@
-import { SIGNIN_SUCCESS, SIGNOUT_SUCCESS } from 'constants/constants';
+import {
+
+  SIGNIN_SUCCESS,
+  SIGNOUT_SUCCESS
+
+} from 'constants/constants';
 
 const initState = null;
 // {

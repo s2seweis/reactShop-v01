@@ -1,26 +1,10 @@
 /* eslint-disable indent */
-import {
-  CLEAR_BASKET,
-  // ADD_PRODUCT,
-  // EDIT_PRODUCT,
-  // GET_PRODUCTS,
-  // REMOVE_PRODUCT,
-  // SEARCH_PRODUCT
-} from 'constants/constants';
-// import { ADMIN_PRODUCTS } from 'constants/routes';
+import { CLEAR_BASKET } from 'constants/constants';
 import { displayActionMessage } from 'helpers/utils';
-import {
-  all, call, put, select
-} from 'redux-saga/effects';
+import { all, call, put, select} from 'redux-saga/effects';
 import { setLoading, setRequestStatus } from 'redux/actions/miscActions';
 import { history } from 'routers/AppRouter';
 import firebase from 'services/firebase';
-// import {
-//   addProductSuccess,
-//   clearSearchState, editProductSuccess, getProductsSuccess,
-//   removeProductSuccess,
-//   searchProductSuccess
-// } from '../actions/productActions';
 
 function* initRequest() {
   yield put(setLoading(true));

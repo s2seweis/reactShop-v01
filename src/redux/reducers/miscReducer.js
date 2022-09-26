@@ -1,7 +1,10 @@
 import {
-  IS_AUTHENTICATING, LOADING,
+
+  IS_AUTHENTICATING, 
+  LOADING,
   SET_AUTH_STATUS,
   SET_REQUEST_STATUS
+  
 } from 'constants/constants';
 
 const initState = {

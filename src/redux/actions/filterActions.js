@@ -1,4 +1,5 @@
 import {
+
   APPLY_FILTER,
   // MENU_APPLY_FILTER,
   // USER_RESET_FILTER,
@@ -8,6 +9,7 @@ import {
   SET_BRAND_FILTER,
   SET_MAX_PRICE_FILTER,
   SET_MIN_PRICE_FILTER, SET_TEXT_FILTER
+  
 } from 'constants/constants';
 
 export const setTextFilter = (keyword) => ({

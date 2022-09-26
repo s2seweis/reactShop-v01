@@ -1,25 +1,30 @@
 /* eslint-disable indent */
 
 import {
+
   ADD_USER1,
   EDIT_USER1,
   GET_USERS1,
   REMOVE_USER1,
   SEARCH_USER1
+
 } from 'constants/constants';
 import { ADMIN_USERS1 } from 'constants/routes';
 import { displayActionMessage } from 'helpers/utils';
-import {
-  all, call, put, select
-} from 'redux-saga/effects';
+import {all, call, put, select} from 'redux-saga/effects';
 import { setLoading, setRequestStatus } from 'redux/actions/miscActions';
 import { history } from 'routers/AppRouter';
 import firebase from 'services/firebase';
+
 import {
+
   addUser1Success,
-  clearSearchState, editUser1Success, getUsers1Success,
+  clearSearchState, 
+  editUser1Success, 
+  getUsers1Success,
   removeUser1Success,
   searchUser1Success
+  
 } from '../actions/user1Actions';
 
 function* initRequest() {
