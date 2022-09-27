@@ -35,15 +35,6 @@ function* rootSaga() {
   ], productSaga);
 
   yield takeLatest([
-    ACTION.ADD_SETTING,
-    ACTION.SEARCH_SETTING,
-    ACTION.REMOVE_SETTING,
-    ACTION.EDIT_SETTING,
-    ACTION.GET_SETTINGS
-  ], settingSaga);
-
-
-  yield takeLatest([
     ACTION.SET_ORDER_DETAILS,
     ACTION.SET_CHECKOUT_BASKET_DETAILS,
     ACTION.SET_CHECKOUT_SHIPPING_DETAILS,
@@ -79,6 +70,13 @@ function* rootSaga() {
     ACTION.UPDATE_EMAIL,
     ACTION.UPDATE_PROFILE
   ], profileSaga);
+
+  yield takeLatest([
+    ACTION.UPDATE_EMAIL,
+    ACTION.UPDATE_SETTING,
+    ACTION.GET_SETTINGS
+
+  ], settingSaga);
 
   yield takeLatest([
     ACTION.CLEAR_BASKET

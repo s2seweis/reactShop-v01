@@ -38,6 +38,10 @@ class Firebase {
 
   getUser = (id) => this.db.collection("users").doc(id).get();
 
+  // getSettings = (id) => this.db.collection("users").doc(id).get();
+
+  // // getUser = (id) => this.db.collection("users").doc(id).get();
+
   passwordUpdate = (password) => this.auth.currentUser.updatePassword(password);
 
   changePassword = (currentPassword, newPassword) =>
@@ -82,6 +86,9 @@ class Firebase {
 
   updateProfile = (id, updates) =>
     this.db.collection("users").doc(id).update(updates);
+
+  updateSetting = (id, updates) =>
+    this.db.collection("settings").doc(id).update(updates);
 
   onAuthStateChanged = () =>
     new Promise((resolve, reject) => {
@@ -166,6 +173,8 @@ class Firebase {
       })();
     });
   };
+
+  
 
   searchProducts = (searchKey) => {
     let didTimeout = false;

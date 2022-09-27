@@ -70,10 +70,10 @@ const AppRouter = () => (
           component={view.ViewPost}
           path={ROUTES.VIEW_POST}
         />
-        <Route
+        {/* <Route
           component={view.ViewSetting}
           path={ROUTES.VIEW_SETTING}
-        />
+        /> */}
         <ClientRoute
           component={view.UserAccount}
           exact
@@ -104,9 +104,9 @@ const AppRouter = () => (
 
 
         <AdminRoute
-          component={view.EditAccount}
+          component={view.EditSetting}
           exact
-          path={ROUTES.ADMIN_ACCOUNT_EDIT}
+          path={ROUTES.ADMIN_SETTING_EDIT}
         />
 
 
@@ -141,10 +141,10 @@ const AppRouter = () => (
           component={view.AddProduct}
           path={ROUTES.ADD_PRODUCT}
         />
-        <AdminRoute
+        {/* <AdminRoute
           component={view.AddSetting}
           path={ROUTES.ADD_SETTING}
-        />
+        /> */}
         <AdminRoute
           component={view.AddOrder}
           path={ROUTES.ADD_ORDER}
@@ -161,10 +161,10 @@ const AppRouter = () => (
           component={view.EditProduct}
           path={`${ROUTES.EDIT_PRODUCT}/:id`}
         />
-        <AdminRoute
+        {/* <AdminRoute
           component={view.EditSetting}
           path={`${ROUTES.EDIT_SETTING}/:id`}
-        />
+        /> */}
         <AdminRoute
           component={view.EditOrder}
           path={`${ROUTES.EDIT_ORDER}/:id`}

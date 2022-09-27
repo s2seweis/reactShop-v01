@@ -1,18 +1,13 @@
 import {
   
-  ADD_USER,
-  ADD_SETTING_SUCCESS,
-  CANCEL_GET_SETTINGS,
-  CLEAR_SEARCH_STATE,
-  EDIT_SETTING,
-  EDIT_SETTING_SUCCESS,
+  CLEAR_SETTING,
+  SET_SETTING,
+  UPDATE_EMAIL,
+  UPDATE_SETTING,
+  UPDATE_SETTING_SUCCESS,
   GET_SETTINGS,
-  GET_SETTINGS_SUCCESS,
-  REMOVE_SETTING,
-  REMOVE_SETTING_SUCCESS,
-  SEARCH_SETTING,
-  SEARCH_SETTING_SUCCESS
-
+  GET_SETTINGS_SUCCESS
+  
 } from 'constants/constants';
 
 export const getSettings = (lastRef) => ({
@@ -20,61 +15,39 @@ export const getSettings = (lastRef) => ({
   payload: lastRef
 });
 
+
 export const getSettingsSuccess = (settings) => ({
   type: GET_SETTINGS_SUCCESS,
   payload: settings
 });
 
-export const cancelGetSettings = () => ({
-  type: CANCEL_GET_SETTINGS
+export const clearProfile = () => ({
+  type: CLEAR_SETTING
 });
 
-export const addSetting = (setting) => ({
-  type: ADD_SETTING,
-  payload: setting
+export const setSetting = (user) => ({
+  type: SET_SETTING,
+  payload: user
 });
 
-export const searchSetting = (searchKey) => ({
-  type: SEARCH_SETTING,
+export const updateEmail = (password, newEmail) => ({
+  type: UPDATE_EMAIL,
   payload: {
-    searchKey
+    password,
+    newEmail
   }
 });
 
-export const searchSettingSuccess = (settings) => ({
-  type: SEARCH_SETTING_SUCCESS,
-  payload: settings
-});
-
-export const clearSearchState = () => ({
-  type: CLEAR_SEARCH_STATE
-});
-
-export const addSettingSuccess = (setting) => ({
-  type: ADD_SETTING_SUCCESS,
-  payload: setting
-});
-
-export const removeSetting = (id) => ({
-  type: REMOVE_SETTING,
-  payload: id
-});
-
-export const removeSettingSuccess = (id) => ({
-  type: REMOVE_SETTING_SUCCESS,
-  payload: id
-});
-
-export const editSetting = (id, updates) => ({
-  type: EDIT_SETTING,
+export const updateSetting = (newSetting) => ({
+  type: UPDATE_SETTING,
   payload: {
-    id,
-    updates
+    updates: newSetting.updates,
+    files: newSetting.files,
+    credentials: newSetting.credentials
   }
 });
 
-export const editSettingSuccess = (updates) => ({
-  type: EDIT_SETTING_SUCCESS,
+export const updateSettingSuccess = (updates) => ({
+  type: UPDATE_SETTING_SUCCESS,
   payload: updates
 });
-

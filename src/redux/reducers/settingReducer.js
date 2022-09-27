@@ -1,13 +1,25 @@
 import {
 
-  ADD_SETTING_SUCCESS,
-  CLEAR_SEARCH_STATE, 
-  EDIT_SETTING_SUCCESS,
-  GET_SETTINGS_SUCCESS, 
-  REMOVE_SETTING_SUCCESS,
-  SEARCH_SETTING_SUCCESS
-  
+  CLEAR_SETTING,
+  SET_SETTING,
+  UPDATE_SETTING_SUCCESS,
+  GET_SETTINGS_SUCCESS
+
 } from 'constants/constants';
+
+
+// import profile from 'static/profile.jpg';
+// import banner from 'static/banner.jpg';
+
+// const initState = {
+//   fullname: 'Pedro Juan',
+//   email: 'juanpedro@gmail.com',
+//   address: '',
+//   mobile: {},
+//   avatar: profile,
+//   banner,
+//   dateJoined: 1954234787348
+// };
 
 const initState = {
   lastRefKey: null,
@@ -22,6 +34,8 @@ export default (state = {
   searchedSettings: initState
 }, action) => {
   switch (action.type) {
+
+
     case GET_SETTINGS_SUCCESS:
       return {
         ...state,
@@ -29,43 +43,17 @@ export default (state = {
         total: action.payload.total,
         items: [...state.items, ...action.payload.settings]
       };
-    case ADD_SETTING_SUCCESS:
+
+
+    case SET_SETTING:
+      return action.payload;
+    case UPDATE_SETTING_SUCCESS:
       return {
         ...state,
-        items: [...state.items, action.payload]
+        ...action.payload
       };
-    case SEARCH_SETTING_SUCCESS:
-      return {
-        ...state,
-        searchedSettings: {
-          lastRefKey: action.payload.lastKey,
-          total: action.payload.total,
-          items: [...state.searchedSettings.items, ...action.payload.settings]
-        }
-      };
-    case CLEAR_SEARCH_STATE:
-      return {
-        ...state,
-        searchedSettings: initState
-      };
-    case REMOVE_SETTING_SUCCESS:
-      return {
-        ...state,
-        items: state.items.filter((setting) => setting.id !== action.payload)
-      };
-    case EDIT_SETTING_SUCCESS:
-      return {
-        ...state,
-        items: state.items.map((setting) => {
-          if (setting.id === action.payload.id) {
-            return {
-              ...setting,
-              ...action.payload.updates
-            };
-          }
-          return setting;
-        })
-      };
+    case CLEAR_SETTING:
+      return {};
     default:
       return state;
   }

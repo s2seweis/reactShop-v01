@@ -4,7 +4,7 @@ import { useDocumentTitle, useScrollTop } from 'hooks';
 import React, { lazy, Suspense } from 'react';
 import UserTab from '../../../views/account/components/UserTab';
 
-const UserAccountTab = lazy(() => import('../../../views/account/components/UserAccountTab'));
+const SettingAccountTab = lazy(() => import('../component_setting/SettingTab'));
 const UserWishListTab = lazy(() => import('../../../views/account/components/UserWishListTab'));
 const UserOrdersTab = lazy(() => import('../../../views/account/components/UserOrdersTab'));
 
@@ -23,7 +23,7 @@ const UserAccount = () => {
     <UserTab>
       <div index={0} label="Account">
         <Suspense fallback={<Loader />}>
-          <UserAccountTab />
+          <SettingAccountTab />
         </Suspense>
       </div>
       <div index={1} label="My Wish List">

@@ -1,30 +1,19 @@
-/* eslint-disable indent */
-import {
-
-  ADD_SETTING,
-  EDIT_SETTING,
-  GET_SETTINGS,
-  REMOVE_SETTING,
-  SEARCH_SETTING
-
-} from 'constants/constants';
+import { UPDATE_EMAIL, UPDATE_SETTING, GET_SETTINGS } from 'constants/constants';
 import { ADMIN_SETTINGS } from 'constants/routes';
 import { displayActionMessage } from 'helpers/utils';
-import {all, call, put, select} from 'redux-saga/effects';
-import { setLoading, setRequestStatus } from 'redux/actions/miscActions';
+import { call, put, select, all } from 'redux-saga/effects';
 import { history } from 'routers/AppRouter';
 import firebase from 'services/firebase';
-import {
-
-  addSettingSuccess,
-
-  clearSearchState, 
-  editSettingSuccess, 
-  getSettingsSuccess,
-  removeSettingSuccess,
-  searchSettingSuccess
+import { setLoading, setRequestStatus } from '../actions/miscActions';
+import { 
   
-} from '../actions/settingActions';
+  updateSettingSuccess,
+  
+  getSettingsSuccess
+
+ } from '../actions/settingActions';
+
+
 
 
 function* initRequest() {
@@ -34,7 +23,7 @@ function* initRequest() {
 
 function* handleError(e) {
   yield put(setLoading(false));
-  yield put(setRequestStatus(e?.message || 'Failed to fetch settings'));
+  yield put(setRequestStatus(e?.message || 'Failed to fetch products'));
   console.log('ERROR: ', e);
 }
 
@@ -43,8 +32,14 @@ function* handleAction(location, message, status) {
   yield call(displayActionMessage, message, status);
 }
 
+
+
 function* settingSaga({ type, payload }) {
   switch (type) {
+    
+    
+    
+    
     case GET_SETTINGS:
       try {
         yield initRequest();
@@ -68,145 +63,77 @@ function* settingSaga({ type, payload }) {
         yield handleError(e);
       }
       break;
-
-    case ADD_SETTING: {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    case UPDATE_EMAIL: {
       try {
-        yield initRequest();
-
-        const { imageCollection } = payload;
-        const key = yield call(firebase.generateKey);
-        const downloadURL = yield call(firebase.storeImage, key, 'settings', payload.image);
-        const image = { id: key, url: downloadURL };
-        let images = [];
-
-        if (imageCollection.length !== 0) {
-          const imageKeys = yield all(imageCollection.map(() => firebase.generateKey));
-          const imageUrls = yield all(imageCollection.map((img, i) => firebase.storeImage(imageKeys[i](), 'settings', img.file)));
-          images = imageUrls.map((url, i) => ({
-            id: imageKeys[i](),
-            url
-          }));
-        }
-
-        const setting = {
-          ...payload,
-          image: downloadURL,
-          imageCollection: [image, ...images]
-        };
-
-        yield call(firebase.addSetting, key, setting);
-        yield put(addSettingSuccess({
-          id: key,
-          ...setting
-        }));
-        yield handleAction(ADMIN_SETTINGS, 'Item succesfully added', 'success');
         yield put(setLoading(false));
+        yield call(firebase.updateEmail, payload.password, payload.newEmail);
+
+        yield put(setLoading(false));
+        yield call(history.push, '/profile');
+        yield call(displayActionMessage, 'Email Updated Successfully!', 'success');
       } catch (e) {
-        yield handleError(e);
-        yield handleAction(undefined, `Item failed to add: ${e?.message}`, 'error');
+        console.log(e.message);
       }
       break;
     }
-    case EDIT_SETTING: {
+
+
+  
+
+
+
+    case UPDATE_SETTING: {
       try {
-        yield initRequest();
-
-        const { image, imageCollection } = payload.updates;
-        let newUpdates = { ...payload.updates };
-
-        if (image.constructor === File && typeof image === 'object') {
-          try {
-            yield call(firebase.deleteImage, payload.id);
-          } catch (e) {
-            console.error('Failed to delete image ', e);
-          }
-
-          const url = yield call(firebase.storeImage, payload.id, 'settings', image);
-          newUpdates = { ...newUpdates, image: url };
-        }
-
-        if (imageCollection.length > 1) {
-          const existingUploads = [];
-          const newUploads = [];
-
-          imageCollection.forEach((img) => {
-            if (img.file) {
-              newUploads.push(img);
-            } else {
-              existingUploads.push(img);
-            }
-          });
-
-          const imageKeys = yield all(newUploads.map(() => firebase.generateKey));
-          const imageUrls = yield all(newUploads.map((img, i) => firebase.storeImage(imageKeys[i](), 'settings', img.file)));
-          const images = imageUrls.map((url, i) => ({
-            id: imageKeys[i](),
-            url
-          }));
-          newUpdates = { ...newUpdates, imageCollection: [...existingUploads, ...images] };
-        } else {
-          newUpdates = {
-            ...newUpdates,
-            imageCollection: [{ id: new Date().getTime(), url: newUpdates.image }]
-          };
-          // add image thumbnail to image collection from newUpdates to
-          // make sure you're adding the url not the file object.
-        }
-
-        yield call(firebase.editSetting, payload.id, newUpdates);
-        yield put(editSettingSuccess({
-          id: payload.id,
-          updates: newUpdates
-        }));
-        yield handleAction(ADMIN_SETTINGS, 'Item succesfully edited', 'success');
-        yield put(setLoading(false));
-      } catch (e) {
-        yield handleError(e);
-        yield handleAction(undefined, `Item failed to edit: ${e.message}`, 'error');
-      }
-      break;
-    }
-    case REMOVE_SETTING: {
-      try {
-        yield initRequest();
-        yield call(firebase.removeSetting, payload);
-        yield put(removeSettingSuccess(payload));
-        yield put(setLoading(false));
-        yield handleAction(ADMIN_SETTINGS, 'Item succesfully removed', 'success');
-      } catch (e) {
-        yield handleError(e);
-        yield handleAction(undefined, `Item failed to remove: ${e.message}`, 'error');
-      }
-      break;
-    }
-    case SEARCH_SETTING: {
-      try {
-        yield initRequest();
-        // clear search data
-        yield put(clearSearchState());
-
         const state = yield select();
-        const result = yield call(firebase.searchSettings, payload.searchKey);
+        const { email, password } = payload.credentials;
+        const { avatarFile, bannerFile } = payload.files;
 
-        if (result.settings.length === 0) {
-          yield handleError({ message: 'No setting found.' });
-          yield put(clearSearchState());
-        } else {
-          yield put(searchSettingSuccess({
-            settings: result.settings,
-            lastKey: result.lastKey ? result.lastKey : state.settings.searchedSettings.lastRefKey,
-            total: result.total ? result.total : state.settings.searchedSettings.total
-          }));
-          yield put(setRequestStatus(''));
+        yield put(setLoading(true));
+
+        // if email & password exist && the email has been edited
+        // update the email
+        if (email && password && email !== state.profile.email) {
+          yield call(firebase.updateEmail, password, email);
         }
+
+        if (avatarFile || bannerFile) {
+          const bannerURL = bannerFile ? yield call(firebase.storeImage, state.auth.id, 'banner', bannerFile) : payload.updates.banner;
+          const avatarURL = avatarFile ? yield call(firebase.storeImage, state.auth.id, 'avatar', avatarFile) : payload.updates.avatar;
+          const updates = { ...payload.updates, avatar: avatarURL, banner: bannerURL };
+
+          yield call(firebase.updateSetting, state.auth.id, updates);
+          yield put(updateSettingSuccess(updates));
+        } else {
+          yield call(firebase.updateSetting, state.auth.id, payload.updates);
+          yield put(updateSettingSuccess(payload.updates));
+        }
+
         yield put(setLoading(false));
+        yield call(history.push, ADMIN_SETTINGS);
+        yield call(displayActionMessage, 'Profile Updated Successfully!', 'success');
       } catch (e) {
-        yield handleError(e);
+        console.log(e);
+        yield put(setLoading(false));
+        if (e.code === 'auth/wrong-password') {
+          yield call(displayActionMessage, 'Wrong password, profile update failed :(', 'error');
+        } else {
+          yield call(displayActionMessage, `:( Failed to update profile. ${e.message ? e.message : ''}`, 'error');
+        }
       }
       break;
     }
     default: {
-      throw new Error(`Unexpected action type ${type}`);
+      throw new Error('Unexpected action type.');
     }
   }
 }

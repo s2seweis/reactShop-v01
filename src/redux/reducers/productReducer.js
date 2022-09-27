@@ -22,6 +22,9 @@ export default (state = {
   searchedProducts: initState
 }, action) => {
   switch (action.type) {
+
+
+    
     case GET_PRODUCTS_SUCCESS:
       return {
         ...state,

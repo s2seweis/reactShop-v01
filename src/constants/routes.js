@@ -10,10 +10,12 @@ export const RECOMMENDED_USERS1 = '/recommended-users1';
 
 export const RECOMMENDED_POSTS = '/recommended-posts';
 export const ACCOUNT = '/account';
+
 export const ACCOUNT_EDIT = '/account/edit';
+export const SETTING_EDIT = '/setting/edit';
 
 
-export const ADMIN_ACCOUNT_EDIT = '/admin/account/edit';
+export const ADMIN_SETTING_EDIT = '/admin/setting/edit';
 
 
 
