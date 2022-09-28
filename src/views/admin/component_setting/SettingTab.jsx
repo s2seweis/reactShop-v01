@@ -9,7 +9,7 @@ import { withRouter } from 'react-router-dom';
 
 const SettingProfile = (props) => {
   // profile = users, in firebase
-  const settings = useSelector((state) => state.settings);
+  const profile = useSelector((state) => state.profile);
 
   return (
     <div className="user-profile">
@@ -19,7 +19,7 @@ const SettingProfile = (props) => {
             <ImageLoader
               alt="Banner"
               className="user-profile-banner-img"
-              src={settings.banner}
+              src={profile.banner}
             />
           </div> */}
           {/* <div className="user-profile-avatar-wrapper">
@@ -38,21 +38,22 @@ const SettingProfile = (props) => {
           </button>
         </div>
         <div className="user-profile-details">
-          <h2 className="user-profile-name">{settings.items.fullname}</h2>
+
+          <h2 className="user-profile-name">{profile.fullname}</h2>
 
 
 
 
           <span>Email</span>
           <br />
-          <h5>{settings.email}</h5>
+          <h5>{profile.email}</h5>
 
 
 
           <span>Address</span>
           <br />
-          {settings.address ? (
-            <h5>{settings.address}</h5>
+          {profile.address ? (
+            <h5>{profile.address}</h5>
           ) : (
             <h5 className="text-subtle text-italic">Address not set</h5>
           )}
@@ -60,8 +61,8 @@ const SettingProfile = (props) => {
 
           <span>Address</span>
           <br />
-          {settings.role ? (
-            <h5>{settings.role}</h5>
+          {profile.role ? (
+            <h5>{profile.role}</h5>
           ) : (
             <h5 className="text-subtle text-italic">Address not set</h5>
           )}
@@ -70,24 +71,24 @@ const SettingProfile = (props) => {
 
           <span>Mobile</span>
           <br />
-          {settings.mobile ? (
-            <h5>{settings.mobile.value}</h5>
+          {profile.mobile ? (
+            <h5>{profile.mobile.value}</h5>
           ) : (
             <h5 className="text-subtle text-italic">Mobile not set</h5>
           )}
 
           <span>Country</span>
           <br />
-          {settings.mobile ? (
-            <h5>{settings.mobile.country}</h5>
+          {profile.mobile ? (
+            <h5>{profile.mobile.country}</h5>
           ) : (
             <h5 className="text-subtle text-italic">Mobile not set</h5>
           )}
 
           <span>Country Code</span>
           <br />
-          {settings.mobile ? (
-            <h5>{settings.mobile.countryCode}</h5>
+          {profile.mobile ? (
+            <h5>{profile.mobile.countryCode}</h5>
           ) : (
             <h5 className="text-subtle text-italic">Mobile not set</h5>
           )}
@@ -96,16 +97,16 @@ const SettingProfile = (props) => {
 
           <span>Date Joined</span>
           <br />
-          {settings.dateJoined ? (
-            <h5>{displayDate(settings.dateJoined)}</h5>
+          {profile.dateJoined ? (
+            <h5>{displayDate(profile.dateJoined)}</h5>
           ) : (
             <h5 className="text-subtle text-italic">Not available</h5>
           )}
 
           <span>Date Added</span>
           <br />
-          {settings.dateAdded ? (
-            <h5>{displayDate(settings.dateAdded)}</h5>
+          {profile.dateAdded ? (
+            <h5>{displayDate(profile.dateAdded)}</h5>
           ) : (
             <h5 className="text-subtle text-italic">Not available</h5>
           )}

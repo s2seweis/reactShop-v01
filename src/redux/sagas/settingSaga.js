@@ -51,8 +51,8 @@ function* settingSaga({ type, payload }) {
         } else {
           yield put(getSettingsSuccess({
             settings: result.settings,
-            lastKey: result.lastKey ? result.lastKey : state.settings.lastRefKey,
-            total: result.total ? result.total : state.settings.total
+            // lastKey: result.lastKey ? result.lastKey : state.settings.lastRefKey,
+            total: result.total ? result.total : state.settings.total,
           }));
           yield put(setRequestStatus(''));
         }

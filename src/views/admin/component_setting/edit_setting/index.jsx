@@ -7,7 +7,7 @@ import {
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from 'redux/actions/miscActions';
-import { updateSetting } from 'redux/actions/settingActions';
+import { updateProfile } from 'redux/actions/profileActions';
 import * as Yup from 'yup';
 import ConfirmModal from './ConfirmModal';
 import EditForm from './EditForm';
@@ -30,28 +30,28 @@ const FormSchema = Yup.object().shape({
     })
 });
 
-const EditSetting = () => {
-  useDocumentTitle('Edit Account | Salinaka - Test New');
+const EditProfile = () => {
+  useDocumentTitle('Edit Account | Salinaka ');
   useScrollTop();
 
   const modal = useModal();
   const dispatch = useDispatch();
 
-  // useEffect(() => () => {
-  //   dispatch(setLoading(false));
-  // }, []);
+  useEffect(() => () => {
+    dispatch(setLoading(false));
+  }, []);
 
-  const { settings, auth, isLoading } = useSelector((state) => ({
-    settings: state.settings,
+  const { profile, auth, isLoading } = useSelector((state) => ({
+    profile: state.profile,
     auth: state.auth,
     isLoading: state.app.loading
   }));
 
   const initFormikValues = {
-    fullname: settings.fullname || '',
-    email: settings.email || '',
-    address: settings.address || '',
-    mobile: settings.mobile || {}
+    fullname: profile.fullname || '',
+    email: profile.email || '',
+    address: profile.address || '',
+    mobile: profile.mobile || {}
   };
 
   const {
@@ -61,14 +61,14 @@ const EditSetting = () => {
   } = useFileHandler({ avatar: {}, banner: {} });
 
   const update = (form, credentials = {}) => {
-    dispatch(updateSetting({
+    dispatch(updateProfile({
       updates: {
         fullname: form.fullname,
         email: form.email,
         address: form.address,
         mobile: form.mobile,
-        avatar: settings.avatar,
-        banner: settings.banner
+        avatar: profile.avatar,
+        banner: profile.banner
       },
       files: {
         bannerFile: imageFile.banner.file,
@@ -86,10 +86,10 @@ const EditSetting = () => {
 
   const onSubmitUpdate = (form) => {
     // check if data has changed
-    const fieldsChanged = Object.keys(form).some((key) => settings[key] !== form[key]);
+    const fieldsChanged = Object.keys(form).some((key) => profile[key] !== form[key]);
 
     if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
-      if (form.email !== settings.email) {
+      if (form.email !== profile.email) {
         modal.onOpenModal();
       } else {
         update(form);
@@ -100,7 +100,7 @@ const EditSetting = () => {
   return (
     <Boundary>
       <div className="edit-user">
-        <h3 className="text-center">Edit Setting Details</h3>
+        <h3 className="text-center">Edit Account Details</h3>
         <Formik
           initialValues={initFormikValues}
           validateOnChange
@@ -110,11 +110,11 @@ const EditSetting = () => {
           {() => (
             <>
               <div className="user-profile-banner">
-                {/* <div className="user-profile-banner-wrapper">
+                <div className="user-profile-banner-wrapper">
                   <ImageLoader
                     alt="Banner"
                     className="user-profile-banner-img"
-                    src={imageFile.banner.url || settings.banner}
+                    src={imageFile.banner.url || profile.banner}
                   />
                   {isFileLoading ? (
                     <div className="loading-wrapper">
@@ -136,8 +136,8 @@ const EditSetting = () => {
                       <EditOutlined />
                     </label>
                   )}
-                </div> */}
-                {/* <div className="user-profile-avatar-wrapper">
+                </div>
+                <div className="user-profile-avatar-wrapper">
                   <ImageLoader
                     alt="Avatar"
                     className="user-profile-img"
@@ -163,7 +163,7 @@ const EditSetting = () => {
                       <EditOutlined />
                     </label>
                   )}
-                </div> */}
+                </div>
               </div>
               <EditForm
                 authProvider={auth.provider}
@@ -181,4 +181,4 @@ const EditSetting = () => {
   );
 };
 
-export default EditSetting;
+export default EditProfile;

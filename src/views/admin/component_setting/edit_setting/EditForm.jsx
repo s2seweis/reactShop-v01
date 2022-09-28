@@ -22,15 +22,15 @@ const EditForm = ({ isLoading, authProvider }) => {
         component={CustomInput}
         style={{ textTransform: 'capitalize' }}
       />
-      {/* <Field
+      <Field
         disabled={authProvider !== 'password' || isLoading}
         name="email"
         type="email"
         label="* Email Address"
         placeholder="test@example.com"
         component={CustomInput}
-      /> */}
-      {/* <Field
+      />
+      <Field
         disabled={isLoading}
         name="address"
         type="text"
@@ -38,13 +38,13 @@ const EditForm = ({ isLoading, authProvider }) => {
         placeholder="#245 Brgy. Maligalig, Arayat Pampanga, Philippines"
         component={CustomInput}
         style={{ textTransform: 'capitalize' }}
-      /> */}
-      {/* <CustomMobileInput
+      />
+      <CustomMobileInput
         defaultValue={values.mobile}
         name="mobile"
         disabled={isLoading}
         label="Mobile Number (Will be used for checkout)"
-      /> */}
+      />
       <br />
       <div className="edit-user-action">
         <button

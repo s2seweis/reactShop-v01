@@ -21,17 +21,17 @@ import {
 //   dateJoined: 1954234787348
 // };
 
-const initState = {
-  lastRefKey: null,
-  total: 0,
-  items: []
-};
+// const initState = {
+//   // lastRefKey: null,
+//   total: 0,
+//   items: []
+// };
 
 export default (state = {
-  lastRefKey: null,
-  total: 0,
+  // lastRefKey: null,
+  // total: 0,
   items: [],
-  searchedSettings: initState
+  // searchedSettings: initState
 }, action) => {
   switch (action.type) {
 
@@ -39,9 +39,17 @@ export default (state = {
     case GET_SETTINGS_SUCCESS:
       return {
         ...state,
-        lastRefKey: action.payload.lastKey,
+        // lastRefKey: action.payload.lastKey,
         total: action.payload.total,
-        items: [...state.items, ...action.payload.settings]
+        items: [...action.payload.settings],
+
+
+
+        
+        
+
+
+
       };
 
 

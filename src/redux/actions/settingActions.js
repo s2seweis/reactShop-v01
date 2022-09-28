@@ -10,6 +10,9 @@ import {
   
 } from 'constants/constants';
 
+
+
+
 export const getSettings = (lastRef) => ({
   type: GET_SETTINGS,
   payload: lastRef
@@ -20,6 +23,10 @@ export const getSettingsSuccess = (settings) => ({
   type: GET_SETTINGS_SUCCESS,
   payload: settings
 });
+
+
+
+
 
 export const clearProfile = () => ({
   type: CLEAR_SETTING
