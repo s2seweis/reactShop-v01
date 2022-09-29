@@ -1,78 +1,14 @@
-import { UPDATE_EMAIL, UPDATE_SETTING, GET_SETTINGS } from 'constants/constants';
+import { UPDATE_EMAIL, UPDATE_SETTINGS } from 'constants/constants';
 import { ADMIN_SETTINGS } from 'constants/routes';
 import { displayActionMessage } from 'helpers/utils';
-import { call, put, select, all } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import { history } from 'routers/AppRouter';
 import firebase from 'services/firebase';
-import { setLoading, setRequestStatus } from '../actions/miscActions';
-import { 
-  
-  updateSettingSuccess,
-  
-  getSettingsSuccess
-
- } from '../actions/settingActions';
-
-
-
-
-function* initRequest() {
-  yield put(setLoading(true));
-  yield put(setRequestStatus(null));
-}
-
-function* handleError(e) {
-  yield put(setLoading(false));
-  yield put(setRequestStatus(e?.message || 'Failed to fetch products'));
-  console.log('ERROR: ', e);
-}
-
-function* handleAction(location, message, status) {
-  if (location) yield call(history.push, location);
-  yield call(displayActionMessage, message, status);
-}
-
-
+import { setLoading } from '../actions/miscActions';
+import { updateSettingsSuccess } from '../actions/settingActions';
 
 function* settingSaga({ type, payload }) {
   switch (type) {
-    
-    
-    
-    
-    case GET_SETTINGS:
-      try {
-        yield initRequest();
-        const state = yield select();
-        const result = yield call(firebase.getSettings, payload);
-
-        if (result.settings.length === 0) {
-          handleError('No items found.');
-        } else {
-          yield put(getSettingsSuccess({
-            settings: result.settings,
-            // lastKey: result.lastKey ? result.lastKey : state.settings.lastRefKey,
-            total: result.total ? result.total : state.settings.total,
-          }));
-          yield put(setRequestStatus(''));
-        }
-        // yield put({ type: SET_LAST_REF_KEY, payload: result.lastKey });
-        yield put(setLoading(false));
-      } catch (e) {
-        console.log(e);
-        yield handleError(e);
-      }
-      break;
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     case UPDATE_EMAIL: {
       try {
         yield put(setLoading(false));
@@ -86,17 +22,11 @@ function* settingSaga({ type, payload }) {
       }
       break;
     }
-
-
-  
-
-
-
-    case UPDATE_SETTING: {
+    case UPDATE_SETTINGS: {
       try {
         const state = yield select();
         const { email, password } = payload.credentials;
-        const { avatarFile, bannerFile } = payload.files;
+        // const { avatarFile, bannerFile } = payload.files;
 
         yield put(setLoading(true));
 
@@ -106,21 +36,25 @@ function* settingSaga({ type, payload }) {
           yield call(firebase.updateEmail, password, email);
         }
 
-        if (avatarFile || bannerFile) {
-          const bannerURL = bannerFile ? yield call(firebase.storeImage, state.auth.id, 'banner', bannerFile) : payload.updates.banner;
-          const avatarURL = avatarFile ? yield call(firebase.storeImage, state.auth.id, 'avatar', avatarFile) : payload.updates.avatar;
-          const updates = { ...payload.updates, avatar: avatarURL, banner: bannerURL };
+        // if (avatarFile || bannerFile) {
+        //   const bannerURL = bannerFile ? yield call(firebase.storeImage, state.auth.id, 'banner', bannerFile) : payload.updates.banner;
+        //   const avatarURL = avatarFile ? yield call(firebase.storeImage, state.auth.id, 'avatar', avatarFile) : payload.updates.avatar;
+        //   const updates = { ...payload.updates, avatar: avatarURL, banner: bannerURL };
 
-          yield call(firebase.updateSetting, state.auth.id, updates);
-          yield put(updateSettingSuccess(updates));
-        } else {
+        //   yield call(firebase.updateSetting, state.auth.id, updates);
+        //   yield put(updateProfileSuccess(updates));
+        // } 
+        
+        
+        
+        else {
           yield call(firebase.updateSetting, state.auth.id, payload.updates);
-          yield put(updateSettingSuccess(payload.updates));
+          yield put(updateProfileSuccess(payload.updates));
         }
 
         yield put(setLoading(false));
         yield call(history.push, ADMIN_SETTINGS);
-        yield call(displayActionMessage, 'Profile Updated Successfully!', 'success');
+        yield call(displayActionMessage, 'Settings Updated Successfully!', 'success');
       } catch (e) {
         console.log(e);
         yield put(setLoading(false));

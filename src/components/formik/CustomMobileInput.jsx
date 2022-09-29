@@ -34,7 +34,7 @@ const CustomMobileInput = (props, authProvider, isLoading) => {
       <PhoneInput
 
       // disables for the MenuForm
-        disabled={authProvider !== 'password' || isLoading}
+        // disabled={authProvider !== 'password' || isLoading}
         name={field.name}
         country="ph"
         inputClass="input-form d-block"

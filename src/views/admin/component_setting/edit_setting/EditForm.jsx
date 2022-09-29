@@ -1,6 +1,6 @@
 import { ArrowLeftOutlined, CheckOutlined, LoadingOutlined } from '@ant-design/icons';
 import { CustomInput, CustomMobileInput } from 'components/formik';
-import { ACCOUNT } from 'constants/routes';
+import { ADMIN_SETTINGS } from 'constants/routes';
 import { Field, useFormikContext } from 'formik';
 import PropType from 'prop-types';
 import React from 'react';
@@ -50,12 +50,12 @@ const EditForm = ({ isLoading, authProvider }) => {
         <button
           className="button button-muted w-100-mobile"
           disabled={isLoading}
-          onClick={() => history.push(ACCOUNT)}
+          onClick={() => history.push(ADMIN_SETTINGS)}
           type="button"
         >
           <ArrowLeftOutlined />
           &nbsp;
-          Back to Profile
+          Back to Settings
         </button>
         <button
           className="button w-100-mobile"

@@ -7,7 +7,7 @@ import {
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from 'redux/actions/miscActions';
-import { updateProfile } from 'redux/actions/profileActions';
+import { updateSettings } from 'redux/actions/settingActions';
 import * as Yup from 'yup';
 import ConfirmModal from './ConfirmModal';
 import EditForm from './EditForm';
@@ -30,7 +30,7 @@ const FormSchema = Yup.object().shape({
     })
 });
 
-const EditProfile = () => {
+const EditSettings = () => {
   useDocumentTitle('Edit Account | Salinaka ');
   useScrollTop();
 
@@ -41,39 +41,39 @@ const EditProfile = () => {
     dispatch(setLoading(false));
   }, []);
 
-  const { profile, auth, isLoading } = useSelector((state) => ({
-    profile: state.profile,
+  const { settings, auth, isLoading } = useSelector((state) => ({
+    settings: state.settings,
     auth: state.auth,
     isLoading: state.app.loading
   }));
 
   const initFormikValues = {
-    fullname: profile.fullname || '',
-    email: profile.email || '',
-    address: profile.address || '',
-    mobile: profile.mobile || {}
+    fullname: settings.fullname || '',
+    email: settings.email || '',
+    address: settings.address || '',
+    mobile: settings.mobile || {}
   };
 
-  const {
-    imageFile,
-    isFileLoading,
-    onFileChange
-  } = useFileHandler({ avatar: {}, banner: {} });
+  // const {
+  //   imageFile,
+  //   isFileLoading,
+  //   onFileChange
+  // } = useFileHandler({ avatar: {}, banner: {} });
 
   const update = (form, credentials = {}) => {
-    dispatch(updateProfile({
+    dispatch(updateSettings({
       updates: {
         fullname: form.fullname,
         email: form.email,
         address: form.address,
         mobile: form.mobile,
-        avatar: profile.avatar,
-        banner: profile.banner
+        // avatar: settings.avatar,
+        // banner: settings.banner
       },
-      files: {
-        bannerFile: imageFile.banner.file,
-        avatarFile: imageFile.avatar.file
-      },
+      // files: {
+      //   bannerFile: imageFile.banner.file,
+      //   avatarFile: imageFile.avatar.file
+      // },
       credentials
     }));
   };
@@ -86,10 +86,10 @@ const EditProfile = () => {
 
   const onSubmitUpdate = (form) => {
     // check if data has changed
-    const fieldsChanged = Object.keys(form).some((key) => profile[key] !== form[key]);
+    const fieldsChanged = Object.keys(form).some((key) => settings[key] !== form[key]);
 
     if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
-      if (form.email !== profile.email) {
+      if (form.email !== settings.email) {
         modal.onOpenModal();
       } else {
         update(form);
@@ -100,7 +100,7 @@ const EditProfile = () => {
   return (
     <Boundary>
       <div className="edit-user">
-        <h3 className="text-center">Edit Account Details</h3>
+        <h3 className="text-center">Edit Setting Details</h3>
         <Formik
           initialValues={initFormikValues}
           validateOnChange
@@ -110,11 +110,11 @@ const EditProfile = () => {
           {() => (
             <>
               <div className="user-profile-banner">
-                <div className="user-profile-banner-wrapper">
+                {/* <div className="user-profile-banner-wrapper">
                   <ImageLoader
                     alt="Banner"
                     className="user-profile-banner-img"
-                    src={imageFile.banner.url || profile.banner}
+                    src={imageFile.banner.url || settings.banner}
                   />
                   {isFileLoading ? (
                     <div className="loading-wrapper">
@@ -136,12 +136,12 @@ const EditProfile = () => {
                       <EditOutlined />
                     </label>
                   )}
-                </div>
-                <div className="user-profile-avatar-wrapper">
+                </div> */}
+                {/* <div className="user-profile-avatar-wrapper">
                   <ImageLoader
                     alt="Avatar"
                     className="user-profile-img"
-                    src={imageFile.avatar.url || profile.avatar}
+                    src={imageFile.avatar.url || settings.avatar}
                   />
                   {isFileLoading ? (
                     <div className="loading-wrapper">
@@ -163,7 +163,7 @@ const EditProfile = () => {
                       <EditOutlined />
                     </label>
                   )}
-                </div>
+                </div> */}
               </div>
               <EditForm
                 authProvider={auth.provider}
@@ -181,4 +181,4 @@ const EditProfile = () => {
   );
 };
 
-export default EditProfile;
+export default EditSettings;

@@ -10,7 +10,7 @@ import { SettingsNavbar } from '../component_setting';
 import SettingsTable from '../component_setting/SettingTable';
 
 const Settings = () => {
-  useDocumentTitle('Setting List | Salinaka Admin');
+  useDocumentTitle('Settings | Salinaka Admin');
   useScrollTop();
 
   const store = useSelector((state) => ({
@@ -23,14 +23,14 @@ const Settings = () => {
   return (
     <Boundary>
       <SettingsNavbar
-        settingsCount={store.settings.items.length}
-        totalSettingsCount={store.settings.total}
+        // settingsCount={store.settings.items.length}
+        // totalSettingsCount={store.settings.total}
       />
       <div className="product-admin-items">
-        <SettingList {...store}>
+        {/* <SettingList {...store}> */}
           <SettingAppliedFilters filter={store.filter} />
           <SettingsTable filteredSettings={store.filteredSettings} />
-        </SettingList>
+        {/* </SettingList> */}
       </div>
     </Boundary>
   );

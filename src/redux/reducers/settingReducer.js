@@ -1,9 +1,8 @@
-import {
-
-  CLEAR_SETTING,
-  SET_SETTING,
-  UPDATE_SETTING_SUCCESS,
-  GET_SETTINGS_SUCCESS
+import { 
+  
+  CLEAR_SETTINGS, 
+  SET_SETTINGS, 
+  UPDATE_SETTINGS_SUCCESS 
 
 } from 'constants/constants';
 
@@ -21,46 +20,16 @@ import {
 //   dateJoined: 1954234787348
 // };
 
-// const initState = {
-//   // lastRefKey: null,
-//   total: 0,
-//   items: []
-// };
-
-export default (state = {
-  // lastRefKey: null,
-  // total: 0,
-  items: [],
-  // searchedSettings: initState
-}, action) => {
+export default (state = {}, action) => {
   switch (action.type) {
-
-
-    case GET_SETTINGS_SUCCESS:
-      return {
-        ...state,
-        // lastRefKey: action.payload.lastKey,
-        total: action.payload.total,
-        items: [...action.payload.settings],
-
-
-
-        
-        
-
-
-
-      };
-
-
-    case SET_SETTING:
+    case SET_SETTINGS:
       return action.payload;
-    case UPDATE_SETTING_SUCCESS:
+    case UPDATE_SETTINGS_SUCCESS:
       return {
         ...state,
         ...action.payload
       };
-    case CLEAR_SETTING:
+    case CLEAR_SETTINGS:
       return {};
     default:
       return state;

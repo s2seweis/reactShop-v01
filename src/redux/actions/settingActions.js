@@ -1,40 +1,20 @@
 import {
   
-  CLEAR_SETTING,
-  SET_SETTING,
+  CLEAR_SETTINGS,
+  SET_SETTINGS,
   UPDATE_EMAIL,
-  UPDATE_SETTING,
-  UPDATE_SETTING_SUCCESS,
-  GET_SETTINGS,
-  GET_SETTINGS_SUCCESS
+  UPDATE_SETTINGS,
+  UPDATE_SETTINGS_SUCCESS
   
 } from 'constants/constants';
 
-
-
-
-export const getSettings = (lastRef) => ({
-  type: GET_SETTINGS,
-  payload: lastRef
+export const clearSettings = () => ({
+  type: CLEAR_SETTINGS
 });
 
-
-export const getSettingsSuccess = (settings) => ({
-  type: GET_SETTINGS_SUCCESS,
+export const setSettings= (settings) => ({
+  type: SET_SETTINGS,
   payload: settings
-});
-
-
-
-
-
-export const clearProfile = () => ({
-  type: CLEAR_SETTING
-});
-
-export const setSetting = (user) => ({
-  type: SET_SETTING,
-  payload: user
 });
 
 export const updateEmail = (password, newEmail) => ({
@@ -45,16 +25,16 @@ export const updateEmail = (password, newEmail) => ({
   }
 });
 
-export const updateSetting = (newSetting) => ({
-  type: UPDATE_SETTING,
+export const updateSettings = (newSettings) => ({
+  type: UPDATE_SETTINGS,
   payload: {
-    updates: newSetting.updates,
-    files: newSetting.files,
-    credentials: newSetting.credentials
+    updates: newSettings.updates,
+    files: newSettings.files,
+    credentials: newSettings.credentials
   }
 });
 
-export const updateSettingSuccess = (updates) => ({
-  type: UPDATE_SETTING_SUCCESS,
+export const updateSettingsSuccess = (updates) => ({
+  type: UPDATE_SETTINGS_SUCCESS,
   payload: updates
 });

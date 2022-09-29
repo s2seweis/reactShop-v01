@@ -4,7 +4,7 @@ import PropType from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setLoading } from 'redux/actions/miscActions';
-import { getSettings } from 'redux/actions/settingActions';
+// import { getSettings } from 'redux/actions/settingActions';
 
 const SettingList = (props) => {
   const {
@@ -13,10 +13,10 @@ const SettingList = (props) => {
   const [isFetching, setFetching] = useState(false);
   const dispatch = useDispatch();
 
-  const fetchSettings = () => {
-    setFetching(true);
-    dispatch(getSettings(settings.lastRefKey));
-  };
+  // const fetchSettings = () => {
+  //   setFetching(true);
+  //   dispatch(getSettings(settings.lastRefKey));
+  // };
 
   useEffect(() => {
     if (settings.items.length === 0 || !settings.lastRefKey) {
