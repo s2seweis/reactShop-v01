@@ -27,10 +27,10 @@ const Settings = () => {
         // totalSettingsCount={store.settings.total}
       />
       <div className="product-admin-items">
-        {/* <SettingList {...store}> */}
+        <SettingList {...store}>
           <SettingAppliedFilters filter={store.filter} />
           <SettingsTable filteredSettings={store.filteredSettings} />
-        {/* </SettingList> */}
+        </SettingList>
       </div>
     </Boundary>
   );

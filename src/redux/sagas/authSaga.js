@@ -24,7 +24,7 @@ import { resetFilter } from 'redux/actions/filterActions';
 import { setAuthenticating, setAuthStatus } from 'redux/actions/miscActions';
 import { clearProfile, setProfile } from 'redux/actions/profileActions';
 
-import { setSettings } from 'redux/actions/settingActions';
+import { setSetting } from 'redux/actions/settingActions';
 
 
 import { history } from 'routers/AppRouter';
@@ -113,22 +113,11 @@ function* authSaga({ type, payload }) {
           dateJoined: ref.user.metadata.creationTime || new Date().getTime()
         };
 
-        const settings = {
-          fullname,
-          avatar: defaultAvatar,
-          banner: defaultBanner,
-          email: payload.email,
-          address: '',
-          basket: [],
-          mobile: { data: {} },
-          role: 'USER',
-          dateJoined: ref.user.metadata.creationTime || new Date().getTime()
-        };
+        
 
         yield call(firebase.addUser, ref.user.uid, user);
        
         yield put(setProfile(user));
-        yield put(setSettings(settings));
 
         yield put(setAuthenticating(false));
       } catch (e) {
@@ -171,10 +160,15 @@ function* authSaga({ type, payload }) {
 
       if (snapshot.data()) { // if user exists in database
         const user = snapshot.data();
-        const settings = snapshot.data();
 
         yield put(setProfile(user));
-        yield put(setSettings(settings));
+
+
+        // yield put(setSetting(user));
+
+
+
+
         yield put(setBasketItems(user.basket));
         yield put(setBasketItems(user.basket));
         yield put(signInSuccess({
@@ -196,25 +190,12 @@ function* authSaga({ type, payload }) {
           dateJoined: payload.metadata.creationTime
         };
 
-        const settings = {
-          fullname: payload.displayName ? payload.displayName : 'User',
-          avatar: payload.photoURL ? payload.photoURL : defaultAvatar,
-          banner: defaultBanner,
-          email: payload.email,
-          address: '',
-          basket: [],
-          mobile: { data: {} },
-          role: 'USER',
-          dateJoined: payload.metadata.creationTime
-        };
-
-
+        
 
 
         yield call(firebase.addUser, payload.uid, user);
         yield put(setProfile(user));
 
-        yield put(setSettings(settings));
 
         yield put(signInSuccess({
           id: payload.uid,

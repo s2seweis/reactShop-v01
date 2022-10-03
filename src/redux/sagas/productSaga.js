@@ -58,7 +58,9 @@ function* productSaga({ type, payload }) {
             products: result.products,
             lastKey: result.lastKey ? result.lastKey : state.products.lastRefKey,
             total: result.total ? result.total : state.products.total
-          }));
+          }
+          
+          ));
           yield put(setRequestStatus(''));
         }
         // yield put({ type: SET_LAST_REF_KEY, payload: result.lastKey });

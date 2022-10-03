@@ -1,8 +1,11 @@
 import { 
   
   CLEAR_SETTINGS, 
-  SET_SETTINGS, 
-  UPDATE_SETTINGS_SUCCESS 
+  SET_SETTING, 
+  UPDATE_SETTINGS_SUCCESS,
+  ADD_SETTING_SUCCESS, 
+  ADD_SETTING,
+  GET_SETTING_SUCCESS
 
 } from 'constants/constants';
 
@@ -22,13 +25,45 @@ import {
 
 export default (state = {}, action) => {
   switch (action.type) {
-    case SET_SETTINGS:
+
+
+// now here, loading the settings 
+
+
+    case GET_SETTING_SUCCESS:
       return action.payload;
+      
+    // case GET_SETTING_SUCCESS:
+    //   return { 
+    //     ...state,
+    //     ...action.payload,
+    //   }
+
+
+
+    case ADD_SETTING:
+      return {
+        ...state,
+        setting: action.payload
+        // ...action.payload
+      };
+
+      
+
+    case ADD_SETTING_SUCCESS:
+      return {
+        ...state,
+        ...action.payload
+      };
+
+
     case UPDATE_SETTINGS_SUCCESS:
       return {
         ...state,
         ...action.payload
       };
+
+
     case CLEAR_SETTINGS:
       return {};
     default:

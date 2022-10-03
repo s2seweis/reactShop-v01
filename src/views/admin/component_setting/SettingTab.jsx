@@ -40,10 +40,22 @@ const SettingProfile = (props) => {
         </div>
         <div className="user-profile-details">
 
-          <h2 className="user-profile-name">{settings.fullname}</h2>
+          {/* <h2 className="user-profile-name">{settings.fullname}</h2> */}
 
 
 
+          <span>
+              {settings.setting ? (
+                <span>{settings.setting.fullname}</span>
+              ) : settings.fullname}
+            </span>
+
+
+            {/* <span>
+              {order.shipping ? (
+                <span>{order.shipping.address}</span>
+              ) : <Skeleton width={50} />}
+            </span> */}
 
           <span>Email</span>
           <br />

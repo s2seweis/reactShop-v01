@@ -73,7 +73,11 @@ function* rootSaga() {
 
   yield takeLatest([
     ACTION.UPDATE_EMAIL,
-    ACTION.UPDATE_SETTINGS
+    ACTION.UPDATE_SETTINGS,
+    ACTION.ADD_SETTING,
+    ACTION.GET_SETTING,
+
+
 
   ], settingSaga);
 

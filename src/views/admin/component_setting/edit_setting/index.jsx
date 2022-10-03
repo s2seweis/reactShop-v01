@@ -7,7 +7,7 @@ import {
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from 'redux/actions/miscActions';
-import { updateSettings } from 'redux/actions/settingActions';
+import { addSettings } from 'redux/actions/settingActions';
 import * as Yup from 'yup';
 import ConfirmModal from './ConfirmModal';
 import EditForm from './EditForm';
@@ -41,7 +41,8 @@ const EditSettings = () => {
     dispatch(setLoading(false));
   }, []);
 
-  const { settings, auth, isLoading } = useSelector((state) => ({
+  const { settings, profile, auth, isLoading } = useSelector((state) => ({
+    profile: state.profile,
     settings: state.settings,
     auth: state.auth,
     isLoading: state.app.loading
@@ -60,21 +61,21 @@ const EditSettings = () => {
   //   onFileChange
   // } = useFileHandler({ avatar: {}, banner: {} });
 
-  const update = (form, credentials = {}) => {
-    dispatch(updateSettings({
-      updates: {
+  const update = (form) => {
+    dispatch(addSettings({
+      
         fullname: form.fullname,
         email: form.email,
         address: form.address,
         mobile: form.mobile,
         // avatar: settings.avatar,
         // banner: settings.banner
-      },
+      
       // files: {
       //   bannerFile: imageFile.banner.file,
       //   avatarFile: imageFile.avatar.file
       // },
-      credentials
+      // credentials
     }));
   };
 
@@ -89,7 +90,7 @@ const EditSettings = () => {
     const fieldsChanged = Object.keys(form).some((key) => settings[key] !== form[key]);
 
     if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
-      if (form.email !== settings.email) {
+      if (form.email !== profile.email) {
         modal.onOpenModal();
       } else {
         update(form);

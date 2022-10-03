@@ -1,21 +1,29 @@
+import { SettingAppliedFilters } from 'components/settings';
 import {
-  
+
   CLEAR_SETTINGS,
-  SET_SETTINGS,
+  SET_SETTING,
   UPDATE_EMAIL,
   UPDATE_SETTINGS,
-  UPDATE_SETTINGS_SUCCESS
-  
+  UPDATE_SETTINGS_SUCCESS,
+  ADD_SETTING,
+  ADD_SETTING_SUCCESS,
+  GET_SETTING_SUCCESS,
+  GET_SETTING
+
 } from 'constants/constants';
 
 export const clearSettings = () => ({
   type: CLEAR_SETTINGS
 });
 
-export const setSettings= (settings) => ({
-  type: SET_SETTINGS,
-  payload: settings
-});
+
+// now here, loading the settings 
+
+// export const setSetting = (setting) => ({
+//   type: SET_SETTING,
+//   payload: setting
+// });
 
 export const updateEmail = (password, newEmail) => ({
   type: UPDATE_EMAIL,
@@ -24,6 +32,34 @@ export const updateEmail = (password, newEmail) => ({
     newEmail
   }
 });
+
+
+export const addSettings = (settings) => ({
+  type: ADD_SETTING,
+  payload: settings
+});
+
+
+
+export const addSettingSuccess = (settings) => ({
+  type: ADD_SETTING_SUCCESS,
+  payload: settings
+});
+
+
+
+
+export const getSetting = (settings) => ({
+  type: GET_SETTING,
+  payload: settings
+});
+
+export const getSettingSuccess = (settings) => ({
+  type: GET_SETTING_SUCCESS,
+  payload: settings
+});
+
+
 
 export const updateSettings = (newSettings) => ({
   type: UPDATE_SETTINGS,

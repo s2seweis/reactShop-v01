@@ -36,14 +36,33 @@ class Firebase {
 
   addUser = (id, user) => this.db.collection("users").doc(id).set(user);
 
-  // addSetting = (id, setting) => this.db.collection("settings").doc(id).set(setting);
+
+
   
 
   getUser = (id) => this.db.collection("users").doc(id).get();
 
-  // getSettings = (id) => this.db.collection("users").doc(id).get();
+  getSetting = (id) => this.db.collection("settings").doc(id).get();
 
-  // // getUser = (id) => this.db.collection("users").doc(id).get();
+
+  
+  docRef = (TuXsosfQP6SkWdBrnLpqGqhzEbJ3) => this.db.collection("cities").doc("TuXsosfQP6SkWdBrnLpqGqhzEbJ3");
+
+  // docRef.get().then((doc) => {
+  //     if (doc.exists) {
+  //         console.log("Document data:", doc.data());
+  //     } else {
+  //         // doc.data() will be undefined in this case
+  //         console.log("No such document!");
+  //     }
+  // }).catch((error) => {
+  //     console.log("Error getting document:", error);
+  // });
+  
+
+
+
+
 
   passwordUpdate = (password) => this.auth.currentUser.updatePassword(password);
 
@@ -92,6 +111,7 @@ class Firebase {
 
   updateSetting = (id, updates) =>
     this.db.collection("settings").doc(id).update(updates);
+
 
   onAuthStateChanged = () =>
     new Promise((resolve, reject) => {
@@ -426,8 +446,9 @@ class Firebase {
       .limit(itemsCount)
       .get();
 
-  addSetting = (id, setting) =>
-    this.db.collection("settings").doc(id).set(setting);
+ 
+
+  
 
   generateKey = () => this.db.collection("settings").doc().id;
 
@@ -603,6 +624,9 @@ class Firebase {
 
   addOrder = (id, order) =>
     this.db.collection("orders").doc(id).set(order);
+
+  addSetting = (id, setting) =>
+    this.db.collection("settings").doc(id).set(setting);
 
 
 
@@ -981,3 +1005,4 @@ class Firebase {
 const firebaseInstance = new Firebase();
 
 export default firebaseInstance;
+
