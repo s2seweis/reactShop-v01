@@ -54,9 +54,9 @@ export const getSetting = (settings) => ({
   payload: settings
 });
 
-export const getSettingSuccess = (settings) => ({
+export const getSettingSuccess = (doc) => ({
   type: GET_SETTING_SUCCESS,
-  payload: settings
+  payload: doc
 });
 
 

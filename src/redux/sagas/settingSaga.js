@@ -9,6 +9,10 @@ import { addSettingSuccess } from '../actions/settingActions';
 import { getSettingSuccess } from '../actions/settingActions';
 import { setLoading, setRequestStatus } from 'redux/actions/miscActions';
 
+import { clearProfile, setProfile } from 'redux/actions/profileActions';
+
+
+
 
 
 
@@ -79,19 +83,32 @@ function* settingSaga({ type, payload }) {
     case GET_SETTING:
       try {
 
+        const settings = yield call(firebase.docRef);
 
-        const snapshot = yield call(firebase.docRef);
-
-
-        snapshot.get().then((doc) => {
+        
+        
+        
+        settings.get().then((doc) => {
           if (doc.exists) 
           
           
+
           
+          
+          // from here dispatch an action to the store
+          // 1. dispatch action 
+          // 2.reducer taking old state + payload (changes) returning new state
           
           
           
           {
+
+           
+            put(getSettingSuccess(doc));
+
+
+
+
             console.log("Document data:", doc.data());
           } else {
             // doc.data() will be undefined in this case

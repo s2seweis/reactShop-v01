@@ -5,7 +5,8 @@ import {
   UPDATE_SETTINGS_SUCCESS,
   ADD_SETTING_SUCCESS, 
   ADD_SETTING,
-  GET_SETTING_SUCCESS
+  GET_SETTING_SUCCESS,
+  GET_SETTING
 
 } from 'constants/constants';
 
@@ -23,21 +24,31 @@ import {
 //   dateJoined: 1954234787348
 // };
 
+
+
+
+
+
+
+
+
 export default (state = {}, action) => {
   switch (action.type) {
 
 
-// now here, loading the settings 
 
 
-    case GET_SETTING_SUCCESS:
-      return action.payload;
-      
+
     // case GET_SETTING_SUCCESS:
-    //   return { 
-    //     ...state,
-    //     ...action.payload,
-    //   }
+    //   return action.payload;
+      
+    case GET_SETTING_SUCCESS:
+      return { 
+        ...state,
+        // settings: action.payload      
+      };
+
+   
 
 
 
