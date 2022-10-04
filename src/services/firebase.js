@@ -46,7 +46,7 @@ class Firebase {
 
 
   
-  docRef = (TuXsosfQP6SkWdBrnLpqGqhzEbJ3) => this.db.collection("cities").doc("TuXsosfQP6SkWdBrnLpqGqhzEbJ3");
+  docRef = () => this.db.collection("settings").doc("TuXsosfQP6SkWdBrnLpqGqhzEbJ3");
 
   // docRef.get().then((doc) => {
   //     if (doc.exists) {

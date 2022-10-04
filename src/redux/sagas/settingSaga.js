@@ -80,37 +80,33 @@ function* settingSaga({ type, payload }) {
       try {
 
 
-
-        // var docRef = db.collection("settings").doc("TuXsosfQP6SkWdBrnLpqGqhzEbJ3");
-
-        // docRef.get().then((doc) => {
-        //   if (doc.exists) {
-        //     console.log("Document data:", doc.data());
-        //   } else {
-        //     // doc.data() will be undefined in this case
-        //     console.log("No such document!");
-        //   }
-        // }).catch((error) => {
-        //   console.log("Error getting document:", error);
-        // });
-
-
-
-
-
-
-
         const snapshot = yield call(firebase.docRef);
 
-        if (snapshot.exists) { // if setting exists in database
-          console.log("Document data:", snapshot.data());
 
-          yield put(getSettingSuccess(settings));
+        snapshot.get().then((doc) => {
+          if (doc.exists) 
+          
+          
+          
+          
+          
+          
+          {
+            console.log("Document data:", doc.data());
+          } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+          }
+        }).catch((error) => {
+          console.log("Error getting document:", error);
+        });
 
-        } else {
 
-          console.log("No such document!");
-        }
+
+
+
+
+
 
 
 
