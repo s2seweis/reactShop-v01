@@ -15,7 +15,7 @@ import {
 // import banner from 'static/banner.jpg';
 
 // const initState = {
-//   fullname: 'Pedro Juan',
+//   fullname: '',
 //   email: 'juanpedro@gmail.com',
 //   address: '',
 //   mobile: {},
@@ -45,7 +45,7 @@ export default (state = {}, action) => {
     case GET_SETTING_SUCCESS:
       return { 
         ...state,
-        // settings: action.payload      
+        ...action.payload   
       };
 
    

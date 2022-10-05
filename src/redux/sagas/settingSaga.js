@@ -12,6 +12,11 @@ import { setLoading, setRequestStatus } from 'redux/actions/miscActions';
 import { clearProfile, setProfile } from 'redux/actions/profileActions';
 
 
+import React, { useState } from 'react';
+
+import { useDispatch } from 'react-redux';
+
+
 
 
 
@@ -83,33 +88,28 @@ function* settingSaga({ type, payload }) {
     case GET_SETTING:
       try {
 
+
+
         const settings = yield call(firebase.docRef);
 
-        
-        
-        
+        // const test = settings.data();
+
+        yield put(getSettingSuccess(settings))
+
+
+
+
         settings.get().then((doc) => {
-          if (doc.exists) 
-          
-          
+          if (doc.exists) {
+            const data = doc.data();
 
-          
-          
-          // from here dispatch an action to the store
-          // 1. dispatch action 
-          // 2.reducer taking old state + payload (changes) returning new state
-          
-          
-          
-          {
 
-           
-            put(getSettingSuccess(doc));
+           put(getSettingSuccess(data))
 
 
 
 
-            console.log("Document data:", doc.data());
+            console.log("Document data:", data);
           } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
