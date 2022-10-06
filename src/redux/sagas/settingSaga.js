@@ -90,44 +90,65 @@ function* settingSaga({ type, payload }) {
 
 
 
-        const settings = yield call(firebase.docRef);
+        const snapshot = yield call(firebase.docRef );
 
-        // const test = settings.data();
+        // console.log("Current data: ", snapshot);
 
-        yield put(getSettingSuccess(settings))
+        if (snapshot.data()) { // if user exists in database
+          const test = snapshot.data();
 
+          console.log("Current data: ", test);
 
+  
+          yield put(getSettingSuccess(test));
+  
+  
+          // yield put(setSetting(user));
+  
+  
+  
+  
+          // yield put(setBasketItems(user.basket));
+          // yield put(setBasketItems(user.basket));
+          // yield put(signInSuccess({
+          //   id: payload.uid,
+          //   role: user.role,
+          //   provider: payload.providerData[0].providerId
+          // }));
+        }
 
+        
 
-        settings.get().then((doc) => {
-          if (doc.exists) {
-            const data = doc.data();
-
-
-           put(getSettingSuccess(data))
-
-
-
-
-            console.log("Document data:", data);
-          } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-          }
-        }).catch((error) => {
-          console.log("Error getting document:", error);
-        });
-
-
-
-
-
-
-
+        // settings.get().then((doc) => {
+        //   if (doc.exists) {
+        //     const data = doc.data();
 
 
+        //    put(getSettingSuccess(data))
 
-      } catch (e) {
+
+
+
+        //     console.log("Document data:", data);
+        //   } 
+          
+        //   else {
+        //     // doc.data() will be undefined in this case
+        //     console.log("No such document!");
+        //   }
+        // })
+        
+        
+        // .catch((error) => {
+        //   console.log("Error getting document:", error);
+        // });
+
+
+
+
+      } 
+      
+      catch (e) {
         console.log(e);
         yield handleError(e);
       }
