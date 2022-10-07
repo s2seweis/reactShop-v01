@@ -65,8 +65,29 @@ const EditForm = ({ isLoading, authProvider }) => {
         >
           {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
                     &nbsp;
-          {isLoading ? 'Updating Profile' : 'Update Settings'}
+          {isLoading ? 'Updating Profile' : 'Add Settings'}
         </button>
+
+        {/* <button
+          className="button w-100-mobile"
+          disabled={isLoading}
+          onClick={submitForm}
+          type="button"
+        >
+          {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
+                    &nbsp;
+          {isLoading ? 'Updating Profile' : 'Update Settings'}
+        </button> */}
+        {/* <button
+          className="button w-100-mobile"
+          disabled={isLoading}
+          onClick={submitForm}
+          type="button"
+        >
+          {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
+                    &nbsp;
+          {isLoading ? 'Updating Profile' : 'Delete Settings'}
+        </button> */}
       </div>
     </div>
   );
