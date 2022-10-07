@@ -74,6 +74,7 @@ export default (state = {}, action) => {
         ...action.payload
       };
 
+      
 
     case CLEAR_SETTINGS:
       return {};

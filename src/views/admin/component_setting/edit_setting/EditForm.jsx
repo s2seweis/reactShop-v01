@@ -40,7 +40,7 @@ const EditForm = ({ isLoading, authProvider }) => {
         style={{ textTransform: 'capitalize' }}
       />
       <CustomMobileInput
-        defaultValue={values.mobile}
+        defaultValue={values.mobile} 
         name="mobile"
         disabled={isLoading}
         label="Mobile Number (Will be used for checkout)"
@@ -57,17 +57,6 @@ const EditForm = ({ isLoading, authProvider }) => {
           &nbsp;
           Back to Settings
         </button>
-        <button
-          className="button w-100-mobile"
-          disabled={isLoading}
-          onClick={submitForm}
-          type="button"
-        >
-          {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
-                    &nbsp;
-          {isLoading ? 'Updating Profile' : 'Add Settings'}
-        </button>
-
         {/* <button
           className="button w-100-mobile"
           disabled={isLoading}
@@ -76,8 +65,19 @@ const EditForm = ({ isLoading, authProvider }) => {
         >
           {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
                     &nbsp;
-          {isLoading ? 'Updating Profile' : 'Update Settings'}
+          {isLoading ? 'Loading' : 'Add Settings'}
         </button> */}
+
+        <button
+          className="button w-100-mobile"
+          disabled={isLoading}
+          onClick={submitForm}
+          type="button"
+        >
+          {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
+                    &nbsp;
+          {isLoading ? 'Loading' : 'Update Settings'}
+        </button>
         {/* <button
           className="button w-100-mobile"
           disabled={isLoading}

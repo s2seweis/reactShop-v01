@@ -4,7 +4,7 @@ import {
   CLEAR_SETTINGS,
   SET_SETTING,
   UPDATE_EMAIL,
-  UPDATE_SETTINGS,
+  UPDATE_SETTING,
   UPDATE_SETTINGS_SUCCESS,
   ADD_SETTING,
   ADD_SETTING_SUCCESS,
@@ -61,12 +61,12 @@ export const getSettingSuccess = (settings) => ({
 
 
 
-export const updateSettings = (newSettings) => ({
-  type: UPDATE_SETTINGS,
+export const updateSetting = (newSettings) => ({
+  type: UPDATE_SETTING,
   payload: {
     updates: newSettings.updates,
     files: newSettings.files,
-    credentials: newSettings.credentials
+    // credentials: newSettings.credentials
   }
 });
 

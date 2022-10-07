@@ -45,11 +45,17 @@ class Firebase {
   getSetting = (id) => this.db.collection("settings").doc(id).get();
 
 
-  
+  // get Settings Reference
+
   docRef = () => this.db.collection("settings").doc("TuXsosfQP6SkWdBrnLpqGqhzEbJ3").get();
 
 
-  
+  // updateProfile = (id, updates) =>
+  //   this.db.collection("users").doc(id).update(updates);
+
+  updateSetting = (TuXsosfQP6SkWdBrnLpqGqhzEbJ3, updates) =>
+    this.db.collection("settings").doc("TuXsosfQP6SkWdBrnLpqGqhzEbJ3").update(updates);
+
   
   
 
@@ -102,8 +108,7 @@ class Firebase {
   updateProfile = (id, updates) =>
     this.db.collection("users").doc(id).update(updates);
 
-  updateSetting = (id, updates) =>
-    this.db.collection("settings").doc(id).update(updates);
+ 
 
 
   onAuthStateChanged = () =>

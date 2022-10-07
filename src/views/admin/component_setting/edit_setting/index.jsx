@@ -7,7 +7,7 @@ import {
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from 'redux/actions/miscActions';
-import { addSettings } from 'redux/actions/settingActions';
+import { addSettings, updateSetting } from 'redux/actions/settingActions';
 import * as Yup from 'yup';
 import ConfirmModal from './ConfirmModal';
 import EditForm from './EditForm';
@@ -34,15 +34,15 @@ const EditSettings = () => {
   useDocumentTitle('Edit Account | Salinaka ');
   useScrollTop();
 
-  const modal = useModal();
+  // const modal = useModal();
   const dispatch = useDispatch();
 
   useEffect(() => () => {
     dispatch(setLoading(false));
   }, []);
 
-  const { settings, profile, auth, isLoading } = useSelector((state) => ({
-    profile: state.profile,
+  const { settings, auth, isLoading } = useSelector((state) => ({
+    // profile: state.profile,
     settings: state.settings,
     auth: state.auth,
     isLoading: state.app.loading
@@ -55,48 +55,74 @@ const EditSettings = () => {
     mobile: settings.mobile || {}
   };
 
-  // const {
-  //   imageFile,
-  //   isFileLoading,
-  //   onFileChange
-  // } = useFileHandler({ avatar: {}, banner: {} });
+  const {
+    imageFile,
+    isFileLoading,
+    onFileChange
+  } = useFileHandler({ avatar: {}, banner: {} });
+
+  // const update = (form) => {
+  //   dispatch(addSettings({
+      
+  //       fullname: form.fullname,
+  //       email: form.email,
+  //       address: form.address,
+  //       mobile: form.mobile,
+       
+  //   }));
+  // };
 
   const update = (form) => {
-    dispatch(addSettings({
-      
+    dispatch(updateSetting({
+      updates: {
         fullname: form.fullname,
         email: form.email,
         address: form.address,
         mobile: form.mobile,
-        // avatar: settings.avatar,
-        // banner: settings.banner
-      
-      // files: {
-      //   bannerFile: imageFile.banner.file,
-      //   avatarFile: imageFile.avatar.file
-      // },
+        avatar: settings.avatar,
+        banner: settings.banner,
+      },
+      files: {
+        bannerFile: imageFile.banner.file,
+        avatarFile: imageFile.avatar.file
+      },
       // credentials
     }));
   };
 
-  const onConfirmUpdate = (form, password) => {
-    if (password) {
-      update(form, { email: form.email, password });
-    }
-  };
+  // const onConfirmUpdate = (form, password) => {
+  //   if (password) {
+  //     update(form, { email: form.email, password });
+  //   }
+  // };
 
   const onSubmitUpdate = (form) => {
     // check if data has changed
     const fieldsChanged = Object.keys(form).some((key) => settings[key] !== form[key]);
 
-    if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
-      if (form.email !== profile.email) {
-        modal.onOpenModal();
-      } else {
+    if (fieldsChanged ) {
+      if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
         update(form);
+        // modal.onOpenModal();
+      } else {
+        console.log("failed to add: ");
       }
     }
   };
+
+  // const onSubmitAdd = (form) => {
+  //   // check if data has changed
+  //   const fieldsChanged = Object.keys(form).some((key) => settings[key] !== form[key]);
+
+  //   if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
+  //     if (form.email !== profile.email) {
+  //       add(form);
+  //       // modal.onOpenModal();
+  //     } else {
+  //       console.log("failed to add: ");
+  //     }
+  //   }
+  // };
 
   return (
     <Boundary>
@@ -107,11 +133,12 @@ const EditSettings = () => {
           validateOnChange
           validationSchema={FormSchema}
           onSubmit={onSubmitUpdate}
+          // onSubmitAdd={onSubmitAdd}
         >
           {() => (
             <>
               <div className="user-profile-banner">
-                {/* <div className="user-profile-banner-wrapper">
+                <div className="user-profile-banner-wrapper">
                   <ImageLoader
                     alt="Banner"
                     className="user-profile-banner-img"
@@ -137,8 +164,8 @@ const EditSettings = () => {
                       <EditOutlined />
                     </label>
                   )}
-                </div> */}
-                {/* <div className="user-profile-avatar-wrapper">
+                </div>
+                <div className="user-profile-avatar-wrapper">
                   <ImageLoader
                     alt="Avatar"
                     className="user-profile-img"
@@ -164,19 +191,39 @@ const EditSettings = () => {
                       <EditOutlined />
                     </label>
                   )}
-                </div> */}
+                </div>
               </div>
               <EditForm
                 authProvider={auth.provider}
                 isLoading={isLoading}
               />
-              <ConfirmModal
+              {/* <ConfirmModal
                 onConfirmUpdate={onConfirmUpdate}
                 modal={modal}
-              />
+              /> */}
             </>
           )}
         </Formik>
+
+        {/* <Formik
+          initialValues={initFormikValues}
+          validateOnChange
+          validationSchema={FormSchema}
+          onSubmit={onSubmitAdd}
+        >
+          {() => (
+            <>
+              
+              <EditForm
+                authProvider={auth.provider}
+                isLoading={isLoading}
+              />
+              
+            </>
+          )}
+        </Formik> */}
+
+
       </div>
     </Boundary>
   );
