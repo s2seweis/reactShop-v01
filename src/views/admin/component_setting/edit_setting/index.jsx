@@ -41,8 +41,8 @@ const EditSettings = () => {
     dispatch(setLoading(false));
   }, []);
 
-  const { settings, auth, isLoading } = useSelector((state) => ({
-    // profile: state.profile,
+  const { settings, profile, auth, isLoading } = useSelector((state) => ({
+    profile: state.profile,
     settings: state.settings,
     auth: state.auth,
     isLoading: state.app.loading
@@ -61,16 +61,7 @@ const EditSettings = () => {
     onFileChange
   } = useFileHandler({ avatar: {}, banner: {} });
 
-  // const update = (form) => {
-  //   dispatch(addSettings({
-      
-  //       fullname: form.fullname,
-  //       email: form.email,
-  //       address: form.address,
-  //       mobile: form.mobile,
-       
-  //   }));
-  // };
+  
 
   const update = (form) => {
     dispatch(updateSetting({
@@ -90,6 +81,26 @@ const EditSettings = () => {
     }));
   };
 
+  const add = (form) => {
+    dispatch(addSettings({
+      adds: {
+        fullname: form.fullname,
+        email: form.email,
+        address: form.address,
+        mobile: form.mobile,
+       
+      },
+      files: {
+        bannerFile: imageFile.banner.file,
+        avatarFile: imageFile.avatar.file
+      },
+      
+    }));
+  };
+
+
+
+
   // const onConfirmUpdate = (form, password) => {
   //   if (password) {
   //     update(form, { email: form.email, password });
@@ -100,9 +111,23 @@ const EditSettings = () => {
     // check if data has changed
     const fieldsChanged = Object.keys(form).some((key) => settings[key] !== form[key]);
 
-    if (fieldsChanged ) {
+    
       if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
         update(form);
+        // modal.onOpenModal();
+      } else {
+        console.log("failed to add: ");
+      }
+    
+  };
+
+  const onSubmitAdd = (form) => {
+    // check if data has changed
+    const fieldsChanged = Object.keys(form).some((key) => settings[key] !== form[key]);
+
+    if (fieldsChanged ) {
+      if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
+        add(form);
         // modal.onOpenModal();
       } else {
         console.log("failed to add: ");
@@ -110,19 +135,7 @@ const EditSettings = () => {
     }
   };
 
-  // const onSubmitAdd = (form) => {
-  //   // check if data has changed
-  //   const fieldsChanged = Object.keys(form).some((key) => settings[key] !== form[key]);
-
-  //   if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
-  //     if (form.email !== profile.email) {
-  //       add(form);
-  //       // modal.onOpenModal();
-  //     } else {
-  //       console.log("failed to add: ");
-  //     }
-  //   }
-  // };
+  
 
   return (
     <Boundary>
@@ -132,11 +145,15 @@ const EditSettings = () => {
           initialValues={initFormikValues}
           validateOnChange
           validationSchema={FormSchema}
-          onSubmit={onSubmitUpdate}
-          // onSubmitAdd={onSubmitAdd}
+          onSubmit={onSubmitAdd}
         >
           {() => (
             <>
+
+
+
+
+
               <div className="user-profile-banner">
                 <div className="user-profile-banner-wrapper">
                   <ImageLoader
@@ -193,35 +210,23 @@ const EditSettings = () => {
                   )}
                 </div>
               </div>
+
+
+
+
               <EditForm
-                authProvider={auth.provider}
-                isLoading={isLoading}
+                // authProvider={auth.provider}
+                // isLoading={isLoading}
               />
-              {/* <ConfirmModal
-                onConfirmUpdate={onConfirmUpdate}
-                modal={modal}
-              /> */}
+             
             </>
           )}
+
+
+          
         </Formik>
 
-        {/* <Formik
-          initialValues={initFormikValues}
-          validateOnChange
-          validationSchema={FormSchema}
-          onSubmit={onSubmitAdd}
-        >
-          {() => (
-            <>
-              
-              <EditForm
-                authProvider={auth.provider}
-                isLoading={isLoading}
-              />
-              
-            </>
-          )}
-        </Formik> */}
+        
 
 
       </div>

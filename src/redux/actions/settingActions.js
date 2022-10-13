@@ -39,6 +39,14 @@ export const addSettings = (settings) => ({
   payload: settings
 });
 
+// export const addSettings = (settings) => ({
+//   type: ADD_SETTING,
+//   payload: {
+//     settings: settings.settings,
+//     files: settings.files,
+//   }
+// });
+
 
 
 export const addSettingSuccess = (settings) => ({

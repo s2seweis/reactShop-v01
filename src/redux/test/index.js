@@ -1,31 +1,38 @@
-try {
+import React from 'react';
+ import { Formik } from 'formik';
+ 
+ const BasicExample = () => (
+   <div>
+     <h1>My Form</h1>
+     <Formik
+       initialValues={{ name: 'jared' }}
 
 
 
-    const settings = call(firebase.docRef);
-
-    
-
-    settings.get().then((doc) => {
-      if (doc.exists) {
-        const data = doc.data();
-
-
-       put(getSettingSuccess(data))
+       onSubmit={(values, actions) => {
+         setTimeout(() => {
+           alert(JSON.stringify(values, null, 2));
+           actions.setSubmitting(false);
+         }, 1000);
+       }}
 
 
 
-
-        console.log("Document data:", data);
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
-    }).catch((error) => {
-      console.log("Error getting document:", error);
-    });
-
-
-
-
-  } 
+       
+     >
+       {props => (
+         <form onSubmit={props.handleSubmit}>
+           <input
+             type="text"
+             onChange={props.handleChange}
+             onBlur={props.handleBlur}
+             value={props.values.name}
+             name="name"
+           />
+           {props.errors.name && <div id="feedback">{props.errors.name}</div>}
+           <button type="submit">Submit</button>
+         </form>
+       )}
+     </Formik>
+   </div>
+ );

@@ -38,7 +38,7 @@ class Firebase {
 
 
 
-  
+
 
   getUser = (id) => this.db.collection("users").doc(id).get();
 
@@ -47,17 +47,17 @@ class Firebase {
 
   // get Settings Reference
 
-  docRef = () => this.db.collection("settings").doc("TuXsosfQP6SkWdBrnLpqGqhzEbJ3").get();
+  docRef = () => this.db.collection("settings").doc("arXIqODlOosmcD38UHhW").get();
 
 
   // updateProfile = (id, updates) =>
   //   this.db.collection("users").doc(id).update(updates);
 
-  updateSetting = (TuXsosfQP6SkWdBrnLpqGqhzEbJ3, updates) =>
-    this.db.collection("settings").doc("TuXsosfQP6SkWdBrnLpqGqhzEbJ3").update(updates);
+  updateSetting = (arXIqODlOosmcD38UHhW, updates) =>
+    this.db.collection("settings").doc("arXIqODlOosmcD38UHhW").update(updates);
 
-  
-  
+
+
 
 
 
@@ -108,7 +108,7 @@ class Firebase {
   updateProfile = (id, updates) =>
     this.db.collection("users").doc(id).update(updates);
 
- 
+
 
 
   onAuthStateChanged = () =>
@@ -195,7 +195,7 @@ class Firebase {
     });
   };
 
-  
+
 
   searchProducts = (searchKey) => {
     let didTimeout = false;
@@ -300,7 +300,7 @@ class Firebase {
 
 
 
- // // SETTING ACTIONS --------------
+  // // SETTING ACTIONS --------------
 
   getSingleSetting = (id) => this.db.collection("settings").doc(id).get();
 
@@ -444,9 +444,9 @@ class Firebase {
       .limit(itemsCount)
       .get();
 
- 
 
-  
+
+
 
   generateKey = () => this.db.collection("settings").doc().id;
 
@@ -623,8 +623,11 @@ class Firebase {
   addOrder = (id, order) =>
     this.db.collection("orders").doc(id).set(order);
 
-  addSetting = (id, setting) =>
-    this.db.collection("settings").doc(id).set(setting);
+  addSetting = (id, settings) =>
+    this.db.collection("settings").doc(id).set(settings);
+
+  // updateSetting = (TuXsosfQP6SkWdBrnLpqGqhzEbJ3, updates) =>
+  //   this.db.collection("settings").doc("TuXsosfQP6SkWdBrnLpqGqhzEbJ3").update(updates);
 
 
 

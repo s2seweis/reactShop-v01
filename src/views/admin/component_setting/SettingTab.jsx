@@ -16,20 +16,20 @@ const SettingProfile = (props) => {
     <div className="user-profile">
       <div className="user-profile-block">
         <div className="user-profile-banner">
-          {/* <div className="user-profile-banner-wrapper">
+          <div className="user-profile-banner-wrapper">
             <ImageLoader
               alt="Banner"
               className="user-profile-banner-img"
-              src={profile.banner}
+              src={settings.banner}
             />
-          </div> */}
-          {/* <div className="user-profile-avatar-wrapper">
+          </div>
+          <div className="user-profile-avatar-wrapper">
             <ImageLoader
               alt="Avatar"
               className="user-profile-img"
-              src={profile.avatar}
+              src={settings.avatar}
             />
-          </div> */}
+          </div>
           <button
             className="button button-small user-profile-edit"
             onClick={() => props.history.push(ADMIN_SETTING_EDIT)}

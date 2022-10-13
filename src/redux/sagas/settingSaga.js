@@ -16,6 +16,9 @@ import React, { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 
+import defaultAvatar from 'images/defaultAvatar.jpg';
+import defaultBanner from 'images/defaultBanner.jpg';
+
 
 
 
@@ -52,27 +55,52 @@ function* settingSaga({ type, payload }) {
       try {
         yield initRequest();
 
+
+        // Attempt: 1 .................................
+
+        // const state = yield select();
+
+
+        const { avatarFile, bannerFile } = payload.files;
+
+        yield put(setLoading(true));
+
         const key = yield call(firebase.generateKey);
 
 
         const setting = {
+          
           ...payload,
         };
 
+        if (avatarFile || bannerFile) {
+          const bannerURL = yield call(firebase.storeImage, key, 'banner', bannerFile) ;
+          const avatarURL = yield call(firebase.storeImage, key, 'avatar', avatarFile) ;
+          const settingNew = { avatar: avatarURL, banner: bannerURL, ...payload.adds };
 
-        yield call(firebase.
-          addSetting,
-          key,
-          setting);
+          console.log("Current data: ", settingNew)
 
-        // yield put(placeOrderSuccess({
-        //   id: key,
-        //   ...order
-        // }));
+          yield call(firebase.addSetting, key, settingNew);
+          yield put(addSettingSuccess(setting));
+        } else {
+          yield call(firebase.addSetting, key, setting);
+          // yield put(updateSettingsSuccess(payload.setting));
+        }
+        
+
+
+        // yield call(firebase.
+        //   addSetting,
+        //   key,
+        //   setting);
+
+
+
+        
+
 
         yield handleAction(ADMIN_SETTINGS, 'Settings succesfully added', 'success');
-        // yield put(clearBasket());
-        // yield call(firebase.saveBasketItems(basket, firebase.auth.currentUser.uid));
+
 
         yield put(setLoading(false));
         // yield call(history.push, SHOP)
@@ -109,6 +137,9 @@ function* settingSaga({ type, payload }) {
           yield call(firebase.updateSetting, state.auth.id, updates);
           yield put(updateSettingsSuccess(updates));
         } else {
+
+          // this part working
+          console.log("Current data: ", payload.updates)
           yield call(firebase.updateSetting, state.auth.id, payload.updates);
           yield put(updateSettingsSuccess(payload.updates));
         }
@@ -135,7 +166,7 @@ function* settingSaga({ type, payload }) {
 
 
 
-        const snapshot = yield call(firebase.docRef );
+        const snapshot = yield call(firebase.docRef);
 
         // console.log("Current data: ", snapshot);
 
@@ -144,15 +175,15 @@ function* settingSaga({ type, payload }) {
 
           // console.log("Current data: ", test);
 
-  
+
           yield put(getSettingSuccess(test));
-  
-  
+
+
           // yield put(setSetting(user));
-  
-  
-  
-  
+
+
+
+
           // yield put(setBasketItems(user.basket));
           // yield put(setBasketItems(user.basket));
           // yield put(signInSuccess({
@@ -162,7 +193,7 @@ function* settingSaga({ type, payload }) {
           // }));
         }
 
-        
+
 
         // settings.get().then((doc) => {
         //   if (doc.exists) {
@@ -176,14 +207,14 @@ function* settingSaga({ type, payload }) {
 
         //     console.log("Document data:", data);
         //   } 
-          
+
         //   else {
         //     // doc.data() will be undefined in this case
         //     console.log("No such document!");
         //   }
         // })
-        
-        
+
+
         // .catch((error) => {
         //   console.log("Error getting document:", error);
         // });
@@ -191,11 +222,11 @@ function* settingSaga({ type, payload }) {
 
 
 
-      } 
+      }
 
 
-      
-      
+
+
       catch (e) {
         console.log(e);
         yield handleError(e);

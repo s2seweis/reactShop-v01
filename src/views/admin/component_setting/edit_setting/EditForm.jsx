@@ -6,10 +6,73 @@ import PropType from 'prop-types';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { addSettings, updateSetting } from 'redux/actions/settingActions';
+import {
+  useDocumentTitle, useFileHandler, useModal, useScrollTop
+} from 'hooks';
+
+
 
 const EditForm = ({ isLoading, authProvider }) => {
   const history = useHistory();
   const { values, submitForm } = useFormikContext();
+
+  const dispatch = useDispatch();
+
+  const { settings, profile, auth } = useSelector((state) => ({
+    profile: state.profile,
+    settings: state.settings,
+    auth: state.auth,
+    // isLoading: state.app.loading
+  }));
+
+
+  const initFormikValues = {
+    fullname: settings.fullname || '',
+    email: settings.email || '',
+    address: settings.address || '',
+    mobile: settings.mobile || {}
+  };
+
+
+  const {
+    imageFile,
+    isFileLoading,
+    onFileChange
+  } = useFileHandler({ avatar: {}, banner: {} });
+
+  const update = (form) => {
+    dispatch(updateSetting({
+      updates: {
+        fullname: form.fullname,
+        email: form.email,
+        address: form.address,
+        mobile: form.mobile,
+        avatar: settings.avatar,
+        banner: settings.banner,
+      },
+      files: {
+        bannerFile: imageFile.banner.file,
+        avatarFile: imageFile.avatar.file
+      },
+      // credentials
+    }));
+  };
+
+  const onSubmitUpdate = (form) => {
+    // check if data has changed
+    const fieldsChanged = Object.keys(form).some((key) => settings[key] !== form[key]);
+
+    
+      if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
+        update(form);
+        // modal.onOpenModal();
+      } else {
+        console.log("failed to add: ");
+      }
+    
+  };
 
   return (
     <div className="user-profile-details">
@@ -23,7 +86,7 @@ const EditForm = ({ isLoading, authProvider }) => {
         style={{ textTransform: 'capitalize' }}
       />
       <Field
-        disabled={authProvider !== 'password' || isLoading}
+        disabled={isLoading}
         name="email"
         type="email"
         label="* Email Address"
@@ -40,7 +103,7 @@ const EditForm = ({ isLoading, authProvider }) => {
         style={{ textTransform: 'capitalize' }}
       />
       <CustomMobileInput
-        defaultValue={values.mobile} 
+        defaultValue={values.mobile}
         name="mobile"
         disabled={isLoading}
         label="Mobile Number (Will be used for checkout)"
@@ -57,16 +120,8 @@ const EditForm = ({ isLoading, authProvider }) => {
           &nbsp;
           Back to Settings
         </button>
-        {/* <button
-          className="button w-100-mobile"
-          disabled={isLoading}
-          onClick={submitForm}
-          type="button"
-        >
-          {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
-                    &nbsp;
-          {isLoading ? 'Loading' : 'Add Settings'}
-        </button> */}
+
+
 
         <button
           className="button w-100-mobile"
@@ -75,19 +130,25 @@ const EditForm = ({ isLoading, authProvider }) => {
           type="button"
         >
           {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
-                    &nbsp;
-          {isLoading ? 'Loading' : 'Update Settings'}
+          &nbsp;
+          {isLoading ? 'Loading' : 'Add Settings'}
         </button>
-        {/* <button
+
+
+
+        <button
           className="button w-100-mobile"
           disabled={isLoading}
-          onClick={submitForm}
+          onClick={onSubmitUpdate}
           type="button"
         >
           {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
-                    &nbsp;
-          {isLoading ? 'Updating Profile' : 'Delete Settings'}
-        </button> */}
+          &nbsp;
+          {isLoading ? 'Loading' : 'Update Settings'}
+        </button>
+
+
+
       </div>
     </div>
   );

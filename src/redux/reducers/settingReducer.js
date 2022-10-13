@@ -55,8 +55,8 @@ export default (state = {}, action) => {
     case ADD_SETTING:
       return {
         ...state,
-        setting: action.payload
-        // ...action.payload
+        // setting: action.payload
+        ...action.payload
       };
 
       
