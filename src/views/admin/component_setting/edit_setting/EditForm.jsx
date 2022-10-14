@@ -14,9 +14,9 @@ import {
 
 
 
-const EditForm = ({ isLoading, authProvider }) => {
+const EditForm = ({ isLoading, authProvider}) => {
   const history = useHistory();
-  const { values, submitForm } = useFormikContext();
+  const { values, submitForm, handleSubmit, setFieldValue } = useFormikContext();
 
   const dispatch = useDispatch();
 
@@ -123,7 +123,7 @@ const EditForm = ({ isLoading, authProvider }) => {
 
 
 
-        <button
+        {/* <button
           className="button w-100-mobile"
           disabled={isLoading}
           onClick={submitForm}
@@ -132,20 +132,75 @@ const EditForm = ({ isLoading, authProvider }) => {
           {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
           &nbsp;
           {isLoading ? 'Loading' : 'Add Settings'}
+        </button> */}
+
+
+
+        {/* <button
+          className="button w-100-mobile"
+          // disabled={isLoading}
+          onClick={submitForm}
+          type="button"
+          data-flag= "action1"
+        >
+          {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
+          &nbsp;
+          {isLoading ? 'Loading' : 'Add Settings'}
         </button>
+
 
 
 
         <button
           className="button w-100-mobile"
+          // disabled={isLoading}
+          onClick={submitForm}
+          type="button"
+          data-flag= "action2"
+        >
+          {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
+          &nbsp;
+          {isLoading ? 'Loading' : 'Update Settings'}
+        </button> */}
+
+
+
+
+        <button
+        id="second-button"
+          className="button w-100-mobile"
           disabled={isLoading}
-          onClick={onSubmitUpdate}
+
+
+
+         onClick={(e)=>{
+            setFieldValue('isSecondButton',true)
+             handleSubmit(e);
+          }}
           type="button"
         >
           {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
           &nbsp;
           {isLoading ? 'Loading' : 'Update Settings'}
         </button>
+
+        {/* <button
+        id="first-button"
+          className="button w-100-mobile"
+          disabled={isLoading}
+
+
+
+         onClick={(e)=>{
+            setFieldValue('isFirstButton',true)
+             handleSubmit(e);
+          }}
+          type="button"
+        >
+          {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
+          &nbsp;
+          {isLoading ? 'Loading' : 'Update Settings'}
+        </button> */}
 
 
 

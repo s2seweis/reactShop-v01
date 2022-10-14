@@ -12,6 +12,9 @@ import * as Yup from 'yup';
 import ConfirmModal from './ConfirmModal';
 import EditForm from './EditForm';
 
+import { call, put, select } from 'redux-saga/effects';
+
+
 const FormSchema = Yup.object().shape({
   fullname: Yup.string()
     .min(4, 'Full name should be at least 4 characters.')
@@ -52,7 +55,9 @@ const EditSettings = () => {
     fullname: settings.fullname || '',
     email: settings.email || '',
     address: settings.address || '',
-    mobile: settings.mobile || {}
+    mobile: settings.mobile || {},
+    isSecondButton: false,
+    // isFirstButton: false
   };
 
   const {
@@ -61,7 +66,7 @@ const EditSettings = () => {
     onFileChange
   } = useFileHandler({ avatar: {}, banner: {} });
 
-  
+
 
   const update = (form) => {
     dispatch(updateSetting({
@@ -88,13 +93,13 @@ const EditSettings = () => {
         email: form.email,
         address: form.address,
         mobile: form.mobile,
-       
+
       },
       files: {
         bannerFile: imageFile.banner.file,
         avatarFile: imageFile.avatar.file
       },
-      
+
     }));
   };
 
@@ -111,21 +116,21 @@ const EditSettings = () => {
     // check if data has changed
     const fieldsChanged = Object.keys(form).some((key) => settings[key] !== form[key]);
 
-    
-      if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
-        update(form);
-        // modal.onOpenModal();
-      } else {
-        console.log("failed to add: ");
-      }
-    
+
+    if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
+      update(form);
+      // modal.onOpenModal();
+    } else {
+      console.log("failed to add: ");
+    }
+
   };
 
   const onSubmitAdd = (form) => {
     // check if data has changed
     const fieldsChanged = Object.keys(form).some((key) => settings[key] !== form[key]);
 
-    if (fieldsChanged ) {
+    if (fieldsChanged) {
       if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
         add(form);
         // modal.onOpenModal();
@@ -135,7 +140,7 @@ const EditSettings = () => {
     }
   };
 
-  
+
 
   return (
     <Boundary>
@@ -145,7 +150,44 @@ const EditSettings = () => {
           initialValues={initFormikValues}
           validateOnChange
           validationSchema={FormSchema}
-          onSubmit={onSubmitAdd}
+
+          onSubmit={(values) => {
+              if (values.isSecondButton) {
+               onSubmitUpdate;
+              } else {
+              onSubmitAdd;
+              }
+            }}
+
+          // onSubmit={onSubmitAdd}
+
+
+
+          
+
+          // onSubmit = {(values) => {
+          //   console.log('The flag is:', document.activeElement.dataset.flag);
+          //   if (document.activeElement.dataset.flag == 'action1') {
+          //         onSubmitAdd;
+          //       } else {
+          //         onSubmitUpdate;
+          //       }
+            
+          //   }
+          //   }
+  
+  
+            // onSubmit={(values) => {
+            //   if (values.isSecondButton) {
+            //     onSubmitUpdate;
+            //   } else {
+            //     onSubmitAdd;
+            //   }
+            // }}
+
+
+        // here has to go a if/else case
+
         >
           {() => (
             <>
@@ -214,19 +256,33 @@ const EditSettings = () => {
 
 
 
-              <EditForm
-                // authProvider={auth.provider}
-                // isLoading={isLoading}
-              />
-             
+              <EditForm />
+
+
+              {/* <button
+                className="button w-100-mobile"
+                disabled={isLoading}
+                onClick={onSubmitUpdate}
+                type="button"
+              >
+                &nbsp;
+                {isLoading ? 'Loading' : 'Update Settings'}
+              </button> */}
+
+
+
             </>
+
+
+
+
           )}
 
 
-          
+
         </Formik>
 
-        
+
 
 
       </div>

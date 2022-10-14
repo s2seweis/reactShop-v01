@@ -1,38 +1,33 @@
-import React from 'react';
- import { Formik } from 'formik';
- 
- const BasicExample = () => (
-   <div>
-     <h1>My Form</h1>
-     <Formik
-       initialValues={{ name: 'jared' }}
+<Formik
+      htmlFor="amazing"
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={(values) => this.handleSubmit(values)}
+    >
+      {({ errors, touched, setFieldValue }) => (
+        //define setFieldValue
+        <Form id="amazing">
+          <Grid>
+            <Grid.Column>
+              <Label>Industry</Label>
+              <Field
+                id="industry" // remove onBlur warning
+                name="industry"
+                as={Select}
+                options={nameOptions}
+                placeholder="select an industry"
+                onChange={(e, selected) =>
+                  setFieldValue("industry", selected.value)
+                }
+              />
 
-
-
-       onSubmit={(values, actions) => {
-         setTimeout(() => {
-           alert(JSON.stringify(values, null, 2));
-           actions.setSubmitting(false);
-         }, 1000);
-       }}
-
-
-
-       
-     >
-       {props => (
-         <form onSubmit={props.handleSubmit}>
-           <input
-             type="text"
-             onChange={props.handleChange}
-             onBlur={props.handleBlur}
-             value={props.values.name}
-             name="name"
-           />
-           {props.errors.name && <div id="feedback">{props.errors.name}</div>}
-           <button type="submit">Submit</button>
-         </form>
-       )}
-     </Formik>
-   </div>
- );
+              <div>
+                {touched.industry && errors.industry
+                  ? errors.industry
+                  : null}
+              </div>
+            </Grid.Column>
+          </Grid>
+        </Form>
+      )}
+    </Formik>
