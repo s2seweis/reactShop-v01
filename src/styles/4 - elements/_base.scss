@@ -67,6 +67,8 @@ h6 {
 
 #app {
   width: 100%;
+  justify-content: center;
+
 }
 
 .content {
@@ -76,7 +78,7 @@ h6 {
   padding: $top $pad-desktop;
   display: flex;
   animation: fadeIn .5s ease;
-  // justify-content: start;
+  justify-content: center;
   
 
   @media (max-width: $mobile) {
@@ -92,7 +94,7 @@ h6 {
   padding: $top $pad-desktop;
   display: flex;
   animation: fadeIn .5s ease;
-  // justify-content: center;
+  justify-content: center;
   
 
   @media (max-width: $mobile) {
@@ -111,6 +113,8 @@ h6 {
   padding-top: $xxl-size;
   overflow: hidden;
   display: flex;
+  justify-content: center;
+
 }
 
 .content-admin-wrapper {
@@ -121,4 +125,7 @@ h6 {
   animation: fadeIn .5s ease;
   position: relative;
   padding: 10px 10px 10px 10px;
+  justify-content: center;
+  // display: flex;
+
 }

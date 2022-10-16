@@ -54,7 +54,8 @@
 
 .product-admin-items {
   padding: 0 $l-size;
-  // justify-content: center;
+  justify-content: center;
+  display: flex;
 
 }
 
@@ -62,6 +63,7 @@
   // padding: 10px;
   // top: 10px;
   justify-content: center;
+  display: flex;
 
 }
 
