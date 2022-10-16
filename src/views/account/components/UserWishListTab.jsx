@@ -4,7 +4,7 @@ import React from 'react';
 
 const UserWishListTab = () => (
   <div className="loader" style={{ minHeight: '80vh' }}>
-    <h3>My Wish List</h3>
+    <h3>My Wish List1</h3>
     <strong><span className="text-subtle">You don&apos;t have a wish list</span></strong>
   </div>
 );

@@ -13,26 +13,11 @@ const SettingsNavbar = (props) => {
     <div className="product-admin-header">
       <h3 className="product-admin-header-title">
         Settings &nbsp;
-        {/* (
-        {`${settingsCount} / ${totalSettingsCount}`}
-        ) */}
+       
       </h3>
-      <SearchBar />
-            &nbsp;
-      <FiltersToggle>
-        <button className="button-muted button-small" type="button">
-          <FilterOutlined />
-          &nbsp;More Filters
-        </button>
-      </FiltersToggle>
-      <button
-        className="button button-small"
-        onClick={() => history.push(ADD_SETTING)}
-        type="button"
-      >
-        <PlusOutlined />
-        &nbsp; Add New Setting
-      </button>
+     
+      
+      
     </div>
   );
 };

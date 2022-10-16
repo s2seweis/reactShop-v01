@@ -16,13 +16,13 @@ import { call, put, select } from 'redux-saga/effects';
 
 
 const FormSchema = Yup.object().shape({
-  fullname: Yup.string()
-    .min(4, 'Full name should be at least 4 characters.')
-    .max(60, 'Full name should be only be 4 characters long.')
-    .required('Full name is required'),
+  fullname: Yup.string(),
+    // .min(4, 'Full name should be at least 4 characters.')
+    // .max(60, 'Full name should be only be 4 characters long.')
+    // .required('Full name is required'),
   email: Yup.string()
-    .email('Email is not valid.')
-    .required('Email is required.'),
+    .email('Email is not valid.'),
+    // .required('Email is required.'),
   address: Yup.string(),
   mobile: Yup.object()
     .shape({
@@ -56,8 +56,8 @@ const EditSettings = () => {
     email: settings.email || '',
     address: settings.address || '',
     mobile: settings.mobile || {},
-    isSecondButton: false,
-    // isFirstButton: false
+    avatar: {},
+    banner: {}
   };
 
   const {
@@ -75,8 +75,8 @@ const EditSettings = () => {
         email: form.email,
         address: form.address,
         mobile: form.mobile,
-        avatar: settings.avatar,
-        banner: settings.banner,
+        avatar: form.avatar,
+        banner: form.banner,
       },
       files: {
         bannerFile: imageFile.banner.file,
@@ -86,22 +86,22 @@ const EditSettings = () => {
     }));
   };
 
-  const add = (form) => {
-    dispatch(addSettings({
-      adds: {
-        fullname: form.fullname,
-        email: form.email,
-        address: form.address,
-        mobile: form.mobile,
+  // const add = (form) => {
+  //   dispatch(addSettings({
+  //     adds: {
+  //       fullname: form.fullname,
+  //       email: form.email,
+  //       address: form.address,
+  //       mobile: form.mobile,
 
-      },
-      files: {
-        bannerFile: imageFile.banner.file,
-        avatarFile: imageFile.avatar.file
-      },
+  //     },
+  //     files: {
+  //       bannerFile: imageFile.banner.file,
+  //       avatarFile: imageFile.avatar.file
+  //     },
 
-    }));
-  };
+  //   }));
+  // };
 
 
 
@@ -126,19 +126,19 @@ const EditSettings = () => {
 
   };
 
-  const onSubmitAdd = (form) => {
-    // check if data has changed
-    const fieldsChanged = Object.keys(form).some((key) => settings[key] !== form[key]);
+  // const onSubmitAdd = (form) => {
+  //   // check if data has changed
+  //   const fieldsChanged = Object.keys(form).some((key) => settings[key] !== form[key]);
 
-    if (fieldsChanged) {
-      if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
-        add(form);
-        // modal.onOpenModal();
-      } else {
-        console.log("failed to add: ");
-      }
-    }
-  };
+  //   if (fieldsChanged) {
+  //     if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
+  //       add(form);
+  //       // modal.onOpenModal();
+  //     } else {
+  //       console.log("failed to add: ");
+  //     }
+  //   }
+  // };
 
 
 
@@ -151,45 +151,22 @@ const EditSettings = () => {
           validateOnChange
           validationSchema={FormSchema}
 
-          onSubmit={(values) => {
-              if (values.isSecondButton) {
-               onSubmitUpdate;
-              } else {
-              onSubmitAdd;
-              }
-            }}
+          
 
+          onSubmit={onSubmitUpdate}
           // onSubmit={onSubmitAdd}
 
-
+          // onSubmit={(onSubmitUpdate, {resetForm}) => {
+          //   console.log(onSubmitUpdate);
+          //   resetForm({ initFormikValues });
+          // } }
 
           
 
-          // onSubmit = {(values) => {
-          //   console.log('The flag is:', document.activeElement.dataset.flag);
-          //   if (document.activeElement.dataset.flag == 'action1') {
-          //         onSubmitAdd;
-          //       } else {
-          //         onSubmitUpdate;
-          //       }
-            
-          //   }
-          //   }
-  
-  
-            // onSubmit={(values) => {
-            //   if (values.isSecondButton) {
-            //     onSubmitUpdate;
-            //   } else {
-            //     onSubmitAdd;
-            //   }
-            // }}
-
-
-        // here has to go a if/else case
+         
 
         >
-          {() => (
+          {(resetForm) => (
             <>
 
 
@@ -259,15 +236,7 @@ const EditSettings = () => {
               <EditForm />
 
 
-              {/* <button
-                className="button w-100-mobile"
-                disabled={isLoading}
-                onClick={onSubmitUpdate}
-                type="button"
-              >
-                &nbsp;
-                {isLoading ? 'Loading' : 'Update Settings'}
-              </button> */}
+              
 
 
 

@@ -5,7 +5,7 @@ import React, { lazy, Suspense } from 'react';
 import UserTab from '../../../views/account/components/UserTab';
 
 const SettingAccountTab = lazy(() => import('../component_setting/SettingTab'));
-const UserWishListTab = lazy(() => import('../../../views/account/components/UserWishListTab'));
+const UserWishListTab = lazy(() => import('../component_setting/components/SettingListTab'));
 const UserOrdersTab = lazy(() => import('../../../views/account/components/UserOrdersTab'));
 
 const Loader = () => (
