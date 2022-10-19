@@ -17,16 +17,16 @@ const Loader = () => (
 
 const UserAccount = () => {
   useScrollTop();
-  useDocumentTitle('My Account | Salinaka');
+  useDocumentTitle('My Settings | Salinaka');
 
   return (
     <UserTab>
-      <div index={0} label="Account">
+      <div index={0} label="General">
         <Suspense fallback={<Loader />}>
           <SettingAccountTab />
         </Suspense>
       </div>
-      <div index={1} label="My Wish List">
+      <div index={1} label="Advanced">
         <Suspense fallback={<Loader />}>
           <UserWishListTab />
         </Suspense>

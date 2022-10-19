@@ -38,6 +38,9 @@ const SettingProfile = (props) => {
             Edit Settings
           </button>
         </div>
+
+
+        
         <div className="user-profile-details">
 
 
@@ -104,7 +107,7 @@ const SettingProfile = (props) => {
 
 
 
-          <span>Date Joined</span>
+          {/* <span>Date Joined</span>
           <br />
           {settings.dateJoined ? (
             <h5>{displayDate(settings.dateJoined)}</h5>
@@ -118,7 +121,7 @@ const SettingProfile = (props) => {
             <h5>{displayDate(settings.dateAdded)}</h5>
           ) : (
             <h5 className="text-subtle text-italic">Not available</h5>
-          )}
+          )} */}
 
 
 

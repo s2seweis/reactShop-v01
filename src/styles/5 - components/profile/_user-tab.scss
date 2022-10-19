@@ -13,12 +13,13 @@
   }
 }
 .user-tab-new {
-  width: 650px;
+  width: 800px;
   height: 100%;
-  // margin: 0 auto;
+  margin: 0 auto;
   margin-top: 3rem;
   background: $white;
   border: 1px solid $border-color;
+  
 
   @media (max-width: $mobile) {
 
