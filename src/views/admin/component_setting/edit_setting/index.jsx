@@ -144,6 +144,8 @@ const EditSettings = () => {
 
   return (
     <Boundary>
+
+      <div className="product-admin-items">
       <div className="edit-user">
         <h3 className="text-center">Edit Setting Details</h3>
         <Formik
@@ -254,6 +256,7 @@ const EditSettings = () => {
 
 
 
+      </div>
       </div>
     </Boundary>
   );
