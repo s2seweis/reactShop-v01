@@ -14,15 +14,18 @@ import EditForm from './EditForm';
 
 import { call, put, select } from 'redux-saga/effects';
 
+import { SettingsNavbar } from '../../component_setting';
+
+
 
 const FormSchema = Yup.object().shape({
   fullname: Yup.string(),
-    // .min(4, 'Full name should be at least 4 characters.')
-    // .max(60, 'Full name should be only be 4 characters long.')
-    // .required('Full name is required'),
+  // .min(4, 'Full name should be at least 4 characters.')
+  // .max(60, 'Full name should be only be 4 characters long.')
+  // .required('Full name is required'),
   email: Yup.string()
     .email('Email is not valid.'),
-    // .required('Email is required.'),
+  // .required('Email is required.'),
   address: Yup.string(),
   mobile: Yup.object()
     .shape({
@@ -145,17 +148,22 @@ const EditSettings = () => {
   return (
     <Boundary>
 
+      <SettingsNavbar
+      // settingsCount={store.settings.items.length}
+      // totalSettingsCount={store.settings.total}
+      />
+
       <div className="product-admin-items">
-      <div className="edit-user">
-        <h3 className="text-center">Edit Setting Details</h3>
-        <Formik
-          initialValues={initFormikValues}
-          validateOnChange
-          validationSchema={FormSchema}
+        <div className="edit-user">
+          <h3 className="text-center">Edit Setting Details</h3>
+          <Formik
+            initialValues={initFormikValues}
+            validateOnChange
+            validationSchema={FormSchema}
 
-          
 
-          onSubmit={onSubmitUpdate}
+
+            onSubmit={onSubmitUpdate}
           // onSubmit={onSubmitAdd}
 
           // onSubmit={(onSubmitUpdate, {resetForm}) => {
@@ -163,100 +171,100 @@ const EditSettings = () => {
           //   resetForm({ initFormikValues });
           // } }
 
-          
-
-         
-
-        >
-          {(resetForm) => (
-            <>
 
 
 
 
+          >
+            {(resetForm) => (
+              <>
 
-              <div className="user-profile-banner">
-                <div className="user-profile-banner-wrapper">
-                  <ImageLoader
-                    alt="Banner"
-                    className="user-profile-banner-img"
-                    src={imageFile.banner.url || settings.banner}
-                  />
-                  {isFileLoading ? (
-                    <div className="loading-wrapper">
-                      <LoadingOutlined />
-                    </div>
-                  ) : (
-                    <label
-                      className="edit-button edit-banner-button"
-                      htmlFor="edit-banner"
-                    >
-                      <input
-                        accept="image/x-png,image/jpeg"
-                        disabled={isLoading}
-                        hidden
-                        id="edit-banner"
-                        onChange={(e) => onFileChange(e, { name: 'banner', type: 'single' })}
-                        type="file"
-                      />
-                      <EditOutlined />
-                    </label>
-                  )}
+
+
+
+
+                <div className="user-profile-banner">
+                  <div className="user-profile-banner-wrapper">
+                    <ImageLoader
+                      alt="Banner"
+                      className="user-profile-banner-img"
+                      src={imageFile.banner.url || settings.banner}
+                    />
+                    {isFileLoading ? (
+                      <div className="loading-wrapper">
+                        <LoadingOutlined />
+                      </div>
+                    ) : (
+                      <label
+                        className="edit-button edit-banner-button"
+                        htmlFor="edit-banner"
+                      >
+                        <input
+                          accept="image/x-png,image/jpeg"
+                          disabled={isLoading}
+                          hidden
+                          id="edit-banner"
+                          onChange={(e) => onFileChange(e, { name: 'banner', type: 'single' })}
+                          type="file"
+                        />
+                        <EditOutlined />
+                      </label>
+                    )}
+                  </div>
+                  <div className="user-profile-avatar-wrapper">
+                    <ImageLoader
+                      alt="Avatar"
+                      className="user-profile-img"
+                      src={imageFile.avatar.url || settings.avatar}
+                    />
+                    {isFileLoading ? (
+                      <div className="loading-wrapper">
+                        <LoadingOutlined />
+                      </div>
+                    ) : (
+                      <label
+                        className="edit-button edit-avatar-button"
+                        htmlFor="edit-avatar"
+                      >
+                        <input
+                          accept="image/x-png,image/jpeg"
+                          disabled={isLoading}
+                          hidden
+                          id="edit-avatar"
+                          onChange={(e) => onFileChange(e, { name: 'avatar', type: 'single' })}
+                          type="file"
+                        />
+                        <EditOutlined />
+                      </label>
+                    )}
+                  </div>
                 </div>
-                <div className="user-profile-avatar-wrapper">
-                  <ImageLoader
-                    alt="Avatar"
-                    className="user-profile-img"
-                    src={imageFile.avatar.url || settings.avatar}
-                  />
-                  {isFileLoading ? (
-                    <div className="loading-wrapper">
-                      <LoadingOutlined />
-                    </div>
-                  ) : (
-                    <label
-                      className="edit-button edit-avatar-button"
-                      htmlFor="edit-avatar"
-                    >
-                      <input
-                        accept="image/x-png,image/jpeg"
-                        disabled={isLoading}
-                        hidden
-                        id="edit-avatar"
-                        onChange={(e) => onFileChange(e, { name: 'avatar', type: 'single' })}
-                        type="file"
-                      />
-                      <EditOutlined />
-                    </label>
-                  )}
-                </div>
-              </div>
 
 
 
 
-              <EditForm />
-
-
-              
-
-
-
-            </>
+                <EditForm />
 
 
 
 
-          )}
 
 
-
-        </Formik>
+              </>
 
 
 
 
-      </div>
+            )}
+
+
+
+          </Formik>
+
+
+
+
+        </div>
       </div>
     </Boundary>
   );

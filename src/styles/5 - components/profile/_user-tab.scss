@@ -5,18 +5,39 @@
   margin-top: 3rem;
   background: $white;
   border: 1px solid $border-color;
-  justify-content: center;
+  // justify-content: center;
 
   @media (max-width: $mobile) {
     width: 100%;
     margin-top: 6rem;
   }
 }
+
+.user-tab1 {
+  width: 800px;
+  height: 100%;
+  // margin: 0 auto;
+  // margin-top: 3rem;
+  background: $white;
+  border: 1px solid $border-color;
+  // justify-content: center;
+
+  @media (max-width: $mobile) {
+    width: 100%;
+    margin-top: 6rem;
+  }
+}
+
+
+
+
+
+
 .user-tab-new {
   width: 800px;
   height: 100%;
-  margin: 0 auto;
-  margin-top: 3rem;
+  // margin: 0 auto;
+  // margin-top: 3rem;
   background: $white;
   border: 1px solid $border-color;
   

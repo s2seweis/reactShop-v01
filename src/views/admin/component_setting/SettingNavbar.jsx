@@ -5,7 +5,8 @@ import PropType from 'prop-types';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-const SettingsNavbar = (props) => {
+const 
+SettingsNavbar = (props) => {
   const { settingsCount, totalSettingsCount } = props;
   const history = useHistory();
 

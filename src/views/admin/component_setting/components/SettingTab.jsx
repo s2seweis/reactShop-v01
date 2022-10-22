@@ -1,13 +1,13 @@
 import PropType from 'prop-types';
 import React, { useState } from 'react';
 
-const UserTab = (props) => {
+const SettingTab = (props) => {
   const { children } = props;
   const [activeTab, setActiveTab] = useState(children[0].props.index || 0);
   const onClickTabItem = (index) => setActiveTab(index);
 
   return (
-    <div className="user-tab">
+    <div className="user-tab1">
       <div className="user-tab-nav">
         <ul className="user-tab-menu">
           {children.map((child) => (
@@ -33,11 +33,11 @@ const UserTab = (props) => {
   );
 };
 
-UserTab.propTypes = {
+SettingTab.propTypes = {
   children: PropType.oneOfType([
     PropType.arrayOf(PropType.node),
     PropType.node
   ]).isRequired
 };
 
-export default UserTab;
+export default SettingTab;

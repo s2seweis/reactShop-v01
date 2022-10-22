@@ -2,9 +2,10 @@
 import { LoadingOutlined } from '@ant-design/icons';
 import { useDocumentTitle, useScrollTop } from 'hooks';
 import React, { lazy, Suspense } from 'react';
-import UserTab from '../../../views/account/components/UserTab';
+import SettingTab from '../../../views/admin/component_setting/components/SettingTab';
 
 const SettingAccountTab = lazy(() => import('../component_setting/SettingTab'));
+const EditSettings = lazy(() => import('../component_setting/edit_setting'));
 const UserWishListTab = lazy(() => import('../component_setting/components/SettingListTab'));
 const UserOrdersTab = lazy(() => import('../../../views/account/components/UserOrdersTab'));
 
@@ -20,10 +21,11 @@ const UserAccount = () => {
   useDocumentTitle('My Settings | Salinaka');
 
   return (
-    <UserTab>
+    <SettingTab>
       <div index={0} label="General">
         <Suspense fallback={<Loader />}>
-          <SettingAccountTab />
+          {/* <SettingAccountTab /> */}
+          <EditSettings />
         </Suspense>
       </div>
       <div index={1} label="Advanced">
@@ -36,7 +38,7 @@ const UserAccount = () => {
           <UserOrdersTab />
         </Suspense>
       </div>
-    </UserTab>
+    </SettingTab>
   );
 };
 
