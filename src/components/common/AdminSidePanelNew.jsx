@@ -2,8 +2,8 @@ import React from "react";
 
 
 
-import { Link } from 'react-router-dom';
-import { FEATURED_PRODUCTS, RECOMMENDED_PRODUCTS, SHOP, ADMIN_PRODUCTS, ADMIN_DASHBOARD } from 'constants/routes';
+import { Link, NavLink } from 'react-router-dom';
+import { FEATURED_PRODUCTS, RECOMMENDED_PRODUCTS, SHOP, ADMIN_PRODUCTS, ADMIN_DASHBOARD, ADMIN_POSTS } from 'constants/routes';
 
 
 
@@ -11,18 +11,21 @@ import { FEATURED_PRODUCTS, RECOMMENDED_PRODUCTS, SHOP, ADMIN_PRODUCTS, ADMIN_DA
 
 import { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
-import { FaCog, FaUserTie, FaColumns, FaThList } from "react-icons/fa";
+import { FaCog, FaUserTie, FaColumns, FaThList, FaBuffer } from "react-icons/fa";
 import {
   Menu,
   MenuItem,
   ProSidebar,
   SidebarHeader,
-  SubMenu
+  SubMenu,
+  SidebarContent
 } from "react-pro-sidebar";
 
 import "react-pro-sidebar/dist/css/styles.css";
 
 import styled from "styled-components";
+
+
 
 const Menuitem = styled(MenuItem)`
   :hover {
@@ -33,7 +36,7 @@ const Menuitem = styled(MenuItem)`
 `;
 
 const SideNavigation = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const styles = {
     sideBarHeight: {
       height: "145vh"
@@ -43,79 +46,100 @@ const SideNavigation = () => {
       margin: "10px"
     }
   };
+
+
+
   const onClickMenuIcon = () => {
     setCollapsed(!collapsed);
+
+
   };
   return (
     <ProSidebar style={styles.sideBarHeight} collapsed={collapsed}>
 
-      <SidebarHeader>
-        <div style={styles.menuIcon} onClick={onClickMenuIcon}>
-          <AiOutlineMenu />
-        </div>
-      </SidebarHeader>
+      {/* <SidebarContent> */}
 
-      <Menu
-        iconShape="square"
-      >
+        <SidebarHeader>
+          <div style={styles.menuIcon} onClick={onClickMenuIcon}>
+            <AiOutlineMenu />
+          </div>
+        </SidebarHeader>
 
-
-
-
-
-        {/* <Menuitem icon={<FaColumns />}> Dashboard</Menuitem> */}
-
-        <Menuitem 
-         icon={<FaColumns />} 
+        <Menu
+          iconShape="square"
         >
-        <Link
-          to={ADMIN_DASHBOARD}
+
+
+
+
+
+          {/* <Menuitem icon={<FaColumns />}> Dashboard</Menuitem> */}
+
+          {/* Attempt:1 */}
+
+          <Menuitem
+            icon={<FaColumns />}
 
           // className="button"
           >
-          Dashboard
-          {/* icon={<FaUserTie />} */}
+            <Link to={ADMIN_DASHBOARD}
+              // className="button"
+            >
+              Dashboard
+            </Link>
+          </Menuitem>
 
-        </Link>
-        </Menuitem>
 
-        
+          {/* Attempt:2 */}
 
-        <Menuitem 
-         icon={<FaUserTie />} 
-        >
-        <Link
-          to={ADMIN_PRODUCTS}
-
-          // className="button"
+          <Menuitem
+            icon={<FaUserTie />}
           >
-          Products
-          {/* icon={<FaUserTie />} */}
+            <Link
+              to={ADMIN_PRODUCTS}
 
-        </Link>
-        </Menuitem>
+            // className="button"
+            >
+              Products
+              {/* icon={<FaUserTie />} */}
 
-       
+            </Link>
+          </Menuitem>
 
-        
-
-
-
+          {/* Attempt:3 */}
 
 
-        <SubMenu title="Stages" icon={<FaThList />}>
+
+          <MenuItem
+            icon={<FaBuffer />}
+
+          >
+            <NavLink exact to={"/admin/posts"}>
+              Posts
+            </NavLink>
+          </MenuItem>
+
+
+
+
+
+
+          {/* <SubMenu title="Stages" icon={<FaBuffer />}>
           <Menuitem>Offer Letter</Menuitem>
           <MenuItem>Skill Matrix</MenuItem>
           <MenuItem>Know Your Company</MenuItem>
           <MenuItem>Joining Day Information</MenuItem>
           <MenuItem>Feedback</MenuItem>
           <MenuItem>Background Check</MenuItem>
-        </SubMenu>
-        <Menuitem icon={<FaCog />}>Settings</Menuitem>
+        </SubMenu> */}
+          <Menuitem icon={<FaCog />}>Settings</Menuitem>
 
 
 
-      </Menu>
+        </Menu>
+
+        {/* </SidebarContent> */}
+
     </ProSidebar>
   );
 };
