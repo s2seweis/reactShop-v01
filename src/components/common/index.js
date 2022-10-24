@@ -5,6 +5,10 @@ export { default as AdminSideBar } from './AdminSidePanel';
 
 export { default as AdminSideBarNew } from './AdminSidePanelNew';
 
+export { default as SideMenu } from './SideMenu';
+
+export { default as MenuItem } from './MenuItem';
+
 export { default as Badge } from './Badge';
 export { default as Boundary } from './Boundary';
 export { default as ColorChooser } from './ColorChooser';
