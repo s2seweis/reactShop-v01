@@ -56,6 +56,7 @@ const SideMenu = (props) => {
   }, [inactive]);
 
   //just an improvment and it is not recorded in video :(
+    
   const removeActiveClassFromSubMenu = () => {
     document.querySelectorAll(".sub-menu").forEach((el) => {
       el.classList.remove("active");

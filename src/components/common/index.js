@@ -7,6 +7,8 @@ export { default as AdminSideBarNew } from './AdminSidePanelNew';
 
 export { default as SideMenu } from './SideMenu';
 
+export { default as SideNavigation } from './sidenavigation';
+
 export { default as MenuItem } from './MenuItem';
 
 export { default as Badge } from './Badge';
