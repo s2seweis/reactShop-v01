@@ -2,11 +2,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import { AdminNavigation, AdminSideBar } from 'components/common';
-import { AdminSideBarNew } from 'components/common';
-import { SideNavigation } from 'components/common';
 
 // import { SideMenu } from 'components/common';
-import SideMenu, { menuItems } from "../components/common/SideMenu";
 
 import PropType from 'prop-types';
 import React from 'react';
@@ -20,13 +17,15 @@ import { useState } from "react";
 
 import "../styles/side/index.css"
 
+import SideMenu, { menuItems } from "../components/common/SideMenu";
+
 
 
 
 const AdminRoute = ({
   isAuth, role, component: Component, ...rest
 }) => {
-  // const [inactive, setInactive] = useState(false);
+  const [inactive, setInactive] = useState(false);
 
 
 
@@ -38,24 +37,20 @@ const AdminRoute = ({
         isAuth && role === 'ADMIN' ? (
           <>
             <AdminNavigation />
+
+            
             <main className="content-admin">
 
               {/* <AdminSideBar /> */}
-              {/* <AdminSideBarNew /> */}
-              {/* <SideNavigation /> */}
 
-
-
-              {/* <SideMenu
+              <SideMenu
                 onCollapse={(inactive) => {
                   console.log(inactive);
                   setInactive(inactive);
                 }}
-              /> */}
+              />
 
-
-
-              {/* <div className={`container ${inactive ? "inactive" : ""}`}>
+              <div className={`container ${inactive ? "inactive" : ""}`}>
 
                 {menuItems.map((menu, index) => (
                   <>
@@ -73,7 +68,10 @@ const AdminRoute = ({
                 ))}
 
 
-              </div> */}
+              </div>
+
+
+
 
 
 

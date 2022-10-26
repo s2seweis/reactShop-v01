@@ -47,13 +47,13 @@ export const menuItems = [
 const SideMenu = (props) => {
   const [inactive, setInactive] = useState(false);
 
-  useEffect(() => {
-    if (inactive) {
-      removeActiveClassFromSubMenu();
-    }
+  // useEffect(() => {
+  //   if (inactive) {
+  //     removeActiveClassFromSubMenu();
+  //   }
 
-    props.onCollapse(inactive);
-  }, [inactive]);
+  //   props.onCollapse(inactive);
+  // }, [inactive]);
 
   //just an improvment and it is not recorded in video :(
     
@@ -148,15 +148,7 @@ const SideMenu = (props) => {
         </ul>
       </div>
 
-      <div className="side-menu-footer">
-        {/* <div className="avatar">
-          <img src={user} alt="user" />
-        </div> */}
-        {/* <div className="user-info">
-          <h5>Rizwan Khan</h5>
-          <p>rizwankhan@gmail.com</p>
-        </div> */}
-      </div>
+      
     </div>
   );
 };

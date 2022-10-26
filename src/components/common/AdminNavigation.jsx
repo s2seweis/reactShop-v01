@@ -5,9 +5,11 @@ import { useSelector } from 'react-redux';
 // import { Link } from 'react-router-dom';
 import UserAvatar from 'views/account/components/UserAvatar';
 
-import "../../styles/side/index.css"
 import { useState } from "react";
+
+import "../../styles/side/index.css"
 import SideMenu, { menuItems } from "../common/SideMenu";
+
 import { Redirect, Route, BrowserRouter, Router, Switch, Link } from 'react-router-dom';
 
 
@@ -28,7 +30,9 @@ const AdminNavigation = () => {
 
 
     <nav className="navigation navigation-admin">
-      <SideMenu
+
+
+      {/* <SideMenu
         onCollapse={(inactive) => {
           console.log(inactive);
           setInactive(inactive);
@@ -53,12 +57,12 @@ const AdminNavigation = () => {
         ))}
 
 
-      </div>
+      </div> */}
 
       <div className="logo">
         <Link to={ADMIN_DASHBOARD} style={{ display: 'flex', alignItems: 'center' }}>
           {/* <img alt="Logo" src={logo} /> */}
-          <h3>ADMIN PANEL1</h3>
+          <h3>ADMIN PANEL2</h3>
         </Link>
       </div>
       <ul className="navigation-menu">
