@@ -12,6 +12,8 @@ import SideMenu, { menuItems } from "../common/SideMenu";
 
 import { Redirect, Route, BrowserRouter, Router, Switch, Link } from 'react-router-dom';
 
+import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
+
 
 
 
@@ -21,7 +23,9 @@ const AdminNavigation = () => {
     profile: state.profile
   }));
 
-  const [inactive, setInactive] = useState(false);
+  // const [inactive, setInactive] = useState(false);
+
+  // const { collapseSidebar } = useProSidebar();
 
 
 
@@ -32,14 +36,29 @@ const AdminNavigation = () => {
     <nav className="navigation navigation-admin">
 
 
+
+      {/* <div style={{ display: 'flex', height: '100%' }}>
+        <Sidebar>
+          <Menu>
+            <MenuItem> Documentation</MenuItem>
+            <MenuItem> Calendar</MenuItem>
+            <MenuItem> E-commerce</MenuItem>
+          </Menu>
+        </Sidebar>
+        <main>
+          <button onClick={() => collapseSidebar()}>Collapse</button>
+        </main>
+      </div> */}
+
+
       {/* <SideMenu
         onCollapse={(inactive) => {
           console.log(inactive);
           setInactive(inactive);
         }}
-      />
+      /> */}
 
-      <div className={`container ${inactive ? "inactive" : ""}`}>
+      {/* <div className={`container ${inactive ? "inactive" : ""}`}>
 
         {menuItems.map((menu, index) => (
           <>

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 // import logo from "../assets/logo/webscript.png";
 // import user from "../assets/user.jpg";
 
+import { ADMIN_PRODUCTS, ADMIN_ORDERS, ADMIN_POSTS, ADMIN_USERS1, ADMIN_SETTINGS, ADMIN_DASHBOARD } from 'constants/routes';
+
+
 
 import MenuItem from "./MenuItem";
 
@@ -13,35 +16,35 @@ import MenuItem from "./MenuItem";
 // added more menuItems for testing
 export const menuItems = [
   {
-    // name: "Dashboard1",
+    name: "Dashboard1",
     exact: true,
-    to: "/admin/dashboard",
+    to: ADMIN_DASHBOARD,
     iconClassName: "bi bi-arrow-right-square-fill",
   },
   {
-    name: "Content1",
+    name: "Posts",
     exact: true,
-    to: `/content`,
+    to: "/admin/posts",
     iconClassName: "bi bi-sign-stop",
-    subMenus: [
-      { name: "Courses", to: "/content/courses" },
-      { name: "Videos", to: "/content/videos" },
-    ],
+    // subMenus: [
+    //   { name: "Courses", to: "/content/courses" },
+    //   { name: "Videos", to: "/content/videos" },
+    // ],
   },
-  { name: "Design", to: `/design`, iconClassName: "bi bi-shield" },
+  // { name: "Design", to: `/design`, iconClassName: "bi bi-shield" },
   {
-    name: "Content 2",
+    name: "Users",
     exact: true,
-    to: `/content-2`,
+    to: `/admin/users1`,
     iconClassName: "bi bi-rss",
-    subMenus: [
-      { name: "Courses", to: "/content-2/courses" },
-      { name: "Videos", to: "/content-2/videos" },
-    ],
+    // subMenus: [
+    //   { name: "Courses", to: "/content-2/courses" },
+    //   { name: "Videos", to: "/content-2/videos" },
+    // ],
   },
-  { name: "Design 2", to: `/design-2`, iconClassName: "bi bi-vector-pen" },
-  { name: "Design 3", to: `/admin/products`, iconClassName: "bi bi-vector-pen" },
-  { name: "Design 4", to: `/design-4`, iconClassName: "bi bi-vector-pen" },
+  { name: "Settings", to: `/admin/settings`, iconClassName: "bi bi-shield" },
+  { name: "Products", to: `/admin/products`, iconClassName: "bi bi-vector-pen" },
+  { name: "Orders", to: `/admin/orders`, iconClassName: "bi bi-arrows-fullscreen" },
 ];
 
 const SideMenu = (props) => {
@@ -66,6 +69,7 @@ const SideMenu = (props) => {
   /*just a little improvement over click function of menuItem
     Now no need to use expand state variable in MenuItem component
   */
+
   useEffect(() => {
     let menuItems = document.querySelectorAll(".menu-item");
     menuItems.forEach((el) => {
@@ -102,7 +106,9 @@ const SideMenu = (props) => {
           <i class="bi bi-search"></i>
         </button>
 
-        <input type="text" placeholder="search" />
+        <input type="text" 
+        placeholder="search" 
+        />
       </div>
 
       <div className="divider"></div>
@@ -125,26 +131,7 @@ const SideMenu = (props) => {
             />
           ))}
 
-          {/* <li>
-            <a className="menu-item">
-              <div className="menu-icon">
-                <i class="bi bi-speedometer2"></i>
-              </div>
-              <span>Dashboard</span>
-            </a>
-          </li>
-          <MenuItem
-            name={"Content"}
-            subMenus={[{ name: "Courses" }, { name: "Videos" }]}
-          />
-          <li>
-            <a className="menu-item">
-              <div className="menu-icon">
-                <i class="bi bi-vector-pen"></i>
-              </div>
-              <span>Design</span>
-            </a>
-          </li> */}
+         
         </ul>
       </div>
 

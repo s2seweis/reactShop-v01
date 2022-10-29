@@ -41,7 +41,7 @@ body{
 
 
 .side-menu{
-  position: fixed;
+  /* position: fixed; */
   background: #000;
   width: 300px;
   height: 100%;
@@ -108,7 +108,7 @@ body{
   margin: 20px 0;
   width: 100%;
   box-sizing: border-box;
-  padding-left: 40px;
+  padding-left: 20px;
   color: #666;
 }
 
@@ -257,12 +257,12 @@ body{
   background: #333;
 }
 
-.container{
+/* .container1{
   margin-left: 300px;
   transition: margin-left .2s ease-in;
   padding: 50px;
   box-sizing: border-box;
-}
+} */
 
 .container.inactive{
   margin-left: 80px;

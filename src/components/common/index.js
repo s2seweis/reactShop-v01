@@ -1,15 +1,17 @@
+
+// old sidebar and header
 export { default as AdminNavigation } from './AdminNavigation';
-
-
 export { default as AdminSideBar } from './AdminSidePanel';
 
-export { default as AdminSideBarNew } from './AdminSidePanelNew';
 
+
+// new sidebar
 export { default as SideMenu } from './SideMenu';
-
-export { default as SideNavigation } from './sidenavigation';
-
 export { default as MenuItem } from './MenuItem';
+
+// side
+export { default as Side } from './Side';
+
 
 export { default as Badge } from './Badge';
 export { default as Boundary } from './Boundary';
