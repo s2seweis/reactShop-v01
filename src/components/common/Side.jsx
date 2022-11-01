@@ -1,16 +1,12 @@
 import { ADMIN_DASHBOARD } from 'constants/routes';
-import logo from 'images/logo-full.png';
 import React from 'react';
-import { useSelector } from 'react-redux';
-// import { Link } from 'react-router-dom';
-import UserAvatar from 'views/account/components/UserAvatar';
 
-import { useState } from "react";
+import { Icon } from '../common/Icon';
 
 import "../../styles/side/index.css"
-// import SideMenu, { menuItems } from "./SideMenu";
 
-import { Redirect, Route, BrowserRouter, Router, Switch, Link } from 'react-router-dom';
+
+
 
 import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
 
@@ -18,7 +14,7 @@ import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
 
 
 const Side = () => {
- 
+
 
 
   const { collapseSidebar } = useProSidebar();
@@ -36,13 +32,35 @@ const Side = () => {
       <div style={{ display: 'flex', height: '100%' }}>
         <Sidebar>
           <Menu>
+
             <MenuItem
-            icon="bi bi-2-square"
-            > 
-            Documentation
+            // class="bi bi-file-earmark-richtext"
+            >
+              Documentation1
             </MenuItem>
-            <MenuItem> Calendar</MenuItem>
-            <MenuItem> E-commerce</MenuItem>
+
+            <MenuItem
+            // class="bi bi-calendar"
+            >
+              Calendar
+            </MenuItem>
+
+            <MenuItem
+
+            >
+              E-commerce
+            </MenuItem>
+
+            <MenuItem
+
+            >Documentation
+            </MenuItem>
+
+            <MenuItem icon={<Icon name="book-2" />}>Documentation1</MenuItem>
+
+
+
+
           </Menu>
         </Sidebar>
         <main>
@@ -51,10 +69,10 @@ const Side = () => {
       </div>
 
 
-      
 
-      
-     
+
+
+
     </nav>
 
 
