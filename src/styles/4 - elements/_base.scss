@@ -113,13 +113,13 @@ h6 {
   padding-top: $xxl-size;
   overflow: hidden;
   display: flex;
-  justify-content: center;
+  // justify-content: center;
 
 }
 
 .content-admin-wrapper {
   overflow-y: scroll;
-  flex-grow: 1;
+  // flex-grow: 1;
   padding: $m-size 0;
   padding-top: 0;
   animation: fadeIn .5s ease;
@@ -127,6 +127,6 @@ h6 {
   padding: 10px 10px 10px 10px;
   justify-content: center;
   // display: flex;
-  left: 30px;
+  // left: 30px;
 
 }
