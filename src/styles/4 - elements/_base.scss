@@ -121,7 +121,21 @@ h6 {
   overflow-y: scroll;
   // flex-grow: 1;
   padding: $m-size 0;
-  padding-top: 0;
+  // padding-top: 0;
+  animation: fadeIn .5s ease;
+  position: relative;
+  // padding: 10px 10px 10px 10px;
+  justify-content: center;
+  // display: flex;
+  // left: 30px;
+
+}
+
+.content-admin-wrapper-sidebar {
+  // overflow-y: scroll;
+  // flex-grow: 1;
+  padding: $m-size 0;
+  // padding-top: 0;
   animation: fadeIn .5s ease;
   position: relative;
   // padding: 10px 10px 10px 10px;

@@ -1,90 +1,151 @@
-
-//import useState hook to create menu collapse state
-import React, { useState } from "react";
-
-//import react pro sidebar components
+import React from "react";
+import { useIntl } from "react-intl";
+import { NavLink } from "react-router-dom";
 import {
   ProSidebar,
   Menu,
   MenuItem,
+  SubMenu,
   SidebarHeader,
   SidebarFooter,
-  SidebarContent,
+  SidebarContent
 } from "react-pro-sidebar";
-
-//import icons from react icons
-import { FaList, FaRegHeart } from "react-icons/fa";
-import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
-import { RiPencilLine } from "react-icons/ri";
-import { BiCog } from "react-icons/bi";
-
-
-//import sidebar css from react-pro-sidebar module and our custom css 
+import {
+  FaTachometerAlt,
+  FaGem,
+  FaList,
+  FaGithub,
+  FaRegLaughWink,
+  FaHeart
+} from "react-icons/fa";
 import "react-pro-sidebar/dist/css/styles.css";
-import "./Header.css";
+import { useHistory, useLocation } from "react-router-dom";
 
-
-const Header = () => {
-  
-    //create initial menuCollapse state using useState hook
-    const [menuCollapse, setMenuCollapse] = useState(false)
-
-    //create a custom function that will change menucollapse state from false to true and true to false
-  const menuIconClick = () => {
-    //condition checking to change state from true to false and vice versa
-    menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
-  };
-
+const Aside = ({ rtl, toggled, handleToggleSidebar }) => {
+  const intl = useIntl();
+  const history = useHistory();
+  const location = useLocation();
+about
   return (
-    <>
-      <div id="header">
-          {/* collapsed props to change menu size using menucollapse state */}
-        <ProSidebar collapsed={menuCollapse}>
-          <SidebarHeader>
-          <div className="logotext">
-              {/* small and big change using menucollapse state */}
-              <p>{menuCollapse ? "Logo" : "Big Logo"}</p>
+    <ProSidebar
+      rtl={rtl}
+      toggled={toggled}
+      breakPoint="md"
+      onToggle={handleToggleSidebar}
+    >
+      <SidebarHeader>
+        <div className="sidebar-header">
+          <p className="user-name text-white mb-2">John Doe</p>
+          <p className="user-email">johndoe@withinpixels.com</p>
+          <div className="d-flex justify-content-center">
+            <div className="position-absolute bottom-0">
+              <img
+                src="./assets/images/user.jpg"
+                alt="User profile"
+                className="user-image"
+              />
             </div>
+          </div>
+        </div>
+      </SidebarHeader>
 
+      <SidebarContent>
+        <Menu iconShape="circle">
+          <MenuItem
+            icon={<FaTachometerAlt />}
+            suffix={
+              <span className="badge red">
+                {intl.formatMessage({ id: "new" })}
+              </span>
+            }
+          >
+            <NavLink exact to={"/"}>
+              {intl.formatMessage({ id: "dashboard" })}
+            </NavLink>
+          </MenuItem>
+          <MenuItem icon={<FaGem />}>
+            {" "}
+            {intl.formatMessage({ id: "components" })}
+          </MenuItem>
+        </Menu>
+        <Menu iconShape="circle">
+          <SubMenu
+            suffix={<span className="badge yellow">3</span>}
+            title={intl.formatMessage({ id: "withSuffix" })}
+            icon={<FaRegLaughWink />}
+            data-element={location.pathname}
+          >
+            <MenuItem>
+              <NavLink exact to={"/about"}>
+                {intl.formatMessage({ id: "submenu" })} About
+              </NavLink>
+            </MenuItem>
+            <MenuItem>
+              <NavLink exact to={"/"}>
+                {intl.formatMessage({ id: "submenu" })} Home 2
+              </NavLink>
+            </MenuItem>
+            <MenuItem>{intl.formatMessage({ id: "submenu" })} 3</MenuItem>
+          </SubMenu>
+          <SubMenu
+            prefix={<span className="badge gray">3</span>}
+            title={intl.formatMessage({ id: "withPrefix" })}
+            icon={<FaHeart />}
+            data-element={location.pathname}
+          >
+            <MenuItem>
+              <NavLink exact to={"/"}>
+                {intl.formatMessage({ id: "submenu" })} 1 Home
+              </NavLink>
+            </MenuItem>
+            <MenuItem>{intl.formatMessage({ id: "submenu" })} 2</MenuItem>
+            <MenuItem>{intl.formatMessage({ id: "submenu" })} 3</MenuItem>
+          </SubMenu>
+          <SubMenu
+            title={intl.formatMessage({ id: "multiLevel" })}
+            icon={<FaList />}
+          >
+            <MenuItem>{intl.formatMessage({ id: "submenu" })} 1 </MenuItem>
+            <MenuItem>{intl.formatMessage({ id: "submenu" })} 2 </MenuItem>
+            <SubMenu title={`${intl.formatMessage({ id: "submenu" })} 3`}>
+              <MenuItem>{intl.formatMessage({ id: "submenu" })} 3.1 </MenuItem>
+              <MenuItem>{intl.formatMessage({ id: "submenu" })} 3.2 </MenuItem>
+              <SubMenu title={`${intl.formatMessage({ id: "submenu" })} 3.3`}>
+                <MenuItem>
+                  {intl.formatMessage({ id: "submenu" })} 3.3.1{" "}
+                </MenuItem>
+                <MenuItem>
+                  {intl.formatMessage({ id: "submenu" })} 3.3.2{" "}
+                </MenuItem>
+                <MenuItem>
+                  {intl.formatMessage({ id: "submenu" })} 3.3.3{" "}
+                </MenuItem>
+              </SubMenu>
+            </SubMenu>
+          </SubMenu>
+        </Menu>
+      </SidebarContent>
 
-
-
-            <div className="closemenu" onClick={menuIconClick}>
-                {/* changing menu collapse icon on click */}
-              {menuCollapse ? (
-                <FiArrowRightCircle/>
-              ) : (
-                <FiArrowLeftCircle/>
-              )}
-            </div>
-
-
-
-
-
-
-            
-          </SidebarHeader>
-          <SidebarContent>
-            <Menu iconShape="square">
-              <MenuItem active={true} icon={<FiHome />}>
-                Home
-              </MenuItem>
-              <MenuItem icon={<FaList />}>Category</MenuItem>
-              <MenuItem icon={<FaRegHeart />}>Favourite</MenuItem>
-              <MenuItem icon={<RiPencilLine />}>Author</MenuItem>
-              <MenuItem icon={<BiCog />}>Settings</MenuItem>
-            </Menu>
-          </SidebarContent>
-          <SidebarFooter>
-            <Menu iconShape="square">
-              <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
-            </Menu>
-          </SidebarFooter>
-        </ProSidebar>
-      </div>
-    </>
+      <SidebarFooter style={{ textAlign: "center" }}>
+        <div
+          className="sidebar-btn-wrapper"
+          style={{
+            padding: "20px 24px"
+          }}
+        >
+          <a
+            href="https://github.com/azouaoui-med/react-pro-sidebar"
+            target="_blank"
+            className="sidebar-btn"
+            rel="noopener noreferrer"
+          >
+            <FaGithub />
+            <span> {intl.formatMessage({ id: "viewSource" })}</span>
+          </a>
+        </div>
+      </SidebarFooter>
+    </ProSidebar>
   );
 };
 
-export default Header;
+export default Aside;

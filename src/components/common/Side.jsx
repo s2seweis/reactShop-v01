@@ -52,22 +52,46 @@ const Side = () => {
 
 
 
-    <nav className="content-admin-wrapper">
+    <nav className="content-admin-wrapper-sidebar">
 
 
 
       <div style={{ display: 'flex', height: '100%' }}>
 
+
+
+{/* !!!next navlink goes into menuitem */}
+
         <Sidebar
-          style={{ minWidth: '60px', collapsedWidth: '60px' }}
+
+        // style={{ 
+        //   maxWidth: '270px', 
+        //   collapsedWidth: '60px',
+        //   backgroundColor: 'black'
+        // }}
+
 
         >
           <Menu>
 
 
 
+            {/* <NavLink
+              to={ADMIN_DASHBOARD}> */}
+              <MenuItem
+                // active={window.location.pathname === "/admin/dashboard"}
+
+                icon={<Icon name="dashboard" />}
+              >
+                Dashboard
+
+              </MenuItem>
+            {/* </NavLink> */}
+
+
+
             <NavLink
-             to={ADMIN_DASHBOARD}>
+              to={ADMIN_SETTINGS}>
               <MenuItem
 
                 icon={<Icon name="settings" />}
@@ -78,56 +102,78 @@ const Side = () => {
             </NavLink>
 
 
+
             <NavLink
-             to={ADMIN_POSTS}>
+              to={ADMIN_POSTS}>
 
-            <MenuItem
+              <MenuItem
 
-              icon={<Icon name="posts" />}
-            >
-              Posts
+                icon={<Icon name="posts" />}
+              >
+                Posts
 
-            </MenuItem>
+              </MenuItem>
 
             </NavLink>
 
 
-            <MenuItem
 
-              icon={<Icon name="users" />}
-            >
-              Users
+            <NavLink
+              to={ADMIN_USERS1}>
 
-            </MenuItem>
+              <MenuItem
 
-            <MenuItem
+                icon={<Icon name="users" />}
+              >
+                Users
 
-              icon={<Icon name="products" />}
-            >
-              Products
+              </MenuItem>
 
-            </MenuItem>
-
-            <MenuItem
-
-              icon={<Icon name="orders" />}
-            >
-              Orders
-
-            </MenuItem>
+            </NavLink>
 
 
 
 
+            <NavLink
+              to={ADMIN_PRODUCTS}>
+
+              <MenuItem
+
+                icon={<Icon name="products" />}
+              >
+                Products
+
+              </MenuItem>
+
+            </NavLink>
+
+
+
+            <NavLink
+              to={ADMIN_ORDERS}>
+
+              <MenuItem
+
+                icon={<Icon name="orders" />}
+              >
+                Orders
+
+              </MenuItem>
+
+            </NavLink>
 
 
 
 
 
 
-            <MenuItem icon={<Icon name="book-2" />}>Documentation1</MenuItem>
 
+            <NavLink
+              to={ADMIN_DASHBOARD}>
 
+              <MenuItem icon={<Icon name="book-2" />}>Docs</MenuItem>
+
+            </NavLink>
 
 
 
