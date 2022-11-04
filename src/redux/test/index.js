@@ -75,11 +75,14 @@ about
             icon={<FaRegLaughWink />}
             data-element={location.pathname}
           >
+
+            
             <MenuItem>
               <NavLink exact to={"/about"}>
                 {intl.formatMessage({ id: "submenu" })} About
               </NavLink>
             </MenuItem>
+
             <MenuItem>
               <NavLink exact to={"/"}>
                 {intl.formatMessage({ id: "submenu" })} Home 2

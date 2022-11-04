@@ -4,18 +4,18 @@ import "../../styles/side/index.css"
 
 // Alternative
 
-import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
+// import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 
 
 import { Sidebar, Menu, MenuItem, useProSidebar, collapseSidebar } from 'react-pro-sidebar';
 
 // React Sidebar Pro Yellow Version
 
-import { FiHome, FiLogOut, FiArrowLeftCircle, FiArrowRightCircle, FiSettings } from "react-icons/fi";
+import { FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
 
 import { ADMIN_PRODUCTS, ADMIN_ORDERS, ADMIN_POSTS, ADMIN_USERS1, ADMIN_SETTINGS, ADMIN_DASHBOARD } from 'constants/routes';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory, useLocation, Link } from 'react-router-dom';
 
 
 
@@ -43,6 +43,10 @@ const Side = () => {
 
   const toggleFavorite = () => setFavorite((prev) => !prev);
 
+  // Hook
+
+  const history = useHistory();
+
 
 
 
@@ -60,7 +64,7 @@ const Side = () => {
 
 
 
-{/* !!!next navlink goes into menuitem */}
+        {/* !!!next navlink goes into menuitem */}
 
         <Sidebar
 
@@ -76,16 +80,68 @@ const Side = () => {
 
 
 
+
+            {/* Its working - setting status to active!!!! */}
+
+            <MenuItem
+              routerLink={<Link to="/admin/dashboard" />}
+              active={window.location.pathname === "/admin/dashboard"}
+              icon={<Icon name="dashboard" />}
+            >
+
+              Dashboard11
+
+              {/* <Link to="/admin/dashboard" /> */}
+
+
+            </MenuItem>
+
+
+
+
+
+
+            <MenuItem
+
+              // routerLink={<Link to={ADMIN_DASHBOARD} />}
+              routerLink={<Link to="/admin/dashboard" />}
+              icon={<Icon name="dashboard" />}
+            >
+
+
+              About1
+
+
+              {/* Dashboard */}
+
+            </MenuItem>
+
+
+
+            <MenuItem icon={<Icon name="dashboard" />}>
+
+              <NavLink exact to={ADMIN_DASHBOARD}>
+                About2
+              </NavLink>
+
+              {/* Dashboard */}
+
+            </MenuItem>
+
+
+
+
             {/* <NavLink
               to={ADMIN_DASHBOARD}> */}
-              <MenuItem
-                // active={window.location.pathname === "/admin/dashboard"}
+            <MenuItem
+              // active={window.location.pathname === "/admin/dashboard"}
 
-                icon={<Icon name="dashboard" />}
-              >
-                Dashboard
+              icon={<Icon name="dashboard" />}
+            >
 
-              </MenuItem>
+              Dashboard
+
+            </MenuItem>
             {/* </NavLink> */}
 
 
