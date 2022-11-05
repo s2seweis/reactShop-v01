@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Icon } from '../common/Icon';
-import "../../styles/side/index.css"
+import '../../styles/side/index.css'
 
 // Alternative
 
@@ -11,7 +11,7 @@ import { Sidebar, Menu, MenuItem, useProSidebar, collapseSidebar } from 'react-p
 
 // React Sidebar Pro Yellow Version
 
-import { FiArrowLeftCircle, FiArrowRightCircle } from "react-icons/fi";
+import { FiArrowLeftCircle, FiArrowRightCircle } from 'react-icons/fi';
 
 import { ADMIN_PRODUCTS, ADMIN_ORDERS, ADMIN_POSTS, ADMIN_USERS1, ADMIN_SETTINGS, ADMIN_DASHBOARD } from 'constants/routes';
 
@@ -89,7 +89,107 @@ const Side = () => {
               icon={<Icon name="dashboard" />}
             >
 
-              Dashboard11
+              Dashboard
+
+              {/* <Link to="/admin/dashboard" /> */}
+
+
+            </MenuItem>
+
+
+
+            <MenuItem
+              // routerLink={<Link to={ADMIN_DASHBOARD} />}
+              // active={window.location.pathname === "/admin/dashboard"}
+              icon={<Icon name="messages" />}
+            >
+
+              Messages
+
+              {/* <Link to="/admin/dashboard" /> */}
+
+
+            </MenuItem>
+
+
+            <MenuItem
+              routerLink={<Link to={ADMIN_SETTINGS} />}
+              active={window.location.pathname === "/admin/settings"}
+              icon={<Icon name="settings" />}
+            >
+
+              Settings
+
+              {/* <Link to="/admin/dashboard" /> */}
+
+
+            </MenuItem>
+
+
+            <MenuItem
+              routerLink={<Link to={ADMIN_POSTS} />}
+              active={window.location.pathname === "/admin/posts"}
+              icon={<Icon name="posts" />}
+            >
+
+              Posts
+
+              {/* <Link to="/admin/dashboard" /> */}
+
+
+            </MenuItem>
+
+
+            <MenuItem
+              routerLink={<Link to={ADMIN_USERS1} />}
+              active={window.location.pathname === "/admin/users1"}
+              icon={<Icon name="users" />}
+            >
+
+              Users
+
+              {/* <Link to="/admin/dashboard" /> */}
+
+
+            </MenuItem>
+            
+            
+            
+            <MenuItem
+              routerLink={<Link to={ADMIN_PRODUCTS} />}
+              active={window.location.pathname === "/admin/products"}
+              icon={<Icon name="products" />}
+            >
+
+              Products
+
+              {/* <Link to="/admin/dashboard" /> */}
+
+
+            </MenuItem>
+
+
+            <MenuItem
+              routerLink={<Link to={ADMIN_ORDERS} />}
+              active={window.location.pathname === "/admin/orders"}
+              icon={<Icon name="orders" />}
+            >
+
+              Orders
+
+              {/* <Link to="/admin/dashboard" /> */}
+
+
+            </MenuItem>
+
+
+            <MenuItem
+              // routerLink={<Link to={ADMIN_ORDERS} />}
+              // active={window.location.pathname === "/admin/orders"}
+              icon={<Icon name="book-2" />}
+            >
+
+              Docs
 
               {/* <Link to="/admin/dashboard" /> */}
 
@@ -101,138 +201,7 @@ const Side = () => {
 
 
 
-            <MenuItem
-
-              // routerLink={<Link to={ADMIN_DASHBOARD} />}
-              routerLink={<Link to="/admin/dashboard" />}
-              icon={<Icon name="dashboard" />}
-            >
-
-
-              About1
-
-
-              {/* Dashboard */}
-
-            </MenuItem>
-
-
-
-            <MenuItem icon={<Icon name="dashboard" />}>
-
-              <NavLink exact to={ADMIN_DASHBOARD}>
-                About2
-              </NavLink>
-
-              {/* Dashboard */}
-
-            </MenuItem>
-
-
-
-
-            {/* <NavLink
-              to={ADMIN_DASHBOARD}> */}
-            <MenuItem
-              // active={window.location.pathname === "/admin/dashboard"}
-
-              icon={<Icon name="dashboard" />}
-            >
-
-              Dashboard
-
-            </MenuItem>
-            {/* </NavLink> */}
-
-
-
-            <NavLink
-              to={ADMIN_SETTINGS}>
-              <MenuItem
-
-                icon={<Icon name="settings" />}
-              >
-                Settings
-
-              </MenuItem>
-            </NavLink>
-
-
-
-            <NavLink
-              to={ADMIN_POSTS}>
-
-              <MenuItem
-
-                icon={<Icon name="posts" />}
-              >
-                Posts
-
-              </MenuItem>
-
-            </NavLink>
-
-
-
-            <NavLink
-              to={ADMIN_USERS1}>
-
-              <MenuItem
-
-                icon={<Icon name="users" />}
-              >
-                Users
-
-              </MenuItem>
-
-            </NavLink>
-
-
-
-
-            <NavLink
-              to={ADMIN_PRODUCTS}>
-
-              <MenuItem
-
-                icon={<Icon name="products" />}
-              >
-                Products
-
-              </MenuItem>
-
-            </NavLink>
-
-
-
-            <NavLink
-              to={ADMIN_ORDERS}>
-
-              <MenuItem
-
-                icon={<Icon name="orders" />}
-              >
-                Orders
-
-              </MenuItem>
-
-            </NavLink>
-
-
-
-
-
-
-
-            <NavLink
-              to={ADMIN_DASHBOARD}>
-
-              <MenuItem icon={<Icon name="book-2" />}>Docs</MenuItem>
-
-            </NavLink>
-
-
-
+          
 
 
 
