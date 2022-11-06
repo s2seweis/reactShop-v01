@@ -11,7 +11,7 @@ export { default as MenuItem } from './MenuItem';
 
 // side
 export { default as Side } from './Side';
-// export { default as Icon } from './Icon';
+export { Icon } from './Icon';
 
 
 export { default as Badge } from './Badge';

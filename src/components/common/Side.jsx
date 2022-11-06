@@ -2,14 +2,11 @@ import React, { useState } from 'react';
 import { Icon } from '../common/Icon';
 import '../../styles/side/index.css'
 
-// Alternative
 
-// import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 
 
 import { Sidebar, Menu, MenuItem, useProSidebar, collapseSidebar } from 'react-pro-sidebar';
 
-// React Sidebar Pro Yellow Version
 
 import { FiArrowLeftCircle, FiArrowRightCircle } from 'react-icons/fi';
 
@@ -64,16 +61,15 @@ const Side = () => {
 
 
 
-        {/* !!!next navlink goes into menuitem */}
+
 
         <Sidebar
-
+          defaultCollapsed="true"
         // style={{ 
         //   maxWidth: '270px', 
         //   collapsedWidth: '60px',
         //   backgroundColor: 'black'
         // }}
-
 
         >
           <Menu>
@@ -81,7 +77,7 @@ const Side = () => {
 
 
 
-            {/* Its working - setting status to active!!!! */}
+
 
             <MenuItem
               routerLink={<Link to="/admin/dashboard" />}
@@ -152,9 +148,9 @@ const Side = () => {
 
 
             </MenuItem>
-            
-            
-            
+
+
+
             <MenuItem
               routerLink={<Link to={ADMIN_PRODUCTS} />}
               active={window.location.pathname === "/admin/products"}
@@ -200,11 +196,7 @@ const Side = () => {
 
 
 
-
-          
-
-
-
+            {/* open and close the sidebar */}
 
             <MenuItem >
               {/* <span> */}
@@ -214,18 +206,19 @@ const Side = () => {
                 onClick={() => { toggleFavorite(); collapseSidebar() }}
                 className="top-rated-car-react-button">
                 {favorite ? (
-                  <FiArrowRightCircle
+                  <FiArrowLeftCircle
                     // className='bigger' 
                     style={{ color: "#F76631", width: "24px", height: "24px" }} />
 
                 ) : (
-                  <FiArrowLeftCircle
+                  <FiArrowRightCircle
                     // className='bigger' 
                     style={{ color: "#F76631", width: "24px", height: "24px" }} />
                 )}
               </button>
               {/* </span> */}
             </MenuItem>
+
 
 
 
