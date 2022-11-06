@@ -38,8 +38,33 @@
 
 }
 
+// change the width of the user component + media querry 
+
 .item-products {
   padding: 0;
+  width: 800px;
+
+
+  @media (max-width: $mobile) {
+
+
+    // position: relative;
+    // padding: $s-size;
+    width: 250px;
+    // border: 1px solid transparent;
+    // justify-content: center;
+
+
+
+
+
+
+
+   
+  }
+
+
+
 }
 
 .item:hover>.item-action {
@@ -76,6 +101,20 @@
   justify-content: flex-end;
   align-items: center;
   display: none;
+}
+
+.item-action-user {
+  // position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: $s-size;
+  background: $white;
+  grid-column: span 2;
+  display: flex;
+  // justify-content: flex-end;
+  align-items: center;
+  // display: none;
 }
 
 .item-action-order {

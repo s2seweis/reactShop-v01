@@ -36,15 +36,15 @@ const User1Item = ({ user1 }) => {
   };
 
   return (
-    <SkeletonTheme
-      color="#e1e1e1"
-      highlightColor="#f2f2f2"
-    >
+    // <SkeletonTheme
+    //   color="#e1e1e1"
+    //   highlightColor="#f2f2f2"
+    // >
       <div
         className={`item item-products ${!user1.id && 'item-loading'}`}
         ref={user1Ref}
       >
-        <div className="grid grid-count-8">
+        <div className="grid grid-count-1-8fr">
           <div className="grid-col item-img-wrapper">
             {user1.avatar ? (
               <ImageLoader
@@ -84,17 +84,19 @@ const User1Item = ({ user1 }) => {
           {/* <div className="grid-col">
             <span>{user1.price ? displayMoney(user1.price) : <Skeleton width={30} />}</span>
           </div> */}
+
           <div className="grid-col">
             <span>
               {user1.dateJoined ? displayDate(user1.dateJoined) : <Skeleton width={30} />}
             </span>
           </div>
+          
           {/* <div className="grid-col">
             <span>{user1.maxQuantity || <Skeleton width={20} />}</span>
           </div> */}
         </div>
         {user1.id && (
-          <div className="item-action">
+          <div className="item-action-user">
             <button
               className="button button-border button-small"
               onClick={onClickEdit}
@@ -131,7 +133,7 @@ const User1Item = ({ user1 }) => {
           </div>
         )}
       </div>
-    </SkeletonTheme>
+    // </SkeletonTheme>
   );
 };
 

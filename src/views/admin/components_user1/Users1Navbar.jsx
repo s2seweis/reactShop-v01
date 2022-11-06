@@ -11,27 +11,41 @@ const Users1Navbar = (props) => {
 
   return (
     <div className="product-admin-header">
-      <h3 className="product-admin-header-title">
-        Users1 &nbsp;
+
+
+
+      <h5 className="product-admin-header-title"
+       style={{ 
+          width: '400px', 
+         
+          backgroundColor: 'red'
+        }}
+      
+      >
+        Users2 &nbsp;
         (
         {`${users1Count} / ${totalUsers1Count}`}
         )
-      </h3>
+      </h5>
+
+
+
+
       <SearchBar />
             &nbsp;
-      <FiltersToggle>
+      {/* <FiltersToggle>
         <button className="button-muted button-small" type="button">
           <FilterOutlined />
           &nbsp;More Filters
         </button>
-      </FiltersToggle>
+      </FiltersToggle> */}
       <button
         className="button button-small"
         onClick={() => history.push(ADD_USER1)}
         type="button"
       >
         <PlusOutlined />
-        &nbsp; Add New User1
+        &nbsp; Add New User2
       </button>
     </div>
   );

@@ -64,6 +64,7 @@ const Side = () => {
 
 
         <Sidebar
+        // overwrite devaultCollapsed property
           defaultCollapsed="true"
         // style={{ 
         //   maxWidth: '270px', 

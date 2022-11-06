@@ -7,9 +7,9 @@ const Users1Table = ({ filteredUsers1 }) => (
   <div>
     {filteredUsers1.length > 0 && (
       <div className="grid grid-product grid-count-8">
-        <div className="grid-col" />
+        {/* <div className="grid-col" />
         <div className="grid-col">
-          <h5>fullname</h5>
+          <h5>fullname1</h5>
         </div>
         <div className="grid-col">
           <h5>Role</h5>
@@ -25,7 +25,7 @@ const Users1Table = ({ filteredUsers1 }) => (
         </div>
         <div className="grid-col">
           <h5>Date Joined</h5>
-        </div>
+        </div> */}
         {/* <div className="grid-col">
           <h5>Qty</h5>
         </div> */}
