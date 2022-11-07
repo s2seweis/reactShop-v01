@@ -36,15 +36,15 @@ const User1Item = ({ user1 }) => {
   };
 
   return (
-    // <SkeletonTheme
-    //   color="#e1e1e1"
-    //   highlightColor="#f2f2f2"
-    // >
+    <SkeletonTheme
+      color="#e1e1e1"
+      highlightColor="#f2f2f2"
+    >
       <div
         className={`item item-products ${!user1.id && 'item-loading'}`}
         ref={user1Ref}
       >
-        <div className="grid grid-count-1-8fr">
+        <div className="grid grid-count-8">
           <div className="grid-col item-img-wrapper">
             {user1.avatar ? (
               <ImageLoader
@@ -133,7 +133,7 @@ const User1Item = ({ user1 }) => {
           </div>
         )}
       </div>
-    // </SkeletonTheme>
+    </SkeletonTheme>
   );
 };
 

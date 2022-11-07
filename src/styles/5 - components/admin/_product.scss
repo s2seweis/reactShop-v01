@@ -90,7 +90,21 @@
 // ---- 
 // last part
 .item-action {
-  position: absolute;
+  // position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: $s-size;
+  background: $white;
+  grid-column: span 2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  display: none;
+}
+
+.item-action {
+  // position: absolute;
   right: 0;
   top: 0;
   bottom: 0;
@@ -112,7 +126,7 @@
   background: $white;
   grid-column: span 2;
   display: flex;
-  // justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   // display: none;
 }

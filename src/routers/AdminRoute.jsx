@@ -20,7 +20,7 @@ import "../styles/side/index.css"
 
 import SideMenu, { menuItems } from "../components/common/SideMenu";
 
-import Side from "../components/common/side";
+import Side from "../components/common/Side";
 
 // import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 
