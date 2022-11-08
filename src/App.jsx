@@ -7,6 +7,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 import AppRouter from 'routers/AppRouter';
 import { ProSidebarProvider } from 'react-pro-sidebar';
 
+
+
 const App = ({ store, persistor }) => { 
 
   

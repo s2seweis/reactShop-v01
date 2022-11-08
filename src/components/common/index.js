@@ -14,6 +14,11 @@ export { default as Side } from './Side';
 // export { Icon } from './Icon';
 
 
+// Hamburger
+export { default as MenuBurger } from './MenuBurger';
+
+
+
 export { default as Badge } from './Badge';
 export { default as Boundary } from './Boundary';
 export { default as ColorChooser } from './ColorChooser';
