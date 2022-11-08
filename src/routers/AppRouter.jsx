@@ -9,6 +9,10 @@ import AdminRoute from './AdminRoute';
 import ClientRoute from './ClientRoute';
 import PublicRoute from './PublicRoute';
 
+import MenuBurger from '../components/common/MenuBurger';
+
+import '../styles/menu/index.css'
+
 // Revert back to history v4.10.0 because
 // v5.0 breaks navigation
 export const history = createBrowserHistory();
@@ -16,6 +20,7 @@ export const history = createBrowserHistory();
 const AppRouter = () => (
   <Router history={history}>
     <>
+      <MenuBurger />
       <Navigation />
       <Basket />
       <Switch>
