@@ -609,13 +609,13 @@
 
 
 .product-form-inputs {
-  width: 75%;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .product-form-file {
-  width: 25%;
+  width: 50%;
   margin-left: $l-size;
   display: flex;
   flex-direction: column;

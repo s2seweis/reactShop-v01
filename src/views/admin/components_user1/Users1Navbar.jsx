@@ -16,13 +16,14 @@ const Users1Navbar = (props) => {
 
       <h5 className="product-admin-header-title"
        style={{ 
-          width: '400px', 
+          width: '200px', 
          
-          backgroundColor: 'red'
+          // backgroundColor: 'red'
+          color: 'red'
         }}
       
       >
-        Users2 &nbsp;
+        {/* Users2 &nbsp; */}
         (
         {`${users1Count} / ${totalUsers1Count}`}
         )
@@ -45,7 +46,7 @@ const Users1Navbar = (props) => {
         type="button"
       >
         <PlusOutlined />
-        &nbsp; Add New User2
+        &nbsp; Add Users
       </button>
     </div>
   );

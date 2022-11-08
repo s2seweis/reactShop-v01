@@ -304,6 +304,9 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
                 </button>
               </div>
             </div>
+
+            <div className="d-flex">
+
             {/* ----THUBMNAIL ----1 */}
             <div className="product-form-file">
               <div className="product-form-field">
@@ -390,6 +393,7 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
             </div>
 
             {/* ----THUBMNAIL ----END */}
+            </div>
            
           </Form>
         )}

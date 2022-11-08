@@ -11,27 +11,27 @@ const PostsNavbar = (props) => {
 
   return (
     <div className="product-admin-header">
-      <h3 className="product-admin-header-title">
+      <h5 className="product-admin-header-title">
         Posts &nbsp;
         (
         {`${postsCount} / ${totalPostsCount}`}
         )
-      </h3>
+      </h5>
       <SearchBar />
             &nbsp;
       <FiltersTooglePost>
-        <button className="button-muted button-small" type="button">
+        <button className="button-muted button-small-products" type="button">
           <FilterOutlined />
           &nbsp;More Filters
         </button>
       </FiltersTooglePost>
       <button
-        className="button button-small"
+        className="button button-small-products"
         onClick={() => history.push(ADD_POST)}
         type="button"
       >
         <PlusOutlined />
-        &nbsp; Add New Post2
+        &nbsp; Add Posts
       </button>
     </div>
   );

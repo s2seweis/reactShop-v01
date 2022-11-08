@@ -19,7 +19,7 @@
 }
 
 .user-profile-banner-wrapper {
-  width: 100%;
+  width: 90%;
   height: 100%;
   position: relative;
   background: lighten($border-color, 3%);
@@ -79,6 +79,8 @@
 
 .user-profile-details {
   padding: 9.5rem $m-size $l-size;
+  width: 90%;
+
 
   & > div {
     margin-bottom: $s-size;

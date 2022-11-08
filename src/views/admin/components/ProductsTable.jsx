@@ -6,8 +6,8 @@ import { ProductItem } from '.';
 const ProductsTable = ({ filteredProducts }) => (
   <div>
     {filteredProducts.length > 0 && (
-      <div className="grid grid-product grid-count-6">
-        <div className="grid-col" />
+      <div className="grid ">
+        {/* <div className="grid-col" />
         <div className="grid-col">
           <h5>Name</h5>
         </div>
@@ -22,7 +22,7 @@ const ProductsTable = ({ filteredProducts }) => (
         </div>
         <div className="grid-col">
           <h5>Qty</h5>
-        </div>
+        </div> */}
       </div>
     )}
     {filteredProducts.length === 0 ? new Array(10).fill({}).map((product, index) => (

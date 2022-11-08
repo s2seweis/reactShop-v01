@@ -5,7 +5,7 @@ import { PostItem } from '.';
 
 const PostsTable = ({ filteredPosts }) => (
   <div>
-    {filteredPosts.length > 0 && (
+    {/* {filteredPosts.length > 0 && (
       <div className="grid grid-product grid-count-9">
         <div className="grid-col">
           <h5>Image1</h5>
@@ -32,7 +32,7 @@ const PostsTable = ({ filteredPosts }) => (
           <h5>Qty</h5>
         </div>
       </div>
-    )}
+    )} */}
     {filteredPosts.length === 0 ? new Array(10).fill({}).map((post, index) => (
       <PostItem
         // eslint-disable-next-line react/no-array-index-key

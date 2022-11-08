@@ -11,27 +11,28 @@ const ProductsNavbar = (props) => {
 
   return (
     <div className="product-admin-header">
-      <h3 className="product-admin-header-title">
+      <h5 className="product-admin-header-title">
         Products &nbsp;
         (
         {`${productsCount} / ${totalProductsCount}`}
         )
-      </h3>
+      </h5>
       <SearchBar />
             &nbsp;
       <FiltersToggle>
-        <button className="button-muted button-small" type="button">
+        <button className="
+        button-muted button-small-products" type="button">
           <FilterOutlined />
           &nbsp;More Filters
         </button>
       </FiltersToggle>
       <button
-        className="button button-small"
+        className="button button-small-products"
         onClick={() => history.push(ADD_PRODUCT)}
         type="button"
       >
         <PlusOutlined />
-        &nbsp; Add New Product2
+        &nbsp; Add Products
       </button>
     </div>
   );

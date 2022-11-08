@@ -88,7 +88,7 @@ const PostItem = ({ post }) => {
           </div>
         </div>
         {post.id && (
-          <div className="item-action">
+          <div className="item-action-post">
             <button
               className="button button-border button-small"
               onClick={onClickEdit}
