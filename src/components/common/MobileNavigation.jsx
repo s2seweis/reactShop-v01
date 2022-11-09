@@ -8,6 +8,9 @@ import Badge from './Badge';
 import FiltersToggle from './FiltersToggle';
 import SearchBar from './SearchBar';
 
+
+import { FilterOutlined, ShoppingOutlined } from '@ant-design/icons';
+
 const Navigation = (props) => {
   const {
     isAuthenticating, basketLength, disabledPaths, user
@@ -38,10 +41,15 @@ const Navigation = (props) => {
 
               <Badge count={basketLength}>
                 <i className="fa fa-shopping-bag" style={{ fontSize: '2rem' }} />
+                <ShoppingOutlined style={{ fontSize: '2.4rem' }} />
+
               </Badge>
             </button>
           )}
         </BasketToggle>
+
+
+
         <ul className="mobile-navigation-menu">
           {user ? (
             <li className="mobile-navigation-item">
@@ -65,10 +73,15 @@ const Navigation = (props) => {
         </ul>
       </div>
       <div className="mobile-navigation-sec">
+
         <SearchBar />
+
         <FiltersToggle>
           <button className="button-link button-small" type="button">
-            <i className="fa fa-filter" />
+            {/* <i className="fa fa-filter" /> */}
+            <FilterOutlined />
+            Filter
+
           </button>
         </FiltersToggle>
       </div>

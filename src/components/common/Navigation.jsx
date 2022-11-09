@@ -4,9 +4,7 @@ import * as ROUTE from 'constants/routes';
 import logo from 'images/logo-full.png';
 import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import {
-  Link, NavLink, useLocation
-} from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import UserAvatar from 'views/account/components/UserAvatar';
 import BasketToggle from '../basket/BasketToggle';
 import Badge from './Badge';
@@ -81,6 +79,11 @@ const Navigation = () => {
         <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.FEATURED_PRODUCTS}>Featured</NavLink></li>
         <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.RECOMMENDED_PRODUCTS}>Recommended</NavLink></li>
       </ul>
+
+
+      {/* excluse component by a route */}
+
+
       {(pathname === ROUTE.SHOP || pathname === ROUTE.SEARCH) && (
         <FiltersToggle>
           <button className="button-muted button-small" type="button">
@@ -89,6 +92,9 @@ const Navigation = () => {
           </button>
         </FiltersToggle>
       )}
+
+
+      
       {/* <MenuBurger /> */}
 
       <SearchBar />
@@ -96,6 +102,7 @@ const Navigation = () => {
         <li className="navigation-menu-item">
           <BasketToggle>
             {({ onClickToggle }) => (
+
               <button
                 className="button-link navigation-menu-link basket-toggle"
                 disabled={basketDisabledpathnames.includes(pathname)}
@@ -107,6 +114,7 @@ const Navigation = () => {
                   <ShoppingOutlined style={{ fontSize: '2.4rem' }} />
                 </Badge>
               </button>
+              
             )}
           </BasketToggle>
         </li>

@@ -16,22 +16,28 @@ const MenuBurger = () => {
   return (
 
 
+    
+
 
     <Menu {...MenuBurger}>
       <a className="menu-item" href="/">
         Home
       </a>
 
-      <a className="menu-item" href="/burgers">
-        Burgers
+      <a className="menu-item" href="/signin">
+        Sign-In
       </a>
 
-      <a className="menu-item" href="/pizzas">
-        Pizzas
+      <a className="menu-item" href="/">
+        Contact
       </a>
 
-      <a className="menu-item" href="/desserts">
-        Desserts
+      <a className="menu-item" href="/shop">
+        Shop
+      </a>
+
+      <a className="menu-item" href="/post">
+        Posts
       </a>
     </Menu>
 

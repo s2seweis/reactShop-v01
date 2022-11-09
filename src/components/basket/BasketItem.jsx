@@ -58,7 +58,7 @@ const BasketItem = ({ product }) => {
           <h4 className="my-0">{displayMoney(product.price * product.quantity)}</h4>
         </div>
         <button
-          className="basket-item-remove button button-border button-border-gray button-small"
+          className="basket-item-remove button button-border button-border-gray button-small-basket"
           onClick={onRemoveFromBasket}
           type="button"
         >

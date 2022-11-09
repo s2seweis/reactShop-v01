@@ -17,11 +17,12 @@
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  grid-gap: $s-size;
+  grid-gap: 6rem;
   place-items: center;
 
   @include mobile {
     grid-template-columns: repeat(1, 1fr) !important;
+    grid-gap: 5rem;
   }
 }
 
@@ -59,14 +60,14 @@
   position: relative;
 
   @include mobile {
-    margin-top: 5rem;
+    margin-top: 6rem;
   }
 }
 
 .product-card {
   justify-content: center;
   display: flex;
-  min-width: 200px;
+  min-width: 250px;
   max-width: 250px;
   max-height: 400px;
   border: 1px solid $border-color;
@@ -77,6 +78,7 @@
   overflow: hidden;
   // margin: auto;
   // animation: slide-up .3s ease;
+  min-height: 300px;
 
   &:hover {
     cursor: pointer;
@@ -150,6 +152,7 @@
 .product-card-content {
   padding: 5px;
   transition: all .4s ease-in-out;
+  width: 100%;
 }
 
 .product-card-img-wrapper {
@@ -163,7 +166,7 @@
 
 
   @include mobile {
-    height: 8rem;
+    height: 15rem;
   }
 }
 

@@ -9,7 +9,7 @@ body {
   /* Give app full page to work with */
   height: 100vh;
 }
-
+F.navigation
 #page-wrap {
   text-align: center;
 
@@ -36,13 +36,28 @@ body {
 /* The rest copied directly from react-burger-menu docs */
 
 /* Position and sizing of burger button */
+
 .bm-burger-button {
   position: fixed;
   width: 36px;
   height: 30px;
   left: 36px;
-  top: 36px;
+  top: 15px;
+
+
+ 
+
+
+
 }
+
+
+
+
+
+
+
+
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {

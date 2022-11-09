@@ -23,6 +23,7 @@
   display: flex;
   align-items: center;
   padding: 5px $s-size;
+  justify-content: space-between;
 }
 
 .mobile-navigation-menu {
@@ -55,8 +56,9 @@
 
 .mobile-navigation-logo {
   flex-grow: 1;
-  padding-left: .5rem;
-  margin-right: $xl-size;
+  padding-left: 11rem;
+  // margin-right: $xl-size;
+  padding-top: 20px;
 }
 
 .mobile-navigation-search {
