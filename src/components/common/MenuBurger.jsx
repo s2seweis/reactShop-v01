@@ -1,5 +1,8 @@
 import React from "react";
 import { slide as Menu } from "react-burger-menu";
+import { Link, useLocation } from 'react-router-dom';
+
+import logo from 'images/logo-full.png';
 
 
 
@@ -16,10 +19,20 @@ const MenuBurger = () => {
   return (
 
 
-    
 
 
-    <Menu {...MenuBurger}>
+
+    <Menu width={'50%'} {...MenuBurger}>
+
+      <div className="logo">
+        <Link
+          // onClick={onClickLink} to="/"
+          >
+          <img alt="Logo" src={logo} />
+          </Link>
+      </div>
+
+
       <a className="menu-item" href="/">
         Home
       </a>

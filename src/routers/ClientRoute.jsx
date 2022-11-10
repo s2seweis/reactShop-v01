@@ -7,9 +7,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
+
+
+
 const PrivateRoute = ({
   isAuth, role, component: Component, ...rest
-}) => (
+}) => 
+
+
+{
+
+
+
+
+
+
+
+  return (
+
   <Route
     {...rest}
     component={(props) => {
@@ -17,6 +32,8 @@ const PrivateRoute = ({
         return (
           <main className="content">
             <Component {...props} />
+
+
           </main>
         );
       }
@@ -35,7 +52,9 @@ const PrivateRoute = ({
       );
     }}
   />
-);
+
+  )
+};
 
 PrivateRoute.defaultProps = {
   isAuth: false,

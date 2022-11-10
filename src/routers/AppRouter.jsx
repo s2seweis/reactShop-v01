@@ -1,8 +1,9 @@
 import { Basket } from 'components/basket';
 import { Footer, Navigation } from 'components/common';
 import * as ROUTES from 'constants/routes';
+import * as ROUTE from 'constants/routes';
 
-// import * as ROUTE from 'constants/routes';
+
 
 
 
@@ -36,6 +37,8 @@ const AppRouter = () => {
 
 
     <Router history={history}>
+
+
       <>
 
 
@@ -43,14 +46,16 @@ const AppRouter = () => {
        
 
 
-      {/* {(pathname === ROUTES.SHOP || pathname === ROUTES.SEARCH) && (
-          <MenuBurger />
+      {/* {(pathname === ROUTE.SHOP || pathname === ROUTE.SEARCH) && (
+        
+            <MenuBurger />
+         
+      )} */}
 
-        )} */}
 
 
 
-        <MenuBurger />
+        {/* <MenuBurger /> */}
 
 
 

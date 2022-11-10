@@ -8,6 +8,10 @@ import Badge from './Badge';
 import FiltersToggle from './FiltersToggle';
 import SearchBar from './SearchBar';
 
+import MenuBurger from '../../components/common/MenuBurger';
+
+import '../../styles/menu/index.scss'
+
 
 import { FilterOutlined, ShoppingOutlined } from '@ant-design/icons';
 
@@ -23,7 +27,13 @@ const Navigation = (props) => {
 
   return (
     <nav className="mobile-navigation">
+
+      <MenuBurger />
+
+
       <div className="mobile-navigation-main">
+
+        
         <div className="mobile-navigation-logo">
           <Link onClick={onClickLink} to={HOME}>
             <h2>SALINAKA</h2>

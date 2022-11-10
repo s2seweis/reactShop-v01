@@ -17,6 +17,7 @@
   align-items: center;
   position: relative;
   z-index: 1;
+  justify-content: flex-end;
 }
 
 .mobile-navigation-sec {
@@ -56,7 +57,7 @@
 
 .mobile-navigation-logo {
   flex-grow: 1;
-  padding-left: 11rem;
+  padding-left: 7rem;
   // margin-right: $xl-size;
   padding-top: 20px;
 }

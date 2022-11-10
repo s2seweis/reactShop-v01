@@ -13,7 +13,10 @@ import MobileNavigation from './MobileNavigation';
 import SearchBar from './SearchBar';
 
 
-import MenuBurger from './MenuBurger';
+import MenuBurger from '../../components/common/MenuBurger';
+
+import '../../styles/menu/index.scss'
+
 
 const Navigation = () => {
   const navbar = useRef(null);
@@ -69,6 +72,11 @@ const Navigation = () => {
   }
   return (
     <nav className="navigation" ref={navbar}>
+
+
+      {/* <MenuBurger /> */}
+
+
       {/* <div className="logo">
         <Link onClick={onClickLink} to="/"><img alt="Logo" src={logo} /></Link>
       </div> */}
@@ -94,7 +102,7 @@ const Navigation = () => {
       )}
 
 
-      
+
       {/* <MenuBurger /> */}
 
       <SearchBar />
@@ -114,7 +122,7 @@ const Navigation = () => {
                   <ShoppingOutlined style={{ fontSize: '2.4rem' }} />
                 </Badge>
               </button>
-              
+
             )}
           </BasketToggle>
         </li>

@@ -9,6 +9,10 @@ import bannerImg from 'images/banner-girl.png';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// import MenuBurger from '../../components/common/MenuBurger';
+
+// import '../../styles/menu/index.scss'
+
 
 const Home = () => {
   useDocumentTitle('Salinaka | Home');
@@ -29,6 +33,8 @@ const Home = () => {
 
   return (
     <main className="content">
+      {/* <MenuBurger /> */}
+
       <div className="home">
         <div className="banner">
           <div className="banner-desc">
