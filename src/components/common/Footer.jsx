@@ -1,5 +1,7 @@
 import * as Route from 'constants/routes';
 import logo from 'images/logo-full.png';
+import dignlogo from '../../../static/dign-logo.png';
+
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -25,7 +27,7 @@ const Footer = () => {
         </strong>
       </div>
       <div className="footer-col-2">
-        <img alt="Footer logo" className="footer-logo" src={logo} />
+        <img alt="Footer logo" className="footer-logo" src={dignlogo} />
         <h5>
           &copy;&nbsp;
           {new Date().getFullYear()}
