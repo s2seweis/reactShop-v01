@@ -58,14 +58,32 @@ const Preloader = () => (
     {/* Version 3 */}
 
     <svg version="1.1" id="L3" x="0px" y="0px"
-    width="100"
+      width="150"
       viewBox="0 0 100 100" enable-background="new 0 0 0 0">
-      <circle fill="none" stroke="black" stroke-Width="4" cx="50" cy="50" r="44" 
-      // style="opacity:0.5;" 
-      opacity="0.3"
+
+
+
+
+
+      {/* <circle fill="yellow" stroke="black" stroke-Width="4" cx="50" cy="50" r="44"
+        // style="opacity:0.5;" 
+        opacity="0.3"
+      /> */}
+
+      <defs>
+        <clipPath id="myCircle">
+          <circle cx="50" cy="50" r="44" fill="#FFFFFF" />
+        </clipPath>
+      </defs>
+      <image width="120" height="120" href="../../../static/dign-logo.png"
+        clip-path="url(#myCircle)"
       />
+
+
+
+
       <circle fill="#fff" stroke="black" stroke-Width="3" cx="8" cy="54" r="6" >
-        
+
         <animateTransform
           attributeName="transform"
           dur="2s"
@@ -78,7 +96,25 @@ const Preloader = () => (
     </svg>
 
 
-    <img alt="Salinaka logo wordmark" src={dignlogo} />
+
+    {/* <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+      <image href="../../../static/dign-logo.png" height="200" width="200" />
+    </svg> */}
+
+
+    {/* <svg width="500" height="350">
+         <defs>
+            <clipPath id="myCircle">
+               <circle cx="250" cy="145" r="125" fill="#FFFFFF" />
+            </clipPath>
+         </defs>
+         <image width="500" height="350" href="../../../static/dign-logo.png" 
+         clip-path="url(#myCircle)" 
+         />
+      </svg> */}
+
+
+    {/* <img alt="Salinaka logo wordmark" src={dignlogo} /> */}
 
 
   </div>
