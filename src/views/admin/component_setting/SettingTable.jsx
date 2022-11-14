@@ -18,7 +18,7 @@ const Loader = () => (
 
 const UserAccount = () => {
   useScrollTop();
-  useDocumentTitle('My Settings | Salinaka');
+  useDocumentTitle('My Settings | Dign');
 
   return (
     <SettingTab>

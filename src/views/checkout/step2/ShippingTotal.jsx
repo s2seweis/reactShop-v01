@@ -41,6 +41,9 @@ const ShippingTotal = ({ subtotal }) => {
               </span>
             </td>
             <td>
+
+
+              {/* Using for add ingredients component  */}
               <h2 className="basket-total-amount text-right">
                 {displayMoney(Number(subtotal) + (values.isInternational ? 50 : 0))}
               </h2>

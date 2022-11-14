@@ -10,7 +10,7 @@ import { SettingsNavbar } from '../component_setting';
 import SettingsTable from '../component_setting/SettingTable';
 
 const Settings = () => {
-  useDocumentTitle('Settings | Salinaka Admin');
+  useDocumentTitle('Settings | Dign Admin');
   useScrollTop();
 
   const store = useSelector((state) => ({

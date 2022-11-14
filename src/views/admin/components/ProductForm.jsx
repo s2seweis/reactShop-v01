@@ -20,6 +20,13 @@ const brandOptions = [
   { value: 'Black Kibal', label: 'Black Kibal' }
 ];
 
+const sizeOptions = [
+  { value: 'Small', label: 'Small' },
+  { value: 'Medium', label: 'Medium' },
+  { value: 'Large', label: 'Large' },
+  { value: 'Extra Large', label: 'Extra Large' }
+];
+
 const FormSchema = Yup.object().shape({
   name: Yup.string()
     .required('Product name is required.')
@@ -40,7 +47,7 @@ const FormSchema = Yup.object().shape({
     .of(Yup.string())
     .min(1, 'Please enter at least 1 keyword for this product.'),
   sizes: Yup.array()
-    .of(Yup.number())
+    .of(Yup.string())
     .min(1, 'Please enter a size for this product.'),
   isFeatured: Yup.boolean(),
   isRecommended: Yup.boolean(),
@@ -175,14 +182,35 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
                     defaultValue={values.sizes.map((key) => ({ value: key, label: key }))}
                     name="sizes"
                     id="sizes"
-                    type="number"
+                    type="string"
                     isMulti
                     disabled={isLoading}
                     placeholder="Create/Select Sizes"
                     label="* Sizes (Millimeter)"
+                    options={sizeOptions}
                   />
+
+
+                  {/* <CustomCreatableSelect
+                    defaultValue={{ label: values.brand, value: values.brand }}
+                    name="brand"
+                    id="brand"
+                    options={brandOptions}
+                    disabled={isLoading}
+                    placeholder="Select/Create Brand"
+                    label="* Brand"
+                  /> */}
+
+
+
+
                 </div>
               </div>
+
+
+
+{/* this becoming sizes !!!! */}
+
               <div className="product-form-field">
                 <FieldArray
                   name="availableColors"
@@ -190,6 +218,11 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
                   component={CustomColorInput}
                 />
               </div>
+
+
+
+
+
               <div className="product-form-field">
                 <span className="d-block padding-s">Image Collection</span>
                 {!isFileLoading && (
@@ -275,7 +308,7 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
                   {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
                   &nbsp;
                   {isLoading ? 'Saving Product' : 'Save Product1'}
-                  
+
                 </button>
               </div>
             </div>

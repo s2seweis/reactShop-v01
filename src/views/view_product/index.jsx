@@ -130,6 +130,17 @@ const ViewProduct = () => {
                   />
                 </div>
               )}
+              {product.availableColors.length >= 1 && (
+                <div>
+                  <span className="text-subtle">Choose Color</span>
+                  <br />
+                  <br />
+                  <ColorChooser
+                    availableColors={product.availableColors}
+                    onSelectedColorChange={onSelectedColorChange}
+                  />
+                </div>
+              )}
               <h1>{displayMoney(product.price)}</h1>
               <div className="product-modal-action">
                 <button

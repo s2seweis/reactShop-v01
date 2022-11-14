@@ -12,7 +12,7 @@ import { PostsNavbar } from '../components_post';
 import PostsTable from '../components_post/PostsTable';
 
 const Posts = () => {
-  useDocumentTitle('Product List | Salinaka Admin');
+  useDocumentTitle('Product List | Dign Admin');
   useScrollTop();
 
   const store = useSelector((state) => ({

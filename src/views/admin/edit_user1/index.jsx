@@ -9,7 +9,7 @@ import { editUser1 } from 'redux/actions/user1Actions';
 const User1Form = lazy(() => import('../components_user1/User1Form'));
 
 const EditUser1 = ({ match }) => {
-  useDocumentTitle('Edit User1 | Salinaka');
+  useDocumentTitle('Edit User1 | Dign');
   useScrollTop();
   const { user1, error, isLoading } = useUser1(match.params.id);
   const dispatch = useDispatch();

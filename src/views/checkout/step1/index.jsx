@@ -14,7 +14,7 @@ import { setBasketDetails } from 'redux/actions/checkoutActions';
 
 
 const OrderSummary = ({ basket, subtotal }) => {
-  useDocumentTitle('Check Out Step 1 | Salinaka');
+  useDocumentTitle('Check Out Step 1 | Dign');
   useScrollTop();
   const dispatch = useDispatch();
   const history = useHistory();

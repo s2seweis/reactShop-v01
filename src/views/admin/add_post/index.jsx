@@ -9,7 +9,7 @@ const PostForm = lazy(() => import('../components_post/PostForm'));
 
 const AddPost = () => {
   useScrollTop();
-  useDocumentTitle('Add New Post | Salinaka');
+  useDocumentTitle('Add New Post | Dign');
   const isLoading = useSelector((state) => state.app.loading);
   const dispatch = useDispatch();
 

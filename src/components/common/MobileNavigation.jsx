@@ -36,7 +36,7 @@ const Navigation = (props) => {
         
         <div className="mobile-navigation-logo">
           <Link onClick={onClickLink} to={HOME}>
-            <h2>SALINAKA</h2>
+            <h2>DIGN</h2>
           </Link>
         </div>
 

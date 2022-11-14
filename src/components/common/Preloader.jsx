@@ -59,7 +59,7 @@ const Preloader = () => (
 
     <svg version="1.1" id="L3" x="0px" y="0px"
       width="150"
-      viewBox="0 0 100 100" enable-background="new 0 0 0 0">
+      viewBox="0 0 100 100" enableBackground="new 0 0 0 0">
 
 
 
@@ -76,13 +76,13 @@ const Preloader = () => (
         </clipPath>
       </defs>
       <image width="120" height="120" href="../../../static/dign-logo.png"
-        clip-path="url(#myCircle)"
+        clipPath="url(#myCircle)"
       />
 
 
 
 
-      <circle fill="#fff" stroke="black" stroke-Width="3" cx="8" cy="54" r="6" >
+      <circle fill="#fff" stroke="black" strokeWidth="3" cx="8" cy="54" r="6" >
 
         <animateTransform
           attributeName="transform"

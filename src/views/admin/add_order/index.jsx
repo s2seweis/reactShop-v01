@@ -9,7 +9,7 @@ const OrderForm = lazy(() => import('../components_order/OrderForm'));
 
 const AddOrder = () => {
   useScrollTop();
-  useDocumentTitle('Add New Order | Salinaka');
+  useDocumentTitle('Add New Order | Dign');
   const isLoading = useSelector((state) => state.app.loading);
   const dispatch = useDispatch();
 

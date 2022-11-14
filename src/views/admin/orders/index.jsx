@@ -12,7 +12,7 @@ import { OrdersNavbar } from '../components_order';
 import OrdersTable from '../components_order/OrdersTable';
 
 const Orders = () => {
-  useDocumentTitle('Order List | Salinaka Admin');
+  useDocumentTitle('Order List | Dign Admin');
   useScrollTop();
 
   const store = useSelector((state) => ({
