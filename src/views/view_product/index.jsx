@@ -39,6 +39,8 @@ const ViewProduct = () => {
 
   const onSelectedSizeChange = (newValue) => {
     setSelectedSize(newValue.value);
+    console.log(setSelectedSize)
+
   };
 
   const onSelectedColorChange = (color) => {
@@ -49,7 +51,7 @@ const ViewProduct = () => {
   };
 
   const handleAddToBasket = () => {
-    addToBasket({ ...product, selectedColor, selectedSize: selectedSize || product.sizes[0] });
+    addToBasket({ ...product, selectedColor, selectedSize: selectedSize || product.new[0] });
   };
 
   return (
@@ -118,6 +120,22 @@ const ViewProduct = () => {
                   styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
                 />
               </div>
+
+              <div>
+                <span className="text-subtle">Arrary (Map)</span>
+                <br />
+                <br />
+                <Select
+                  placeholder="--Select Size--"
+                  onChange={onSelectedSizeChange}
+                  options={product.sizesnew.sort((a, b) => (a < b ? -1 : 1)).map((size) => ({ label: `${size} mm`, value: size }))}
+                  styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
+                />
+              </div>
+
+            
+
+
               <br />
               {product.availableColors.length >= 1 && (
                 <div>
@@ -130,18 +148,19 @@ const ViewProduct = () => {
                   />
                 </div>
               )}
-              {product.availableColors.length >= 1 && (
-                <div>
-                  <span className="text-subtle">Choose Color</span>
-                  <br />
-                  <br />
-                  <ColorChooser
-                    availableColors={product.availableColors}
-                    onSelectedColorChange={onSelectedColorChange}
-                  />
-                </div>
-              )}
+
+
+
+
+
               <h1>{displayMoney(product.price)}</h1>
+
+              <h1>{displayMoney(selectedSize)}</h1>
+              
+              <h1>{selectedSize}</h1>
+
+
+
               <div className="product-modal-action">
                 <button
                   className={`button button-small ${isItemOnBasket(product.id) ? 'button-border button-border-gray' : ''}`}

@@ -27,7 +27,9 @@ const InputColor = (props) => {
         <div className="d-flex">
           {form.touched[name] && form.errors[name] ? (
             <span className="label-input label-error">{form.errors[name]}</span>
-          ) : (
+          ) 
+          : 
+          (
             <label className="label-input" htmlFor={name}>
               Available Colors
             </label>
@@ -35,6 +37,8 @@ const InputColor = (props) => {
           {selectedColor && (
             <>
               <div className="color-item" style={{ background: selectedColor }} />
+             
+             
               <h4
                 className="text-link"
                 onClick={handleAddSelectedColor}
@@ -44,16 +48,28 @@ const InputColor = (props) => {
                 <i className="fa fa-check" />
                 Add Selected Color
               </h4>
+
+
+
+
             </>
           )}
         </div>
+
+
+
         <input
           name={name}
           type="color"
           onChange={handleColorChange}
           id={name}
         />
+
+
       </div>
+
+
+
       <div className="product-form-field">
         <span className="d-block padding-s">Selected Color(s)</span>
         <div className="color-chooser">
@@ -69,6 +85,10 @@ const InputColor = (props) => {
           ))}
         </div>
       </div>
+
+
+
+      
     </div>
   );
 };

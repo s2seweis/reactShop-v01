@@ -209,7 +209,7 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
 
 
 
-{/* this becoming sizes !!!! */}
+              {/* this becoming sizes !!!! */}
 
               <div className="product-form-field">
                 <FieldArray
