@@ -113,27 +113,35 @@ const ViewProduct = () => {
                 <span className="text-subtle">Lens Width and Frame Size</span>
                 <br />
                 <br />
+
+
                 <Select
                   placeholder="--Select Size--"
                   onChange={onSelectedSizeChange}
                   options={product.sizes.sort((a, b) => (a < b ? -1 : 1)).map((size) => ({ label: `${size} mm`, value: size }))}
                   styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
                 />
-              </div>
 
-              <div>
-                <span className="text-subtle">Arrary (Map)</span>
-                <br />
-                <br />
+
+
+
+
+                {/* here inside goes the array as options */}
+
                 <Select
                   placeholder="--Select Size--"
                   onChange={onSelectedSizeChange}
-                  options={product.sizesnew.sort((a, b) => (a < b ? -1 : 1)).map((size) => ({ label: `${size} mm`, value: size }))}
+                  options={product.sizes.map((size) => ({ label: `${size} mm`, value: size }))}
                   styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
                 />
+
+
+
+
               </div>
 
-            
+
+
 
 
               <br />
@@ -156,7 +164,7 @@ const ViewProduct = () => {
               <h1>{displayMoney(product.price)}</h1>
 
               <h1>{displayMoney(selectedSize)}</h1>
-              
+
               <h1>{selectedSize}</h1>
 
 
