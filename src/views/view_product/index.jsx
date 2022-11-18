@@ -14,16 +14,24 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Select from 'react-select';
 
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
-// const product = useSelector((state) => state.profile);
 
 
-const ViewProduct = (priceOptions) => {
+const ViewProduct = () => {
+
+
+  // const { basket, user } = useSelector((state) => ({
+  //   basket: state.basket
+  // }));
+
+
   const { id } = useParams();
   const { product, isLoading, error } = useProduct(id);
   const { addToBasket, isItemOnBasket } = useBasket(id);
+  // console.log(product)
+
   useScrollTop();
   useDocumentTitle(`View ${product?.name || 'Item'}`);
 
@@ -69,12 +77,32 @@ const ViewProduct = (priceOptions) => {
 
   const [size, setSize] = React.useState();
   const [price, setPrice] = React.useState();
-  console.log(price)
+  // console.log(price)
 
   const [material, setMaterial] = React.useState();
 
+  // The optional chaining operator(?.) enables you to read the value of a property located deep within a chain of connected objects without having to check that each reference in the chain is valid
 
+  const materialOptions = product?.sizesnew
+    .map((p) => p.material)
+    .filter((v, i, a) => a.indexOf(v) === i)
+    .map((material) => ({ label: material, value: material }))
+  console.log(materialOptions)
 
+  const sizeOptions = product?.sizesnew
+    .map((p) => p.size)
+    .filter((v, i, a) => a.indexOf(v) === i)
+    .map((size) => ({ label: size, value: size }));
+    console.log(sizeOptions)
+
+  const priceOptions = product?.sizesnew
+    .filter((p) => size && p.size === size.value && material && p.material === material.value)
+    .map((p) => p.price)
+    .filter((v, i, a) => a.indexOf(v) === i)
+    .map((price) => ({ label: price, value: price }));
+    console.log(priceOptions?.value)
+
+  let finalPrice = {}
 
 
 
@@ -147,8 +175,8 @@ const ViewProduct = (priceOptions) => {
                 /> */}
 
 
-                {/* Size */}
-                <Select
+                {/* ----Size */}
+                {/* <Select
                   placeholder="--Select Size--"
                   onChange={setSize}
                   options={
@@ -163,16 +191,16 @@ const ViewProduct = (priceOptions) => {
                   styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
 
 
-                />
+                /> */}
 
 
-                {/* Price */}
-                <Select
+                {/* ----Price */}
+                {/* <Select
                   placeholder="--Select Size--"
                   onChange={setPrice}
                   options={
 
-                    priceOptions = product.sizesnew
+                    product.sizesnew
                       .filter((p) => size && p.size === size.value)
                       .map((p) => p.price)
                       .filter((v, i, a) => a.indexOf(v) === i)
@@ -183,11 +211,11 @@ const ViewProduct = (priceOptions) => {
                   styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
 
 
-                />
+                /> */}
 
 
-                {/* Material */}
-                <Select
+                {/* ----Material */}
+                {/* <Select
                   placeholder="--Select Size--"
                   onChange={setMaterial}
                   options={
@@ -205,15 +233,36 @@ const ViewProduct = (priceOptions) => {
                   styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
 
 
-                />
+                /> */}
 
 
+
+
+
+
+                <Select value={material} onChange={setMaterial} options={materialOptions} />                
+                <Select value={size} onChange={setSize} options={sizeOptions} />
 
               </div>
 
 
 
-            
+              <p className='prod__price'>
+                {priceOptions?.length === 1 ? (
+                  finalPrice = priceOptions.value,     console.log(priceOptions.value)
+
+
+
+                ) : (
+                  finalPrice = product.price, console.log(product.price)
+                  
+
+
+                )}
+              </p>
+
+
+              <strong> {finalPrice} </strong>
 
 
 
@@ -236,13 +285,13 @@ const ViewProduct = (priceOptions) => {
 
 
 
-              <h1>{displayMoney(product.price)}</h1>
+              {/* <h1>{displayMoney(product.price)}</h1>
               <h1>{displayMoney(price)}</h1>
-              <h1>{displayMoney(product.price - product.price + selectedSize)}</h1>
+              <h1>{displayMoney(product.price - product.price + selectedSize)}</h1> */}
 
 
 
-              <strong> finalPrice </strong>
+           
 
 
 
