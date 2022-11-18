@@ -14,7 +14,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Select from 'react-select';
 
-const ViewProduct = () => {
+// import { useSelector } from 'react-redux';
+
+
+// const product = useSelector((state) => state.profile);
+
+
+const ViewProduct = (priceOptions) => {
   const { id } = useParams();
   const { product, isLoading, error } = useProduct(id);
   const { addToBasket, isItemOnBasket } = useBasket(id);
@@ -24,6 +30,10 @@ const ViewProduct = () => {
   const [selectedImage, setSelectedImage] = useState(product?.image || '');
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
+
+
+
+
 
   const {
     recommendedProducts,
@@ -39,7 +49,7 @@ const ViewProduct = () => {
 
   const onSelectedSizeChange = (newValue) => {
     setSelectedSize(newValue.value);
-    console.log(setSelectedSize)
+    // console.log(setSelectedSize)
 
   };
 
@@ -53,6 +63,20 @@ const ViewProduct = () => {
   const handleAddToBasket = () => {
     addToBasket({ ...product, selectedColor, selectedSize: selectedSize || product.new[0] });
   };
+
+
+
+
+  const [size, setSize] = React.useState();
+  const [price, setPrice] = React.useState();
+  console.log(price)
+
+  const [material, setMaterial] = React.useState();
+
+
+
+
+
 
   return (
     <main className="content">
@@ -115,30 +139,81 @@ const ViewProduct = () => {
                 <br />
 
 
-                <Select
+                {/* <Select
                   placeholder="--Select Size--"
                   onChange={onSelectedSizeChange}
                   options={product.sizes.sort((a, b) => (a < b ? -1 : 1)).map((size) => ({ label: `${size} mm`, value: size }))}
                   styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
-                />
+                /> */}
 
 
-
-
-
-                {/* here inside goes the array as options */}
-
+                {/* Size */}
                 <Select
                   placeholder="--Select Size--"
-                  onChange={onSelectedSizeChange}
-                  options={product.sizes.map((size) => ({ label: `${size} mm`, value: size }))}
+                  onChange={setSize}
+                  options={
+
+                    product.sizesnew
+                      .map((p) => p.size)
+                      .filter((v, i, a) => a.indexOf(v) === i)
+                      .map((size) => ({ label: size, value: size }))
+                  }
+
+
                   styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
+
+
                 />
 
+
+                {/* Price */}
+                <Select
+                  placeholder="--Select Size--"
+                  onChange={setPrice}
+                  options={
+
+                    priceOptions = product.sizesnew
+                      .filter((p) => size && p.size === size.value)
+                      .map((p) => p.price)
+                      .filter((v, i, a) => a.indexOf(v) === i)
+                      .map((price) => ({ label: price, value: price }))
+                  }
+
+
+                  styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
+
+
+                />
+
+
+                {/* Material */}
+                <Select
+                  placeholder="--Select Size--"
+                  onChange={setMaterial}
+                  options={
+
+                    product.sizesnew
+                      .filter(
+                        (p) => size && p.size === size.value && price && p.price === price.value
+                      )
+                      .map((p) => p.material)
+                      .filter((v, i, a) => a.indexOf(v) === i)
+                      .map((material) => ({ label: material, value: material }))
+                  }
+
+
+                  styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
+
+
+                />
 
 
 
               </div>
+
+
+
+            
 
 
 
@@ -162,10 +237,20 @@ const ViewProduct = () => {
 
 
               <h1>{displayMoney(product.price)}</h1>
+              <h1>{displayMoney(price)}</h1>
+              <h1>{displayMoney(product.price - product.price + selectedSize)}</h1>
 
-              <h1>{displayMoney(selectedSize)}</h1>
 
-              <h1>{selectedSize}</h1>
+
+              <strong> finalPrice </strong>
+
+
+
+
+
+
+
+
 
 
 
