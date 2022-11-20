@@ -10,11 +10,14 @@ import {
   useRecommendedProducts,
   useScrollTop
 } from 'hooks';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, FC } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Select from 'react-select';
 
+
 import { useSelector } from 'react-redux';
+
+
 
 
 
@@ -93,16 +96,21 @@ const ViewProduct = () => {
     .map((p) => p.size)
     .filter((v, i, a) => a.indexOf(v) === i)
     .map((size) => ({ label: size, value: size }));
-    console.log(sizeOptions)
+  console.log(sizeOptions)
 
   const priceOptions = product?.sizesnew
     .filter((p) => size && p.size === size.value && material && p.material === material.value)
     .map((p) => p.price)
     .filter((v, i, a) => a.indexOf(v) === i)
     .map((price) => ({ label: price, value: price }));
-    console.log(priceOptions?.value)
+  console.log(priceOptions?.length)
 
   let finalPrice = {}
+
+
+  const [currentValue, setCurrentValue] = useState(2);
+
+  const [dropValue, setDropValue] = useState();
 
 
 
@@ -235,34 +243,52 @@ const ViewProduct = () => {
 
                 /> */}
 
-
-
-
-
-
-                <Select value={material} onChange={setMaterial} options={materialOptions} />                
-                <Select value={size} onChange={setSize} options={sizeOptions} />
+                {/* <Select value={material} onChange={setMaterial} options={materialOptions} />
+                <Select value={size} onChange={setSize} options={sizeOptions} /> */}
 
               </div>
 
 
 
-              <p className='prod__price'>
-                {priceOptions?.length === 1 ? (
-                  finalPrice = priceOptions.value,     console.log(priceOptions.value)
 
 
 
-                ) : (
-                  finalPrice = product.price, console.log(product.price)
+
+
+              {/* <select id="size" value={currentValue} defaultValue={currentValue}>
+                <option value="N/A">N/A</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+              </select> */}
+
+
+
+
+              <div>
+                <div class="dropdown">
                   
 
+                  
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" onClick={() => setDropValue(product.price)} href="#">Small</a></li>
+                    <li><a class="dropdown-item" onClick={() => setDropValue(product.price_medium)} href="#">Medium</a></li>
+                    <li><a class="dropdown-item" onClick={() => setDropValue('Something else here')} href="#">Large</a></li>
+                  </ul>
 
-                )}
-              </p>
+                  <button class="btn btn-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    {dropValue == null || dropValue == '' ? 'Select Id' : dropValue}
+                  </button>
+                </div>
+              </div>
 
 
-              <strong> {finalPrice} </strong>
+
+
+              <strong> {dropValue} </strong>
+
+              
 
 
 
@@ -291,7 +317,7 @@ const ViewProduct = () => {
 
 
 
-           
+
 
 
 
