@@ -17,6 +17,8 @@ import Select from 'react-select';
 
 import { useSelector } from 'react-redux';
 
+import { useTranslation } from 'react-i18next'
+
 
 
 
@@ -91,6 +93,15 @@ const ViewProduct = () => {
 
   const [dropValue, setDropValue] = useState();
 
+  const [option, setOption] = useState();
+
+
+
+  function handleChange(event){
+    setOption(event.target.value) 
+      console.log(event.target.value)
+
+}
 
 
 
@@ -225,11 +236,23 @@ const ViewProduct = () => {
               </div>
 
 
-              
+
+{/* Working now Select Compontent => making out of it a Functional Component?, we will see  */}
 
 
-              {/* <strong> {dropValue} </strong> */}
+              <select className='option'
+               onChange={handleChange}
+               >
+                <option value={0}>default</option>
+                <option value={product?.sizes_prices.small}>small</option>
+                <option value="2">medium</option>
+                <option value="3">large</option>
+                <option value="4">extra large</option>
+              </select>
 
+              <button class="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  {option == null || option == '' ? 'Pick!!' : option}
+                </button>
 
 
 
@@ -255,7 +278,6 @@ const ViewProduct = () => {
 
               <h1>{displayMoney(product.price)}</h1>
 
-              {/* <h1>{displayMoney(dropValue)}</h1> */}
 
 
 
