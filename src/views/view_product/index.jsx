@@ -84,33 +84,13 @@ const ViewProduct = () => {
 
   const [material, setMaterial] = React.useState();
 
-  // The optional chaining operator(?.) enables you to read the value of a property located deep within a chain of connected objects without having to check that each reference in the chain is valid
 
-  const materialOptions = product?.sizesnew
-    .map((p) => p.material)
-    .filter((v, i, a) => a.indexOf(v) === i)
-    .map((material) => ({ label: material, value: material }))
-  console.log(materialOptions)
-
-  const sizeOptions = product?.sizesnew
-    .map((p) => p.size)
-    .filter((v, i, a) => a.indexOf(v) === i)
-    .map((size) => ({ label: size, value: size }));
-  console.log(sizeOptions)
-
-  const priceOptions = product?.sizesnew
-    .filter((p) => size && p.size === size.value && material && p.material === material.value)
-    .map((p) => p.price)
-    .filter((v, i, a) => a.indexOf(v) === i)
-    .map((price) => ({ label: price, value: price }));
-  console.log(priceOptions?.length)
-
-  let finalPrice = {}
 
 
   const [currentValue, setCurrentValue] = useState(2);
 
   const [dropValue, setDropValue] = useState();
+
 
 
 
@@ -175,76 +155,13 @@ const ViewProduct = () => {
                 <br />
 
 
-                {/* <Select
+                <Select
                   placeholder="--Select Size--"
                   onChange={onSelectedSizeChange}
                   options={product.sizes.sort((a, b) => (a < b ? -1 : 1)).map((size) => ({ label: `${size} mm`, value: size }))}
                   styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
-                /> */}
+                />
 
-
-                {/* ----Size */}
-                {/* <Select
-                  placeholder="--Select Size--"
-                  onChange={setSize}
-                  options={
-
-                    product.sizesnew
-                      .map((p) => p.size)
-                      .filter((v, i, a) => a.indexOf(v) === i)
-                      .map((size) => ({ label: size, value: size }))
-                  }
-
-
-                  styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
-
-
-                /> */}
-
-
-                {/* ----Price */}
-                {/* <Select
-                  placeholder="--Select Size--"
-                  onChange={setPrice}
-                  options={
-
-                    product.sizesnew
-                      .filter((p) => size && p.size === size.value)
-                      .map((p) => p.price)
-                      .filter((v, i, a) => a.indexOf(v) === i)
-                      .map((price) => ({ label: price, value: price }))
-                  }
-
-
-                  styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
-
-
-                /> */}
-
-
-                {/* ----Material */}
-                {/* <Select
-                  placeholder="--Select Size--"
-                  onChange={setMaterial}
-                  options={
-
-                    product.sizesnew
-                      .filter(
-                        (p) => size && p.size === size.value && price && p.price === price.value
-                      )
-                      .map((p) => p.material)
-                      .filter((v, i, a) => a.indexOf(v) === i)
-                      .map((material) => ({ label: material, value: material }))
-                  }
-
-
-                  styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
-
-
-                /> */}
-
-                {/* <Select value={material} onChange={setMaterial} options={materialOptions} />
-                <Select value={size} onChange={setSize} options={sizeOptions} /> */}
 
               </div>
 
@@ -252,43 +169,68 @@ const ViewProduct = () => {
 
 
 
-
-
-
-              {/* <select id="size" value={currentValue} defaultValue={currentValue}>
-                <option value="N/A">N/A</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-              </select> */}
-
-
-
-
-              <div>
+              {/* <div>
                 <div class="dropdown">
                   
 
                   
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" onClick={() => setDropValue(product.price)} href="#">Small</a></li>
-                    <li><a class="dropdown-item" onClick={() => setDropValue(product.price_medium)} href="#">Medium</a></li>
-                    <li><a class="dropdown-item" onClick={() => setDropValue('Something else here')} href="#">Large</a></li>
+                    <li><a class="dropdown-item" onClick={() => setDropValue(product?.sizes_prices.small)} href="#">Small</a></li>
+                    <li><a class="dropdown-item" onClick={() => setDropValue(product?.sizes_prices.medium)} href="#">Medium</a></li>
+                    <li><a class="dropdown-item" onClick={() => setDropValue(product?.sizes_prices.large)} href="#">Large</a></li>
+                    <li><a class="dropdown-item" onClick={() => setDropValue(product?.sizes_prices.extra_large)} href="#"> Extra Large</a></li>
                   </ul>
 
-                  <button class="btn btn-secondary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    {dropValue == null || dropValue == '' ? 'Select Id' : dropValue}
-                  </button>
                 </div>
+                  <button class="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    {dropValue == null || dropValue == '' ? 'Pick a Size' : dropValue}
+                  </button>
+              </div> */}
+
+
+              {/* <div>
+                <div class="dropdown">
+                  
+
+                  
+                    <button class="button-variant" onClick={() => setDropValue(product?.sizes_prices.small)} href="#">Small</button>
+                    <button class="button-variant" onClick={() => setDropValue(product?.sizes_prices.medium)} href="#">Medium</button>
+                    <button class="button-variant" onClick={() => setDropValue(product?.sizes_prices.large)} href="#">Large</button>
+                    <button class="button-variant" onClick={() => setDropValue(product?.sizes_prices.extra_large)} href="#"> Extra Large</button>
+
+                </div>
+
+
+                  <button class="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    {dropValue == null || dropValue == '' ? 'Pick a Size' : dropValue}
+                  </button>
+              </div> */}
+
+              <div>
+                <div class="dropdown">
+
+
+
+                  <button class="button-variant" onClick={() => setDropValue(product?.sizes_prices.small)} href="#">Small</button>
+                  <button class="button-variant" onClick={() => setDropValue(product?.sizes_prices.medium)} href="#">Medium</button>
+                  <button class="button-variant" onClick={() => setDropValue(product?.sizes_prices.large)} href="#">Large</button>
+                  <button class="button-variant" onClick={() => setDropValue(product?.sizes_prices.extra_large)} href="#"> Extra Large</button>
+
+                </div>
+
+
+                <button class="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  {dropValue == null || dropValue == '' ? 'Pick a Size' : dropValue}
+                </button>
               </div>
 
 
-
-
-              <strong> {dropValue} </strong>
-
               
+
+
+              {/* <strong> {dropValue} </strong> */}
+
+
 
 
 
@@ -311,8 +253,14 @@ const ViewProduct = () => {
 
 
 
-              {/* <h1>{displayMoney(product.price)}</h1>
-              <h1>{displayMoney(price)}</h1>
+              <h1>{displayMoney(product.price)}</h1>
+
+              {/* <h1>{displayMoney(dropValue)}</h1> */}
+
+
+
+
+              {/* <h1>{displayMoney(price)}</h1>
               <h1>{displayMoney(product.price - product.price + selectedSize)}</h1> */}
 
 
