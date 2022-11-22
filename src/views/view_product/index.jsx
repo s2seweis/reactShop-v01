@@ -240,14 +240,16 @@ const ViewProduct = () => {
 {/* Working now Select Compontent => making out of it a Functional Component?, we will see  */}
 
 
-              <select className='option'
+              <select 
+              className="select-product-size"
                onChange={handleChange}
+               styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
                >
                 <option value={0}>default</option>
                 <option value={product?.sizes_prices.small}>small</option>
-                <option value="2">medium</option>
-                <option value="3">large</option>
-                <option value="4">extra large</option>
+                <option value={product?.sizes_prices.medium}>medium</option>
+                <option value={product?.sizes_prices.large}>large</option>
+                <option value={product?.sizes_prices.extra_large}>extra large</option>
               </select>
 
               <button class="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">

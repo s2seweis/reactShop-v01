@@ -19,6 +19,7 @@
     text-decoration: none;
   }
 }
+
 .button-back {
   background: $button-color;
   padding: $m-size;
@@ -39,6 +40,7 @@
     text-decoration: none;
   }
 }
+
 .button-back-new {
   background: $button-color;
   // padding: $m-size;
@@ -213,16 +215,29 @@
     text-decoration: none;
   }
 }
-.dropdown-menu {
-  
-display: flex;
-padding: 0;
-margin: 0;
-  
-}
-.dropdown {
-  
-display: flex;
 
-  
+.dropdown-menu {
+
+  display: flex;
+  padding: 0;
+  margin: 0;
+
+}
+
+.dropdown {
+
+  display: flex;
+
+
+}
+
+
+.select-product-size {
+
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  height: 40px;
+
+
 }
