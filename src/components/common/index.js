@@ -17,6 +17,9 @@ export { default as Side } from './Side';
 // Hamburger
 export { default as MenuBurger } from './MenuBurger';
 
+// ingredients
+export { default as Ingredients } from './Ingredients';
+
 
 
 export { default as Badge } from './Badge';

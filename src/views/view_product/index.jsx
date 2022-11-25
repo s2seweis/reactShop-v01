@@ -12,12 +12,15 @@ import {
 } from 'hooks';
 import React, { useEffect, useRef, useState, FC } from 'react';
 import { Link, useParams } from 'react-router-dom';
+
 import Select from 'react-select';
 
 
 import { useSelector } from 'react-redux';
 
 import { useTranslation } from 'react-i18next'
+
+import Ingredients from 'components/common/ingredients';
 
 
 
@@ -84,12 +87,10 @@ const ViewProduct = () => {
   const [price, setPrice] = React.useState();
   // console.log(price)
 
-  const [material, setMaterial] = React.useState();
 
 
 
 
-  const [currentValue, setCurrentValue] = useState(2);
 
   const [dropValue, setDropValue] = useState();
 
@@ -97,11 +98,11 @@ const ViewProduct = () => {
 
 
 
-  function handleChange(event){
-    setOption(event.target.value) 
-      console.log(event.target.value)
+  function handleChange(event) {
+    setOption(event.target.value)
+    console.log(event.target.value)
 
-}
+  }
 
 
 
@@ -181,80 +182,99 @@ const ViewProduct = () => {
 
 
               {/* <div>
-                <div class="dropdown">
+                <div className="dropdown">
                   
 
                   
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" onClick={() => setDropValue(product?.sizes_prices.small)} href="#">Small</a></li>
-                    <li><a class="dropdown-item" onClick={() => setDropValue(product?.sizes_prices.medium)} href="#">Medium</a></li>
-                    <li><a class="dropdown-item" onClick={() => setDropValue(product?.sizes_prices.large)} href="#">Large</a></li>
-                    <li><a class="dropdown-item" onClick={() => setDropValue(product?.sizes_prices.extra_large)} href="#"> Extra Large</a></li>
+                  <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a className="dropdown-item" onClick={() => setDropValue(product?.sizes_prices.small)} href="#">Small</a></li>
+                    <li><a className="dropdown-item" onClick={() => setDropValue(product?.sizes_prices.medium)} href="#">Medium</a></li>
+                    <li><a className="dropdown-item" onClick={() => setDropValue(product?.sizes_prices.large)} href="#">Large</a></li>
+                    <li><a className="dropdown-item" onClick={() => setDropValue(product?.sizes_prices.extra_large)} href="#"> Extra Large</a></li>
                   </ul>
 
                 </div>
-                  <button class="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <button className="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     {dropValue == null || dropValue == '' ? 'Pick a Size' : dropValue}
                   </button>
               </div> */}
 
 
               {/* <div>
-                <div class="dropdown">
+                <div className="dropdown">
                   
 
                   
-                    <button class="button-variant" onClick={() => setDropValue(product?.sizes_prices.small)} href="#">Small</button>
-                    <button class="button-variant" onClick={() => setDropValue(product?.sizes_prices.medium)} href="#">Medium</button>
-                    <button class="button-variant" onClick={() => setDropValue(product?.sizes_prices.large)} href="#">Large</button>
-                    <button class="button-variant" onClick={() => setDropValue(product?.sizes_prices.extra_large)} href="#"> Extra Large</button>
+                    <button className="button-variant" onClick={() => setDropValue(product?.sizes_prices.small)} href="#">Small</button>
+                    <button className="button-variant" onClick={() => setDropValue(product?.sizes_prices.medium)} href="#">Medium</button>
+                    <button className="button-variant" onClick={() => setDropValue(product?.sizes_prices.large)} href="#">Large</button>
+                    <button className="button-variant" onClick={() => setDropValue(product?.sizes_prices.extra_large)} href="#"> Extra Large</button>
 
                 </div>
 
 
-                  <button class="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <button className="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     {dropValue == null || dropValue == '' ? 'Pick a Size' : dropValue}
                   </button>
               </div> */}
 
               <div>
-                <div class="dropdown">
+                <div className="dropdown">
 
 
 
-                  <button class="button-variant" onClick={() => setDropValue(product?.sizes_prices.small)} href="#">Small</button>
-                  <button class="button-variant" onClick={() => setDropValue(product?.sizes_prices.medium)} href="#">Medium</button>
-                  <button class="button-variant" onClick={() => setDropValue(product?.sizes_prices.large)} href="#">Large</button>
-                  <button class="button-variant" onClick={() => setDropValue(product?.sizes_prices.extra_large)} href="#"> Extra Large</button>
+                  <button className="button-variant" onClick={() => setDropValue(product?.sizes_prices.small)} href="#">Small</button>
+                  <button className="button-variant" onClick={() => setDropValue(product?.sizes_prices.medium)} href="#">Medium</button>
+                  <button className="button-variant" onClick={() => setDropValue(product?.sizes_prices.large)} href="#">Large</button>
+                  <button className="button-variant" onClick={() => setDropValue(product?.sizes_prices.extra_large)} href="#"> Extra Large</button>
 
                 </div>
 
 
-                <button class="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <button className="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                   {dropValue == null || dropValue == '' ? 'Pick a Size' : dropValue}
                 </button>
               </div>
 
 
 
-{/* Working now Select Compontent => making out of it a Functional Component?, we will see  */}
+              {/* Working now Select Compontent => making out of it a Functional Component?, we will see  */}
 
+              {/* (original) */}
 
-              <select 
-              className="select-product-size"
-               onChange={handleChange}
-               styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
-               >
-                <option value={0}>default</option>
+              {/* <select
+                className="select-product-size"
+                onChange={handleChange}
+              >
+                <option value={""} selected disabled hidden>Pick Your Size</option>
                 <option value={product?.sizes_prices.small}>small</option>
                 <option value={product?.sizes_prices.medium}>medium</option>
                 <option value={product?.sizes_prices.large}>large</option>
                 <option value={product?.sizes_prices.extra_large}>extra large</option>
               </select>
 
-              <button class="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  {option == null || option == '' ? 'Pick!!' : option}
-                </button>
+              <button className="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                {option == null || option == '' ? 'Pick!!' : option}
+              </button> */}
+
+
+              <select
+                className="select-product-size"
+                onChange={handleChange}
+              >
+                <option value={0}  >Pick Your Size</option>
+                <option value={product?.sizes_prices.small}>small</option>
+                <option value={product?.sizes_prices.medium}>medium</option>
+                <option value={product?.sizes_prices.large}>large</option>
+                <option value={product?.sizes_prices.extra_large}>extra large</option>
+              </select>
+
+              <button className="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                {option == null || option == '' ? 'Pick!!' : option}
+              </button>
+
+
+
 
 
 
@@ -278,14 +298,13 @@ const ViewProduct = () => {
 
 
 
-              <h1>{displayMoney(product.price)}</h1>
+              <h1>{displayMoney(option ? option : 0)}</h1>
 
 
 
 
 
-              {/* <h1>{displayMoney(price)}</h1>
-              <h1>{displayMoney(product.price - product.price + selectedSize)}</h1> */}
+
 
 
 
@@ -310,6 +329,16 @@ const ViewProduct = () => {
                   {isItemOnBasket(product.id) ? 'Remove From Basket' : 'Add To Basket'}
                 </button>
               </div>
+
+
+
+
+
+              <div className="ingredients">
+                <Ingredients></Ingredients>
+              </div>
+
+
             </div>
           </div>
           <div style={{ marginTop: '10rem' }}>
