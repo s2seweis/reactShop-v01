@@ -30,9 +30,6 @@ import Ingredients from 'components/common/ingredients';
 const ViewProduct = () => {
 
 
-  // const { basket, user } = useSelector((state) => ({
-  //   basket: state.basket
-  // }));
 
 
   const { id } = useParams();

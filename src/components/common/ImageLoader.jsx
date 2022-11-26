@@ -35,7 +35,8 @@ ImageLoader.defaultProps = {
 
 ImageLoader.propTypes = {
   src: PropType.string.isRequired,
-  alt: PropType.string.isRequired,
+  // alt: PropType.string.isRequired,
+  alt: PropType.string,
   className: PropType.string
 };
 

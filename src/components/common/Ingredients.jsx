@@ -1,9 +1,25 @@
 import React, { useState } from "react";
 // import "./styles.css";
 
+import {
+  useBasket,
+  useDocumentTitle,
+  useProduct,
+  useRecommendedProducts,
+  useScrollTop
+} from 'hooks';
+
+import { Link, useParams } from 'react-router-dom';
+
+
 
 const Ingredients = () => {
   const [messageList, setMessageList] = useState(["Milk", "Sugar", "Butter"]);
+  // console.log(messageList)
+
+
+
+
 
   const addTodo = (message) => {
     setMessageList([...messageList, message]);
@@ -27,11 +43,41 @@ const Ingredients = () => {
   );
 };
 
-const TodoHeader = () => (
-  <div className="header-in">
-    <h2>Todo List</h2>
-  </div>
-);
+
+
+
+const TodoHeader = () => {
+  
+  const { id } = useParams();
+  const { product, isLoading, error } = useProduct(id);
+
+
+
+
+  return (
+
+    <div className="header-in">
+
+
+
+      {/* simple example for handling the state */}
+
+      <h1 className="margin-top-0">{product?.name}</h1>
+      <span className="text-subtle">{product?.brand}</span>
+
+
+
+
+
+      <h2>Todo List</h2>
+    </div>
+
+  )
+
+
+};
+
+
 
 const TodoForm = ({ addTodo }) => {
   const [input, setInput] = useState("");

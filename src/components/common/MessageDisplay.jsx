@@ -27,7 +27,8 @@ MessageDisplay.defaultProps = {
 };
 
 MessageDisplay.propTypes = {
-  message: PropType.string.isRequired,
+  // message: PropType.string.isRequired,
+  message: PropType.string,
   description: PropType.string,
   buttonLabel: PropType.string,
   action: PropType.func
