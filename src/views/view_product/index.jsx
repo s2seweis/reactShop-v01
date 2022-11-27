@@ -20,7 +20,7 @@ import { useSelector } from 'react-redux';
 
 import { useTranslation } from 'react-i18next'
 
-import Ingredients from 'components/common/ingredients';
+import Ingredients from 'components/common/Ingredients';
 
 
 
@@ -41,8 +41,24 @@ const ViewProduct = () => {
   useDocumentTitle(`View ${product?.name || 'Item'}`);
 
   const [selectedImage, setSelectedImage] = useState(product?.image || '');
+
   const [selectedSize, setSelectedSize] = useState('');
+   console.log(selectedSize)
+
+  // Addind selected Price for Basket
+  const [selectedPrice, setSelectedPrice] = useState('');
+
+  // =>
+
+// making it to option and to setOption
+
+
+
+  // console.log(selectedPrice)
+ 
+
   const [selectedColor, setSelectedColor] = useState('');
+  
 
 
 
@@ -60,11 +76,35 @@ const ViewProduct = () => {
     setSelectedImage(product?.image);
   }, [product]);
 
+
+
+  
+// Test:1 onSelectedSizeChange almost the same like handleChange
+
   const onSelectedSizeChange = (newValue) => {
     setSelectedSize(newValue.value);
-    // console.log(setSelectedSize)
-
+    // console.log(newValue.value)
   };
+
+  function handleChange(event) {
+    setOption(event.target.value)
+    // console.log(event.target.value)
+
+  }
+
+// Test:1 -----end
+
+
+
+  const [dropValue, setDropValue] = useState();
+
+  const [option, setOption] = useState();
+          // console.log(option)
+
+
+
+
+ 
 
   const onSelectedColorChange = (color) => {
     setSelectedColor(color);
@@ -74,14 +114,25 @@ const ViewProduct = () => {
   };
 
   const handleAddToBasket = () => {
-    addToBasket({ ...product, selectedColor, selectedSize: selectedSize || product.new[0] });
+    addToBasket({ 
+      ...product, 
+      selectedColor, 
+      selectedSize: selectedSize || product.new[0],
+
+
+      selectedPrice: option 
+    
+    });
+        console.log(option)
+        // console.log(selectedPrice)
+
   };
 
 
 
 
-  const [size, setSize] = React.useState();
-  const [price, setPrice] = React.useState();
+  // const [size, setSize] = React.useState();
+  // const [price, setPrice] = React.useState();
   // console.log(price)
 
 
@@ -89,17 +140,7 @@ const ViewProduct = () => {
 
 
 
-  const [dropValue, setDropValue] = useState();
-
-  const [option, setOption] = useState();
-
-
-
-  function handleChange(event) {
-    setOption(event.target.value)
-    console.log(event.target.value)
-
-  }
+  
 
 
 
@@ -164,10 +205,17 @@ const ViewProduct = () => {
                 <br />
 
 
-                <Select
+                {/* <Select
                   placeholder="--Select Size--"
                   onChange={onSelectedSizeChange}
                   options={product.sizes.sort((a, b) => (a < b ? -1 : 1)).map((size) => ({ label: `${size} mm`, value: size }))}
+                  styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
+                /> */}
+
+                <Select
+                  placeholder="--Select Size--"
+                  onChange={onSelectedSizeChange}
+                  options={product.sizes.map((size) => ({ label: `${size} mm`, value: size }))}
                   styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
                 />
 
@@ -178,42 +226,7 @@ const ViewProduct = () => {
 
 
 
-              {/* <div>
-                <div className="dropdown">
-                  
-
-                  
-                  <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a className="dropdown-item" onClick={() => setDropValue(product?.sizes_prices.small)} href="#">Small</a></li>
-                    <li><a className="dropdown-item" onClick={() => setDropValue(product?.sizes_prices.medium)} href="#">Medium</a></li>
-                    <li><a className="dropdown-item" onClick={() => setDropValue(product?.sizes_prices.large)} href="#">Large</a></li>
-                    <li><a className="dropdown-item" onClick={() => setDropValue(product?.sizes_prices.extra_large)} href="#"> Extra Large</a></li>
-                  </ul>
-
-                </div>
-                  <button className="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    {dropValue == null || dropValue == '' ? 'Pick a Size' : dropValue}
-                  </button>
-              </div> */}
-
-
-              {/* <div>
-                <div className="dropdown">
-                  
-
-                  
-                    <button className="button-variant" onClick={() => setDropValue(product?.sizes_prices.small)} href="#">Small</button>
-                    <button className="button-variant" onClick={() => setDropValue(product?.sizes_prices.medium)} href="#">Medium</button>
-                    <button className="button-variant" onClick={() => setDropValue(product?.sizes_prices.large)} href="#">Large</button>
-                    <button className="button-variant" onClick={() => setDropValue(product?.sizes_prices.extra_large)} href="#"> Extra Large</button>
-
-                </div>
-
-
-                  <button className="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    {dropValue == null || dropValue == '' ? 'Pick a Size' : dropValue}
-                  </button>
-              </div> */}
+              
 
               <div>
                 <div className="dropdown">
@@ -234,25 +247,6 @@ const ViewProduct = () => {
               </div>
 
 
-
-              {/* Working now Select Compontent => making out of it a Functional Component?, we will see  */}
-
-              {/* (original) */}
-
-              {/* <select
-                className="select-product-size"
-                onChange={handleChange}
-              >
-                <option value={""} selected disabled hidden>Pick Your Size</option>
-                <option value={product?.sizes_prices.small}>small</option>
-                <option value={product?.sizes_prices.medium}>medium</option>
-                <option value={product?.sizes_prices.large}>large</option>
-                <option value={product?.sizes_prices.extra_large}>extra large</option>
-              </select>
-
-              <button className="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                {option == null || option == '' ? 'Pick!!' : option}
-              </button> */}
 
 
               <select

@@ -20,7 +20,11 @@ const ProductItem = ({ product, isItemOnBasket, addToBasket }) => {
   const itemOnBasket = isItemOnBasket ? isItemOnBasket(product.id) : false;
 
   const handleAddToBasket = () => {
-    if (addToBasket) addToBasket({ ...product, selectedSize: product.sizes[0] });
+    if (addToBasket) addToBasket({ 
+      ...product, 
+      selectedSize: product.sizes[0], 
+      selectedPrice: product.sizes_prices.small 
+    });
   };
 
   return (
@@ -51,6 +55,7 @@ const ProductItem = ({ product, isItemOnBasket, addToBasket }) => {
             <h5 className="product-card-name text-overflow-ellipsis margin-auto">
               {product.name || <Skeleton width={80} />}
             </h5>
+            <span className="text-subtle">Test</span>
             <h5 className="product-card-name text-overflow-ellipsis margin-auto">
               {product.name || <Skeleton width={80} />}
             </h5>
