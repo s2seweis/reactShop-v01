@@ -43,22 +43,22 @@ const ViewProduct = () => {
   const [selectedImage, setSelectedImage] = useState(product?.image || '');
 
   const [selectedSize, setSelectedSize] = useState('');
-   console.log(selectedSize)
+  console.log(selectedSize)
 
   // Addind selected Price for Basket
   const [selectedPrice, setSelectedPrice] = useState('');
 
   // =>
 
-// making it to option and to setOption
+  // making it to option and to setOption
 
 
 
   // console.log(selectedPrice)
- 
+
 
   const [selectedColor, setSelectedColor] = useState('');
-  
+
 
 
 
@@ -78,8 +78,8 @@ const ViewProduct = () => {
 
 
 
-  
-// Test:1 onSelectedSizeChange almost the same like handleChange
+
+  // Test:1 onSelectedSizeChange almost the same like handleChange
 
   const onSelectedSizeChange = (newValue) => {
     setSelectedSize(newValue.value);
@@ -92,19 +92,19 @@ const ViewProduct = () => {
 
   }
 
-// Test:1 -----end
+  // Test:1 -----end
 
 
 
   const [dropValue, setDropValue] = useState();
 
   const [option, setOption] = useState();
-          // console.log(option)
+  // console.log(option)
 
 
 
 
- 
+
 
   const onSelectedColorChange = (color) => {
     setSelectedColor(color);
@@ -114,17 +114,17 @@ const ViewProduct = () => {
   };
 
   const handleAddToBasket = () => {
-    addToBasket({ 
-      ...product, 
-      selectedColor, 
+    addToBasket({
+      ...product,
+      selectedColor,
       selectedSize: selectedSize || product.new[0],
 
 
-      selectedPrice: option 
-    
+      selectedPrice: option
+
     });
-        console.log(option)
-        // console.log(selectedPrice)
+    console.log(option)
+    // console.log(selectedPrice)
 
   };
 
@@ -137,10 +137,32 @@ const ViewProduct = () => {
 
 
 
+  // Test ----------------
 
 
 
-  
+
+  const myFunction = () => {
+    var x = document.getElementById("mySelect").options[0].text;
+    document.getElementById("demo").innerHTML = x;
+    console.log(x)
+
+  }
+
+
+
+
+
+
+  // Test ----------------End
+
+
+
+
+
+
+
+
 
 
 
@@ -226,7 +248,7 @@ const ViewProduct = () => {
 
 
 
-              
+
 
               <div>
                 <div className="dropdown">
@@ -254,7 +276,8 @@ const ViewProduct = () => {
                 onChange={handleChange}
               >
                 <option value={0}  >Pick Your Size</option>
-                <option value={product?.sizes_prices.small}>small</option>
+                {/* <option value={product?.sizes_prices.small}>small</option> */}
+                <option value={product?.sizes_prices.small}>{product?.sizes_new.small}</option>
                 <option value={product?.sizes_prices.medium}>medium</option>
                 <option value={product?.sizes_prices.large}>large</option>
                 <option value={product?.sizes_prices.extra_large}>extra large</option>
@@ -321,6 +344,33 @@ const ViewProduct = () => {
                 </button>
               </div>
 
+
+
+
+
+
+              {/* Test ------------------- */}
+
+
+              <form>
+                <select id="mySelect">
+                  <option>Apple</option>
+                  <option>Orange</option>
+                  <option>Pineapple</option>
+                  <option>Banana</option>
+                </select>
+              </form>
+
+              <p>Click the button to display the text of the first option in the drop-down list.</p>
+
+              <button onClick={myFunction}>Try it</button>
+
+              <p id="demo"></p>
+
+
+
+
+              {/* Test ----------------End */}
 
 
 

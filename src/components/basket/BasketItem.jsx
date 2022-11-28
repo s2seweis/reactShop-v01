@@ -60,6 +60,7 @@ const BasketItem = ({ product }) => {
           </div>
         </div>
         <div className="basket-item-price">
+          <h4 className="my-0">{displayMoney(product.selectedPrice * product.quantity)}</h4>
           <h4 className="my-0">{displayMoney(product.price * product.quantity)}</h4>
           {/* <h4 className="my-0">{displayMoney(product.selectedSize * product.quantity)}</h4> */}
         </div>
