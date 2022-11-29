@@ -25,11 +25,13 @@ import Ingredients from 'components/common/Ingredients';
 import $ from 'jquery';
 
 
+const defaultSelectValue = "Select a fruit"
 
 
 
 
-const ViewProduct = () => {
+
+const ViewProduct = (fruitDetector) => {
 
 
 
@@ -90,9 +92,9 @@ const ViewProduct = () => {
     // console.log(newValue.value)
   };
 
-  function handleChange(event) {
-    setOption(event.target.value)
-    // console.log(event.target.child)
+  const handleChange = (event) => {
+    setOption(event.target1.value)
+    console.log(event.target1.value)
 
 
 
@@ -234,7 +236,7 @@ const ViewProduct = () => {
   };
 
 
-
+  // Test ----------------End
 
 
 
@@ -258,12 +260,45 @@ const ViewProduct = () => {
 
   // const size = React.useRef();
 
-  
+
+  // Test ----------------End
+
+
   const ref = React.useRef();
-    console.log(ref);
+
+
+  // Test ----------------End
+
+
+  const [selected, setSelected] = useState(defaultSelectValue)
+  // console.log(selected);
 
 
 
+
+  // Test ----------------End
+
+
+
+
+  // var e = document.getElementById("ddlViewBy");
+
+  // function onChange() {
+  //   var value = e.value;
+  //   var text = e.options[e.selectedIndex].text;
+  //   console.log(value, text);
+  // }
+
+  // e.onchange = onChange;
+  // onChange();
+
+
+
+
+
+
+
+  // Test ----------------End
 
 
   return (
@@ -383,20 +418,7 @@ const ViewProduct = () => {
                 id="mySelect"
               >
                 <option value={0}  >Pick Your Size</option>
-                {/* <option value={product?.sizes_prices.small}>small</option> */}
-
-
-                <option value={product?.sizes_prices.small}>
-
-
-
-                  <div ref={ref}>
-                    small
-                  </div>
-
-
-                </option>
-
+                <option value={product?.sizes_prices.small}>small</option>
                 <option value={product?.sizes_prices.medium}>medium</option>
                 <option value={product?.sizes_prices.large}>large</option>
                 <option value={product?.sizes_prices.extra_large}>extra large</option>
@@ -550,6 +572,68 @@ const ViewProduct = () => {
                 <option value="1">Test One</option>
                 <option value="2">Test Two</option>
               </select> */}
+
+
+
+
+
+              {/* Test ----------------End */}
+
+
+
+
+
+
+
+
+
+
+              <>
+                <label htmlFor="fruits">Fruits</label>{' '}
+                <select
+                  id="fruits"
+                  name="fruits"
+                  defaultValue={selected}
+                  style={{ color: selected === defaultSelectValue ? "gray" : "black" }}
+                  // onClick={() => { toggleFavorite(); collapseSidebar() }}
+
+                  onChange={e => { setSelected(e.target.value) }}
+                >
+                  <option>{defaultSelectValue}</option>
+                  <option
+                  >
+                    Banana
+                  </option>
+
+                  <option>Apple</option>
+                  <option>Orange</option>
+                </select>
+
+                <h2>Selected: {selected}</h2>
+              </>
+
+
+
+
+
+
+
+
+
+              {/* Test ----------------End */}
+
+
+
+
+              {/* <form>
+                <select id="ddlViewBy">
+                  <option value="1">test1</option>
+                  <option value="2" selected="selected">test2</option>
+                  <option value="3">test3</option>
+                </select>
+              </form> */}
+
+
 
 
 
