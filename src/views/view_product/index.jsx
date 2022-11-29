@@ -22,6 +22,8 @@ import { useTranslation } from 'react-i18next'
 
 import Ingredients from 'components/common/Ingredients';
 
+import $ from 'jquery';
+
 
 
 
@@ -43,7 +45,6 @@ const ViewProduct = () => {
   const [selectedImage, setSelectedImage] = useState(product?.image || '');
 
   const [selectedSize, setSelectedSize] = useState('');
-  console.log(selectedSize)
 
   // Addind selected Price for Basket
   const [selectedPrice, setSelectedPrice] = useState('');
@@ -70,7 +71,10 @@ const ViewProduct = () => {
     isLoading: isLoadingFeatured,
     error: errorFeatured
   } = useRecommendedProducts(6);
+
   const colorOverlay = useRef(null);
+  // console.log(colorOverlay)
+
 
   useEffect(() => {
     setSelectedImage(product?.image);
@@ -88,9 +92,19 @@ const ViewProduct = () => {
 
   function handleChange(event) {
     setOption(event.target.value)
+    // console.log(event.target.child)
+
+
+
+    // var x = document.getElementById("mySelect");
+    // var i = x.selectedIndex;
+    // document.getElementById("demo").innerHTML = x.options[i].text;
+    // console.log(demo)
     // console.log(event.target.value)
 
   }
+
+
 
   // Test:1 -----end
 
@@ -99,6 +113,9 @@ const ViewProduct = () => {
   const [dropValue, setDropValue] = useState();
 
   const [option, setOption] = useState();
+
+
+
   // console.log(option)
 
 
@@ -142,25 +159,108 @@ const ViewProduct = () => {
 
 
 
-  const myFunction = () => {
-    var x = document.getElementById("mySelect").options[0].text;
-    document.getElementById("demo").innerHTML = x;
-    console.log(x)
+  // const myFunction = () => {
+  //   var x = document.getElementById("mySelect").options[0].text;
+  //   document.getElementById("demo").innerHTML = x;
+  //   console.log(x)
+
+  // }
+
+
+  // const myFunction = () => {
+  //   var x = document.getElementById("mySelect");
+  //   var i = x.selectedIndex;
+  //   document.getElementById("demo").innerHTML = x.options[i].text;
+  //   console.log(x)
+
+  // }
+
+
+  // let log = document.getElementsById('test').selectedValue;
+  // console.log('log')
+
+
+  let log = document.getElementById('log');
+  // console.log('log')
+
+
+
+  // const value = React.useRef('');
+  // console.log(value)
+
+
+
+
+  const handleChange1 = (e) => {
+    let innerText = e.target[e.target.options.selectedIndex].innerText;
+    let value = e.target.value;
+    // console.log(innerText)
+    // console.log(value)
+
+
+
+    log.innerHTML = `<table>
+      <tr><th>value</th><th>innerText</th></tr>
+      <tr><td>${value}</td><td>${innerText}</td></tr>
+    </table>`;
+
+
+    // console.log(innerText)
+    // console.log(value)
+
+
 
   }
 
 
 
+  // const ref = React.useRef();
+  // log on second render
+  // My name is Shubham, I work for  for the last 5 years.
+  // console.log(ref.current?.innerText);
 
 
 
   // Test ----------------End
 
 
+  const Welcome = (props) => {
+    return <div>
+      <p>Hello {props.name}!</p>
+      {props.children
+      }
+
+    </div>
+  };
 
 
 
 
+
+
+  // export defaWelcomelt function PaperLetter(props) {
+  //   const [clicked, setclicked] = useState(false);
+  //   const letterRef = useRef();
+
+
+
+
+
+  // const textInput = useRef(null);
+
+
+  // const size = useRef(null);
+
+  // const size = React.useRef();
+  // const ref = React.useRef();
+
+
+
+  // const size = React.useRef();
+
+  
+  const ref = React.useRef();
+    console.log(ref);
 
 
 
@@ -204,14 +304,20 @@ const ViewProduct = () => {
                 ))}
               </div>
             )}
-            <div className="product-modal-image-wrapper">
+
+
+
+            {/* <div className="product-modal-image-wrapper">
               {selectedColor && <input type="color" disabled ref={colorOverlay} id="color-overlay" />}
               <ImageLoader
                 alt={product.name}
                 className="product-modal-image"
                 src={selectedImage}
               />
-            </div>
+            </div> */}
+
+
+
             <div className="product-modal-details">
               <br />
               <span className="text-subtle">{product.brand}</span>
@@ -274,14 +380,30 @@ const ViewProduct = () => {
               <select
                 className="select-product-size"
                 onChange={handleChange}
+                id="mySelect"
               >
                 <option value={0}  >Pick Your Size</option>
                 {/* <option value={product?.sizes_prices.small}>small</option> */}
-                <option value={product?.sizes_prices.small}>{product?.sizes_new.small}</option>
+
+
+                <option value={product?.sizes_prices.small}>
+
+
+
+                  <div ref={ref}>
+                    small
+                  </div>
+
+
+                </option>
+
                 <option value={product?.sizes_prices.medium}>medium</option>
                 <option value={product?.sizes_prices.large}>large</option>
                 <option value={product?.sizes_prices.extra_large}>extra large</option>
               </select>
+
+
+              {/* <p id="demo"></p> */}
 
               <button className="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 {option == null || option == '' ? 'Pick!!' : option}
@@ -289,6 +411,21 @@ const ViewProduct = () => {
 
 
 
+
+              <div className="vari">
+                <select id="greet" onChange={handleChange1}>
+                  <option value={product?.sizes_prices.small}>{product?.sizes_new.small} (innerText)</option>
+                  <option value="value_goodbye">Goodbye innerText</option>
+                  <option value="value_seeYou">See you... innerText</option>
+                </select>
+
+
+                <div id="log"></div>
+
+
+
+
+              </div>
 
 
 
@@ -348,29 +485,78 @@ const ViewProduct = () => {
 
 
 
+              {/* Test w3_test------------------- */}
 
-              {/* Test ------------------- */}
+              {/* <div className="w3_test">
+                <form>
+                  <select id="mySelect">
+                    <option>Apple</option>
+                    <option>Orange</option>
+                    <option>Pineapple</option>
+                    <option>Banana</option>
+                  </select>
+                </form>
+
+                <p className="w3_test">Click the button to display the text of the first option in the drop-down list.</p>
+
+                <button onClick={myFunction}>Try it</button>
+
+                <p id="demo"
+                  className="w3_test"></p>
+
+              </div> */}
 
 
-              <form>
-                <select id="mySelect">
-                  <option>Apple</option>
-                  <option>Orange</option>
-                  <option>Pineapple</option>
-                  <option>Banana</option>
-                </select>
-              </form>
+              {/* Test ----------------End */}
 
-              <p>Click the button to display the text of the first option in the drop-down list.</p>
 
-              <button onClick={myFunction}>Try it</button>
 
-              <p id="demo"></p>
+              {/* <div className="w3_test">
+                <form>
+                  <select id="mySelect" onChange={myFunction}>
+                    <option>Apple</option>
+                    <option>Orange</option>
+                    <option>Pineapple</option>
+                    <option>Banana</option>
+                  </select>
+                </form>
+
+                <p id="demo"></p>
+
+              </div> */}
+
+
+
+
+
+
+
+              <Welcome name="Sara">good day </Welcome>
+
+
+
+              {/* Atempt:10 */}
+
+              {/* <div ref={ref}>
+                My name is Shubham, I work for <input type="text" /> for the last 5 years.
+              </div> */}
+
+
+
+
+
+
+              {/* <select id="test">
+                <option value="1">Test One</option>
+                <option value="2">Test Two</option>
+              </select> */}
+
 
 
 
 
               {/* Test ----------------End */}
+
 
 
 
