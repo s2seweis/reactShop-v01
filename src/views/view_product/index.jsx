@@ -93,17 +93,9 @@ const ViewProduct = (fruitDetector) => {
   };
 
   const handleChange = (event) => {
-    setOption(event.target1.value)
-    console.log(event.target1.value)
+    setOption(event.target.value)
 
-
-
-    // var x = document.getElementById("mySelect");
-    // var i = x.selectedIndex;
-    // document.getElementById("demo").innerHTML = x.options[i].text;
-    // console.log(demo)
     // console.log(event.target.value)
-
   }
 
 
@@ -261,10 +253,7 @@ const ViewProduct = (fruitDetector) => {
   // const size = React.useRef();
 
 
-  // Test ----------------End
 
-
-  const ref = React.useRef();
 
 
   // Test ----------------End
@@ -299,6 +288,84 @@ const ViewProduct = (fruitDetector) => {
 
 
   // Test ----------------End
+
+
+
+
+
+
+
+  var e = document.getElementById("ddlViewBy");
+  // var e = document.getElementById("elementId");
+
+
+
+  const handleChange2 = () => {
+    // var value = e.value;
+    // var text = e.options[e.selectedIndex].text;
+
+
+
+    var value = e.value;
+    var text = e.options[e.selectedIndex].text;
+    console.log(value);
+    console.log(text);
+
+
+
+
+  }
+
+
+
+  {/* Test ----------------End */ }
+
+
+
+
+
+
+  const [inputValue, setInputValue] = useState("");
+  // console.log(inputValue);
+
+  const count = useRef(0);
+  // console.log(count);
+
+
+
+
+
+
+  useEffect(() => {
+    count.current = count.current + 1;
+  });
+
+
+
+
+
+
+  const ref = React.useRef();
+
+
+  
+
+
+  {/* Test ----------------End */ }
+
+   const getSelectedText = (el) => {
+    if (el?.selectedIndex === -1) {
+      return null;
+    }
+    return el?.options[el.selectedIndex].text;
+  }
+
+
+  const select = document.querySelector('select')
+  const text = getSelectedText(select);
+  console.log(text)
+
+
 
 
   return (
@@ -413,12 +480,24 @@ const ViewProduct = (fruitDetector) => {
 
 
               <select
+                // </Select>
                 className="select-product-size"
                 onChange={handleChange}
                 id="mySelect"
               >
                 <option value={0}  >Pick Your Size</option>
-                <option value={product?.sizes_prices.small}>small</option>
+                <option value={product?.sizes_prices.small}>
+
+                
+
+                    small
+
+
+
+                
+
+                </option>
+
                 <option value={product?.sizes_prices.medium}>medium</option>
                 <option value={product?.sizes_prices.large}>large</option>
                 <option value={product?.sizes_prices.extra_large}>extra large</option>
@@ -430,6 +509,9 @@ const ViewProduct = (fruitDetector) => {
               <button className="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 {option == null || option == '' ? 'Pick!!' : option}
               </button>
+
+
+
 
 
 
@@ -551,19 +633,19 @@ const ViewProduct = (fruitDetector) => {
 
 
 
+              <div className='w3_test'>
+
+                <Welcome name="Sara">good day </Welcome>
 
 
-              <Welcome name="Sara">good day </Welcome>
 
+                {/* Atempt:10 */}
 
-
-              {/* Atempt:10 */}
-
-              {/* <div ref={ref}>
+                {/* <div ref={ref}>
                 My name is Shubham, I work for <input type="text" /> for the last 5 years.
               </div> */}
 
-
+              </div>
 
 
 
@@ -586,33 +668,33 @@ const ViewProduct = (fruitDetector) => {
 
 
 
+              <div className='w3_test'>
 
+                <>
+                  <label htmlFor="fruits">Fruits</label>{' '}
+                  <select
+                    id="fruits"
+                    name="fruits"
+                    defaultValue={selected}
+                    style={{ color: selected === defaultSelectValue ? "gray" : "black" }}
+                    // onClick={() => { toggleFavorite(); collapseSidebar() }}
 
-              <>
-                <label htmlFor="fruits">Fruits</label>{' '}
-                <select
-                  id="fruits"
-                  name="fruits"
-                  defaultValue={selected}
-                  style={{ color: selected === defaultSelectValue ? "gray" : "black" }}
-                  // onClick={() => { toggleFavorite(); collapseSidebar() }}
-
-                  onChange={e => { setSelected(e.target.value) }}
-                >
-                  <option>{defaultSelectValue}</option>
-                  <option
+                    onChange={e => { setSelected(e.target.value) }}
                   >
-                    Banana
-                  </option>
+                    <option>{defaultSelectValue}</option>
+                    <option
+                    >
+                      Banana
+                    </option>
 
-                  <option>Apple</option>
-                  <option>Orange</option>
-                </select>
+                    <option>Apple</option>
+                    <option>Orange</option>
+                  </select>
 
-                <h2>Selected: {selected}</h2>
-              </>
+                  <h2>Selected: {selected}</h2>
+                </>
 
-
+              </div>
 
 
 
@@ -635,6 +717,54 @@ const ViewProduct = (fruitDetector) => {
 
 
 
+
+
+
+
+              {/* Test ----------------End */}
+
+              <div className='w3_test'>
+                <form>
+                  <select id="ddlViewBy"
+                    onChange={handleChange2}
+                  >
+                    <option value="1">test1</option>
+                    <option value="2" selected="selected">test2</option>
+                    <option value="3">test3</option>
+                  </select>
+                </form>
+              </div>
+
+              {/* Test ----------------End */}
+
+
+
+
+
+              <div className='w3_test'>
+                <>
+                  <input
+                    type="text"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                  />
+                  <h1>Render Count: {count.current}</h1>
+                </>
+              </div>
+
+
+              {/* Test ----------------End */}
+
+
+
+
+              {/* <div className='w3_test' ref={ref}>
+
+                small
+
+
+
+              </div> */}
 
 
 
