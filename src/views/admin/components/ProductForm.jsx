@@ -56,19 +56,22 @@ const FormSchema = Yup.object().shape({
     .min(1, 'Please add a default color for this product.')
 });
 
-const ProductForm = ({ product, onSubmit, isLoading }) => {
+const ProductForm = ({ product, onSubmit, isLoading, authProvider }) => {
   const initFormikValues = {
     name: product?.name || '',
     brand: product?.brand || '',
     price: product?.price || 0,
-    // sizes_new: {
-    //   small: product?.small || 'small',
-    //   medium: product?.medium || 'medium',
-    //   large: product?.large || 'large',
-    //   extra_large: product?.extra_large || 'extra_large',
-    // },
 
-    small: product?.small || '',
+    // info:https://formik.org/docs/guides/arrays
+
+    sizes_new: {
+      small: product?.small || 'small',
+      medium: product?.medium || 'medium',
+      large: product?.large || 'large',
+      extra_large: product?.extra_large || 'extra_large',
+    },
+
+    // small: product?.small || '',
 
     maxQuantity: product?.maxQuantity || 0,
     description: product?.description || '',
@@ -164,10 +167,22 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
                 <div className="product-form-field">
                   <Field
                     disabled={isLoading}
-                    name="small"
-                    id="small"
-                    type="small"
-                    label="small"
+                    name="sizes_new.small"
+                    id="sizes_new.small"
+                    type="sizes_new.small"
+                    label="sizes_new.small"
+                    component={CustomInput}
+                  />
+                </div>
+                <div className="product-form-field">
+                  <Field
+                    // disabled={isLoading}
+                    disabled={authProvider !== 'password' || isLoading}
+                    // most important field
+                    name="sizes_new.medium"
+                    id="sizes_new.medium"
+                    type="sizes_new.medium"
+                    label="sizes_new.medium"
                     component={CustomInput}
                   />
                 </div>
