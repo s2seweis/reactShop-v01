@@ -36,7 +36,7 @@ const BasketItem = ({ product }) => {
             </div>
             <div>
               <span className="spec-title">Size</span>
-              <h5 className="my-0">
+              {/* <h5 className="my-0">
                 {product.selectedSize}
                 {' '}
                 mm
@@ -45,6 +45,11 @@ const BasketItem = ({ product }) => {
                 {product.selectedPrice}
                 {' '}
                 €
+              </h5> */}
+              <h5 className="my-0">
+                {product.selectedSizeNew}
+                {' '}
+                
               </h5>
             </div>
             <div>
@@ -61,7 +66,7 @@ const BasketItem = ({ product }) => {
         </div>
         <div className="basket-item-price">
           <h4 className="my-0">{displayMoney(product.selectedPrice * product.quantity)}</h4>
-          <h4 className="my-0">{displayMoney(product.price * product.quantity)}</h4>
+          {/* <h4 className="my-0">{displayMoney(product.price * product.quantity)}</h4> */}
           {/* <h4 className="my-0">{displayMoney(product.selectedSize * product.quantity)}</h4> */}
         </div>
         <button
@@ -88,6 +93,7 @@ BasketItem.propTypes = {
     keywords: PropType.arrayOf(PropType.string),
     selectedSize: PropType.string,
     selectedPrice: PropType.string,
+    selectedSizeNew: PropType.string,
     selectedColor: PropType.string,
     // imageCollection: PropType.arrayOf(PropType.string),
     imageCollection: PropType.arrayOf(PropType.object),

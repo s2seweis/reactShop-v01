@@ -61,6 +61,15 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
     name: product?.name || '',
     brand: product?.brand || '',
     price: product?.price || 0,
+    // sizes_new: {
+    //   small: product?.small || 'small',
+    //   medium: product?.medium || 'medium',
+    //   large: product?.large || 'large',
+    //   extra_large: product?.extra_large || 'extra_large',
+    // },
+
+    small: product?.small || '',
+
     maxQuantity: product?.maxQuantity || 0,
     description: product?.description || '',
     keywords: product?.keywords || [],
@@ -149,6 +158,16 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
                     id="price"
                     type="number"
                     label="* Price"
+                    component={CustomInput}
+                  />
+                </div>
+                <div className="product-form-field">
+                  <Field
+                    disabled={isLoading}
+                    name="small"
+                    id="small"
+                    type="small"
+                    label="small"
                     component={CustomInput}
                   />
                 </div>
@@ -352,6 +371,9 @@ ProductForm.propTypes = {
     name: PropType.string,
     brand: PropType.string,
     price: PropType.number,
+
+    sizes_new: PropType.object,
+
     maxQuantity: PropType.number,
     description: PropType.string,
     keywords: PropType.arrayOf(PropType.string),
@@ -368,3 +390,4 @@ ProductForm.propTypes = {
 };
 
 export default ProductForm;
+

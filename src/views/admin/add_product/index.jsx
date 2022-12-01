@@ -40,6 +40,7 @@ const AddProduct = () => {
             description: '',
             keywords: [],
             sizes: [],
+            sizes_new: {},
             image: '',
             isFeatured: false,
             isRecommended: false,

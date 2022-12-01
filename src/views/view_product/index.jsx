@@ -45,8 +45,14 @@ const ViewProduct = () => {
 
   const [selectedSize, setSelectedSize] = useState('');
 
+
+  const [selectedSizeNew, setSelectedSizeNew] = useState('');
+
   const [selectedPrice, setSelectedPrice] = useState('');
 
+
+
+  
   
 
 
@@ -110,11 +116,12 @@ const ViewProduct = () => {
       selectedSize: selectedSize || product.new[0],
 
 
-      selectedPrice: option
+      selectedPrice: option,
+      selectedSizeNew: text
 
     });
     console.log(option)
-    // console.log(selectedPrice)
+    console.log(text)
 
   };
 
@@ -271,8 +278,8 @@ const ViewProduct = () => {
 
 
 
-                  small
-
+                  {/* small */}
+                  {product?.sizes_new.small}
 
 
 
