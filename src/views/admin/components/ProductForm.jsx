@@ -65,10 +65,17 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider }) => {
     // info:https://formik.org/docs/guides/arrays
 
     sizes_new: {
-      small: product?.small || 'small',
-      medium: product?.medium || 'medium',
-      large: product?.large || 'large',
-      extra_large: product?.extra_large || 'extra_large',
+      small: product?.sizes_new.small || 'small',
+      medium: product?.sizes_new.medium || 'medium',
+      large: product?.sizes_new.large || 'large',
+      extra_large: product?.sizes_new.extra_large || 'extra large',
+    },
+
+    prices_new: {
+      small: product?.prices_new.small || '7',
+      medium: product?.prices_new.medium || '9',
+      large: product?.prices_new.large || '11',
+      extra_large: product?.prices_new.extra_large || '14',
     },
 
     // small: product?.small || '',
@@ -81,6 +88,7 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider }) => {
     isRecommended: product?.isRecommended || false,
     availableColors: product?.availableColors || []
   };
+  console.log(initFormikValues)
 
   const {
     imageFile,
@@ -164,28 +172,8 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider }) => {
                     component={CustomInput}
                   />
                 </div>
-                <div className="product-form-field">
-                  <Field
-                    disabled={isLoading}
-                    name="sizes_new.small"
-                    id="sizes_new.small"
-                    type="sizes_new.small"
-                    label="sizes_new.small"
-                    component={CustomInput}
-                  />
-                </div>
-                <div className="product-form-field">
-                  <Field
-                    // disabled={isLoading}
-                    disabled={authProvider !== 'password' || isLoading}
-                    // most important field
-                    name="sizes_new.medium"
-                    id="sizes_new.medium"
-                    type="sizes_new.medium"
-                    label="sizes_new.medium"
-                    component={CustomInput}
-                  />
-                </div>
+
+
                 &nbsp;
                 <div className="product-form-field">
                   <Field
@@ -198,6 +186,130 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider }) => {
                   />
                 </div>
               </div>
+
+
+              {/* Test: adding price and size variations, becoming a table, later will become an own component (refactoring) + using formik dynamic forms */}
+
+
+              {/* Sizes */}
+
+
+              <div className="d-flex-vari-top">
+
+
+              <div className="d-flex-vari">
+
+                <div className="product-form-field-vari">
+                  <Field
+                    disabled={isLoading}
+                    name="sizes_new.small"
+                    id="sizes_new.small"
+                    type="sizes_new.small"
+                    label="Sizes"
+                    component={CustomInput}
+                  />
+                </div>
+
+                <div className="product-form-field-vari">
+                  <Field
+                    disabled={isLoading}
+                    name="sizes_new.medium"
+                    id="sizes_new.medium"
+                    type="sizes_new.medium"
+                    // label="sizes_new.medium"
+                    component={CustomInput}
+                  />
+                </div>
+
+                <div className="product-form-field-vari">
+                  <Field
+                    disabled={isLoading}
+                    name="sizes_new.large"
+                    id="sizes_new.large"
+                    type="sizes_new.large"
+                    // label="sizes_new.small"
+                    component={CustomInput}
+                  />
+                </div>
+
+                <div className="product-form-field-vari">
+                  <Field
+                    disabled={isLoading}
+                    name="sizes_new.extra_large"
+                    id="sizes_new.extra_large"
+                    type="sizes_new.extra_large"
+                    // label="sizes_new.medium"
+                    component={CustomInput}
+                  />
+                </div>
+
+
+
+              </div>
+
+
+
+              {/* Prices */}
+
+
+
+
+              <div className="d-flex-vari">
+
+                <div className="product-form-field-vari">
+                  <Field
+                    disabled={isLoading}
+                    name="prices_new.small"
+                    id="prices_new.small"
+                    type="prices_new.small"
+                    label="Prices"
+                    component={CustomInput}
+                  />
+                </div>
+
+                <div className="product-form-field-vari">
+                  <Field
+                    disabled={isLoading}
+                    name="prices_new.medium"
+                    id="prices_new.medium"
+                    type="prices_new.medium"
+                    // label="prices_new.medium"
+                    component={CustomInput}
+                  />
+                </div>
+
+                <div className="product-form-field-vari">
+                  <Field
+                    disabled={isLoading}
+                    name="prices_new.large"
+                    id="prices_new.large"
+                    type="prices_new.large"
+                    // label="prices_new.small"
+                    component={CustomInput}
+                  />
+                </div>
+
+                <div className="product-form-field-vari">
+                  <Field
+                    disabled={isLoading}
+                    name="prices_new.extra_large"
+                    id="prices_new.extra_large"
+                    type="prices_new.extra_large"
+                    // label="prices_new.medium"
+                    component={CustomInput}
+                  />
+                </div>
+
+
+
+              </div>
+
+              </div>
+
+
+
+
+
               <div className="d-flex">
                 <div className="product-form-field">
                   <CustomCreatableSelect
@@ -388,6 +500,8 @@ ProductForm.propTypes = {
     price: PropType.number,
 
     sizes_new: PropType.object,
+
+    prices_new: PropType.object,
 
     maxQuantity: PropType.number,
     description: PropType.string,

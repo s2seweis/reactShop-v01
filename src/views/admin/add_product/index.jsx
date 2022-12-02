@@ -41,6 +41,7 @@ const AddProduct = () => {
             keywords: [],
             sizes: [],
             sizes_new: {},
+            prices_new: {},
             image: '',
             isFeatured: false,
             isRecommended: false,
