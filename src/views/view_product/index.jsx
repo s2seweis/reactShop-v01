@@ -274,7 +274,7 @@ const ViewProduct = () => {
                 id="mySelect"
               >
                 <option value={0}  >Pick Your Size</option>
-                <option value={product?.sizes_prices.small}>
+                <option value={product?.prices_new.small}>
 
 
 
@@ -286,9 +286,9 @@ const ViewProduct = () => {
 
                 </option>
 
-                <option value={product?.sizes_prices.medium}>medium</option>
-                <option value={product?.sizes_prices.large}>large</option>
-                <option value={product?.sizes_prices.extra_large}>extra large</option>
+                <option value={product?.prices_new.medium}>{product?.sizes_new.medium}</option>
+                <option value={product?.prices_new.large}>{product?.sizes_new.large}</option>
+                <option value={product?.prices_new.extra_large}>{product?.sizes_new.extra_large}</option>
               </select>
 
 

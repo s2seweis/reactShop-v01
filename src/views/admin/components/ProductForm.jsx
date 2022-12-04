@@ -72,10 +72,10 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider }) => {
     },
 
     prices_new: {
-      small: product?.prices_new.small || '7',
-      medium: product?.prices_new.medium || '9',
-      large: product?.prices_new.large || '11',
-      extra_large: product?.prices_new.extra_large || '14',
+      small: product?.prices_new.small || '',
+      medium: product?.prices_new.medium || '',
+      large: product?.prices_new.large || '',
+      extra_large: product?.prices_new.extra_large || '',
     },
 
     // small: product?.small || '',
