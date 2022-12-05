@@ -35,7 +35,7 @@ import * as Yup from 'yup';
 
 
 
-const ViewProduct = (parameters) => {
+const ViewProduct = (parameters, demo) => {
 
 
 
@@ -50,7 +50,7 @@ const ViewProduct = (parameters) => {
   const [selectedImage, setSelectedImage] = useState(product?.image || '');
 
   const [selectedSize, setSelectedSize] = useState('');
-    console.log(selectedSize.name)
+  // console.log(selectedSize.name)
 
 
 
@@ -89,12 +89,13 @@ const ViewProduct = (parameters) => {
   }, [product]);
 
 
-// Test:2 
+  // Test:2 
 
   const onSelectedSizeChange = (newValue) => {
     setSelectedSize(newValue.value);
-    console.log(newValue.value.email)
-    console.log(newValue.value.name)
+    // console.log(newValue.value.email)
+    // console.log(newValue.value.name)
+    console.log(newValue.value)
   };
 
 
@@ -102,6 +103,8 @@ const ViewProduct = (parameters) => {
 
   const handleChange = (event) => {
     setOption(event.target.value)
+    console.log(event.target.value);
+
 
   }
 
@@ -230,6 +233,36 @@ const ViewProduct = (parameters) => {
   // Test ------End
 
 
+  // Test: 3 ---------Start
+
+
+  const people = [
+    { id: 1, name: "Johnny", gender: "male", age: 30 },
+    { id: 2, name: "Jenny", gender: "female", age: 28 },
+    { id: 3, name: "Sam", gender: "male", age: 13 },
+    { id: 4, name: "Dean", gender: "male", age: 8 }
+  ];
+
+
+  // Test ------End
+
+
+  // Test: 4 ---------Start
+
+
+  const arr = [
+    { value: '', text: '--Choose an option--' },
+    { value: 'apple1', text: 'Apple 🍏' },
+    { value: 'banana1', text: 'Banana 🍌' },
+    { value: 'kiwi1', text: 'Kiwi 🥝' },
+  ];
+
+  // const handleChange3 = event => {
+  //   console.log(event.target.value);
+  // };
+
+  // Test ------End
+
 
 
   return (
@@ -336,6 +369,8 @@ const ViewProduct = (parameters) => {
                   placeholder="--Select Size--2"
                   onChange={onSelectedSizeChange}
                   options={product.tickets.map((size) => ({ label: `${size} mm`, value: size }))}
+                  // options={product.tickets.map((size) => ({ label: `${selectedSize.name} mm`, value: size }))}
+
                   styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
                 />
 
@@ -376,19 +411,19 @@ const ViewProduct = (parameters) => {
 
 
 
-              <select
-                // </Select>
+              {/* <select
+                
                 className="select-product-size"
                 onChange={handleChange}
                 id="mySelect"
               >
                 <option value={0}  >Pick Your Size</option>
-                <option value={product?.prices_new.small}>
+                <option value={selectedSize.email}>
 
 
 
-                  {/* small */}
-                  {product?.sizes_new.small}
+                 
+                  {selectedSize.name}
 
 
 
@@ -398,14 +433,14 @@ const ViewProduct = (parameters) => {
                 <option value={product?.prices_new.medium}>{product?.sizes_new.medium}</option>
                 <option value={product?.prices_new.large}>{product?.sizes_new.large}</option>
                 <option value={product?.prices_new.extra_large}>{product?.sizes_new.extra_large}</option>
-              </select>
+              </select> */}
 
 
 
 
-              <button className="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              {/* <button className="button-variant" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 {option == null || option == '' ? 'Pick!!' : option}
-              </button>
+              </button> */}
 
 
 
@@ -454,7 +489,7 @@ const ViewProduct = (parameters) => {
 
               {/* Test:2 --------Start */}
 
-              <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+              {/* <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
                 {({ errors, values, touched, setValues }) => (
                   <Form>
                     <div className="card m-3">
@@ -511,10 +546,56 @@ const ViewProduct = (parameters) => {
                     </div>
                   </Form>
                 )}
-              </Formik>
+              </Formik> */}
 
 
               {/* Test -------End */}
+
+
+
+
+
+
+              {/* Test:3 -------Start */}
+
+
+
+
+              <ul>
+                {people.map(person => {
+                  return (
+                    <li key={person.id}>
+                      {person.name} - {person.age} {person.gender} years old
+                    </li>
+                  )
+                })}
+              </ul>
+
+
+              {/* Test:3 -------End */}
+
+
+              {/* Test:4 -------Start */}
+
+              {/* working !!! - next => changing the productForm (array.map.string) */}
+
+
+
+
+              <div>
+                <select onChange={handleChange} name="fruits" id="fruit-select">
+                  {product.tickets.map((option, index) => (
+                    <option key={index} value={option.email}>
+                      {option.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+
+              {/* Test:4 -------End */}
+
+
 
 
             </div>
