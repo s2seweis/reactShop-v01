@@ -50,6 +50,8 @@ const ViewProduct = (parameters) => {
   const [selectedImage, setSelectedImage] = useState(product?.image || '');
 
   const [selectedSize, setSelectedSize] = useState('');
+    console.log(selectedSize.name)
+
 
 
   const [selectedSizeNew, setSelectedSizeNew] = useState('');
@@ -87,17 +89,20 @@ const ViewProduct = (parameters) => {
   }, [product]);
 
 
-
+// Test:2 
 
   const onSelectedSizeChange = (newValue) => {
     setSelectedSize(newValue.value);
-    // console.log(newValue.value)
+    console.log(newValue.value.email)
+    console.log(newValue.value.name)
   };
+
+
+  // Test:2 -----End
 
   const handleChange = (event) => {
     setOption(event.target.value)
 
-    // console.log(event.target.value)
   }
 
 
@@ -154,26 +159,28 @@ const ViewProduct = (parameters) => {
 
   const select = document.querySelector('select')
   const text = getSelectedText(select);
-  console.log(text)
+  // console.log(text)
 
   {/* Test ----------------End */ }
 
 
 
-// Test: Start -----Dynamic Form
+  // Test: Start -----Dynamic Form
   // https://jasonwatmore.com/post/2020/09/28/react-formik-dynamic-form-example
 
 
   const initialValues = {
-    numberOfTickets: product?.numberOfTickets 
-    ||  
-    '',
-    tickets: 
-    product?.tickets
-    || 
-    [] 
+    numberOfTickets: product?.numberOfTickets
+      ||
+      '',
+    tickets:
+      product?.tickets
+      ||
+      []
   };
-  console.log(initialValues)
+  // console.log(initialValues.numberOfTickets)
+  // console.log(initialValues.tickets)
+
 
 
 
@@ -209,8 +216,7 @@ const ViewProduct = (parameters) => {
 
     // call formik onChange method
     field.onChange(e);
-    console.log(numberOfTickets)
-    console.log(previousNumber)
+
 
   }
 
@@ -301,7 +307,7 @@ const ViewProduct = (parameters) => {
                 /> */}
 
                 <Select
-                  placeholder="--Select Size--"
+                  placeholder="--Select Size--1"
                   onChange={onSelectedSizeChange}
                   options={product.sizes.map((size) => ({ label: `${size} mm`, value: size }))}
                   styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
@@ -309,6 +315,36 @@ const ViewProduct = (parameters) => {
 
 
               </div>
+
+
+              {/* Test: 2 --------Start mapping over tickets */}
+
+              <div>
+                <span className="text-subtle">Lens Width and Frame Size</span>
+                <br />
+                <br />
+
+
+                {/* <Select
+                  placeholder="--Select Size--"
+                  onChange={onSelectedSizeChange}
+                  options={product.sizes.sort((a, b) => (a < b ? -1 : 1)).map((size) => ({ label: `${size} mm`, value: size }))}
+                  styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
+                /> */}
+
+                <Select
+                  placeholder="--Select Size--2"
+                  onChange={onSelectedSizeChange}
+                  options={product.tickets.map((size) => ({ label: `${size} mm`, value: size }))}
+                  styles={{ menu: (provided) => ({ ...provided, zIndex: 10 }) }}
+                />
+
+
+              </div>
+
+
+              {/* Test: 2 --------End mapping over tickets */}
+
 
 
 
