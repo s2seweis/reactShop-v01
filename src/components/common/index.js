@@ -21,6 +21,9 @@ export { default as MenuBurger } from './MenuBurger';
 export { default as Ingredients } from './Ingredients';
 
 
+export { default as FormikFieldArrayForm } from './FormikFieldArrayForm';
+
+
 
 export { default as Badge } from './Badge';
 export { default as Boundary } from './Boundary';

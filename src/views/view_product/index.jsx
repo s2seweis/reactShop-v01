@@ -20,10 +20,15 @@ import Select from 'react-select';
 
 import Ingredients from 'components/common/Ingredients';
 
+// import FormikFieldArrayForm from 'components/common/FormikFieldArrayForm';
+
 // import $ from 'jquery';
 
-import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
+// import { Formik, Form, Field, FieldArray, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+
+import ReactDOM from "react-dom";
+import { Formik, Field, Form, FieldArray, ErrorMessage } from "formik";
 
 
 
@@ -262,6 +267,81 @@ const ViewProduct = (parameters, demo) => {
   // };
 
   // Test ------End
+
+
+
+  // Test: 5 ---------Start
+
+
+
+
+  const parameters1 =  [{ firstName: "Sebastian", lastName: "Striker" }] ;
+
+  const tickets =  product?.tickets || [] ;
+
+
+
+  
+
+  const FormikFieldArrayForm = ({ parameters }) => (
+    <div>
+
+      <Formik
+        initialValues={parameters}
+        onSubmit={values =>
+          setTimeout(() => {
+            alert(JSON.stringify(values, null, 2));
+          }, 5000)
+        }
+      >
+        {({ values }) => (
+          <Form>
+            <FieldArray
+              name="paramLists"
+              render={arrayHelpers => (
+                <div>
+                  {values.paramLists.length > 0 &&
+                    values.paramLists.map((paramList, index) => (
+                      <div key={index}>
+                        {Object.keys(paramList).map(param => (
+                          <Field
+                            key={`${param}`}
+                            name={`paramLists.${index}.${param}`}
+                            placeholder={`${index}.${param}`}
+                          />
+                        ))}
+                        <button
+                          type="button"
+                          onClick={() => arrayHelpers.remove(index)}
+                        >
+                          {" "}
+                          -{" "}
+                        </button>
+                      </div>
+                    ))}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      arrayHelpers.push({ email: "", name: "" })
+                    }
+                  >
+                    {" "}
+                    +{" "}
+                  </button>
+                </div>
+              )}
+            />
+
+          </Form>
+        )}
+      </Formik>
+    </div>
+  );
+
+
+
+
+  // Test: 5 ------End
 
 
 
@@ -595,7 +675,19 @@ const ViewProduct = (parameters, demo) => {
 
               {/* Test:4 -------End */}
 
+              {/* Test: 5 ---------Start */}
 
+
+
+
+
+
+              <FormikFieldArrayForm parameters={{ paramLists: tickets }} />
+
+
+
+
+              {/* Test: 5 ------End */}
 
 
             </div>
