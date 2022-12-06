@@ -20,7 +20,7 @@ import Select from 'react-select';
 
 import Ingredients from 'components/common/Ingredients';
 
-// import FormikFieldArrayForm from 'components/common/FormikFieldArrayForm';
+import FormikFieldArrayForm from 'components/common/FormikFieldArrayForm';
 
 // import $ from 'jquery';
 
@@ -283,60 +283,60 @@ const ViewProduct = (parameters, demo) => {
 
   
 
-  const FormikFieldArrayForm = ({ parameters }) => (
-    <div>
+  // const FormikFieldArrayForm = ({ parameters }) => (
+  //   <div>
 
-      <Formik
-        initialValues={parameters}
-        onSubmit={values =>
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-          }, 5000)
-        }
-      >
-        {({ values }) => (
-          <Form>
-            <FieldArray
-              name="paramLists"
-              render={arrayHelpers => (
-                <div>
-                  {values.paramLists.length > 0 &&
-                    values.paramLists.map((paramList, index) => (
-                      <div key={index}>
-                        {Object.keys(paramList).map(param => (
-                          <Field
-                            key={`${param}`}
-                            name={`paramLists.${index}.${param}`}
-                            placeholder={`${index}.${param}`}
-                          />
-                        ))}
-                        <button
-                          type="button"
-                          onClick={() => arrayHelpers.remove(index)}
-                        >
-                          {" "}
-                          -{" "}
-                        </button>
-                      </div>
-                    ))}
-                  <button
-                    type="button"
-                    onClick={() =>
-                      arrayHelpers.push({ email: "", name: "" })
-                    }
-                  >
-                    {" "}
-                    +{" "}
-                  </button>
-                </div>
-              )}
-            />
+  //     <Formik
+  //       initialValues={parameters}
+  //       onSubmit={values =>
+  //         setTimeout(() => {
+  //           alert(JSON.stringify(values, null, 2));
+  //         }, 5000)
+  //       }
+  //     >
+  //       {({ values }) => (
+  //         <Form>
+  //           <FieldArray
+  //             name="paramLists"
+  //             render={arrayHelpers => (
+  //               <div>
+  //                 {values.paramLists.length > 0 &&
+  //                   values.paramLists.map((paramList, index) => (
+  //                     <div key={index}>
+  //                       {Object.keys(paramList).map(param => (
+  //                         <Field
+  //                           key={`${param}`}
+  //                           name={`paramLists.${index}.${param}`}
+  //                           placeholder={`${index}.${param}`}
+  //                         />
+  //                       ))}
+  //                       <button
+  //                         type="button"
+  //                         onClick={() => arrayHelpers.remove(index)}
+  //                       >
+  //                         {" "}
+  //                         -{" "}
+  //                       </button>
+  //                     </div>
+  //                   ))}
+  //                 <button
+  //                   type="button"
+  //                   onClick={() =>
+  //                     arrayHelpers.push({ email: "", name: "" })
+  //                   }
+  //                 >
+  //                   {" "}
+  //                   +{" "}
+  //                 </button>
+  //               </div>
+  //             )}
+  //           />
 
-          </Form>
-        )}
-      </Formik>
-    </div>
-  );
+  //         </Form>
+  //       )}
+  //     </Formik>
+  //   </div>
+  // );
 
 
 
