@@ -40,6 +40,7 @@ import { Formik, Field, Form, FieldArray, ErrorMessage } from "formik";
 
 
 
+
 const ViewProduct = (parameters, demo) => {
 
 
@@ -94,21 +95,35 @@ const ViewProduct = (parameters, demo) => {
   }, [product]);
 
 
+
+
   // Test:2 
 
   const onSelectedSizeChange = (newValue) => {
     setSelectedSize(newValue.value);
     // console.log(newValue.value.email)
     // console.log(newValue.value.name)
-    console.log(newValue.value)
+    // console.log(newValue.value)
+    // console.log(newValue.label)
   };
 
 
   // Test:2 -----End
 
   const handleChange = (event) => {
-    setOption(event.target.value)
-    console.log(event.target.value);
+    setOption(event.target?.value)
+    // console.log(event.target.value);
+
+
+  }
+
+  const handleChange2 = (event) => {
+    setOption(event.value)
+    // setOption(event.label)
+    console.log(event.value);
+    console.log(event.label);
+    console.log(event.value.email);
+    console.log(event.value.name);
 
 
   }
@@ -173,7 +188,8 @@ const ViewProduct = (parameters, demo) => {
 
 
 
-  // Test: Start -----Dynamic Form
+  // Test: Start -----Dynamic Form - working
+
   // https://jasonwatmore.com/post/2020/09/28/react-formik-dynamic-form-example
 
 
@@ -192,48 +208,48 @@ const ViewProduct = (parameters, demo) => {
 
 
 
-  const validationSchema = Yup.object().shape({
-    numberOfTickets: Yup.string()
-      .required('Number of tickets is required'),
-    tickets: Yup.array().of(
-      Yup.object().shape({
-        name: Yup.string()
-          .required('Name is required'),
-        email: Yup.string()
-          .email('Email is invalid')
-          .required('Email is required')
-      })
-    )
-  });
+  // const validationSchema = Yup.object().shape({
+  //   numberOfTickets: Yup.string()
+  //     .required('Number of tickets is required'),
+  //   tickets: Yup.array().of(
+  //     Yup.object().shape({
+  //       name: Yup.string()
+  //         .required('Name is required'),
+  //       email: Yup.string()
+  //         .email('Email is invalid')
+  //         .required('Email is required')
+  //     })
+  //   )
+  // });
 
-  function onChangeTickets(e, field, values, setValues) {
-    // update dynamic form
-    const tickets = [...values.tickets];
-    const numberOfTickets = e.target.value || 0;
-    const previousNumber = parseInt(field.value || '0');
-    if (previousNumber < numberOfTickets) {
-      for (let i = previousNumber; i < numberOfTickets; i++) {
-        tickets.push({ name: '', email: '' });
-      }
-    } else {
-      for (let i = previousNumber; i >= numberOfTickets; i--) {
-        tickets.splice(i, 1);
-      }
-    }
-    setValues({ ...values, tickets });
+  // function onChangeTickets(e, field, values, setValues) {
+  //   // update dynamic form
+  //   const tickets = [...values.tickets];
+  //   const numberOfTickets = e.target.value || 0;
+  //   const previousNumber = parseInt(field.value || '0');
+  //   if (previousNumber < numberOfTickets) {
+  //     for (let i = previousNumber; i < numberOfTickets; i++) {
+  //       tickets.push({ name: '', email: '' });
+  //     }
+  //   } else {
+  //     for (let i = previousNumber; i >= numberOfTickets; i--) {
+  //       tickets.splice(i, 1);
+  //     }
+  //   }
+  //   setValues({ ...values, tickets });
 
-    // call formik onChange method
-    field.onChange(e);
+  //   // call formik onChange method
+  //   field.onChange(e);
 
 
-  }
+  // }
 
-  function onSubmit(fields) {
-    // display form field values on success
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4));
-    console.log(JSON.stringify(fields, null, 4))
+  // function onSubmit(fields) {
+  //   // display form field values on success
+  //   alert('SUCCESS!! :-)\n\n' + JSON.stringify(fields, null, 4));
+  //   console.log(JSON.stringify(fields, null, 4))
 
-  }
+  // }
 
   // Test ------End
 
@@ -241,12 +257,12 @@ const ViewProduct = (parameters, demo) => {
   // Test: 3 ---------Start
 
 
-  const people = [
-    { id: 1, name: "Johnny", gender: "male", age: 30 },
-    { id: 2, name: "Jenny", gender: "female", age: 28 },
-    { id: 3, name: "Sam", gender: "male", age: 13 },
-    { id: 4, name: "Dean", gender: "male", age: 8 }
-  ];
+  // const people = [
+  //   { id: 1, name: "Johnny", gender: "male", age: 30 },
+  //   { id: 2, name: "Jenny", gender: "female", age: 28 },
+  //   { id: 3, name: "Sam", gender: "male", age: 13 },
+  //   { id: 4, name: "Dean", gender: "male", age: 8 }
+  // ];
 
 
   // Test ------End
@@ -255,12 +271,12 @@ const ViewProduct = (parameters, demo) => {
   // Test: 4 ---------Start
 
 
-  const arr = [
-    { value: '', text: '--Choose an option--' },
-    { value: 'apple1', text: 'Apple 🍏' },
-    { value: 'banana1', text: 'Banana 🍌' },
-    { value: 'kiwi1', text: 'Kiwi 🥝' },
-  ];
+  // const arr = [
+  //   { value: '', text: '--Choose an option--' },
+  //   { value: 'apple1', text: 'Apple 🍏' },
+  //   { value: 'banana1', text: 'Banana 🍌' },
+  //   { value: 'kiwi1', text: 'Kiwi 🥝' },
+  // ];
 
   // const handleChange3 = event => {
   //   console.log(event.target.value);
@@ -275,13 +291,34 @@ const ViewProduct = (parameters, demo) => {
 
 
 
-  const parameters1 =  [{ firstName: "Sebastian", lastName: "Striker" }] ;
+  // const parameters1 =  [{ email: "Sebastian", name: "Striker" }] ;
 
-  const tickets =  product?.tickets || [] ;
+  const tickets = product?.tickets
+    || []
+    ;
+  tickets.sort();
+  // console.log(tickets)
 
 
 
-  
+
+
+
+
+  const options1 = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+  ]
+  // console.log(options1)
+
+  // useEffect(()=>{
+  //   // unique list update.
+  //   setOption(product?.tickets)
+  //  }, [product]);
+
+
+
 
   // const FormikFieldArrayForm = ({ parameters }) => (
   //   <div>
@@ -433,7 +470,7 @@ const ViewProduct = (parameters, demo) => {
               {/* Test: 2 --------Start mapping over tickets */}
 
               <div>
-                <span className="text-subtle">Lens Width and Frame Size</span>
+                <span className="text-subtle">Lens1 Width and Frame Size</span>
                 <br />
                 <br />
 
@@ -561,98 +598,14 @@ const ViewProduct = (parameters, demo) => {
 
 
 
-              <div className="ingredients">
+              {/* <div className="ingredients">
                 <Ingredients></Ingredients>
-              </div>
-
-
-
-              {/* Test:2 --------Start */}
-
-              {/* <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-                {({ errors, values, touched, setValues }) => (
-                  <Form>
-                    <div className="card m-3">
-                      <h5 className="card-header">React + Formik Dynamic Form Example</h5>
-                      <div className="card-body border-bottom">
-                        <div className="form-row">
-                          <div className="form-group">
-                            <label>Number of Tickets</label>
-                            <Field name="numberOfTickets">
-                              {({ field }) => (
-                                <select {...field} className={'form-control' + (errors.numberOfTickets && touched.numberOfTickets ? ' is-invalid' : '')} onChange={e => onChangeTickets(e, field, values, setValues)}>
-                                  <option value=""></option>
-                                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i =>
-                                    <option key={i} value={i}>{i}</option>
-                                  )}
-                                </select>
-                              )}
-                            </Field>
-                            <ErrorMessage name="numberOfTickets" component="div" className="invalid-feedback" />
-                          </div>
-                        </div>
-                      </div>
-                      <FieldArray name="tickets">
-                        {() => (values.tickets.map((ticket, i) => {
-                          const ticketErrors = errors.tickets?.length && errors.tickets[i] || {};
-                          const ticketTouched = touched.tickets?.length && touched.tickets[i] || {};
-                          return (
-                            <div key={i} className="list-group list-group-flush">
-                              <div className="list-group-item">
-                                <h5 className="card-title">Ticket {i + 1}</h5>
-                                <div className="form-row">
-                                  <div className="form-group col-6">
-                                    <label>Name</label>
-                                    <Field name={`tickets.${i}.name`} type="text" className={'form-control' + (ticketErrors.name && ticketTouched.name ? ' is-invalid' : '')} />
-                                    <ErrorMessage name={`tickets.${i}.name`} component="div" className="invalid-feedback" />
-                                  </div>
-                                  <div className="form-group col-6">
-                                    <label>Email</label>
-                                    <Field name={`tickets.${i}.email`} type="text" className={'form-control' + (ticketErrors.email && ticketTouched.email ? ' is-invalid' : '')} />
-                                    <ErrorMessage name={`tickets.${i}.email`} component="div" className="invalid-feedback" />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          );
-                        }))}
-                      </FieldArray>
-                      <div className="card-footer text-center border-top-0">
-                        <button type="submit" className="btn btn-primary mr-1">
-                          Buy Tickets
-                        </button>
-                        <button className="btn btn-secondary mr-1" type="reset">Reset</button>
-                      </div>
-                    </div>
-                  </Form>
-                )}
-              </Formik> */}
-
-
-              {/* Test -------End */}
+              </div> */}
 
 
 
 
 
-
-              {/* Test:3 -------Start */}
-
-
-
-
-              <ul>
-                {people.map(person => {
-                  return (
-                    <li key={person.id}>
-                      {person.name} - {person.age} {person.gender} years old
-                    </li>
-                  )
-                })}
-              </ul>
-
-
-              {/* Test:3 -------End */}
 
 
               {/* Test:4 -------Start */}
@@ -661,9 +614,8 @@ const ViewProduct = (parameters, demo) => {
 
 
 
-
-              <div>
-                <select onChange={handleChange} name="fruits" id="fruit-select">
+              <div className='product-vari'>
+                <select onChange={handleChange} id="fruit-select" >
                   {product.tickets.map((option, index) => (
                     <option key={index} value={option.email}>
                       {option.name}
@@ -671,6 +623,27 @@ const ViewProduct = (parameters, demo) => {
                   ))}
                 </select>
               </div>
+
+
+
+
+              {/* Test: 10 -----Start "Its working like it should"  */}
+
+              <div className='product-vari'>
+                <Select 
+                placeholder="--Select Size--"
+                onChange={handleChange2} 
+                id="fruit-select"
+                  // options={tickets}
+                  options={product.tickets.map((size) => ({ label: `${size.name} mm`, value: size.email }))}
+
+                />
+
+              </div>
+
+              {/* Test: 10 -----End
+
+
 
 
               {/* Test:4 -------End */}

@@ -2,12 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Formik, Field, Form, FieldArray } from "formik";
 
-const parameters1 = { firstName: "", lastName: "" };
-const parameters= { paramLists: [parameters1] };
+
 
 const FormikFieldArrayForm = ({ parameters }) => (
   <div>
-    {console.log(parameters)}
+    {/* {console.log(parameters)} */}
     <Formik
       initialValues={parameters}
       onSubmit={values =>
@@ -44,7 +43,7 @@ const FormikFieldArrayForm = ({ parameters }) => (
                 <button
                   type="button"
                   onClick={() =>
-                    arrayHelpers.push({ firstName: "", lastName: "" })
+                    arrayHelpers.push({ email: "", name: "" })
                   }
                 >
                   {" "}
