@@ -43,7 +43,7 @@ const FormikFieldArrayForm = ({ parameters }) => (
                 <button
                   type="button"
                   onClick={() =>
-                    arrayHelpers.push({ email: "", name: "" })
+                    arrayHelpers.push({ name: "", euro: "" })
                   }
                 >
                   {" "}
