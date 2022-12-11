@@ -12,6 +12,9 @@ import PropType from 'prop-types';
 import React from 'react';
 import * as Yup from 'yup';
 
+import FormikFieldArrayForm from 'components/common/FormikFieldArrayForm';
+
+
 // Default brand names that I used. You can use what you want
 const brandOptions = [
   { value: 'Salt Maalat', label: 'Salt Maalat' },
@@ -56,7 +59,7 @@ const FormSchema = Yup.object().shape({
     .min(1, 'Please add a default color for this product.')
 });
 
-const ProductForm = ({ product, onSubmit, isLoading, authProvider }) => {
+const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters }) => {
   const initFormikValues = {
     name: product?.name || '',
     brand: product?.brand || '',
@@ -83,10 +86,13 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider }) => {
     maxQuantity: product?.maxQuantity || 0,
     description: product?.description || '',
     keywords: product?.keywords || [],
-    sizes: product?.sizes || [],
+    sizes: product?.sizes,
     isFeatured: product?.isFeatured || false,
     isRecommended: product?.isRecommended || false,
-    availableColors: product?.availableColors || []
+    availableColors: product?.availableColors || [],
+    tickets: product?.tickets || []
+
+
   };
   console.log(initFormikValues)
 
@@ -108,12 +114,22 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider }) => {
         dateAdded: new Date().getTime(),
         image: imageFile?.image?.file || product.imageUrl,
         imageCollection: imageFile.imageCollection
+        
       });
     } else {
       // eslint-disable-next-line no-alert
       alert('Product thumbnail image is required.');
     }
   };
+
+  // const tickets = product?.tickets.map(({ email, name, key, value, id }) => ({ [email]: name, [name]: email }))
+  // || []
+  // ;
+
+  const tickets = product?.tickets
+    || []
+    ;
+
 
   return (
     <div>
@@ -197,112 +213,112 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider }) => {
               <div className="d-flex-vari-top">
 
 
-              <div className="d-flex-vari">
+                <div className="d-flex-vari">
 
-                <div className="product-form-field-vari">
-                  <Field
-                    disabled={isLoading}
-                    name="sizes_new.small"
-                    id="sizes_new.small"
-                    type="sizes_new.small"
-                    label="Sizes"
-                    component={CustomInput}
-                  />
-                </div>
+                  <div className="product-form-field-vari">
+                    <Field
+                      disabled={isLoading}
+                      name="sizes_new.small"
+                      id="sizes_new.small"
+                      type="sizes_new.small"
+                      label="Sizes"
+                      component={CustomInput}
+                    />
+                  </div>
 
-                <div className="product-form-field-vari">
-                  <Field
-                    disabled={isLoading}
-                    name="sizes_new.medium"
-                    id="sizes_new.medium"
-                    type="sizes_new.medium"
-                    // label="sizes_new.medium"
-                    component={CustomInput}
-                  />
-                </div>
+                  <div className="product-form-field-vari">
+                    <Field
+                      disabled={isLoading}
+                      name="sizes_new.medium"
+                      id="sizes_new.medium"
+                      type="sizes_new.medium"
+                      // label="sizes_new.medium"
+                      component={CustomInput}
+                    />
+                  </div>
 
-                <div className="product-form-field-vari">
-                  <Field
-                    disabled={isLoading}
-                    name="sizes_new.large"
-                    id="sizes_new.large"
-                    type="sizes_new.large"
-                    // label="sizes_new.small"
-                    component={CustomInput}
-                  />
-                </div>
+                  <div className="product-form-field-vari">
+                    <Field
+                      disabled={isLoading}
+                      name="sizes_new.large"
+                      id="sizes_new.large"
+                      type="sizes_new.large"
+                      // label="sizes_new.small"
+                      component={CustomInput}
+                    />
+                  </div>
 
-                <div className="product-form-field-vari">
-                  <Field
-                    disabled={isLoading}
-                    name="sizes_new.extra_large"
-                    id="sizes_new.extra_large"
-                    type="sizes_new.extra_large"
-                    // label="sizes_new.medium"
-                    component={CustomInput}
-                  />
-                </div>
-
-
-
-              </div>
+                  <div className="product-form-field-vari">
+                    <Field
+                      disabled={isLoading}
+                      name="sizes_new.extra_large"
+                      id="sizes_new.extra_large"
+                      type="sizes_new.extra_large"
+                      // label="sizes_new.medium"
+                      component={CustomInput}
+                    />
+                  </div>
 
 
 
-              {/* Prices */}
-
-
-
-
-              <div className="d-flex-vari">
-
-                <div className="product-form-field-vari">
-                  <Field
-                    disabled={isLoading}
-                    name="prices_new.small"
-                    id="prices_new.small"
-                    type="prices_new.small"
-                    label="Prices"
-                    component={CustomInput}
-                  />
-                </div>
-
-                <div className="product-form-field-vari">
-                  <Field
-                    disabled={isLoading}
-                    name="prices_new.medium"
-                    id="prices_new.medium"
-                    type="prices_new.medium"
-                    // label="prices_new.medium"
-                    component={CustomInput}
-                  />
-                </div>
-
-                <div className="product-form-field-vari">
-                  <Field
-                    disabled={isLoading}
-                    name="prices_new.large"
-                    id="prices_new.large"
-                    type="prices_new.large"
-                    // label="prices_new.small"
-                    component={CustomInput}
-                  />
-                </div>
-
-                <div className="product-form-field-vari">
-                  <Field
-                    disabled={isLoading}
-                    name="prices_new.extra_large"
-                    id="prices_new.extra_large"
-                    type="prices_new.extra_large"
-                    // label="prices_new.medium"
-                    component={CustomInput}
-                  />
                 </div>
 
 
 
-              </div>
+                {/* Prices */}
+
+
+
+
+                <div className="d-flex-vari">
+
+                  <div className="product-form-field-vari">
+                    <Field
+                      disabled={isLoading}
+                      name="prices_new.small"
+                      id="prices_new.small"
+                      type="prices_new.small"
+                      label="Prices"
+                      component={CustomInput}
+                    />
+                  </div>
+
+                  <div className="product-form-field-vari">
+                    <Field
+                      disabled={isLoading}
+                      name="prices_new.medium"
+                      id="prices_new.medium"
+                      type="prices_new.medium"
+                      // label="prices_new.medium"
+                      component={CustomInput}
+                    />
+                  </div>
+
+                  <div className="product-form-field-vari">
+                    <Field
+                      disabled={isLoading}
+                      name="prices_new.large"
+                      id="prices_new.large"
+                      type="prices_new.large"
+                      // label="prices_new.small"
+                      component={CustomInput}
+                    />
+                  </div>
+
+                  <div className="product-form-field-vari">
+                    <Field
+                      disabled={isLoading}
+                      name="prices_new.extra_large"
+                      id="prices_new.extra_large"
+                      type="prices_new.extra_large"
+                      // label="prices_new.medium"
+                      component={CustomInput}
+                    />
+                  </div>
+
+
+
+                </div>
 
               </div>
 
@@ -366,6 +382,47 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider }) => {
               </div>
 
 
+              {/* <FormikFieldArrayForm parameters={{ paramLists: tickets }} /> */}
+
+              <FieldArray
+                name="tickets"
+                disabled={isLoading}
+
+                render={arrayHelpers => (
+                  <div>
+                    {values.tickets?.length > 0 &&
+                      values.tickets.map((paramList, index) => (
+                        <div key={index}>
+                          {Object.keys(paramList).map(param => (
+                            <Field
+                              key={`${param}`}
+                              name={`tickets.${index}.${param}`}
+                              placeholder={`${index}.${param}`}
+                            />
+                          ))}
+                          <button
+                            type="button"
+                            onClick={() => arrayHelpers.remove(index)}
+                          >
+                            {" "}
+                            -{" "}
+                          </button>
+                        </div>
+                      ))}
+                    <button
+                      type="button"
+                      onClick={() =>
+                        arrayHelpers.push({ name: "", euro: "" })
+                      }
+                    >
+                      {" "}
+                      +{" "}
+                    </button>
+                  </div>
+                )}
+              />
+
+              <pre>{JSON.stringify(values, null, 2)}</pre>
 
 
 
