@@ -101,6 +101,8 @@ function* productSaga({ type, payload }) {
           id: key,
           ...product
         }));
+        console.log(product)
+
         yield handleAction(ADMIN_PRODUCTS, 'Item succesfully added', 'success');
         yield put(setLoading(false));
       } catch (e) {
@@ -160,6 +162,7 @@ function* productSaga({ type, payload }) {
           id: payload.id,
           updates: newUpdates
         }));
+        console.log(editProductSuccess)
         yield handleAction(ADMIN_PRODUCTS, 'Item succesfully edited', 'success');
         yield put(setLoading(false));
       } catch (e) {

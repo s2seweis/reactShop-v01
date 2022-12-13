@@ -75,10 +75,10 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
     },
 
     prices_new: {
-      small: product?.prices_new.small || '',
-      medium: product?.prices_new.medium || '',
-      large: product?.prices_new.large || '',
-      extra_large: product?.prices_new.extra_large || '',
+      small: product?.prices_new.small || '5',
+      medium: product?.prices_new.medium || '10',
+      large: product?.prices_new.large || '15',
+      extra_large: product?.prices_new.extra_large || '20',
     },
 
     // small: product?.small || '',
@@ -90,7 +90,8 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
     isFeatured: product?.isFeatured || false,
     isRecommended: product?.isRecommended || false,
     availableColors: product?.availableColors || [],
-    tickets: product?.tickets || []
+    tickets: product?.tickets,
+    // tickets: product?.tickets?.map(({ email, name, key, value, id }) => ({ [email]: name, [name]: email })) || []
 
 
   };
@@ -101,10 +102,16 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
     isFileLoading,
     onFileChange,
     removeImage
-  } = useFileHandler({ image: {}, imageCollection: product?.imageCollection || [] });
+  } = useFileHandler({ image: product?.image || {}, imageCollection: product?.imageCollection || [] });
+
+  console.log(imageFile)
+
 
   const onSubmitForm = (form) => {
-    if (imageFile.image.file || product.imageUrl) {
+    if (imageFile.image.file || 
+      product?.image
+      // product.imageUrl
+      ) {
       onSubmit({
         ...form,
         quantity: 1,
@@ -112,7 +119,11 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
         // of name here instead in firebase functions
         name_lower: form.name.toLowerCase(),
         dateAdded: new Date().getTime(),
-        image: imageFile?.image?.file || product.imageUrl,
+        image: imageFile?.image?.file || 
+
+        // product.imageUrl,
+        product?.image,
+
         imageCollection: imageFile.imageCollection
         
       });
@@ -121,6 +132,11 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
       alert('Product thumbnail image is required.');
     }
   };
+
+  console.log()
+
+
+  
 
   // const tickets = product?.tickets.map(({ email, name, key, value, id }) => ({ [email]: name, [name]: email }))
   // || []
@@ -400,19 +416,19 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
                               placeholder={`${index}.${param}`}
                             />
                           ))}
-                          <button
-                            type="button"
-                            onClick={() => arrayHelpers.remove(index)}
-                          >
-                            {" "}
-                            -{" "}
-                          </button>
+                            <button
+                              type="button"
+                              onClick={() => arrayHelpers.remove(index)}
+                            >
+                              {" "}
+                              -{" "}
+                            </button>
                         </div>
                       ))}
                     <button
                       type="button"
                       onClick={() =>
-                        arrayHelpers.push({ name: "", euro: "" })
+                        arrayHelpers.push({ name: "", email: "" })
                       }
                     >
                       {" "}
@@ -455,14 +471,17 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
                           alt=""
                           src={image.url}
                         />
+
                         <button
                           className="product-form-delete-image"
                           onClick={() => removeImage({ id: image.id, name: 'imageCollection' })}
                           title="Delete Image"
                           type="button"
                         >
+                          Delete
                           <i className="fa fa-times-circle" />
                         </button>
+                        
                       </div>
                     ))
                   )}
