@@ -90,8 +90,13 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
     isFeatured: product?.isFeatured || false,
     isRecommended: product?.isRecommended || false,
     availableColors: product?.availableColors || [],
-    tickets: product?.tickets,
+    // tickets: product?.tickets,
+    // tickets: product?.tickets
     // tickets: product?.tickets?.map(({ email, name, key, value, id }) => ({ [email]: name, [name]: email })) || []
+
+    tickets: product?.tickets?.map((person) => ({name: person.name, email: person.email })) || []
+
+    // tickets: product?.tickets?.map((tickets) => ({ tickets })) || []
 
 
   };
