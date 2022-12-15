@@ -21,6 +21,8 @@ export const ADMIN_SETTING_EDIT = '/admin/setting/edit';
 
 export const ADMIN_DASHBOARD = '/admin/dashboard';
 
+export const ADMIN_INGREDIENTS = '/admin/ingredients';
+
 
 export const ADMIN_PRODUCTS = '/admin/products';
 export const ADMIN_ORDERS = '/admin/orders';

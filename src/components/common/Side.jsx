@@ -10,7 +10,7 @@ import { Sidebar, Menu, MenuItem, useProSidebar, collapseSidebar } from 'react-p
 
 import { FiArrowLeftCircle, FiArrowRightCircle } from 'react-icons/fi';
 
-import { ADMIN_PRODUCTS, ADMIN_ORDERS, ADMIN_POSTS, ADMIN_USERS1, ADMIN_SETTINGS, ADMIN_DASHBOARD } from 'constants/routes';
+import { ADMIN_PRODUCTS, ADMIN_ORDERS, ADMIN_POSTS, ADMIN_USERS1, ADMIN_SETTINGS, ADMIN_DASHBOARD, ADMIN_INGREDIENTS  } from 'constants/routes';
 
 import { NavLink, useHistory, useLocation, Link } from 'react-router-dom';
 
@@ -104,6 +104,20 @@ const Side = () => {
               Messages
 
               {/* <Link to="/admin/dashboard" /> */}
+
+
+            </MenuItem>
+
+
+
+            <MenuItem
+              routerLink={<Link to={ADMIN_INGREDIENTS} />}
+              active={window.location.pathname === "/admin/ingredients"}
+              icon={<Icon name="messages" />}
+            >
+
+              Ingredients
+
 
 
             </MenuItem>
