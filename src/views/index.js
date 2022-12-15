@@ -6,6 +6,8 @@ export { default as EditSetting } from './admin/component_setting/edit_setting';
 
 export { default as UserAccount } from './account/user_account';
 
+export { default as ProductOverview } from './admin/components/ProductOverview';
+
 
 export { default as SettingAccount } from './admin/component_setting/SettingTable';
 

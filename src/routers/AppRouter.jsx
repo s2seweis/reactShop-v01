@@ -43,10 +43,10 @@ const AppRouter = () => {
 
 
 
-       
 
 
-      {/* {(pathname === ROUTE.SHOP || pathname === ROUTE.SEARCH) && (
+
+        {/* {(pathname === ROUTE.SHOP || pathname === ROUTE.SEARCH) && (
         
             <MenuBurger />
          
@@ -122,6 +122,16 @@ const AppRouter = () => {
             exact
             path={ROUTES.ACCOUNT}
           />
+
+
+          <AdminRoute
+            component={view.ProductOverview}
+            exact
+            path={ROUTES.ADMIN_PRODUCT_OVERVIEW}
+          />
+
+
+
           <ClientRoute
             component={view.EditAccount}
             exact

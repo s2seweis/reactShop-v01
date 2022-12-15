@@ -15,6 +15,9 @@ import * as Yup from 'yup';
 import FormikFieldArrayForm from 'components/common/FormikFieldArrayForm';
 
 
+
+
+
 // Default brand names that I used. You can use what you want
 const brandOptions = [
   { value: 'Salt Maalat', label: 'Salt Maalat' },
@@ -91,12 +94,14 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
     isRecommended: product?.isRecommended || false,
     availableColors: product?.availableColors || [],
     // tickets: product?.tickets,
-    // tickets: product?.tickets
-    // tickets: product?.tickets?.map(({ email, name, key, value, id }) => ({ [email]: name, [name]: email })) || []
 
-    tickets: product?.tickets?.map((person) => ({name: person.name, email: person.email })) || []
 
-    // tickets: product?.tickets?.map((tickets) => ({ tickets })) || []
+
+    // https://stackoverflow.com/questions/40348171/es6-map-an-array-of-objects-to-return-an-array-of-objects-with-new-keys
+
+    tickets: product?.tickets?.map((person) => ({ name: person.name, email: person.email })) || []
+
+
 
 
   };
@@ -113,10 +118,10 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
 
 
   const onSubmitForm = (form) => {
-    if (imageFile.image.file || 
+    if (imageFile.image.file ||
       product?.image
       // product.imageUrl
-      ) {
+    ) {
       onSubmit({
         ...form,
         quantity: 1,
@@ -124,13 +129,13 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
         // of name here instead in firebase functions
         name_lower: form.name.toLowerCase(),
         dateAdded: new Date().getTime(),
-        image: imageFile?.image?.file || 
+        image: imageFile?.image?.file ||
 
-        // product.imageUrl,
-        product?.image,
+          // product.imageUrl,
+          product?.image,
 
         imageCollection: imageFile.imageCollection
-        
+
       });
     } else {
       // eslint-disable-next-line no-alert
@@ -141,7 +146,7 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
   console.log()
 
 
-  
+
 
   // const tickets = product?.tickets.map(({ email, name, key, value, id }) => ({ [email]: name, [name]: email }))
   // || []
@@ -153,228 +158,237 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
 
 
   return (
-    <div>
-      <Formik
-        initialValues={initFormikValues}
-        validateOnChange
-        validationSchema={FormSchema}
-        onSubmit={onSubmitForm}
-      >
-        {({ values, setValues }) => (
-          <Form className="product-form">
-            <div className="product-form-inputs">
-              <div className="d-flex">
+
+    <div className='product-tab-content'>
+
+
+
+      <div>
+
+
+
+        <Formik
+          initialValues={initFormikValues}
+          validateOnChange
+          validationSchema={FormSchema}
+          onSubmit={onSubmitForm}
+        >
+          {({ values, setValues }) => (
+            <Form className="product-form">
+              <div className="product-form-inputs">
+                <div className="d-flex">
+                  <div className="product-form-field">
+                    <Field
+                      disabled={isLoading}
+                      name="name"
+                      type="text"
+                      label="* Product Name"
+                      placeholder="Gago"
+                      style={{ textTransform: 'capitalize' }}
+                      component={CustomInput}
+                    />
+                  </div>
+                  &nbsp;
+                  <div className="product-form-field">
+                    <CustomCreatableSelect
+                      defaultValue={{ label: values.brand, value: values.brand }}
+                      name="brand"
+                      id="brand"
+                      options={brandOptions}
+                      disabled={isLoading}
+                      placeholder="Select/Create Brand"
+                      label="* Brand"
+                    />
+                  </div>
+                </div>
                 <div className="product-form-field">
                   <Field
                     disabled={isLoading}
-                    name="name"
-                    type="text"
-                    label="* Product Name"
-                    placeholder="Gago"
-                    style={{ textTransform: 'capitalize' }}
-                    component={CustomInput}
+                    name="description"
+                    id="description"
+                    rows={3}
+                    label="* Product Description"
+                    component={CustomTextarea}
+                    className="field1"
                   />
                 </div>
-                &nbsp;
-                <div className="product-form-field">
-                  <CustomCreatableSelect
-                    defaultValue={{ label: values.brand, value: values.brand }}
-                    name="brand"
-                    id="brand"
-                    options={brandOptions}
-                    disabled={isLoading}
-                    placeholder="Select/Create Brand"
-                    label="* Brand"
-                  />
-                </div>
-              </div>
-              <div className="product-form-field">
-                <Field
-                  disabled={isLoading}
-                  name="description"
-                  id="description"
-                  rows={3}
-                  label="* Product Description"
-                  component={CustomTextarea}
-                />
-              </div>
-              <div className="d-flex">
-                <div className="product-form-field">
-                  <Field
-                    disabled={isLoading}
-                    name="price"
-                    id="price"
-                    type="number"
-                    label="* Price"
-                    component={CustomInput}
-                  />
+                <div className="d-flex">
+                  <div className="product-form-field">
+                    <Field
+                      disabled={isLoading}
+                      name="price"
+                      id="price"
+                      type="number"
+                      label="* Price"
+                      component={CustomInput}
+                    />
+                  </div>
+
+
+                  &nbsp;
+                  <div className="product-form-field">
+                    <Field
+                      disabled={isLoading}
+                      name="maxQuantity"
+                      type="number"
+                      id="maxQuantity"
+                      label="* Max Quantity"
+                      component={CustomInput}
+                    />
+                  </div>
                 </div>
 
 
-                &nbsp;
-                <div className="product-form-field">
-                  <Field
-                    disabled={isLoading}
-                    name="maxQuantity"
-                    type="number"
-                    id="maxQuantity"
-                    label="* Max Quantity"
-                    component={CustomInput}
-                  />
-                </div>
-              </div>
+                {/* Test: adding price and size variations, becoming a table, later will become an own component (refactoring) + using formik dynamic forms */}
 
 
-              {/* Test: adding price and size variations, becoming a table, later will become an own component (refactoring) + using formik dynamic forms */}
+                {/* Sizes */}
 
 
-              {/* Sizes */}
+                <div className="d-flex-vari-top">
 
 
-              <div className="d-flex-vari-top">
+                  <div className="d-flex-vari">
+
+                    <div className="product-form-field-vari">
+                      <Field
+                        disabled={isLoading}
+                        name="sizes_new.small"
+                        id="sizes_new.small"
+                        type="sizes_new.small"
+                        label="Sizes"
+                        component={CustomInput}
+                      />
+                    </div>
+
+                    <div className="product-form-field-vari">
+                      <Field
+                        disabled={isLoading}
+                        name="sizes_new.medium"
+                        id="sizes_new.medium"
+                        type="sizes_new.medium"
+                        // label="sizes_new.medium"
+                        component={CustomInput}
+                      />
+                    </div>
+
+                    <div className="product-form-field-vari">
+                      <Field
+                        disabled={isLoading}
+                        name="sizes_new.large"
+                        id="sizes_new.large"
+                        type="sizes_new.large"
+                        // label="sizes_new.small"
+                        component={CustomInput}
+                      />
+                    </div>
+
+                    <div className="product-form-field-vari">
+                      <Field
+                        disabled={isLoading}
+                        name="sizes_new.extra_large"
+                        id="sizes_new.extra_large"
+                        type="sizes_new.extra_large"
+                        // label="sizes_new.medium"
+                        component={CustomInput}
+                      />
+                    </div>
 
 
-                <div className="d-flex-vari">
 
-                  <div className="product-form-field-vari">
-                    <Field
-                      disabled={isLoading}
-                      name="sizes_new.small"
-                      id="sizes_new.small"
-                      type="sizes_new.small"
-                      label="Sizes"
-                      component={CustomInput}
-                    />
-                  </div>
-
-                  <div className="product-form-field-vari">
-                    <Field
-                      disabled={isLoading}
-                      name="sizes_new.medium"
-                      id="sizes_new.medium"
-                      type="sizes_new.medium"
-                      // label="sizes_new.medium"
-                      component={CustomInput}
-                    />
-                  </div>
-
-                  <div className="product-form-field-vari">
-                    <Field
-                      disabled={isLoading}
-                      name="sizes_new.large"
-                      id="sizes_new.large"
-                      type="sizes_new.large"
-                      // label="sizes_new.small"
-                      component={CustomInput}
-                    />
-                  </div>
-
-                  <div className="product-form-field-vari">
-                    <Field
-                      disabled={isLoading}
-                      name="sizes_new.extra_large"
-                      id="sizes_new.extra_large"
-                      type="sizes_new.extra_large"
-                      // label="sizes_new.medium"
-                      component={CustomInput}
-                    />
                   </div>
 
 
 
-                </div>
-
-
-
-                {/* Prices */}
+                  {/* Prices */}
 
 
 
 
-                <div className="d-flex-vari">
+                  <div className="d-flex-vari">
 
-                  <div className="product-form-field-vari">
-                    <Field
-                      disabled={isLoading}
-                      name="prices_new.small"
-                      id="prices_new.small"
-                      type="prices_new.small"
-                      label="Prices"
-                      component={CustomInput}
-                    />
+                    <div className="product-form-field-vari">
+                      <Field
+                        disabled={isLoading}
+                        name="prices_new.small"
+                        id="prices_new.small"
+                        type="prices_new.small"
+                        label="Prices"
+                        component={CustomInput}
+                      />
+                    </div>
+
+                    <div className="product-form-field-vari">
+                      <Field
+                        disabled={isLoading}
+                        name="prices_new.medium"
+                        id="prices_new.medium"
+                        type="prices_new.medium"
+                        // label="prices_new.medium"
+                        component={CustomInput}
+                      />
+                    </div>
+
+                    <div className="product-form-field-vari">
+                      <Field
+                        disabled={isLoading}
+                        name="prices_new.large"
+                        id="prices_new.large"
+                        type="prices_new.large"
+                        // label="prices_new.small"
+                        component={CustomInput}
+                      />
+                    </div>
+
+                    <div className="product-form-field-vari">
+                      <Field
+                        disabled={isLoading}
+                        name="prices_new.extra_large"
+                        id="prices_new.extra_large"
+                        type="prices_new.extra_large"
+                        // label="prices_new.medium"
+                        component={CustomInput}
+                      />
+                    </div>
+
+
+
                   </div>
-
-                  <div className="product-form-field-vari">
-                    <Field
-                      disabled={isLoading}
-                      name="prices_new.medium"
-                      id="prices_new.medium"
-                      type="prices_new.medium"
-                      // label="prices_new.medium"
-                      component={CustomInput}
-                    />
-                  </div>
-
-                  <div className="product-form-field-vari">
-                    <Field
-                      disabled={isLoading}
-                      name="prices_new.large"
-                      id="prices_new.large"
-                      type="prices_new.large"
-                      // label="prices_new.small"
-                      component={CustomInput}
-                    />
-                  </div>
-
-                  <div className="product-form-field-vari">
-                    <Field
-                      disabled={isLoading}
-                      name="prices_new.extra_large"
-                      id="prices_new.extra_large"
-                      type="prices_new.extra_large"
-                      // label="prices_new.medium"
-                      component={CustomInput}
-                    />
-                  </div>
-
-
 
                 </div>
 
-              </div>
 
 
 
 
+                <div className="d-flex">
+                  <div className="product-form-field">
+                    <CustomCreatableSelect
+                      defaultValue={values.keywords.map((key) => ({ value: key, label: key }))}
+                      name="keywords"
+                      id="keywords"
+                      isMulti
+                      disabled={isLoading}
+                      placeholder="Create/Select Keywords"
+                      label="* Keywords"
+                    />
+                  </div>
+                  &nbsp;
+                  <div className="product-form-field">
+                    <CustomCreatableSelect
+                      defaultValue={values.sizes.map((key) => ({ value: key, label: key }))}
+                      name="sizes"
+                      id="sizes"
+                      type="string"
+                      isMulti
+                      disabled={isLoading}
+                      placeholder="Create/Select Sizes"
+                      label="* Sizes (Millimeter)"
+                      options={sizeOptions}
+                    />
 
-              <div className="d-flex">
-                <div className="product-form-field">
-                  <CustomCreatableSelect
-                    defaultValue={values.keywords.map((key) => ({ value: key, label: key }))}
-                    name="keywords"
-                    id="keywords"
-                    isMulti
-                    disabled={isLoading}
-                    placeholder="Create/Select Keywords"
-                    label="* Keywords"
-                  />
-                </div>
-                &nbsp;
-                <div className="product-form-field">
-                  <CustomCreatableSelect
-                    defaultValue={values.sizes.map((key) => ({ value: key, label: key }))}
-                    name="sizes"
-                    id="sizes"
-                    type="string"
-                    isMulti
-                    disabled={isLoading}
-                    placeholder="Create/Select Sizes"
-                    label="* Sizes (Millimeter)"
-                    options={sizeOptions}
-                  />
 
-
-                  {/* <CustomCreatableSelect
+                    {/* <CustomCreatableSelect
                     defaultValue={{ label: values.brand, value: values.brand }}
                     name="brand"
                     id="brand"
@@ -387,189 +401,202 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
 
 
 
-                </div>
-              </div>
-
-
-
-              {/* this becoming sizes !!!! */}
-
-              <div className="product-form-field">
-                <FieldArray
-                  name="availableColors"
-                  disabled={isLoading}
-                  component={CustomColorInput}
-                />
-              </div>
-
-
-              {/* <FormikFieldArrayForm parameters={{ paramLists: tickets }} /> */}
-
-              <FieldArray
-                name="tickets"
-                disabled={isLoading}
-
-                render={arrayHelpers => (
-                  <div>
-                    {values.tickets?.length > 0 &&
-                      values.tickets.map((paramList, index) => (
-                        <div key={index}>
-                          {Object.keys(paramList).map(param => (
-                            <Field
-                              key={`${param}`}
-                              name={`tickets.${index}.${param}`}
-                              placeholder={`${index}.${param}`}
-                            />
-                          ))}
-                            <button
-                              type="button"
-                              onClick={() => arrayHelpers.remove(index)}
-                            >
-                              {" "}
-                              -{" "}
-                            </button>
-                        </div>
-                      ))}
-                    <button
-                      type="button"
-                      onClick={() =>
-                        arrayHelpers.push({ name: "", email: "" })
-                      }
-                    >
-                      {" "}
-                      +{" "}
-                    </button>
                   </div>
-                )}
-              />
-
-              <pre>{JSON.stringify(values, null, 2)}</pre>
+                </div>
 
 
 
-              <div className="product-form-field">
-                <span className="d-block padding-s">Image Collection</span>
-                {!isFileLoading && (
-                  <label htmlFor="product-input-file-collection">
-                    <input
-                      disabled={isLoading}
-                      hidden
-                      id="product-input-file-collection"
-                      multiple
-                      onChange={(e) => onFileChange(e, { name: 'imageCollection', type: 'multiple' })}
-                      readOnly={isLoading}
-                      type="file"
-                    />
-                    Choose Images
-                  </label>
-                )}
-              </div>
-              <div className="product-form-collection">
-                <>
-                  {imageFile.imageCollection.length >= 1 && (
-                    imageFile.imageCollection.map((image) => (
-                      <div
-                        className="product-form-collection-image"
-                        key={image.id}
-                      >
-                        <ImageLoader
-                          alt=""
-                          src={image.url}
-                        />
+                {/* this becoming sizes !!!! */}
 
+                <div className="product-form-field">
+                  <FieldArray
+                    name="availableColors"
+                    disabled={isLoading}
+                    component={CustomColorInput}
+                  />
+                </div>
+
+
+
+
+                {/* <h4>Add Sizes</h4> */}
+
+                {/* <FormikFieldArrayForm parameters={{ paramLists: tickets }} /> */}
+                <div className='fieldarray-top' >
+                  <h4>Add Sizes</h4>
+                  <FieldArray
+
+                    name="tickets"
+                    disabled={isLoading}
+                    className="fieldarray"
+
+                    render={arrayHelpers => (
+                      <div>
+                        {values.tickets?.length > 0 &&
+                          values.tickets.map((paramList, index) => (
+                            <div key={index}>
+                              {Object.keys(paramList).map(param => (
+
+                                <Field
+                                  key={`${param}`}
+                                  name={`tickets.${index}.${param}`}
+                                  placeholder={`${index}.${param}`}
+                                  className="field"
+
+                                />
+                              ))}
+                              <button
+                                type="button"
+                                onClick={() => arrayHelpers.remove(index)}
+                              >
+                                {" "}
+                                -{" "}
+                              </button>
+                            </div>
+                          ))}
                         <button
-                          className="product-form-delete-image"
-                          onClick={() => removeImage({ id: image.id, name: 'imageCollection' })}
-                          title="Delete Image"
                           type="button"
+                          onClick={() =>
+                            arrayHelpers.push({ name: "", email: "" })
+                          }
                         >
-                          Delete
-                          <i className="fa fa-times-circle" />
+                          {" "}
+                          +{" "}
                         </button>
-                        
                       </div>
-                    ))
-                  )}
-                </>
-              </div>
-              <br />
-              <div className="d-flex">
-                <div className="product-form-field">
-                  <input
-                    checked={values.isFeatured}
-                    className=""
-                    id="featured"
-                    onChange={(e) => setValues({ ...values, isFeatured: e.target.checked })}
-                    type="checkbox"
+                    )}
                   />
-                  <label htmlFor="featured">
-                    <h5 className="d-flex-grow-1 margin-0">
-                      &nbsp; Add to Featured &nbsp;
-                    </h5>
-                  </label>
-                </div>
-                <div className="product-form-field">
-                  <input
-                    checked={values.isRecommended}
-                    className=""
-                    id="recommended"
-                    onChange={(e) => setValues({ ...values, isRecommended: e.target.checked })}
-                    type="checkbox"
-                  />
-                  <label htmlFor="recommended">
-                    <h5 className="d-flex-grow-1 margin-0">
-                      &nbsp; Add to Recommended &nbsp;
-                    </h5>
-                  </label>
-                </div>
-              </div>
-              <br />
-              <br />
-              <br />
-              <div className="product-form-field product-form-submit">
-                <button
-                  className="button"
-                  disabled={isLoading}
-                  type="submit"
-                >
-                  {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
-                  &nbsp;
-                  {isLoading ? 'Saving Product' : 'Save Product1'}
 
-                </button>
-              </div>
-            </div>
-            {/* ----THUBMNAIL ---- */}
-            <div className="product-form-file">
-              <div className="product-form-field">
-                <span className="d-block padding-s">* Thumbnail</span>
-                {!isFileLoading && (
-                  <label htmlFor="product-input-file">
+                </div>
+
+                {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
+
+
+
+                <div className="product-form-field">
+                  <span className="d-block padding-s">Image Collection</span>
+                  {!isFileLoading && (
+                    <label htmlFor="product-input-file-collection">
+                      <input
+                        disabled={isLoading}
+                        hidden
+                        id="product-input-file-collection"
+                        multiple
+                        onChange={(e) => onFileChange(e, { name: 'imageCollection', type: 'multiple' })}
+                        readOnly={isLoading}
+                        type="file"
+                      />
+                      Choose Images
+                    </label>
+                  )}
+                </div>
+                <div className="product-form-collection">
+                  <>
+                    {imageFile.imageCollection.length >= 1 && (
+                      imageFile.imageCollection.map((image) => (
+                        <div
+                          className="product-form-collection-image"
+                          key={image.id}
+                        >
+                          <ImageLoader
+                            alt=""
+                            src={image.url}
+                          />
+
+                          <button
+                            className="product-form-delete-image"
+                            onClick={() => removeImage({ id: image.id, name: 'imageCollection' })}
+                            title="Delete Image"
+                            type="button"
+                          >
+                            Delete
+                            <i className="fa fa-times-circle" />
+                          </button>
+
+                        </div>
+                      ))
+                    )}
+                  </>
+                </div>
+                <br />
+                <div className="d-flex">
+                  <div className="product-form-field">
                     <input
-                      disabled={isLoading}
-                      hidden
-                      id="product-input-file"
-                      onChange={(e) => onFileChange(e, { name: 'image', type: 'single' })}
-                      readOnly={isLoading}
-                      type="file"
+                      checked={values.isFeatured}
+                      className=""
+                      id="featured"
+                      onChange={(e) => setValues({ ...values, isFeatured: e.target.checked })}
+                      type="checkbox"
                     />
-                    Choose Image
-                  </label>
-                )}
+                    <label htmlFor="featured">
+                      <h5 className="d-flex-grow-1 margin-0">
+                        &nbsp; Add to Featured &nbsp;
+                      </h5>
+                    </label>
+                  </div>
+                  <div className="product-form-field">
+                    <input
+                      checked={values.isRecommended}
+                      className=""
+                      id="recommended"
+                      onChange={(e) => setValues({ ...values, isRecommended: e.target.checked })}
+                      type="checkbox"
+                    />
+                    <label htmlFor="recommended">
+                      <h5 className="d-flex-grow-1 margin-0">
+                        &nbsp; Add to Recommended &nbsp;
+                      </h5>
+                    </label>
+                  </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div className="product-form-field product-form-submit">
+                  <button
+                    className="button"
+                    disabled={isLoading}
+                    type="submit"
+                  >
+                    {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
+                    &nbsp;
+                    {isLoading ? 'Saving Product' : 'Save Product1'}
+
+                  </button>
+                </div>
               </div>
-              <div className="product-form-image-wrapper">
-                {(imageFile.image.url || product.image) && (
-                  <ImageLoader
-                    alt=""
-                    className="product-form-image-preview"
-                    src={imageFile.image.url || product.image}
-                  />
-                )}
+              {/* ----THUBMNAIL ---- */}
+              <div className="product-form-file">
+                <div className="product-form-field">
+                  <span className="d-block padding-s">* Thumbnail</span>
+                  {!isFileLoading && (
+                    <label htmlFor="product-input-file">
+                      <input
+                        disabled={isLoading}
+                        hidden
+                        id="product-input-file"
+                        onChange={(e) => onFileChange(e, { name: 'image', type: 'single' })}
+                        readOnly={isLoading}
+                        type="file"
+                      />
+                      Choose Image
+                    </label>
+                  )}
+                </div>
+                <div className="product-form-image-wrapper">
+                  {(imageFile.image.url || product.image) && (
+                    <ImageLoader
+                      alt=""
+                      className="product-form-image-preview"
+                      src={imageFile.image.url || product.image}
+                    />
+                  )}
+                </div>
               </div>
-            </div>
-          </Form>
-        )}
-      </Formik>
+            </Form>
+          )}
+        </Formik>
+      </div>
     </div>
   );
 };

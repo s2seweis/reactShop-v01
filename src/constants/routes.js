@@ -28,6 +28,9 @@ export const ADMIN_POSTS = '/admin/posts';
 export const ADMIN_USERS1 = '/admin/users1';
 export const ADMIN_SETTINGS = '/admin/settings';
 
+
+export const ADMIN_PRODUCT_OVERVIEW = '/admin/product-overview';
+
 export const ADD_PRODUCT = '/admin/add';
 export const ADD_SETTING = '/admin/setting';
 export const ADD_ORDER = '/admin/add-order';
@@ -37,6 +40,9 @@ export const ADD_USER1 = '/admin/add-user1';
 export const ADD_USER = '/admin/add-user';
 
 export const EDIT_PRODUCT = '/admin/edit';
+
+
+
 export const EDIT_SETTING = '/admin/edit-setting';
 export const EDIT_ORDER = '/admin/edit-order';
 export const EDIT_POST = '/admin/edit-post';

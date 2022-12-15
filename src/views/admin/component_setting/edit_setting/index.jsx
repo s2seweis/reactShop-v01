@@ -18,6 +18,10 @@ import { SettingsNavbar } from '../../component_setting';
 
 
 
+
+
+
+
 const FormSchema = Yup.object().shape({
   fullname: Yup.string(),
   // .min(4, 'Full name should be at least 4 characters.')
@@ -37,7 +41,7 @@ const FormSchema = Yup.object().shape({
 });
 
 const EditSettings = () => {
-  useDocumentTitle('Edit Account | Dign ');
+  useDocumentTitle('Edit Account | Dign1 ');
   useScrollTop();
 
   // const modal = useModal();
@@ -148,6 +152,9 @@ const EditSettings = () => {
   return (
     <Boundary>
 
+
+
+
       <SettingsNavbar
       // settingsCount={store.settings.items.length}
       // totalSettingsCount={store.settings.total}
@@ -155,7 +162,7 @@ const EditSettings = () => {
 
       <div className="product-admin-items">
         <div className="edit-user">
-          <h3 className="text-center">Edit Setting Details</h3>
+          <h3 className="text-center">Edit Setting Details1</h3>
           <Formik
             initialValues={initFormikValues}
             validateOnChange

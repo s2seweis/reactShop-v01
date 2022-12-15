@@ -66,6 +66,67 @@
   }
 }
 
+
+
+
+
+.fieldarray-top {
+
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+ 
+  @include mobile {
+  }
+}
+
+.fieldarray {
+ 
+  @include mobile {
+  }
+}
+
+.field {
+
+  width: 250px;
+  background: white;
+ 
+  @include mobile {
+    width: 120px;
+
+  }
+}
+
+
+.field1 {
+
+  
+  background: white;
+  width: 100%;
+ 
+  @include mobile {
+    
+
+  }
+}
+
+
+
+
+.product-tab-content {
+  padding: $m-size;
+  height: 100%;
+  background: lemonchiffon;
+  width: 800px;
+  border-radius: 25px;
+
+
+  @include mobile {
+    padding: 0;
+    max-width: 250px;
+  }
+}
+
 .user-tab-nav {
   background: $background-color-01;
   border-bottom: 1px solid $border-color;

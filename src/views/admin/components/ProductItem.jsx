@@ -1,5 +1,5 @@
 import { ImageLoader } from 'components/common';
-import { EDIT_PRODUCT } from 'constants/routes';
+import { EDIT_PRODUCT, ADMIN_PRODUCT_OVERVIEW } from 'constants/routes';
 import { displayActionMessage, displayDate, displayMoney } from 'helpers/utils';
 import PropType from 'prop-types';
 import React, { useRef } from 'react';
@@ -14,6 +14,7 @@ const ProductItem = ({ product }) => {
   const productRef = useRef(null);
 
   const onClickEdit = () => {
+    // history.push(`${ADMIN_PRODUCT_OVERVIEW}/${product.id}`);
     history.push(`${EDIT_PRODUCT}/${product.id}`);
   };
 

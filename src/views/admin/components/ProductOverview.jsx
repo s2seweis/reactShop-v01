@@ -9,6 +9,8 @@ const EditSettings = lazy(() => import('../component_setting/edit_setting'));
 const UserWishListTab = lazy(() => import('../component_setting/components/SettingListTab'));
 const UserOrdersTab = lazy(() => import('../../../views/account/components/UserOrdersTab'));
 
+const ProductForm = lazy(() => import('../../admin/components/ProductForm'));
+
 const Loader = () => (
   <div className="loader" style={{ minHeight: '80vh' }}>
     <LoadingOutlined />
@@ -16,7 +18,7 @@ const Loader = () => (
   </div>
 );
 
-const UserAccount = () => {
+const ProductOverview = () => {
   useScrollTop();
   useDocumentTitle('My Settings | Dign');
 
@@ -30,7 +32,10 @@ const UserAccount = () => {
           {/* <SettingAccountTab /> */}
 
 
-          <EditSettings />
+          <ProductForm />
+
+          
+          {/* <EditSettings /> */}
 
 
         </Suspense>
@@ -51,4 +56,4 @@ const UserAccount = () => {
   );
 };
 
-export default UserAccount;
+export default ProductOverview;
