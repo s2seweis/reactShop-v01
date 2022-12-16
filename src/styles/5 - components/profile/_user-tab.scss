@@ -97,6 +97,17 @@
   }
 }
 
+.field-ingredients {
+
+  width: 120px;
+  background: white;
+ 
+  @include mobile {
+    width: 160px;
+
+  }
+}
+
 
 .field1 {
 

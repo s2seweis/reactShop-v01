@@ -152,9 +152,9 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
   // || []
   // ;
 
-  const tickets = product?.tickets
-    || []
-    ;
+  // const tickets = product?.tickets
+  //   || []
+  //   ;
 
 
   return (
@@ -431,9 +431,11 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
                     className="fieldarray"
 
                     render={arrayHelpers => (
+
                       <div>
                         {values.tickets?.length > 0 &&
                           values.tickets.map((paramList, index) => (
+
                             <div key={index}>
                               {Object.keys(paramList).map(param => (
 
@@ -453,6 +455,7 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
                                 -{" "}
                               </button>
                             </div>
+                            
                           ))}
                         <button
                           type="button"
