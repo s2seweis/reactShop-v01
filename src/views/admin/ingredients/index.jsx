@@ -7,9 +7,53 @@ import React, { useState } from "react";
 
 // const parameters1 = { small: "", price1: "", medium: "", price2: "" };
 
+import { toppings } from "../ingredients/toppings"
+
+
+const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
+
 const Ingredients = (parameters, isLoading) => {
   useDocumentTitle('Welcome | Admin Ingredients');
   useScrollTop();
+
+
+
+  const [checkedState, setCheckedState] = useState(
+    new Array(toppings.length).fill(false)
+    
+  );
+  console.log(checkedState)
+
+
+  const [total, setTotal] = useState(0);
+
+  console.log(total)
+
+
+  const handleOnChange = (position) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === position ? !item : item
+    );
+
+    setCheckedState(updatedCheckedState);
+
+    const totalPrice = updatedCheckedState.reduce(
+      (sum, currentState, index) => {
+        if (currentState === true) {
+          return sum + toppings[index].price;
+        }
+        return sum;
+      },
+      0
+    );
+    
+    console.log(totalPrice)
+
+
+    setTotal(totalPrice);
+  };
+
+
 
   const initFormikValues = {
 
@@ -62,6 +106,24 @@ const Ingredients = (parameters, isLoading) => {
     setCount(count);
   }
 
+
+
+  // Test: 1 ----------------Start
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // Test: 1 ----------------End
 
   return (
     <div className="loader">
@@ -193,6 +255,47 @@ const Ingredients = (parameters, isLoading) => {
 
 
         </Formik>
+
+
+
+        <h3>Select Toppings</h3>
+        <ul className="toppings-list">
+          {toppings.map(({ name, price }, index) => {
+            return (
+              <li key={index}>
+                <div className="toppings-list-item">
+                  <div className="left-section">
+                    <input
+                      type="checkbox"
+                      id={`custom-checkbox-${index}`}
+                      name={name}
+                      value={name}
+                      checked={checkedState[index]}
+                      onChange={() => handleOnChange(index)}
+                    />
+                    <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
+                  </div>
+                  <div className="right-section">{getFormattedPrice(price)}</div>
+                </div>
+              </li>
+            );
+          })}
+          <li>
+            <div className="toppings-list-item">
+              <div className="left-section">Total:</div>
+              <div className="right-section">{getFormattedPrice(total)}</div>
+            </div>
+          </li>
+        </ul>
+
+
+
+to do:
+on click/select sets the right topping sizes: m/l/xl/pp
+add/delete/edit/get toppings from database manually 
+
+
+
       </div>
     </div>
   );
