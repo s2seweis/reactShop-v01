@@ -9,49 +9,53 @@ import React, { useState } from "react";
 
 import { toppings } from "../ingredients/toppings"
 
+import Ingredients from "../../../components/common/Ingredients"
+
 
 const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
 
-const Ingredients = (parameters, isLoading) => {
-  useDocumentTitle('Welcome | Admin Ingredients');
+const IngredientsForm = (parameters, isLoading) => {
+  useDocumentTitle('Welcome | Admin IngredientsForm');
   useScrollTop();
 
 
 
-  const [checkedState, setCheckedState] = useState(
-    new Array(toppings.length).fill(false)
-    
-  );
-  console.log(checkedState)
 
 
-  const [total, setTotal] = useState(0);
+  // const [checkedState, setCheckedState] = useState(
+  //   new Array(toppings.length).fill(false)
 
-  console.log(total)
-
-
-  const handleOnChange = (position) => {
-    const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
-    );
-
-    setCheckedState(updatedCheckedState);
-
-    const totalPrice = updatedCheckedState.reduce(
-      (sum, currentState, index) => {
-        if (currentState === true) {
-          return sum + toppings[index].price;
-        }
-        return sum;
-      },
-      0
-    );
-    
-    console.log(totalPrice)
+  // );
+  // console.log(checkedState)
 
 
-    setTotal(totalPrice);
-  };
+  // const [total, setTotal] = useState(0);
+
+  // console.log(total)
+
+
+  // const handleOnChange = (position) => {
+  //   const updatedCheckedState = checkedState.map((item, index) =>
+  //     index === position ? !item : item
+  //   );
+
+  //   setCheckedState(updatedCheckedState);
+
+  //   const totalPrice = updatedCheckedState.reduce(
+  //     (sum, currentState, index) => {
+  //       if (currentState === true) {
+  //         return sum + toppings[index].price;
+  //       }
+  //       return sum;
+  //     },
+  //     0
+  //   );
+
+  //   console.log(totalPrice)
+
+
+  //   setTotal(totalPrice);
+  // };
 
 
 
@@ -108,7 +112,30 @@ const Ingredients = (parameters, isLoading) => {
 
 
 
-  // Test: 1 ----------------Start
+
+
+
+
+
+
+  // Test: 3 ----------------Start
+
+
+
+
+
+  const [isFooVisible, setIsFooVisible] = useState(true);
+  const [isBarVisible, setIsBarVisible] = useState(false);
+
+  const handleFooPress = () => {
+    setIsFooVisible((isVisible) => !isVisible);
+    setIsBarVisible(false);
+  };
+
+  const handleBarPress = () => {
+    setIsBarVisible((isVisible) => !isVisible);
+    setIsFooVisible(false);
+  };
 
 
 
@@ -117,17 +144,11 @@ const Ingredients = (parameters, isLoading) => {
 
 
 
-
-
-
-
-
-
-  // Test: 1 ----------------End
+  // Test: 3 ----------------End
 
   return (
     <div className="loader">
-      <h2>Welcome to admin Ingredients</h2>
+      <h2>Welcome to admin IngredientsForm</h2>
 
       <div>
 
@@ -256,9 +277,9 @@ const Ingredients = (parameters, isLoading) => {
 
         </Formik>
 
+        {/* Test: 2 -----------Start */}
 
-
-        <h3>Select Toppings</h3>
+        {/* <h3>Select Toppings</h3>
         <ul className="toppings-list">
           {toppings.map(({ name, price }, index) => {
             return (
@@ -286,13 +307,44 @@ const Ingredients = (parameters, isLoading) => {
               <div className="right-section">{getFormattedPrice(total)}</div>
             </div>
           </li>
-        </ul>
+        </ul> */}
 
 
 
-to do:
-on click/select sets the right topping sizes: m/l/xl/pp
-add/delete/edit/get toppings from database manually 
+
+
+        <div className="show_hide">
+          <button onClick={handleFooPress}>Show Foo</button>
+          <button onClick={handleBarPress}>Show Bar</button>
+          {isFooVisible && <Ingredients />
+          }
+          {isBarVisible && <h1>Bar</h1>}
+        </div>
+
+
+
+        {/* Test: 2 -----------End */}
+
+
+
+        {/* Test: 3 -----------Start */}
+
+
+
+        {/* <div className='ingredients-new'>
+          <Ingredients />
+        </div> */}
+
+
+
+        {/* Test: 3 -----------End */}
+
+
+
+
+        {/* to do:
+        on click/select sets the right topping sizes: m/l/xl/pp
+        add/delete/edit/get toppings from database manually  */}
 
 
 
@@ -301,4 +353,4 @@ add/delete/edit/get toppings from database manually
   );
 };
 
-export default Ingredients;
+export default IngredientsForm;

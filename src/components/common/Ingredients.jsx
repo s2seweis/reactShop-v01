@@ -1,144 +1,90 @@
+// import { useState } from "react";
+import { toppings } from "../../views/admin/ingredients/toppings";
+
+import { useDocumentTitle, useScrollTop } from 'hooks';
+// import React from 'react';
+
+import { Formik, Field, Form, FieldArray } from "formik";
+
 import React, { useState } from "react";
+
+
 // import "./styles.css";
 
-import {
-  useBasket,
-  useDocumentTitle,
-  useProduct,
-  useRecommendedProducts,
-  useScrollTop
-} from 'hooks';
-
-import { Link, useParams } from 'react-router-dom';
-
-
+// const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
 
 const Ingredients = () => {
-  const [messageList, setMessageList] = useState(["Milk", "Sugar", "Butter"]);
-  // console.log(messageList)
-
-
-
-
-
-  const addTodo = (message) => {
-    setMessageList([...messageList, message]);
-  };
-
-  const deleteTodo = (message) => {
-    let deleteMessageIndex = messageList.indexOf(message);
-    setMessageList([
-      ...messageList.slice(0, deleteMessageIndex),
-      ...messageList.slice(deleteMessageIndex + 1)
-    ]);
-  };
-
-  return (
-    <div className="app-in">
-      <TodoHeader />
-      <TodoForm addTodo={addTodo} /> <br /> {/* Why */}
-      <TodoList messageList={messageList} deleteTodo={deleteTodo} />
-      <Footer />
-    </div>
+  const [checkedState, setCheckedState] = useState(
+    new Array(toppings.length).fill(false)
   );
-};
 
-
-
-
-const TodoHeader = () => {
   
-  const { id } = useParams();
-  const { product, isLoading, error } = useProduct(id);
+
+  const [total, setTotal] = useState(0);
+  const [name, setName] = useState(0);
+
+  console.log(total)
+
+  const handleOnChange = (position) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === position ? !item : item
+    );
+
+    setCheckedState(updatedCheckedState);
+
+    const totalPrice = updatedCheckedState.reduce(
+      (sum, currentState, index) => {
+        if (currentState === true) {
+          return sum + toppings[index].price;
+        }
+        return sum;
+      },
+      0
+    );
+
+        console.log(totalPrice)
 
 
+    setTotal(totalPrice);
+  };
+
+  const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
 
 
   return (
-
-    <div className="header-in">
-
-
-
-      {/* simple example for handling the state */}
-
-      <h1 className="margin-top-0">{product?.name}</h1>
-      <span className="text-subtle">{product?.brand}</span>
-
-
-
-
-
-      <h2>Todo List</h2>
-    </div>
-
-  )
-
-
-};
-
-
-
-const TodoForm = ({ addTodo }) => {
-  const [input, setInput] = useState("");
-
-  const changeHandler = (event) => {
-    setInput(event.target.value);
-  };
-
-  const submitHandler = (event) => {
-    addTodo(input);
-    setInput("");
-  };
-
-  return (
-    <div className="form-in">
-      <input
-        className="form__input-in"
-        type="text"
-        value={input}
-        onChange={changeHandler}
-      />
-      <button className="form__submit-in" onClick={submitHandler}>
-        Add Ingredients
-      </button>
+    <div className="App">
+      <h3>Select Toppings</h3>
+      <ul className="toppings-list">
+        {toppings.map(({ name, price }, index) => {
+          return (
+            <li key={index}>
+              <div className="toppings-list-item">
+                <div className="left-section">
+                  <input
+                    type="checkbox"
+                    id={`custom-checkbox-${index}`}
+                    name={name}
+                    value={name}
+                    checked={checkedState[index]}
+                    onChange={() => handleOnChange(index)}
+                  />
+                  <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
+                </div>
+                <div className="right-section">{getFormattedPrice(price)}</div>
+              </div>
+            </li>
+          );
+        })}
+        <li>
+          <div className="toppings-list-item">
+            <div className="left-section">Total:</div>
+            <div className="right-section">{getFormattedPrice(total)}</div>
+          </div>
+        </li>
+      </ul>
     </div>
   );
 };
 
-const TodoList = ({ messageList, deleteTodo }) => (
-  <ol className="todolist-in">
-    {messageList.map((message, index) => (
-      <Todo message={message} deleteTodo={deleteTodo} key={index} />
-    ))}
-  </ol>
-);
-
-const Todo = ({ message, deleteTodo }) => {
-  const handleSubmit = (event) => {
-    deleteTodo(message);
-  };
-
-  return (
-    <li className="todo-in">
-      <span className="todo__label-in">{message + "  "}</span>
-      <button className="todo__delete-in" onClick={handleSubmit}>
-        Delete
-      </button>
-    </li>
-  );
-};
-
-const Footer = () => (
-  <div className="footer-in">
-    {/* <a
-      href="http://github.com/meethari"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Github: meethari
-    </a> */}
-  </div>
-);
 
 export default Ingredients;
