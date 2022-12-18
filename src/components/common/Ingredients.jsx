@@ -11,7 +11,6 @@ import React, { useState } from "react";
 
 // import "./styles.css";
 
-// const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
 
 const Ingredients = () => {
   const [checkedState, setCheckedState] = useState(
@@ -24,6 +23,8 @@ const Ingredients = () => {
   const [name, setName] = useState(0);
 
   console.log(total)
+  // console.log(name)
+
 
   const handleOnChange = (position) => {
     const updatedCheckedState = checkedState.map((item, index) =>
@@ -42,13 +43,27 @@ const Ingredients = () => {
       0
     );
 
-        console.log(totalPrice)
+    const totalName = updatedCheckedState.reduce(
+      (sum, currentState, index) => {
+        if (currentState === true) {
+          return sum + toppings[index].name;
+        }
+        return sum;
+      },
+      0
+    );
+
+        // console.log(totalPrice)
+
+        // console.log(totalName)
 
 
     setTotal(totalPrice);
   };
 
   const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
+
+  // const getFormattedName = (name) => `$${name.toFixed(2)}`;
 
 
   return (
@@ -71,6 +86,7 @@ const Ingredients = () => {
                   <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
                 </div>
                 <div className="right-section">{getFormattedPrice(price)}</div>
+                {/* <div className="right-section">{getFormattedName(name)}</div> */}
               </div>
             </li>
           );
@@ -79,6 +95,7 @@ const Ingredients = () => {
           <div className="toppings-list-item">
             <div className="left-section">Total:</div>
             <div className="right-section">{getFormattedPrice(total)}</div>
+            {/* <div className="right-section">{getFormattedName(name)}</div> */}
           </div>
         </li>
       </ul>

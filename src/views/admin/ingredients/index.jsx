@@ -124,7 +124,7 @@ const IngredientsForm = (parameters, isLoading) => {
 
 
 
-  const [isFooVisible, setIsFooVisible] = useState(true);
+  const [isFooVisible, setIsFooVisible] = useState(false);
   const [isBarVisible, setIsBarVisible] = useState(false);
 
   const handleFooPress = () => {
