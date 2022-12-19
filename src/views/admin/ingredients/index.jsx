@@ -196,10 +196,62 @@ const IngredientsForm = (parameters, isLoading) => {
 
 
   const [checked, setChecked] = useState([]);
-  const checkList = ["Apple", "Banana", "Tea", "Coffee"];
+  // const checkList = ["Apple", "Banana", "Tea", "Coffee"];
+    console.log(checked);
+
+  const [checkedState, setCheckedState] = useState(
+    new Array(toppings.length).fill(false)
+  );
+  // console.log(checkedState);
+
+  const [total, setTotal] = useState(0);
+  console.log(checkedState);
+
+
+  const checkList = [
+    {
+      name: "Capsicum",
+      price: 1.2
+    },
+    {
+      name: "Tomato",
+      price: 1.9
+    },
+    {
+      name: "Paneer",
+      price: 2.0
+    },
+    {
+      name: "Red Paprika",
+      price: 2.5
+    },
+    {
+      name: "Onions",
+      price: 3.0
+    },
+    {
+      name: "Extra Cheese",
+      price: 3.5
+    },
+    {
+      name: "Baby Corns",
+      price: 3.0
+    },
+    {
+      name: "Mushroom",
+      price: 2.0
+    }
+  ];
+
+
+
+
+
+
+
 
   // Add/Remove checked item from list
-  const handleCheck = (event) => {
+  const handleCheck = (event, position) => {
     var updatedList = [...checked];
     if (event.target.checked) {
       updatedList = [...checked, event.target.value];
@@ -207,7 +259,45 @@ const IngredientsForm = (parameters, isLoading) => {
       updatedList.splice(checked.indexOf(event.target.value), 1);
     }
     setChecked(updatedList);
+
+
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === position ? !item : item
+    );
+
+    setCheckedState(updatedCheckedState);
+
+
+    const totalPrice = updatedCheckedState.reduce(
+      (sum, currentState, index) => {
+        if (currentState === true) {
+          return sum
+            + toppings[index].price;
+          // console.log(sum);
+        }
+        return sum
+          ;
+
+
+      },
+      0
+    );
+
+
+
+    setTotal(totalPrice);
+
+
+
+
   };
+
+
+  const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
+
+
+
+
 
   // Generate string of checked items
   const checkedItems = checked.length
@@ -215,6 +305,9 @@ const IngredientsForm = (parameters, isLoading) => {
       return total + ", " + item;
     })
     : "";
+
+  console.log(checkedItems);
+
 
   // Return classes based on whether item is checked
   var isChecked = (item) =>
@@ -453,12 +546,21 @@ const IngredientsForm = (parameters, isLoading) => {
           <div className="checkList">
             <div className="title">Your CheckList:</div>
             <div className="list-container">
-              {checkList.map((item, index) => (
+              {checkList.map(({ name, price }, index) => (
                 <div key={index}>
-                  <input value={item} style={{ display: 'initial' }} type="checkbox" onChange={handleCheck} />
-                  <span className={isChecked(item)}>{item}</span>
+                  <input value={name} style={{ display: 'initial' }} type="checkbox" onChange={handleCheck} />
+
+                  <div className="right-section">{getFormattedPrice(price)}</div>
+
+                  <span className={isChecked(name)}>{name}</span>
                 </div>
               ))}
+            </div>
+
+            <div className="toppings-list-item">
+              <div className="left-section">Total:</div>
+              <div className="right-section">{getFormattedPrice(total)}</div>
+              {/* <div className="right-section">{getFormattedName(name)}</div> */}
             </div>
           </div>
 
