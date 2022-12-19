@@ -17,10 +17,10 @@ const Ingredients = () => {
     new Array(toppings.length).fill(false)
   );
 
-  
+
 
   const [total, setTotal] = useState(0);
-  const [name, setName] = useState(0);
+  // const [name, setName] = useState(0);
 
   console.log(total)
   // console.log(name)
@@ -36,34 +36,42 @@ const Ingredients = () => {
     const totalPrice = updatedCheckedState.reduce(
       (sum, currentState, index) => {
         if (currentState === true) {
-          return sum + toppings[index].price;
+          return sum
+            + toppings[index].price;
+             console.log(sum);
         }
-        return sum;
+        return sum
+        ;
+        
+
       },
       0
     );
 
-    const totalName = updatedCheckedState.reduce(
-      (sum, currentState, index) => {
-        if (currentState === true) {
-          return sum + toppings[index].name;
-        }
-        return sum;
-      },
-      0
-    );
+    // const totalName = updatedCheckedState.reduce(
+    //   (sum, currentState, index) => {
+    //     if (currentState === true) {
+    //       return sum
+    //         + toppings[index].name;
+    //     }
+    //     return sum
+    //     ;
+    //   },
 
-        // console.log(totalPrice)
+    // );
 
-        // console.log(totalName)
+    // console.log(totalPrice)
+
+    // console.log(totalName)
 
 
     setTotal(totalPrice);
+    // setName(totalName);
   };
 
   const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
 
-  // const getFormattedName = (name) => `$${name.toFixed(2)}`;
+  // const getFormattedName = (name) => `${name}`;
 
 
   return (
@@ -97,6 +105,13 @@ const Ingredients = () => {
             <div className="right-section">{getFormattedPrice(total)}</div>
             {/* <div className="right-section">{getFormattedName(name)}</div> */}
           </div>
+          
+          {/* <div className="toppings-list-item">
+            <div className="left-section">Ingredients:</div>
+            <div className="right-section">{getFormattedName(name)}</div>
+            <div className="right-section">{getFormattedName(name)}</div>
+          </div> */}
+
         </li>
       </ul>
     </div>

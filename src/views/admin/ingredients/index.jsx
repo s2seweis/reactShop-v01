@@ -146,8 +146,89 @@ const IngredientsForm = (parameters, isLoading) => {
 
   // Test: 3 ----------------End
 
+
+  // Test: 4 ----------------End
+
+
+
+
+
+
+  // const items = [
+  //   {
+  //     name: "Bob",
+  //     amount: 100,
+  //   },
+  //   {
+  //     name: "Jim",
+  //     amount: 300,
+  //   },
+  //   {
+  //     name: "Joe",
+  //     amount: 500,
+  //   },
+  // ];
+  // const [checked, setChecked] = useState([]);
+  //   console.log(checked)
+
+
+  // const handleChange = (item, checked) =>
+  //   checked
+  //     ? setChecked((prev) => [...prev, item])
+  //     : setChecked((prev) =>
+  //       prev.filter((c) => c.name !== item.name && c.amount != item.amount)
+  //     );
+
+
+
+
+
+
+
+
+
+  // Test: 4 ----------------End
+
+
+  // Test: 5 ----------------Start
+
+
+
+
+  const [checked, setChecked] = useState([]);
+  const checkList = ["Apple", "Banana", "Tea", "Coffee"];
+
+  // Add/Remove checked item from list
+  const handleCheck = (event) => {
+    var updatedList = [...checked];
+    if (event.target.checked) {
+      updatedList = [...checked, event.target.value];
+    } else {
+      updatedList.splice(checked.indexOf(event.target.value), 1);
+    }
+    setChecked(updatedList);
+  };
+
+  // Generate string of checked items
+  const checkedItems = checked.length
+    ? checked.reduce((total, item) => {
+      return total + ", " + item;
+    })
+    : "";
+
+  // Return classes based on whether item is checked
+  var isChecked = (item) =>
+    checked.includes(item) ? "checked-item" : "not-checked-item";
+
+
+
+
+
+
+  // Test: 5 ----------------End
+
   return (
-    <div className="loader">
+    <div className="loader" >
       <h2>Welcome to admin IngredientsForm</h2>
 
       <div>
@@ -342,6 +423,60 @@ const IngredientsForm = (parameters, isLoading) => {
 
 
 
+        {/* Test: 4 -----------Start */}
+
+
+
+        {/* <div className='checkbox'>
+          {items.map((c) => {
+            return (
+              <div >
+                <input type="checkbox" style={{ display: 'initial' }} onChange={(e) => handleChange(c, e.target.checked)} />
+                {`subscriber ${c.name}, amount ${c.amount}`}
+              </div>
+            );
+          })}
+          <p>Total {checked.reduce((sum, { amount }) => sum + amount, 0)}</p>
+          <p>Items {checked.reduce((sum, { name }) => sum + name, 0)}</p>
+        </div>
+ */}
+
+
+        {/* Test: 4 -----------End */}
+
+
+
+        {/* Test: 5 -----------Start */}
+
+
+        <div className="test-5">
+          <div className="checkList">
+            <div className="title">Your CheckList:</div>
+            <div className="list-container">
+              {checkList.map((item, index) => (
+                <div key={index}>
+                  <input value={item} style={{ display: 'initial' }} type="checkbox" onChange={handleCheck} />
+                  <span className={isChecked(item)}>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            {`Items checked are: ${checkedItems}`}
+          </div>
+        </div>
+
+
+
+        {/* Test: 5 -----------End */}
+
+
+
+
+
+
+
         {/* to do:
         on click/select sets the right topping sizes: m/l/xl/pp
         add/delete/edit/get toppings from database manually  */}
@@ -349,7 +484,7 @@ const IngredientsForm = (parameters, isLoading) => {
 
 
       </div>
-    </div>
+    </div >
   );
 };
 

@@ -4,6 +4,10 @@ export const toppings = [
     price: 1.2
   },
   {
+    name: "Tomato",
+    price: 1.9
+  },
+  {
     name: "Paneer",
     price: 2.0
   },
