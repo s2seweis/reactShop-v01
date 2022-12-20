@@ -199,13 +199,6 @@ const IngredientsForm = (parameters, isLoading) => {
   // const checkList = ["Apple", "Banana", "Tea", "Coffee"];
     console.log(checked);
 
-  const [checkedState, setCheckedState] = useState(
-    new Array(toppings.length).fill(false)
-  );
-  // console.log(checkedState);
-
-  const [total, setTotal] = useState(0);
-  console.log(checkedState);
 
 
   const checkList = [
@@ -247,62 +240,23 @@ const IngredientsForm = (parameters, isLoading) => {
 
 
 
-
-
-
   // Add/Remove checked item from list
-  const handleCheck = (event, position) => {
+  const handleCheck = (event) => {
     var updatedList = [...checked];
     if (event.target.checked) {
-      updatedList = [...checked, event.target.value];
+      updatedList = [...checked, event.target.value ];
     } else {
-      updatedList.splice(checked.indexOf(event.target.value), 1);
+      updatedList.splice(checked.indexOf(event.target.value ), 1);
     }
     setChecked(updatedList);
-
-
-    const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
-    );
-
-    setCheckedState(updatedCheckedState);
-
-
-    const totalPrice = updatedCheckedState.reduce(
-      (sum, currentState, index) => {
-        if (currentState === true) {
-          return sum
-            + toppings[index].price;
-          // console.log(sum);
-        }
-        return sum
-          ;
-
-
-      },
-      0
-    );
-
-
-
-    setTotal(totalPrice);
-
-
-
-
   };
 
 
-  const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
-
-
-
-
-
+ 
   // Generate string of checked items
   const checkedItems = checked.length
     ? checked.reduce((total, item) => {
-      return total + ", " + item;
+      return total + " + " + item;
     })
     : "";
 
@@ -310,8 +264,8 @@ const IngredientsForm = (parameters, isLoading) => {
 
 
   // Return classes based on whether item is checked
-  var isChecked = (item) =>
-    checked.includes(item) ? "checked-item" : "not-checked-item";
+  var isChecked = (item, name) =>
+    checked.includes(item, name) ? "checked-item" : "not-checked-item";
 
 
 
@@ -319,6 +273,16 @@ const IngredientsForm = (parameters, isLoading) => {
 
 
   // Test: 5 ----------------End
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div className="loader" >
@@ -548,24 +512,27 @@ const IngredientsForm = (parameters, isLoading) => {
             <div className="list-container">
               {checkList.map(({ name, price }, index) => (
                 <div key={index}>
-                  <input value={name} style={{ display: 'initial' }} type="checkbox" onChange={handleCheck} />
+                  
+                  <input  value= {name}  style={{ display: 'initial' }} type="checkbox" onChange={handleCheck} />
+                  {/* <input value={price} style={{ display: 'initial' }} type="checkbox" onChange={handleCheck} /> */}
 
-                  <div className="right-section">{getFormattedPrice(price)}</div>
 
                   <span className={isChecked(name)}>{name}</span>
+                  {/* <span className={isChecked(price)}>{price}</span> */}
+
+
                 </div>
               ))}
             </div>
 
-            <div className="toppings-list-item">
-              <div className="left-section">Total:</div>
-              <div className="right-section">{getFormattedPrice(total)}</div>
-              {/* <div className="right-section">{getFormattedName(name)}</div> */}
-            </div>
+           
           </div>
 
           <div>
-            {`Items checked are: ${checkedItems}`}
+            {`Name checked are: ${checkedItems}`}
+          </div>
+          <div>
+            {`Price checked are: ${checkedItems}`}
           </div>
         </div>
 

@@ -13,17 +13,22 @@ import React, { useState } from "react";
 
 
 const Ingredients = () => {
+
   const [checkedState, setCheckedState] = useState(
-    new Array(toppings.length).fill(false)
-  );
+    new Array(toppings.length).fill(false));
+
+  console.log(checkedState)
+
+
 
 
 
   const [total, setTotal] = useState(0);
-  // const [name, setName] = useState(0);
+
+  const [name, setName] = useState("");
 
   console.log(total)
-  // console.log(name)
+  console.log(name)
 
 
   const handleOnChange = (position) => {
@@ -38,27 +43,27 @@ const Ingredients = () => {
         if (currentState === true) {
           return sum
             + toppings[index].price;
-             console.log(sum);
+          console.log(sum);
         }
         return sum
-        ;
-        
+          ;
+
 
       },
       0
     );
 
-    // const totalName = updatedCheckedState.reduce(
-    //   (sum, currentState, index) => {
-    //     if (currentState === true) {
-    //       return sum
-    //         + toppings[index].name;
-    //     }
-    //     return sum
-    //     ;
-    //   },
-
-    // );
+    const totalName = updatedCheckedState.reduce(
+      (sum, currentState, index) => {
+        if (currentState === true) {
+          return sum
+            + "+" + toppings[index].name;
+        }
+        return sum
+          ;
+      },
+      ""
+    );
 
     // console.log(totalPrice)
 
@@ -66,13 +71,23 @@ const Ingredients = () => {
 
 
     setTotal(totalPrice);
-    // setName(totalName);
+
+    setName(totalName);
   };
 
   const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
 
+  const getFormattedName = (name) => `${name}`;
+
   // const getFormattedName = (name) => `${name}`;
 
+  // const checkedItems = checkedState.length
+  //   ? checkedState.reduce((total, item) => {
+  //     return total + " + " + item;
+  //   })
+  //   : "";
+
+  // console.log(checkedItems);
 
   return (
     <div className="App">
@@ -94,6 +109,7 @@ const Ingredients = () => {
                   <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
                 </div>
                 <div className="right-section">{getFormattedPrice(price)}</div>
+
                 {/* <div className="right-section">{getFormattedName(name)}</div> */}
               </div>
             </li>
@@ -103,14 +119,17 @@ const Ingredients = () => {
           <div className="toppings-list-item">
             <div className="left-section">Total:</div>
             <div className="right-section">{getFormattedPrice(total)}</div>
-            {/* <div className="right-section">{getFormattedName(name)}</div> */}
           </div>
-          
-          {/* <div className="toppings-list-item">
-            <div className="left-section">Ingredients:</div>
+
+          <div className="toppings-list-item-b">
+            <div className="left-section">Name Total:</div>
             <div className="right-section">{getFormattedName(name)}</div>
-            <div className="right-section">{getFormattedName(name)}</div>
-          </div> */}
+          </div>
+
+
+
+
+
 
         </li>
       </ul>
