@@ -1,4 +1,4 @@
-import { ArrowLeftOutlined, LoadingOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined, ConsoleSqlOutlined, LoadingOutlined } from '@ant-design/icons';
 import { ColorChooser, ImageLoader, MessageDisplay } from 'components/common';
 import { ProductShowcaseGrid } from 'components/product';
 import { RECOMMENDED_PRODUCTS, SHOP } from 'constants/routes';
@@ -29,6 +29,9 @@ import * as Yup from 'yup';
 import ReactDOM from "react-dom";
 
 import { Formik, Field, Form, FieldArray, ErrorMessage } from "formik";
+
+import Ingredients from "../../components/common/Ingredients"
+
 
 
 
@@ -108,8 +111,53 @@ const ViewProduct = (parameters, demo) => {
   const [option, setOption] = useState();
   console.log(option)
 
+
   const [option1, setOption1] = useState();
   console.log(option1)
+
+
+
+
+
+
+  // const test = option === "50" ? handleFooPress : "Juice";
+  // console.log(test)
+
+
+  // const test = option === "50" ? "Beer" : "Juice";
+  // console.log(test)
+
+  // const test1 = (option1)?.valueOf() === ('m')?.valueOf() ? "Beer" : "Juice";
+  // console.log(test1)
+
+
+
+  if (option == "50")
+    console.log("Yes, we have bananas!")
+  else
+    console.log("Yes, we have NO bananas!")
+
+
+  // if (option1?.valueOf() == "m"?.valueOf())
+  //   console.log("Yes, we have bananas!")
+  // else
+  //   console.log("Yes, we have NO bananas!")
+
+
+
+
+
+
+
+  // console.log(product?.tickets?.[0].name)
+
+  // const test = product?.tickets?.[0].name === option1 ? "Beer" : "Juice";
+  // console.log(test)
+  // console.log(product?.tickets?.[0].name)
+  // console.log(option1)
+
+
+
 
 
   const onSelectedColorChange = (color) => {
@@ -181,6 +229,32 @@ const ViewProduct = (parameters, demo) => {
     { Name: 'Pirate', Nachname: 'Prentice' }
   ];
 
+  // Test:11 ---------------------------Start
+
+
+
+
+  const [isFooVisible, setIsFooVisible] = useState(false);
+  const [isBarVisible, setIsBarVisible] = useState(false);
+
+
+
+  const handleFooPress = () => {
+    setIsFooVisible((isVisible) => !isVisible);
+    setIsBarVisible(false);
+  };
+
+  const handleBarPress = () => {
+    setIsBarVisible((isVisible) => !isVisible);
+    setIsFooVisible(false);
+  };
+
+
+
+
+
+
+  // Test:11 ---------------------------End
 
 
   return (
@@ -320,11 +394,11 @@ const ViewProduct = (parameters, demo) => {
 
               <div className='product-vari'>
                 <Select
-                  placeholder="--Select Size--"
+                  // placeholder="--Select Size--11"
                   onChange={handleChange2}
                   id="fruit-select"
                   // options={tickets}
-                  options={product.tickets.map((size) => ({ label: `${size.name} mm`, value: size.email }))}
+                  options={product.tickets.map((size) => ({ label: `${size.name} `, value: size.email }))}
 
                 />
 
@@ -340,6 +414,38 @@ const ViewProduct = (parameters, demo) => {
 
 
               {/* Test: 5 ------End */}
+
+
+
+              {/* Test:11 -------------Start */}
+
+
+
+              <div className="show_hide">
+                <button onClick={handleFooPress}>Show Foo</button>
+                <button onClick={handleBarPress}>Show Bar</button>
+                {isFooVisible &&
+
+
+
+                  <Ingredients />
+
+
+
+                }
+                {isBarVisible && <h1>Bar</h1>}
+              </div>
+
+
+
+
+
+              {/* Test:11 -------------End */}
+
+
+
+              <div> {option === "50" ? <Ingredients /> : "Juice"} </div>
+
 
 
             </div>

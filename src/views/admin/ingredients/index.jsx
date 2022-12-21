@@ -127,6 +127,9 @@ const IngredientsForm = (parameters, isLoading) => {
   const [isFooVisible, setIsFooVisible] = useState(false);
   const [isBarVisible, setIsBarVisible] = useState(false);
 
+
+
+  // #################################################
   const handleFooPress = () => {
     setIsFooVisible((isVisible) => !isVisible);
     setIsBarVisible(false);
@@ -197,7 +200,7 @@ const IngredientsForm = (parameters, isLoading) => {
 
   const [checked, setChecked] = useState([]);
   // const checkList = ["Apple", "Banana", "Tea", "Coffee"];
-    console.log(checked);
+  console.log(checked);
 
 
 
@@ -244,15 +247,15 @@ const IngredientsForm = (parameters, isLoading) => {
   const handleCheck = (event) => {
     var updatedList = [...checked];
     if (event.target.checked) {
-      updatedList = [...checked, event.target.value ];
+      updatedList = [...checked, event.target.value];
     } else {
-      updatedList.splice(checked.indexOf(event.target.value ), 1);
+      updatedList.splice(checked.indexOf(event.target.value), 1);
     }
     setChecked(updatedList);
   };
 
 
- 
+
   // Generate string of checked items
   const checkedItems = checked.length
     ? checked.reduce((total, item) => {
@@ -449,12 +452,19 @@ const IngredientsForm = (parameters, isLoading) => {
 
 
 
-
+        {/* ############################################################# */}
 
         <div className="show_hide">
           <button onClick={handleFooPress}>Show Foo</button>
           <button onClick={handleBarPress}>Show Bar</button>
-          {isFooVisible && <Ingredients />
+          {isFooVisible &&
+
+
+
+            <Ingredients />
+
+
+
           }
           {isBarVisible && <h1>Bar</h1>}
         </div>
@@ -512,8 +522,8 @@ const IngredientsForm = (parameters, isLoading) => {
             <div className="list-container">
               {checkList.map(({ name, price }, index) => (
                 <div key={index}>
-                  
-                  <input  value= {name}  style={{ display: 'initial' }} type="checkbox" onChange={handleCheck} />
+
+                  <input value={name} style={{ display: 'initial' }} type="checkbox" onChange={handleCheck} />
                   {/* <input value={price} style={{ display: 'initial' }} type="checkbox" onChange={handleCheck} /> */}
 
 
@@ -525,7 +535,7 @@ const IngredientsForm = (parameters, isLoading) => {
               ))}
             </div>
 
-           
+
           </div>
 
           <div>
