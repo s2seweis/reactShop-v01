@@ -98,6 +98,7 @@ const ViewProduct = (parameters, demo) => {
   const handleChange2 = (event) => {
     setOption(event.value)
     setOption1(event.label)
+    setOption2(event.number)
     // setOption(event.label)
     // console.log(event.value);
     // console.log(event.label);
@@ -115,47 +116,8 @@ const ViewProduct = (parameters, demo) => {
   const [option1, setOption1] = useState();
   console.log(option1)
 
-
-
-
-
-
-  // const test = option === "50" ? handleFooPress : "Juice";
-  // console.log(test)
-
-
-  // const test = option === "50" ? "Beer" : "Juice";
-  // console.log(test)
-
-  // const test1 = (option1)?.valueOf() === ('m')?.valueOf() ? "Beer" : "Juice";
-  // console.log(test1)
-
-
-
-  if (option == "50")
-    console.log("Yes, we have bananas!")
-  else
-    console.log("Yes, we have NO bananas!")
-
-
-  // if (option1?.valueOf() == "m"?.valueOf())
-  //   console.log("Yes, we have bananas!")
-  // else
-  //   console.log("Yes, we have NO bananas!")
-
-
-
-
-
-
-
-  // console.log(product?.tickets?.[0].name)
-
-  // const test = product?.tickets?.[0].name === option1 ? "Beer" : "Juice";
-  // console.log(test)
-  // console.log(product?.tickets?.[0].name)
-  // console.log(option1)
-
+  const [option2, setOption2] = useState();
+  console.log(option2)
 
 
 
@@ -176,11 +138,13 @@ const ViewProduct = (parameters, demo) => {
 
 
       selectedPrice: option,
-      selectedSizeNew: option1
+      selectedSizeNew: option1,
+      number: option2
 
     });
     console.log(option)
     console.log(option1)
+    console.log(option2)
 
   };
 
@@ -193,7 +157,7 @@ const ViewProduct = (parameters, demo) => {
   //   console.log(tickets)
 
 
-  const tickets = product?.tickets.map(({ email, name, key, value, id }) => ({ [email]: name, [name]: email }))
+  const tickets = product?.tickets.map(({ email, name, key, value, id, number, number1 }) => ({ [email]: name, [name]: email, ["number"]: number }))
     || []
     ;
 
@@ -398,13 +362,15 @@ const ViewProduct = (parameters, demo) => {
                   onChange={handleChange2}
                   id="fruit-select"
                   // options={tickets}
-                  options={product.tickets.map((size) => ({ label: `${size.name} `, value: size.email }))}
+                  options={product.tickets.map((size) => ({ label: `${size.name} `, value: size.email, number:size.number }))}
 
                 />
 
               </div>
 
               {/* Test: 10 -----End
+
+
 
 
               {/* Test: 5 ---------Start */}
@@ -414,6 +380,9 @@ const ViewProduct = (parameters, demo) => {
 
 
               {/* Test: 5 ------End */}
+
+
+
 
 
 
@@ -444,7 +413,7 @@ const ViewProduct = (parameters, demo) => {
 
 
 
-              <div> {option === "50" ? <Ingredients /> : "Juice"} </div>
+              <div> {option2 === "100" ? <Ingredients /> : "Juice"} </div>
 
 
 
