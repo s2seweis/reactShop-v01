@@ -1,7 +1,7 @@
 import { ArrowLeftOutlined, CheckOutlined, LoadingOutlined } from '@ant-design/icons';
 import { CustomInput, CustomMobileInput } from 'components/formik';
 import { ADMIN_SETTINGS } from 'constants/routes';
-import { Field, useFormikContext } from 'formik';
+import { Field, useFormikContext, FieldArray } from 'formik';
 import PropType from 'prop-types';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
@@ -56,6 +56,68 @@ const EditForm = ({ isLoading, authProvider }) => {
         disabled={isLoading}
         label="Mobile Number (Will be used for checkout)"
       />
+
+
+
+
+
+      <div className='fieldarray-top' >
+        <h4>Add Sizes</h4>
+        <FieldArray
+
+          name="parameters1"
+          // disabled={isLoading}
+          className="fieldarray"
+
+          render={arrayHelpers => (
+
+            <div>
+              {values.parameters1?.length > 0 &&
+                values.parameters1.map((paramList, index) => (
+
+                  <div key={index}>
+                    {Object.keys(paramList).map(param => (
+
+                      <Field
+                        key={`${param}`}
+                        name={`parameters1.${index}.${param}`}
+                        placeholder={`${index}.${param}`}
+                        className="field-ingredients"
+
+                      />
+                    ))}
+                    <button
+                      type="button"
+                      onClick={() => arrayHelpers.remove(index)}
+                    >
+                      {" "}
+                      -{" "}
+                    </button>
+                  </div>
+
+                ))}
+              <button
+                type="button"
+                onClick={() =>
+                  arrayHelpers.push({ name: "", preis1: "", preis2: "", preis3: "", preis4: "" })
+                }
+              >
+                {" "}
+                +{" "}
+              </button>
+            </div>
+          )}
+        />
+
+      </div>
+
+      <pre>{JSON.stringify(values, null, 2)}</pre>
+
+
+
+
+
+
       <br />
       <div className="edit-user-action">
         <button
@@ -93,13 +155,13 @@ const EditForm = ({ isLoading, authProvider }) => {
 
 
 
-        
 
 
 
 
 
-      
+
+
 
 
 

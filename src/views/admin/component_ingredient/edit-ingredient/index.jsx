@@ -1,6 +1,6 @@
 import { EditOutlined, LoadingOutlined } from '@ant-design/icons';
 import { Boundary, ImageLoader } from 'components/common';
-import { Formik } from 'formik';
+import { Formik, Field, Form, FieldArray } from 'formik';
 import {
   useDocumentTitle, useFileHandler, useModal, useScrollTop
 } from 'hooks';
@@ -39,7 +39,7 @@ const FormSchema = Yup.object().shape({
     })
 });
 
-const EditIngredients = () => {
+const EditIngredients = (parameters) => {
   useDocumentTitle('Edit Account | Dign1 - Ingredients ');
   useScrollTop();
 
@@ -63,10 +63,47 @@ const EditIngredients = () => {
     address: ingredients.address || '',
     mobile: ingredients.mobile || {},
     avatar: ingredients.avatar || {},
-    banner: ingredients.banner || {}
+    banner: ingredients.banner || {},
+
+    parameters1: [
+
+      {
+        name: "Käse", 
+        preis1: "0,80",
+        preis2: "1,10",
+        preis3: "1,80",
+        preis4: "3,00"
+      },
+
+      {
+        name: "Salami",
+        preis1: "0,80",
+        preis2: "1,10",
+        preis3: "1,80",
+        preis4: "3,00"
+      },
+
+      {
+        name: "Peperoniwurst",
+        preis1: "0,80",
+        preis2: "1,10",
+        preis3: "1,80",
+        preis4: "3,00"
+      },
+
+      {
+        name: "Schinken",
+        preis1: "0,80",
+        preis2: "1,10",
+        preis3: "1,80",
+        preis4: "3,00"
+      }
+    ],
     // avatar: {},
     // banner: {}
   };
+
+  // console.log(initFormikValues)
 
   const {
     imageFile,
@@ -86,6 +123,9 @@ const EditIngredients = () => {
         // it stazys empty when updating it
         avatar: form.avatar,
         banner: form.banner,
+
+        // parameter1: form.parameter1,
+
       },
       files: {
         bannerFile: imageFile.banner.file,
@@ -168,7 +208,7 @@ const EditIngredients = () => {
           <Formik
             initialValues={initFormikValues}
             validateOnChange
-            validationSchema={FormSchema}
+            // validationSchema={FormSchema}
 
 
 
@@ -185,7 +225,10 @@ const EditIngredients = () => {
 
 
           >
-            {(resetForm) => (
+
+
+
+            {(values, setValues) => (
               <>
 
 
@@ -253,6 +296,60 @@ const EditIngredients = () => {
 
 
                 <EditForm />
+
+
+
+                {/* <div className='fieldarray-top' >
+                  <h4>Add Sizes</h4>
+                  <FieldArray
+
+                    name="parameters1"
+                    // disabled={isLoading}
+                    className="fieldarray"
+
+                    render={arrayHelpers => (
+
+                      <div>
+                        {values.parameters1?.length > 0 &&
+                          values.parameters1.map((paramList, index) => (
+
+                            <div key={index}>
+                              {Object.keys(paramList).map(param => (
+
+                                <Field
+                                  key={`${param}`}
+                                  name={`parameters1.${index}.${param}`}
+                                  placeholder={`${index}.${param}`}
+                                  className="field-ingredients"
+
+                                />
+                              ))}
+                              <button
+                                type="button"
+                                onClick={() => arrayHelpers.remove(index)}
+                              >
+                                {" "}
+                                -{" "}
+                              </button>
+                            </div>
+
+                          ))}
+                        <button
+                          type="button"
+                          onClick={() =>
+                            arrayHelpers.push({ name: "", preis1: "", preis2: "", preis3: "", preis4: "" })
+                          }
+                        >
+                          {" "}
+                          +{" "}
+                        </button>
+                      </div>
+                    )}
+                  />
+
+                </div>
+
+                <pre>{JSON.stringify(values, null, 2)}</pre> */}
 
 
 

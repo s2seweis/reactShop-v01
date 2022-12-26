@@ -63,37 +63,37 @@ const IngredientsForm = (parameters, isLoading) => {
 
     parameters1: [
 
-      {
-        name: "Käse",
-        preis1: "0,80",
-        preis2: "1,10",
-        preis3: "1,80",
-        preis4: "3,00"
-      },
+      // {
+      //   name: "Käse",
+      //   preis1: "0,80",
+      //   preis2: "1,10",
+      //   preis3: "1,80",
+      //   preis4: "3,00"
+      // },
 
-      {
-        name: "Salami",
-        preis1: "0,80",
-        preis2: "1,10",
-        preis3: "1,80",
-        preis4: "3,00"
-      },
+      // {
+      //   name: "Salami",
+      //   preis1: "0,80",
+      //   preis2: "1,10",
+      //   preis3: "1,80",
+      //   preis4: "3,00"
+      // },
 
-      {
-        name: "Peperoniwurst",
-        preis1: "0,80",
-        preis2: "1,10",
-        preis3: "1,80",
-        preis4: "3,00"
-      },
+      // {
+      //   name: "Peperoniwurst",
+      //   preis1: "0,80",
+      //   preis2: "1,10",
+      //   preis3: "1,80",
+      //   preis4: "3,00"
+      // },
 
-      {
-        name: "Schinken",
-        preis1: "0,80",
-        preis2: "1,10",
-        preis3: "1,80",
-        preis4: "3,00"
-      }
+      // {
+      //   name: "Schinken",
+      //   preis1: "0,80",
+      //   preis2: "1,10",
+      //   preis3: "1,80",
+      //   preis4: "3,00"
+      // }
     ],
 
   };

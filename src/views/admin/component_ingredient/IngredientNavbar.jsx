@@ -7,13 +7,13 @@ import { useHistory } from 'react-router-dom';
 
 const 
 IngredientsNavbar = (props) => {
-  const { ingredientsCount, totalIngredientsCount } = props;
+  // const { ingredientsCount, totalIngredientsCount } = props;
   const history = useHistory();
 
   return (
     <div className="product-admin-header">
       <h3 className="product-admin-header-title">
-        Ingredients &nbsp;
+        Ingredients 1 &nbsp;
        
       </h3>
      
@@ -24,8 +24,8 @@ IngredientsNavbar = (props) => {
 };
 
 IngredientsNavbar.propTypes = {
-  ingredientsCount: PropType.number.isRequired,
-  totalIngredientsCount: PropType.number.isRequired
+  // ingredientsCount: PropType.number.isRequired,
+  // totalIngredientsCount: PropType.number.isRequired
 };
 
 export default IngredientsNavbar;
