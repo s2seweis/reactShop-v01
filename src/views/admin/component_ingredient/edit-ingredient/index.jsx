@@ -7,15 +7,14 @@ import {
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from 'redux/actions/miscActions';
-import { addSettings, updateSetting } from 'redux/actions/settingActions';
+import { addIngredients, updateIngredient } from 'redux/actions/ingredientActions';
 import * as Yup from 'yup';
 import ConfirmModal from './ConfirmModal';
 import EditForm from './EditForm';
 
 import { call, put, select } from 'redux-saga/effects';
 
-import { SettingsNavbar } from '../../component_setting';
-
+import { IngredientsNavbar } from '../../component_ingredient';
 
 
 
@@ -40,8 +39,8 @@ const FormSchema = Yup.object().shape({
     })
 });
 
-const EditSettings = () => {
-  useDocumentTitle('Edit Account | Dign1 ');
+const EditIngredients = () => {
+  useDocumentTitle('Edit Account | Dign1 - Ingredients ');
   useScrollTop();
 
   // const modal = useModal();
@@ -51,20 +50,20 @@ const EditSettings = () => {
     dispatch(setLoading(false));
   }, []);
 
-  const { settings, profile, auth, isLoading } = useSelector((state) => ({
+  const { ingredients, profile, auth, isLoading } = useSelector((state) => ({
     profile: state.profile,
-    settings: state.settings,
+    ingredients: state.ingredients,
     auth: state.auth,
     isLoading: state.app.loading
   }));
 
   const initFormikValues = {
-    fullname: settings.fullname || '',
-    email: settings.email || '',
-    address: settings.address || '',
-    mobile: settings.mobile || {},
-    avatar: settings.avatar || {},
-    banner: settings.banner || {}
+    fullname: ingredients.fullname || '',
+    email: ingredients.email || '',
+    address: ingredients.address || '',
+    mobile: ingredients.mobile || {},
+    avatar: ingredients.avatar || {},
+    banner: ingredients.banner || {}
     // avatar: {},
     // banner: {}
   };
@@ -78,12 +77,13 @@ const EditSettings = () => {
 
 
   const update = (form) => {
-    dispatch(updateSetting({
+    dispatch(updateIngredient({
       updates: {
         fullname: form.fullname,
         email: form.email,
         address: form.address,
         mobile: form.mobile,
+        // it stazys empty when updating it
         avatar: form.avatar,
         banner: form.banner,
       },
@@ -123,7 +123,7 @@ const EditSettings = () => {
 
   const onSubmitUpdate = (form) => {
     // check if data has changed
-    const fieldsChanged = Object.keys(form).some((key) => settings[key] !== form[key]);
+    const fieldsChanged = Object.keys(form).some((key) => ingredients[key] !== form[key]);
 
 
     if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
@@ -137,7 +137,7 @@ const EditSettings = () => {
 
   // const onSubmitAdd = (form) => {
   //   // check if data has changed
-  //   const fieldsChanged = Object.keys(form).some((key) => settings[key] !== form[key]);
+  //   const fieldsChanged = Object.keys(form).some((key) => ingredients[key] !== form[key]);
 
   //   if (fieldsChanged) {
   //     if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
@@ -157,14 +157,14 @@ const EditSettings = () => {
 
 
 
-      <SettingsNavbar
-      // settingsCount={store.settings.items.length}
-      // totalSettingsCount={store.settings.total}
+      <IngredientsNavbar
+      // settingsCount={store.ingredients.items.length}
+      // totalSettingsCount={store.ingredients.total}
       />
 
       <div className="product-admin-items">
         <div className="edit-user">
-          <h3 className="text-center">Edit Setting Details1</h3>
+          <h3 className="text-center">Edit Ingredient Details1</h3>
           <Formik
             initialValues={initFormikValues}
             validateOnChange
@@ -197,7 +197,7 @@ const EditSettings = () => {
                     <ImageLoader
                       alt="Banner"
                       className="user-profile-banner-img"
-                      src={imageFile.banner.url || settings.banner}
+                      src={imageFile.banner.url || ingredients.banner}
                     />
                     {isFileLoading ? (
                       <div className="loading-wrapper">
@@ -224,7 +224,7 @@ const EditSettings = () => {
                     <ImageLoader
                       alt="Avatar"
                       className="user-profile-img"
-                      src={imageFile.avatar.url || settings.avatar}
+                      src={imageFile.avatar.url || ingredients.avatar}
                     />
                     {isFileLoading ? (
                       <div className="loading-wrapper">
@@ -279,4 +279,4 @@ const EditSettings = () => {
   );
 };
 
-export default EditSettings;
+export default EditIngredients;

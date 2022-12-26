@@ -1,4 +1,4 @@
-import { SettingAppliedFilters } from 'components/settings';
+// import { SettingAppliedFilters } from 'components/settings';
 import {
 
   CLEAR_SETTINGS,

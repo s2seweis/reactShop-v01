@@ -49,12 +49,20 @@ class Firebase {
 
   docRef = () => this.db.collection("settings").doc("arXIqODlOosmcD38UHhW").get();
 
+  docRef1 = () => this.db.collection("ingredients").doc("VD1F3HkgV9dfWrNyu8ut").get();
+
 
   // updateProfile = (id, updates) =>
   //   this.db.collection("users").doc(id).update(updates);
 
   updateSetting = (arXIqODlOosmcD38UHhW, updates) =>
     this.db.collection("settings").doc("arXIqODlOosmcD38UHhW").update(updates);
+
+
+
+    // need build new document
+  updateIngredient = (VD1F3HkgV9dfWrNyu8ut, updates) =>
+    this.db.collection("ingredients").doc("VD1F3HkgV9dfWrNyu8ut").update(updates);
 
 
 
@@ -625,6 +633,9 @@ class Firebase {
 
   addSetting = (id, settings) =>
     this.db.collection("settings").doc(id).set(settings);
+
+  addIngredient = (id, ingredients) =>
+    this.db.collection("ingredients").doc(id).set(ingredients);
 
   // updateSetting = (TuXsosfQP6SkWdBrnLpqGqhzEbJ3, updates) =>
   //   this.db.collection("settings").doc("TuXsosfQP6SkWdBrnLpqGqhzEbJ3").update(updates);

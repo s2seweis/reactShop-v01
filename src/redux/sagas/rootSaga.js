@@ -3,6 +3,7 @@ import { takeLatest } from 'redux-saga/effects';
 import authSaga from './authSaga';
 import productSaga from './productSaga';
 import settingSaga from './settingSaga';
+import ingredientSaga from './ingredientSaga';
 import orderSaga from './orderSaga';
 import postSaga from './postSaga';
 import user1Saga from './user1Saga';
@@ -76,10 +77,14 @@ function* rootSaga() {
     ACTION.UPDATE_SETTING,
     ACTION.ADD_SETTING,
     ACTION.GET_SETTING,
-
-
-
   ], settingSaga);
+
+  yield takeLatest([
+    ACTION.UPDATE_EMAIL,
+    ACTION.UPDATE_INGREDIENT,
+    ACTION.ADD_INGREDIENT,
+    ACTION.GET_INGREDIENT,
+  ], ingredientSaga);
 
   yield takeLatest([
     ACTION.CLEAR_BASKET

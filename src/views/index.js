@@ -19,7 +19,12 @@ export { default as AddUser1 } from './admin/add_user1';
 
 export { default as Dashboard } from './admin/dashboard';
 
+
+
 export { default as Ingredients } from './admin/ingredients';
+export { default as IngredientsNew } from './admin/ingredients-new';
+
+
 
 export { default as EditProduct } from './admin/edit_product';
 export { default as EditOrder } from './admin/edit_order';

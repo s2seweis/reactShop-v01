@@ -5,6 +5,7 @@ import filterReducer from './filterReducer';
 import miscReducer from './miscReducer';
 import productReducer from './productReducer';
 import settingReducer from './settingReducer';
+import ingredientReducer from './ingredientReducer';
 import orderReducer from './orderReducer';
 import postReducer from './postReducer';
 import user1Reducer from './user1Reducer';
@@ -13,6 +14,7 @@ import profileReducer from './profileReducer';
 const rootReducer = {
   products: productReducer,
   settings: settingReducer,
+  ingredients: ingredientReducer,
   orders: orderReducer,
   posts: postReducer,
   users1: user1Reducer,

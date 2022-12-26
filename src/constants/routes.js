@@ -17,24 +17,30 @@ export const SETTING_EDIT = '/setting/edit';
 
 export const ADMIN_SETTING_EDIT = '/admin/setting/edit';
 
+export const ADMIN_INGREDIENT_EDIT = '/admin/ingredient/edit';
+
 
 
 export const ADMIN_DASHBOARD = '/admin/dashboard';
 
 export const ADMIN_INGREDIENTS = '/admin/ingredients';
+export const ADMIN_INGREDIENTS_NEW = '/admin/ingredients-new';
 
 
 export const ADMIN_PRODUCTS = '/admin/products';
 export const ADMIN_ORDERS = '/admin/orders';
 export const ADMIN_POSTS = '/admin/posts';
 export const ADMIN_USERS1 = '/admin/users1';
+
 export const ADMIN_SETTINGS = '/admin/settings';
+export const ADMIN_SETTINGS_NEW = '/admin/ingredients-new';
 
 
 export const ADMIN_PRODUCT_OVERVIEW = '/admin/product-overview';
 
 export const ADD_PRODUCT = '/admin/add';
 export const ADD_SETTING = '/admin/setting';
+export const ADD_INGREDIENT = '/admin/ingredient';
 export const ADD_ORDER = '/admin/add-order';
 export const ADD_POST = '/admin/add-post';
 export const ADD_USER1 = '/admin/add-user1';
@@ -46,6 +52,7 @@ export const EDIT_PRODUCT = '/admin/edit';
 
 
 export const EDIT_SETTING = '/admin/edit-setting';
+export const EDIT_INGREDIENT = '/admin/edit-ingredient';
 export const EDIT_ORDER = '/admin/edit-order';
 export const EDIT_POST = '/admin/edit-post';
 export const EDIT_USER1 = '/admin/edit-user1';
@@ -62,5 +69,6 @@ export const CHECKOUT_STEP_4 = '/checkout/step4';
 
 export const VIEW_PRODUCT = '/product/:id';
 export const VIEW_SETTING = '/setting/:id';
+export const VIEW_INGREDIENT = '/ingredient/:id';
 export const VIEW_POST = '/post/:id';
 export const VIEW_USER1 = '/user1/:id';

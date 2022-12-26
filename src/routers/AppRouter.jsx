@@ -162,6 +162,12 @@ const AppRouter = () => {
             path={ROUTES.ADMIN_SETTING_EDIT}
           />
 
+          {/* <AdminRoute
+            component={view.EditIngredient}
+            exact
+            path={ROUTES.ADMIN_INGREDIENT_EDIT}
+          /> */}
+
 
 
 
@@ -177,6 +183,12 @@ const AppRouter = () => {
             exact
             path={ROUTES.ADMIN_INGREDIENTS}
           />
+          {/* new */}
+          <AdminRoute
+            component={view.IngredientsNew}
+            exact
+            path={ROUTES.ADMIN_INGREDIENTS_NEW}
+          />
 
 
           <AdminRoute
@@ -187,6 +199,10 @@ const AppRouter = () => {
             component={view.Setting}
             path={ROUTES.ADMIN_SETTINGS}
           />
+          {/* <AdminRoute
+            component={view.Ingredient}
+            path={ROUTES.ADMIN_INGREDIENTS}
+          /> */}
           <AdminRoute
             component={view.Orders}
             path={ROUTES.ADMIN_ORDERS}
@@ -206,6 +222,10 @@ const AppRouter = () => {
           {/* <AdminRoute
           component={view.AddSetting}
           path={ROUTES.ADD_SETTING}
+        /> */}
+          {/* <AdminRoute
+          component={view.AddIngredient}
+          path={ROUTES.ADD_INGREDIENT}
         /> */}
           <AdminRoute
             component={view.AddOrder}

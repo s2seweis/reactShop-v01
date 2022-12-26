@@ -12,6 +12,7 @@ export { default as useModal } from './useModal';
 
 export { default as useProduct } from './useProduct';
 export { default as useSetting } from './useSetting';
+export { default as useIngredient } from './useIngredient';
 export { default as useOrder } from './useOrder';
 export { default as usePost } from './usePost';
 export { default as useUser1 } from './useUser1';
