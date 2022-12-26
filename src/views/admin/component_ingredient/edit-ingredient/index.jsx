@@ -65,45 +65,50 @@ const EditIngredients = (parameters) => {
     avatar: ingredients.avatar || {},
     banner: ingredients.banner || {},
 
-    parameters1: [
+    // parameters1: ingredients?.parameters1 || [],
 
-      {
-        name: "Käse", 
-        preis1: "0,80",
-        preis2: "1,10",
-        preis3: "1,80",
-        preis4: "3,00"
-      },
+    parameters1: ingredients?.parameters1?.map((person) => ({ name: person.name, preis1: person.preis1 })) || []
 
-      {
-        name: "Salami",
-        preis1: "0,80",
-        preis2: "1,10",
-        preis3: "1,80",
-        preis4: "3,00"
-      },
 
-      {
-        name: "Peperoniwurst",
-        preis1: "0,80",
-        preis2: "1,10",
-        preis3: "1,80",
-        preis4: "3,00"
-      },
+    // parameters1: [
 
-      {
-        name: "Schinken",
-        preis1: "0,80",
-        preis2: "1,10",
-        preis3: "1,80",
-        preis4: "3,00"
-      }
-    ],
+    //   {
+    //     name: "Käse", 
+    //     preis1: "0,80",
+    //     preis2: "1,10",
+    //     preis3: "1,80",
+    //     preis4: "3,00"
+    //   },
+
+    //   {
+    //     name: "Salami",
+    //     preis1: "0,80",
+    //     preis2: "1,10",
+    //     preis3: "1,80",
+    //     preis4: "3,00"
+    //   },
+
+    //   {
+    //     name: "Peperoniwurst",
+    //     preis1: "0,80",
+    //     preis2: "1,10",
+    //     preis3: "1,80",
+    //     preis4: "3,00"
+    //   },
+
+    //   {
+    //     name: "Schinken",
+    //     preis1: "0,80",
+    //     preis2: "1,10",
+    //     preis3: "1,80",
+    //     preis4: "3,00"
+    //   }
+    // ],
     // avatar: {},
     // banner: {}
   };
 
-  // console.log(initFormikValues)
+  console.log(initFormikValues)
 
   const {
     imageFile,
@@ -124,7 +129,9 @@ const EditIngredients = (parameters) => {
         avatar: form.avatar,
         banner: form.banner,
 
-        // parameter1: form.parameter1,
+        parameters1: form.parameters1 || [],
+
+        // parameters1: form?.parameters1?.map((person) => ({ name: person.name, preis1: person.preis1 })) || []
 
       },
       files: {
@@ -189,6 +196,8 @@ const EditIngredients = (parameters) => {
   //   }
   // };
 
+
+ 
 
 
   return (
@@ -362,6 +371,9 @@ const EditIngredients = (parameters) => {
 
 
             )}
+
+
+
 
 
 

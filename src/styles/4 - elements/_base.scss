@@ -128,8 +128,8 @@ h6 {
   justify-content: center;
   // display: flex;
   // left: 30px;
-  // width: 800px;
-  width: auto;
+  width: 800px;
+  // width: auto;
 
 
 }
@@ -146,4 +146,22 @@ h6 {
   // display: flex;
   // left: 30px;
 
+
 }
+.dropdown-content {
+ background: green;
+ text-align: center;
+
+}
+
+
+
+.dropdown-btn-new {
+//  background: red;
+ width: 500px;
+ text-align: center;
+
+}
+
+
+

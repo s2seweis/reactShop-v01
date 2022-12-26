@@ -33,7 +33,7 @@ export const ADMIN_POSTS = '/admin/posts';
 export const ADMIN_USERS1 = '/admin/users1';
 
 export const ADMIN_SETTINGS = '/admin/settings';
-export const ADMIN_SETTINGS_NEW = '/admin/ingredients-new';
+export const ADMIN_INGREDIENDTS_NEW = '/admin/ingredients-new';
 
 
 export const ADMIN_PRODUCT_OVERVIEW = '/admin/product-overview';

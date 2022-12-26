@@ -1,6 +1,6 @@
 import { ArrowLeftOutlined, CheckOutlined, LoadingOutlined } from '@ant-design/icons';
 import { CustomInput, CustomMobileInput } from 'components/formik';
-import { ADMIN_SETTINGS } from 'constants/routes';
+import { ADMIN_SETTINGS, ADMIN_INGREDIENDTS_NEW } from 'constants/routes';
 import { Field, useFormikContext, FieldArray } from 'formik';
 import PropType from 'prop-types';
 import React from 'react';
@@ -12,12 +12,19 @@ import {
   useDocumentTitle, useFileHandler, useModal, useScrollTop
 } from 'hooks';
 
+import { useState } from "react";
+
+
 
 
 const EditForm = ({ isLoading, authProvider }) => {
   const history = useHistory();
   const { values, submitForm, resetForm } = useFormikContext();
 
+
+  
+  const [isActive, setIsActive] = useState(false);
+  const [selected, setIsSelected] = useState("Öffnen");
 
 
 
@@ -115,6 +122,42 @@ const EditForm = ({ isLoading, authProvider }) => {
 
 
 
+      <div className="dropdown-new">
+        <div
+          onClick={(e) => {
+            setIsActive(!isActive);
+          }}
+          className="dropdown-btn-new"
+        >
+         <h2>{selected}</h2> 
+          <span
+            className={isActive ? "fas fa-caret-up" : "fas fa-caret-down"}
+          />
+        </div>
+        <div
+          className="dropdown-content"
+          style={{ display: isActive ? "block" : "none" }}
+        >
+
+
+          <div
+            // onClick={(e) => {
+            //   setIsSelected(e.target.textContent);
+            //   setIsActive(!isActive);
+            // }}
+            className="item-new"
+          >
+
+            <h1>One</h1>
+            
+          </div>
+         
+         
+        </div>
+      </div>
+
+
+
 
 
 
@@ -123,7 +166,7 @@ const EditForm = ({ isLoading, authProvider }) => {
         <button
           className="button button-muted w-100-mobile"
           disabled={isLoading}
-          onClick={() => history.push(ADMIN_SETTINGS)}
+          onClick={() => history.push(ADMIN_INGREDIENDTS_NEW)}
           type="button"
         >
           <ArrowLeftOutlined />
