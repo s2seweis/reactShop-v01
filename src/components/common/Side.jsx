@@ -5,12 +5,12 @@ import '../../styles/side/index.css'
 
 
 
-import { Sidebar, Menu, MenuItem, useProSidebar, collapseSidebar } from 'react-pro-sidebar';
+import { Sidebar, Menu, MenuItem, useProSidebar, collapseSidebar, SubMenu } from 'react-pro-sidebar';
 
 
 import { FiArrowLeftCircle, FiArrowRightCircle } from 'react-icons/fi';
 
-import { ADMIN_PRODUCTS, ADMIN_ORDERS, ADMIN_POSTS, ADMIN_USERS1, ADMIN_SETTINGS, ADMIN_DASHBOARD, ADMIN_INGREDIENTS, ADMIN_INGREDIENTS_NEW  } from 'constants/routes';
+import { ADMIN_PRODUCTS, ADMIN_ORDERS, ADMIN_POSTS, ADMIN_USERS1, ADMIN_SETTINGS, ADMIN_DASHBOARD, ADMIN_INGREDIENTS, ADMIN_INGREDIENTS_NEW } from 'constants/routes';
 
 import { NavLink, useHistory, useLocation, Link } from 'react-router-dom';
 
@@ -64,7 +64,9 @@ const Side = () => {
 
 
         <Sidebar
-        // overwrite devaultCollapsed property
+        width={"180px"}
+        collapsedWidth={"70px"}
+          // overwrite devaultCollapsed property
           defaultCollapsed="true"
         // style={{ 
         //   maxWidth: '270px', 
@@ -178,6 +180,51 @@ const Side = () => {
 
 
             </MenuItem>
+
+
+
+            {/* Test: 1 --------------Start */}
+
+
+
+
+
+            <SubMenu label="Stages" icon={<Icon name="products" />}>
+
+              
+
+              <MenuItem
+                routerLink={<Link to={ADMIN_PRODUCTS} />}
+                active={window.location.pathname === "/admin/products"}
+                icon={<Icon name="products" />}
+              >
+
+                Products
+
+                {/* <Link to="/admin/dashboard" /> */}
+
+
+              </MenuItem>
+
+
+
+              <MenuItem>Skill Matrix</MenuItem>
+              {/* <MenuItem>Know Your Company</MenuItem>
+              <MenuItem>Joining Day Information</MenuItem>
+              <MenuItem>Feedback</MenuItem>
+              <MenuItem>Background Check</MenuItem> */}
+
+            </SubMenu>
+
+
+
+
+
+
+
+
+
+            {/* Test: 1 --------------Start */}
 
 
             <MenuItem
