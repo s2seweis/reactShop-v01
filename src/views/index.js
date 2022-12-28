@@ -1,5 +1,10 @@
 export { default as EditAccount } from './account/edit_account';
 
+// Test:2 --------Start
+
+
+
+// Test:2 --------End
 
 export { default as EditSetting } from './admin/component_setting/edit_setting';
 
@@ -22,6 +27,8 @@ export { default as Dashboard } from './admin/dashboard';
 
 
 export { default as Ingredients } from './admin/ingredients';
+
+
 export { default as IngredientsNew } from './admin/ingredients-new';
 
 
@@ -30,7 +37,16 @@ export { default as EditProduct } from './admin/edit_product';
 export { default as EditOrder } from './admin/edit_order';
 export { default as EditPost } from './admin/edit_post';
 export { default as EditUser1 } from './admin/edit_user1';
+
+
+
+// Test:1 -------Start
+export { default as EditIngredients } from './admin/component_ingredient/edit-ingredient/index';
+// Test:1 -------End
+
+
 // export { default as EditSetting } from './admin/edit_setting';
+
 
 export { default as Products } from './admin/products';
 export { default as Orders } from './admin/orders';

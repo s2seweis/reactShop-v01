@@ -4,7 +4,7 @@ import { Formik, Field, Form, FieldArray } from 'formik';
 import {
   useDocumentTitle, useFileHandler, useModal, useScrollTop
 } from 'hooks';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from 'redux/actions/miscActions';
 import { addIngredients, updateIngredient } from 'redux/actions/ingredientActions';
@@ -15,6 +15,14 @@ import EditForm from './EditForm';
 import { call, put, select } from 'redux-saga/effects';
 
 import { IngredientsNavbar } from '../../component_ingredient';
+
+
+// Test:1 --------Start
+
+import { getIngredient } from 'redux/actions/ingredientActions';
+
+
+// Test:1 --------Start
 
 
 
@@ -40,8 +48,42 @@ const FormSchema = Yup.object().shape({
 });
 
 const EditIngredients = (parameters) => {
+
+
+
+
   useDocumentTitle('Edit Account | Dign1 - Ingredients ');
   useScrollTop();
+
+  // Test:1 --------Start
+
+  const [isFetching, setFetching] = useState(false);
+  // console.log(isFetching)
+  // const dispatch = useDispatch();
+
+  const fetchIngredients = () => {
+    setFetching(true);
+    dispatch(getIngredient(ingredients));
+  };
+  // console.log(fetchIngredients)
+
+
+  useEffect(() => {
+    if (ingredients === 0 || !ingredients?.lastRefKey) {
+      fetchIngredients();
+    }
+
+    window.scrollTo(0, 0);
+    return () => dispatch(setLoading(false));
+  }, []);
+
+  useEffect(() => {
+    setFetching(false);
+  }, [ingredients?.lastRefKey]);
+
+
+  // Test:1 --------End
+
 
   // const modal = useModal();
   const dispatch = useDispatch();
@@ -197,7 +239,7 @@ const EditIngredients = (parameters) => {
   // };
 
 
- 
+
 
 
   return (
@@ -305,6 +347,11 @@ const EditIngredients = (parameters) => {
 
 
                 <EditForm />
+
+                {ingredients.fullname}
+
+
+                
 
 
 

@@ -5,7 +5,7 @@ import React, { lazy, Suspense } from 'react';
 import IngredientTab from '../component_ingredient/components/IngredientTab';
 
 const IngredientAccountTab = lazy(() => import('../component_ingredient/IngredientTab'));
-const EditIngredients = lazy(() => import('../component_ingredient/edit-ingredient'));
+// const EditIngredients = lazy(() => import('../component_ingredient/edit-ingredient'));
 const UserWishListTab = lazy(() => import('../component_ingredient/components/IngredientListTab'));
 const UserOrdersTab = lazy(() => import('../../account/components/UserOrdersTab'));
 
@@ -27,10 +27,10 @@ const UserAccount = () => {
         <Suspense fallback={<Loader />}>
 
 
-          {/* <IngredientAccountTab /> */}
+          <IngredientAccountTab />
 
 
-          <EditIngredients />
+          {/* <EditIngredients /> */}
 
 
         </Suspense>

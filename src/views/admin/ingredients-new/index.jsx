@@ -28,7 +28,7 @@ const Ingredients = () => {
       /> */}
       <div className="product-admin-items">
         <IngredientList {...store}>
-          <IngredientAppliedFilters filter={store.filter} />
+          {/* <IngredientAppliedFilters filter={store.filter} /> */}
           <IngredientsTable filteredIngredients={store.filteredIngredients} />
         </IngredientList>
       </div>

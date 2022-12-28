@@ -5,7 +5,7 @@ import React, { lazy, Suspense } from 'react';
 import UserTab from '../components/UserTab';
 
 const UserAccountTab = lazy(() => import('../components/UserAccountTab'));
-const ProductForm = lazy(() => import('../../admin/components/ProductForm'));
+// const ProductForm = lazy(() => import('../../admin/components/ProductForm'));
 const UserWishListTab = lazy(() => import('../components/UserWishListTab'));
 const UserOrdersTab = lazy(() => import('../components/UserOrdersTab'));
 

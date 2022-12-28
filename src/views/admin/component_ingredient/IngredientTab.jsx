@@ -35,7 +35,7 @@ const IngredientProfile = (props) => {
             onClick={() => props.history.push(ADMIN_INGREDIENT_EDIT)}
             type="button"
           >
-            Edit Ingredients
+            Edit Ingredients2
           </button>
         </div>
 

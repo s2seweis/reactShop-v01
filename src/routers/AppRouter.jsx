@@ -162,11 +162,16 @@ const AppRouter = () => {
             path={ROUTES.ADMIN_SETTING_EDIT}
           />
 
-          {/* <AdminRoute
-            component={view.EditIngredient}
+
+          {/* Test:1 --------Start */}
+          <AdminRoute
+            component={view.EditIngredients}
             exact
             path={ROUTES.ADMIN_INGREDIENT_EDIT}
-          /> */}
+          />
+
+          {/* Test:1 --------End */}
+
 
 
 

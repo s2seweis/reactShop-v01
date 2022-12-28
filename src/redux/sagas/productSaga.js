@@ -28,13 +28,13 @@ import {
 } from '../actions/productActions';
 
 function* initRequest() {
-  yield put(setLoading(true));
-  yield put(setRequestStatus(null));
+  // yield put(setLoading(true));
+  // yield put(setRequestStatus(null));
 }
 
 function* handleError(e) {
-  yield put(setLoading(false));
-  yield put(setRequestStatus(e?.message || 'Failed to fetch products'));
+  // yield put(setLoading(false));
+  // yield put(setRequestStatus(e?.message || 'Failed to fetch products'));
   console.log('ERROR: ', e);
 }
 
@@ -61,10 +61,10 @@ function* productSaga({ type, payload }) {
           }
           
           ));
-          yield put(setRequestStatus(''));
+          // yield put(setRequestStatus('TEST'));
         }
         // yield put({ type: SET_LAST_REF_KEY, payload: result.lastKey });
-        yield put(setLoading(false));
+        // yield put(setLoading(false));
       } catch (e) {
         console.log(e);
         yield handleError(e);
@@ -104,7 +104,7 @@ function* productSaga({ type, payload }) {
         console.log(product)
 
         yield handleAction(ADMIN_PRODUCTS, 'Item succesfully added', 'success');
-        yield put(setLoading(false));
+        // yield put(setLoading(false));
       } catch (e) {
         yield handleError(e);
         yield handleAction(undefined, `Item failed to add: ${e?.message}`, 'error');
@@ -164,7 +164,7 @@ function* productSaga({ type, payload }) {
         }));
         console.log(editProductSuccess)
         yield handleAction(ADMIN_PRODUCTS, 'Item succesfully edited', 'success');
-        yield put(setLoading(false));
+        // yield put(setLoading(false));
       } catch (e) {
         yield handleError(e);
         yield handleAction(undefined, `Item failed to edit: ${e.message}`, 'error');
@@ -176,7 +176,7 @@ function* productSaga({ type, payload }) {
         yield initRequest();
         yield call(firebase.removeProduct, payload);
         yield put(removeProductSuccess(payload));
-        yield put(setLoading(false));
+        // yield put(setLoading(false));
         yield handleAction(ADMIN_PRODUCTS, 'Item succesfully removed', 'success');
       } catch (e) {
         yield handleError(e);
@@ -202,9 +202,9 @@ function* productSaga({ type, payload }) {
             lastKey: result.lastKey ? result.lastKey : state.products.searchedProducts.lastRefKey,
             total: result.total ? result.total : state.products.searchedProducts.total
           }));
-          yield put(setRequestStatus(''));
+          // yield put(setRequestStatus(''));
         }
-        yield put(setLoading(false));
+        // yield put(setLoading(false));
       } catch (e) {
         yield handleError(e);
       }

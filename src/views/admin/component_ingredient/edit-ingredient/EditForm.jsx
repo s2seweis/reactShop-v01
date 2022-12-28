@@ -26,6 +26,8 @@ const EditForm = ({ isLoading, authProvider }) => {
   const [isActive, setIsActive] = useState(false);
   const [selected, setIsSelected] = useState("Öffnen");
 
+  const ingredients = useSelector((state) => state.ingredients);
+
 
 
 
@@ -221,8 +223,8 @@ const EditForm = ({ isLoading, authProvider }) => {
 };
 
 EditForm.propTypes = {
-  isLoading: PropType.bool.isRequired,
-  authProvider: PropType.string.isRequired
+  // isLoading: PropType.bool.isRequired,
+  // authProvider: PropType.string.isRequired
 };
 
 export default EditForm;

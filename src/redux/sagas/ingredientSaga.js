@@ -175,9 +175,10 @@ function* ingredientSaga({ type, payload }) {
 
           // console.log("Current data: ", test);
 
-
+          
           yield put(getIngredientSuccess(test));
-
+          
+          // yield put(setLoading(true));
 
           // yield put(setSetting(user));
 
