@@ -11,6 +11,7 @@ const IngredientProfile = (props) => {
   // profile = users, in firebase
   // const profile = useSelector((state) => state.profile);
   const ingredients = useSelector((state) => state.ingredients);
+  const profile = useSelector((state) => state.profile);
 
   return (
     <div className="user-profile">
@@ -52,7 +53,7 @@ const IngredientProfile = (props) => {
 
           <span>Full Name</span>
           <br />
-          <h5>{ingredients.fullname}</h5>
+          <h5>{profile.fullname}</h5>
 
 
       

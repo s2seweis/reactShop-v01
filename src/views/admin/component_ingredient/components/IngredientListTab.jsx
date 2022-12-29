@@ -38,7 +38,7 @@ const UserWishListTab = (parameters) => {
   }));
 
   const initFormikValues = {
-    fullname: ingredients.fullname || '',
+    fullname: ingredients.email || '',
     email: ingredients.email || '',
     address: ingredients.address || '',
     mobile: ingredients.mobile || {},
@@ -101,7 +101,7 @@ const UserWishListTab = (parameters) => {
   const update = (form) => {
     dispatch(updateIngredient({
       updates: {
-        fullname: form.fullname,
+        fullname: form.email,
         email: form.email,
         address: form.address,
         mobile: form.mobile,

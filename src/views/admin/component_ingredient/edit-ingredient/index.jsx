@@ -1,30 +1,26 @@
 import { EditOutlined, LoadingOutlined } from '@ant-design/icons';
 import { Boundary, ImageLoader } from 'components/common';
-import { Formik, Field, Form, FieldArray } from 'formik';
+import { Formik, Field, Form, FieldArray, useFormikContext } from 'formik';
 import {
   useDocumentTitle, useFileHandler, useModal, useScrollTop
 } from 'hooks';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from 'redux/actions/miscActions';
 import { addIngredients, updateIngredient } from 'redux/actions/ingredientActions';
 import * as Yup from 'yup';
 import ConfirmModal from './ConfirmModal';
-import EditForm from './EditForm';
+
 
 import { call, put, select } from 'redux-saga/effects';
 
 import { IngredientsNavbar } from '../../component_ingredient';
 
 
-// Test:1 --------Start
-
-import { getIngredient } from 'redux/actions/ingredientActions';
 
 
-// Test:1 --------Start
 
-
+import EditForm from './EditForm';
 
 
 
@@ -47,45 +43,12 @@ const FormSchema = Yup.object().shape({
     })
 });
 
-const EditIngredients = (parameters) => {
-
-
-
+const EditIngredients = () => {
 
   useDocumentTitle('Edit Account | Dign1 - Ingredients ');
   useScrollTop();
 
-  // Test:1 --------Start
 
-  const [isFetching, setFetching] = useState(false);
-  // console.log(isFetching)
-  // const dispatch = useDispatch();
-
-  const fetchIngredients = () => {
-    setFetching(true);
-    dispatch(getIngredient(ingredients));
-  };
-  // console.log(fetchIngredients)
-
-
-  useEffect(() => {
-    if (ingredients === 0 || !ingredients?.lastRefKey) {
-      fetchIngredients();
-    }
-
-    window.scrollTo(0, 0);
-    return () => dispatch(setLoading(false));
-  }, []);
-
-  useEffect(() => {
-    setFetching(false);
-  }, [ingredients?.lastRefKey]);
-
-
-  // Test:1 --------End
-
-
-  // const modal = useModal();
   const dispatch = useDispatch();
 
   useEffect(() => () => {
@@ -99,55 +62,24 @@ const EditIngredients = (parameters) => {
     isLoading: state.app.loading
   }));
 
+
+  
+
+  console.log(ingredients)
+
   const initFormikValues = {
-    fullname: ingredients.fullname || '',
-    email: ingredients.email || '',
-    address: ingredients.address || '',
-    mobile: ingredients.mobile || {},
-    avatar: ingredients.avatar || {},
-    banner: ingredients.banner || {},
+    fullname: ingredients?.email || '',
+    email: ingredients?.email || '',
+    address: ingredients?.address || '',
+    mobile: ingredients?.mobile || {},
+    avatar: ingredients?.avatar || {},
+    banner: ingredients?.banner || {},
 
     // parameters1: ingredients?.parameters1 || [],
 
     parameters1: ingredients?.parameters1?.map((person) => ({ name: person.name, preis1: person.preis1 })) || []
 
 
-    // parameters1: [
-
-    //   {
-    //     name: "Käse", 
-    //     preis1: "0,80",
-    //     preis2: "1,10",
-    //     preis3: "1,80",
-    //     preis4: "3,00"
-    //   },
-
-    //   {
-    //     name: "Salami",
-    //     preis1: "0,80",
-    //     preis2: "1,10",
-    //     preis3: "1,80",
-    //     preis4: "3,00"
-    //   },
-
-    //   {
-    //     name: "Peperoniwurst",
-    //     preis1: "0,80",
-    //     preis2: "1,10",
-    //     preis3: "1,80",
-    //     preis4: "3,00"
-    //   },
-
-    //   {
-    //     name: "Schinken",
-    //     preis1: "0,80",
-    //     preis2: "1,10",
-    //     preis3: "1,80",
-    //     preis4: "3,00"
-    //   }
-    // ],
-    // avatar: {},
-    // banner: {}
   };
 
   console.log(initFormikValues)
@@ -184,31 +116,7 @@ const EditIngredients = (parameters) => {
     }));
   };
 
-  // const add = (form) => {
-  //   dispatch(addSettings({
-  //     adds: {
-  //       fullname: form.fullname,
-  //       email: form.email,
-  //       address: form.address,
-  //       mobile: form.mobile,
 
-  //     },
-  //     files: {
-  //       bannerFile: imageFile.banner.file,
-  //       avatarFile: imageFile.avatar.file
-  //     },
-
-  //   }));
-  // };
-
-
-
-
-  // const onConfirmUpdate = (form, password) => {
-  //   if (password) {
-  //     update(form, { email: form.email, password });
-  //   }
-  // };
 
   const onSubmitUpdate = (form) => {
     // check if data has changed
@@ -224,19 +132,7 @@ const EditIngredients = (parameters) => {
 
   };
 
-  // const onSubmitAdd = (form) => {
-  //   // check if data has changed
-  //   const fieldsChanged = Object.keys(form).some((key) => ingredients[key] !== form[key]);
 
-  //   if (fieldsChanged) {
-  //     if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
-  //       add(form);
-  //       // modal.onOpenModal();
-  //     } else {
-  //       console.log("failed to add: ");
-  //     }
-  //   }
-  // };
 
 
 
@@ -248,14 +144,14 @@ const EditIngredients = (parameters) => {
 
 
 
-      <IngredientsNavbar
-      // settingsCount={store.ingredients.items.length}
-      // totalSettingsCount={store.ingredients.total}
-      />
+      {/* <IngredientsNavbar
+      settingsCount={store.ingredients.items.length}
+      totalSettingsCount={store.ingredients.total}
+      /> */}
 
       <div className="product-admin-items">
         <div className="edit-user">
-          <h3 className="text-center">Edit Ingredient Details1</h3>
+          <h3 className="text-center">Edit Ingredient Details3</h3>
           <Formik
             initialValues={initFormikValues}
             validateOnChange
@@ -264,12 +160,8 @@ const EditIngredients = (parameters) => {
 
 
             onSubmit={onSubmitUpdate}
-          // onSubmit={onSubmitAdd}
 
-          // onSubmit={(onSubmitUpdate, {resetForm}) => {
-          //   console.log(onSubmitUpdate);
-          //   resetForm({ initFormikValues });
-          // } }
+        
 
 
 
@@ -304,7 +196,7 @@ const EditIngredients = (parameters) => {
                       >
                         <input
                           accept="image/x-png,image/jpeg"
-                          disabled={isLoading}
+                          // disabled={isLoading}
                           hidden
                           id="edit-banner"
                           onChange={(e) => onFileChange(e, { name: 'banner', type: 'single' })}
@@ -314,7 +206,7 @@ const EditIngredients = (parameters) => {
                       </label>
                     )}
                   </div>
-                  <div className="user-profile-avatar-wrapper">
+                  {/* <div className="user-profile-avatar-wrapper">
                     <ImageLoader
                       alt="Avatar"
                       className="user-profile-img"
@@ -331,7 +223,7 @@ const EditIngredients = (parameters) => {
                       >
                         <input
                           accept="image/x-png,image/jpeg"
-                          disabled={isLoading}
+                          // disabled={isLoading}
                           hidden
                           id="edit-avatar"
                           onChange={(e) => onFileChange(e, { name: 'avatar', type: 'single' })}
@@ -340,18 +232,23 @@ const EditIngredients = (parameters) => {
                         <EditOutlined />
                       </label>
                     )}
-                  </div>
+                  </div> */}
                 </div>
 
 
 
 
-                <EditForm />
-
-                {ingredients.fullname}
+                <EditForm  />
 
 
-                
+             
+
+
+
+
+
+
+
 
 
 
@@ -403,9 +300,9 @@ const EditIngredients = (parameters) => {
                     )}
                   />
 
-                </div>
+                </div> */}
 
-                <pre>{JSON.stringify(values, null, 2)}</pre> */}
+                {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
 
 
 
@@ -417,7 +314,7 @@ const EditIngredients = (parameters) => {
 
 
 
-            )}
+             )} 
 
 
 

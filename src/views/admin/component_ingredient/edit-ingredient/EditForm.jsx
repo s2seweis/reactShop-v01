@@ -14,6 +14,9 @@ import {
 
 import { useState } from "react";
 
+import { FiArrowLeftCircle, FiArrowRightCircle, FiArrowDownCircle, FiArrowUpCircle } from 'react-icons/fi';
+
+
 
 
 
@@ -22,18 +25,29 @@ const EditForm = ({ isLoading, authProvider }) => {
   const { values, submitForm, resetForm } = useFormikContext();
 
 
-  
+
   const [isActive, setIsActive] = useState(false);
-  const [selected, setIsSelected] = useState("Öffnen");
+
+  // Test Start
+  const [favorite, setFavorite] = useState(false);
+  // Test End
+
+
+
+
+  const [selected, setIsSelected] = useState("");
 
   const ingredients = useSelector((state) => state.ingredients);
 
 
 
 
+
+
+
   return (
     <div className="user-profile-details">
-      <Field
+      {/* <Field
         disabled={isLoading}
         name="fullname"
         type="text"
@@ -64,13 +78,14 @@ const EditForm = ({ isLoading, authProvider }) => {
         name="mobile"
         disabled={isLoading}
         label="Mobile Number (Will be used for checkout)"
-      />
+      /> */}
 
 
 
+      {/* Test:1 ---------Start FieldArray */}
 
 
-      <div className='fieldarray-top' >
+      {/* <div className='fieldarray-top' >
         <h4>Add Sizes</h4>
         <FieldArray
 
@@ -108,7 +123,7 @@ const EditForm = ({ isLoading, authProvider }) => {
               <button
                 type="button"
                 onClick={() =>
-                  arrayHelpers.push({ name: "", preis1: "", preis2: "", preis3: "", preis4: "" })
+                  arrayHelpers.push({ name: "", preis1: "" })
                 }
               >
                 {" "}
@@ -118,24 +133,75 @@ const EditForm = ({ isLoading, authProvider }) => {
           )}
         />
 
-      </div>
+      </div> */}
 
-      <pre>{JSON.stringify(values, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
+
+      {/* Test:1 ---------End */}
+
+
+
+
+      {/* Test:2 ---------Start DropDownBox */}
+
 
 
 
       <div className="dropdown-new">
+
+
+
+
+
+
         <div
           onClick={(e) => {
             setIsActive(!isActive);
           }}
-          className="dropdown-btn-new"
-        >
-         <h2>{selected}</h2> 
+          className="button button-muted w-100-mobile">
+
+
+
+
+          <h3>Ingredients Small</h3>
+
+
+
+          {/* // Test Start */}
+
+
+
+          {isActive ? (
+            <FiArrowUpCircle
+              // className='bigger' 
+              style={{ color: "#F76631", width: "24px", height: "24px", marginInlineStart: "auto" }} />
+
+          ) : (
+            <FiArrowDownCircle
+
+              // className='bigger' 
+              style={{ color: "#F76631", width: "24px", height: "24px", marginInlineStart: "auto" }} />
+          )}
+
+
+
+
+          {/* // Test End */}
+
+
+
+
+
+          <h2>{selected}</h2>
           <span
             className={isActive ? "fas fa-caret-up" : "fas fa-caret-down"}
           />
         </div>
+
+
+
+
+
         <div
           className="dropdown-content"
           style={{ display: isActive ? "block" : "none" }}
@@ -150,13 +216,91 @@ const EditForm = ({ isLoading, authProvider }) => {
             className="item-new"
           >
 
-            <h1>One</h1>
-            
+
+
+
+
+
+
+
+            {/* Here comes the component */}
+
+            <div className='fieldarray-top' >
+              <h4>Ingredients</h4>
+              <FieldArray
+
+                name="parameters1"
+                // disabled={isLoading}
+                className="fieldarray"
+
+                render={arrayHelpers => (
+
+                  <div>
+                    {values.parameters1?.length > 0 &&
+                      values.parameters1.map((paramList, index) => (
+
+                        <div key={index}>
+                          {Object.keys(paramList).map(param => (
+
+                            <Field
+                              key={`${param}`}
+                              name={`parameters1.${index}.${param}`}
+                              placeholder={`${index}.${param}`}
+                              className="field-ingredients"
+
+                            />
+                          ))}
+                          <button
+                            type="button"
+                            onClick={() => arrayHelpers.remove(index)}
+                          >
+                            {" "}
+                            -{" "}
+                          </button>
+                        </div>
+
+                      ))}
+                    <button
+                      type="button"
+                      onClick={() =>
+                        arrayHelpers.push({ name: "", preis1: "" })
+                      }
+                    >
+                      {" "}
+                      +{" "}
+                    </button>
+                  </div>
+                )}
+              />
+
+            </div>
+
+
+
+
+
+
+
+            {/* <h1>One</h1> */}
+
+
+
+
+
+
+
+
+
+
           </div>
-         
-         
+
+
         </div>
       </div>
+
+
+      {/* Test:2 ---------End */}
+
 
 
 
