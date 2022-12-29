@@ -19,7 +19,7 @@
 }
 
 .user-profile-banner-wrapper {
-  width: 90%;
+  width: 100%;
   height: 100%;
   position: relative;
   background: lighten($border-color, 3%);
@@ -78,8 +78,9 @@
 }
 
 .user-profile-details {
-  padding: 9.5rem $m-size $l-size;
-  width: 90%;
+  // padding: 9.5rem $m-size $l-size;
+  padding-top: 4rem;
+  width: 100%;
 
 
   & > div {
@@ -98,4 +99,13 @@
 
 .user-profile-name {
   text-transform: capitalize;
+}
+
+
+.dropdown-new {
+ width: auto;
+
+  @include mobile {
+    width: 280px;
+  }
 }

@@ -72,8 +72,8 @@
 
 .fieldarray-top {
 
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 30px;
+  // margin-bottom: 50px;
   text-align: center;
  
   @include mobile {
@@ -103,7 +103,7 @@
   background: white;
  
   @include mobile {
-    width: 160px;
+    width: 120px;
 
   }
 }

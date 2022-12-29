@@ -120,7 +120,9 @@ h6 {
 .content-admin-wrapper {
   overflow-y: scroll;
   // flex-grow: 1;
-  padding: 2rem;
+  // padding: 2rem;
+  padding-top: 2rem;
+  padding-left: 1rem;
   // padding-top: 0;
   animation: fadeIn .5s ease;
   position: relative;
@@ -130,6 +132,11 @@ h6 {
   // left: 30px;
   width: 800px;
   // width: auto;
+
+
+  @media (max-width: $mobile) {
+    width: auto;
+  }
 
 
 }
@@ -145,13 +152,15 @@ h6 {
   justify-content: center;
   // display: flex;
   // left: 30px;
+  padding-top: 0.3rem;
 
 
 }
 .dropdown-content {
  background: white;
  text-align: center;
- padding: 2rem;
+//  padding: 2rem;
+ padding-top: 0.5rem;
 
 }
 

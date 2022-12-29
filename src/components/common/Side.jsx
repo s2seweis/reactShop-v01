@@ -64,8 +64,8 @@ const Side = () => {
 
 
         <Sidebar
-        width={"180px"}
-        collapsedWidth={"70px"}
+          width={"170px"}
+          collapsedWidth={"70px"}
           // overwrite devaultCollapsed property
           defaultCollapsed="true"
         // style={{ 
@@ -191,7 +191,7 @@ const Side = () => {
 
             <SubMenu label="Stages" icon={<Icon name="products" />}>
 
-              
+
 
               <MenuItem
                 routerLink={<Link to={ADMIN_PRODUCTS} />}
@@ -267,6 +267,10 @@ const Side = () => {
                 // onClick={toggleFavorite} 
                 onClick={() => { toggleFavorite(); collapseSidebar() }}
                 className="top-rated-car-react-button">
+
+
+
+
                 {favorite ? (
                   <FiArrowLeftCircle
                     // className='bigger' 
@@ -277,7 +281,15 @@ const Side = () => {
                     // className='bigger' 
                     style={{ color: "#F76631", width: "24px", height: "24px" }} />
                 )}
+
+
+
               </button>
+
+
+
+
+
               {/* </span> */}
             </MenuItem>
 
