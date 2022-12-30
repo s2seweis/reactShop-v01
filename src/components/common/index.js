@@ -20,6 +20,8 @@ export { default as MenuBurger } from './MenuBurger';
 // ingredients
 export { default as Ingredients } from './Ingredients';
 
+export { default as Ingredients2 } from './Ingredients2';
+
 
 export { default as FormikFieldArrayForm } from './FormikFieldArrayForm';
 

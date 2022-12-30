@@ -235,7 +235,7 @@ const EditForm = ({ isLoading, authProvider }) => {
             {/* Here comes the component */}
 
             <div className='fieldarray-top' >
-              <h4>Ingredients</h4>
+              {/* <h4>Ingredients</h4> */}
               <FieldArray
 
                 name="parameters1"
@@ -262,6 +262,7 @@ const EditForm = ({ isLoading, authProvider }) => {
                           <button
                             type="button"
                             onClick={() => arrayHelpers.remove(index)}
+                            style={{ width: "15px" }}
                           >
                             {" "}
                             -{" "}
@@ -276,7 +277,7 @@ const EditForm = ({ isLoading, authProvider }) => {
                       }
                     >
                       {" "}
-                      +{" "}
+                      +{" Add Ingredients  "}
                     </button>
                   </div>
                 )}

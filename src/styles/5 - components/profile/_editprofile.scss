@@ -68,11 +68,12 @@
   display: flex;
   align-items: center;
   // justify-content: space-between;
-  justify-content: space-between;
+  // justify-content: space-between;
+  justify-content: space-evenly;
 
   @include mobile {
    button {
-    width: 50%;
+    width: 40%;
    }
   }
 }

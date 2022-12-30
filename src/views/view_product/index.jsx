@@ -30,7 +30,21 @@ import ReactDOM from "react-dom";
 
 import { Formik, Field, Form, FieldArray, ErrorMessage } from "formik";
 
-import Ingredients from "../../components/common/Ingredients"
+// import Ingredients from "../../components/common/Ingredients"
+
+import Ingredients2 from "../../components/common/Ingredients2"
+
+
+// Test:1 Bringing Ingredients into index
+
+
+import { toppings } from "../../views/admin/ingredients/toppings";
+
+
+
+
+
+// Test:1 Bringing Ingredients into index
 
 
 
@@ -99,6 +113,7 @@ const ViewProduct = (parameters, demo) => {
     setOption(event.value)
     setOption1(event.label)
     setOption2(event.number)
+    setOption3(event.number)
     // setOption(event.label)
     // console.log(event.value);
     // console.log(event.label);
@@ -116,8 +131,16 @@ const ViewProduct = (parameters, demo) => {
   const [option1, setOption1] = useState();
   console.log(option1)
 
+  // Test: 1 ----Start
+
   const [option2, setOption2] = useState();
   console.log(option2)
+
+  const [option3, setOption3] = useState();
+  // console.log(option3)
+
+
+  // Test: 1 ----Start
 
 
 
@@ -139,12 +162,14 @@ const ViewProduct = (parameters, demo) => {
 
       selectedPrice: option,
       selectedSizeNew: option1,
-      number: option2
+      number: option2,
+      number3: option3
 
     });
     console.log(option)
     console.log(option1)
     console.log(option2)
+    console.log(option3)
 
   };
 
@@ -219,6 +244,97 @@ const ViewProduct = (parameters, demo) => {
 
 
   // Test:11 ---------------------------End
+
+
+
+
+  // Test: 1
+
+
+
+
+
+
+  const [checkedState, setCheckedState] = useState(
+    new Array(toppings.length).fill(false));
+
+  console.log(checkedState)
+
+
+
+
+
+  const [total, setTotal] = useState(0);
+
+  const [name, setName] = useState("");
+
+  console.log(total)
+  console.log(name)
+
+
+  const handleOnChange = (position) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === position ? !item : item
+    );
+
+    setCheckedState(updatedCheckedState);
+
+    const totalPrice = updatedCheckedState.reduce(
+      (sum, currentState, index) => {
+        if (currentState === true) {
+          return sum
+            + toppings[index].price;
+          console.log(sum);
+        }
+        return sum
+          ;
+
+
+      },
+      0
+    );
+
+    const totalName = updatedCheckedState.reduce(
+      (sum, currentState, index) => {
+        if (currentState === true) {
+          return sum
+            + "+" + toppings[index].name;
+        }
+        return sum
+          ;
+      },
+      ""
+    );
+
+    // console.log(totalPrice)
+
+    // console.log(totalName)
+
+
+    setTotal(totalPrice);
+
+    setName(totalName);
+  };
+
+  const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
+
+  const getFormattedName = (name) => `${name}`;
+
+  // const getFormattedName = (name) => `${name}`;
+
+  // const checkedItems = checkedState.length
+  //   ? checkedState.reduce((total, item) => {
+  //     return total + " + " + item;
+  //   })
+  //   : "";
+
+  // console.log(checkedItems);
+
+
+
+
+
+  // Test: 1
 
 
   return (
@@ -323,10 +439,18 @@ const ViewProduct = (parameters, demo) => {
 
 
 
+              
+
 
 
               <h1>{displayMoney(option ? option : 0)}</h1>
+              
+              <h1>{displayMoney(Number(option ? option : 0) + (total ? total : 0))}</h1>
 
+              <h1>{displayMoney(total ? total : 0)}</h1>
+
+
+             { displayMoney(option ? option : 0) }
 
 
 
@@ -362,7 +486,7 @@ const ViewProduct = (parameters, demo) => {
                   onChange={handleChange2}
                   id="fruit-select"
                   // options={tickets}
-                  options={product.tickets.map((size) => ({ label: `${size.name} `, value: size.email, number:size.number }))}
+                  options={product.tickets.map((size) => ({ label: `${size.name} `, value: size.email, number: size.number }))}
 
                 />
 
@@ -376,7 +500,7 @@ const ViewProduct = (parameters, demo) => {
               {/* Test: 5 ---------Start */}
 
 
-              <FormikFieldArrayForm parameters={{ paramLists: tickets }} />
+              {/* <FormikFieldArrayForm parameters={{ paramLists: tickets }} /> */}
 
 
               {/* Test: 5 ------End */}
@@ -391,13 +515,71 @@ const ViewProduct = (parameters, demo) => {
 
 
               <div className="show_hide">
-                <button onClick={handleFooPress}>Show Foo</button>
-                <button onClick={handleBarPress}>Show Bar</button>
+                {/* <button onClick={handleFooPress}>Show Foo</button>
+                <button onClick={handleBarPress}>Show Bar</button> */}
                 {isFooVisible &&
 
 
 
-                  <Ingredients />
+                  <div className="App">
+                    <h3>Select Toppings</h3>
+                    <ul className="toppings-list">
+                      {toppings.map(({ name, price }, index) => {
+                        return (
+                          <li key={index}>
+                            <div className="toppings-list-item">
+                              <div className="left-section">
+                                <input
+                                  type="checkbox"
+                                  id={`custom-checkbox-${index}`}
+                                  name={name}
+                                  value={name}
+                                  checked={checkedState[index]}
+                                  onChange={() => handleOnChange(index)}
+                                />
+                                <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
+                              </div>
+                              <div className="right-section">{getFormattedPrice(price)}</div>
+
+                              {/* <div className="right-section">{getFormattedName(name)}</div> */}
+                            </div>
+                          </li>
+                        );
+                      })}
+                      <li>
+                        <div className="toppings-list-item">
+                          <div className="left-section">Total:</div>
+                          <div className="right-section">{getFormattedPrice(total)}</div>
+                        </div>
+
+                        <div className="toppings-list-item-b">
+                          <div className="left-section">Name Total:</div>
+                          <div className="right-section">{getFormattedName(name)}</div>
+                        </div>
+
+
+
+
+
+
+                      </li>
+                    </ul>
+                  </div>
+
+
+
+                }
+                {isBarVisible && <h1>Bar</h1>}
+              </div>
+
+              <div className="show_hide">
+                {/* <button onClick={handleFooPress}>Show Foo</button>
+                <button onClick={handleBarPress}>Show Bar</button> */}
+                {isFooVisible &&
+
+
+
+                  <Ingredients2 />
 
 
 
@@ -413,7 +595,61 @@ const ViewProduct = (parameters, demo) => {
 
 
 
-              <div> {option2 === "100" ? <Ingredients /> : "Juice"} </div>
+              <div> {option2 === "100" ?
+
+
+
+
+                <div className="App">
+                  <h3>Select Toppings</h3>
+                  <ul className="toppings-list">
+                    {toppings.map(({ name, price }, index) => {
+                      return (
+                        <li key={index}>
+                          <div className="toppings-list-item">
+                            <div className="left-section">
+                              <input
+                                type="checkbox"
+                                id={`custom-checkbox-${index}`}
+                                name={name}
+                                value={name}
+                                checked={checkedState[index]}
+                                onChange={() => handleOnChange(index)}
+                              />
+                              <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
+                            </div>
+                            <div className="right-section">{getFormattedPrice(price)}</div>
+
+                            {/* <div className="right-section">{getFormattedName(name)}</div> */}
+                          </div>
+                        </li>
+                      );
+                    })}
+                    <li>
+                      <div className="toppings-list-item">
+                        <div className="left-section">Total:</div>
+                        <div className="right-section">{getFormattedPrice(total)}</div>
+                      </div>
+
+                      <div className="toppings-list-item-b">
+                        <div className="left-section">Name Total:</div>
+                        <div className="right-section">{getFormattedName(name)}</div>
+                      </div>
+
+
+
+
+
+
+                    </li>
+                  </ul>
+                </div>
+
+
+
+
+                : ""} </div>
+              <div> {option3 === "200" ? <Ingredients2 /> : ""} </div>
 
 
 
