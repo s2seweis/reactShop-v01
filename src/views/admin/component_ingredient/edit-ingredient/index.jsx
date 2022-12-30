@@ -77,10 +77,18 @@ const EditIngredients = () => {
 
     // parameters1: ingredients?.parameters1 || [],
 
-    parameters1: ingredients?.parameters1?.map((person) => ({ name: person.name, preis1: person.preis1 })) || []
+    parameters1: ingredients?.parameters1?.map((person) => ({ name: person.name, preis1: person.preis1 })) || [],
+
+    parameters2: ingredients?.parameters2?.map((person) => ({ name: person.name, preis1: person.preis1 })) ||  [],
+
+    parameters3: ingredients?.parameters3?.map((person) => ({ name: person.name, preis1: person.preis1 })) ||  [],
+
+    parameters4: ingredients?.parameters4?.map((person) => ({ name: person.name, preis1: person.preis1 })) ||  []
 
 
   };
+
+  
 
   console.log(initFormikValues)
 
@@ -104,6 +112,9 @@ const EditIngredients = () => {
         banner: form.banner,
 
         parameters1: form.parameters1 || [],
+        parameters2: form.parameters2 ||  [],
+        parameters3: form.parameters3 ||  [],
+        parameters4: form.parameters4 ||  [],
 
         // parameters1: form?.parameters1?.map((person) => ({ name: person.name, preis1: person.preis1 })) || []
 
@@ -116,7 +127,7 @@ const EditIngredients = () => {
     }));
   };
 
-
+  
 
   const onSubmitUpdate = (form) => {
     // check if data has changed

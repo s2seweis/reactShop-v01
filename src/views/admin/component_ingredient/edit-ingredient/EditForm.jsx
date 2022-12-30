@@ -26,11 +26,29 @@ const EditForm = ({ isLoading, authProvider }) => {
 
 
 
+
+  // small
   const [isActive, setIsActive] = useState(false);
 
   // Test Start
   const [favorite, setFavorite] = useState(false);
   // Test End
+
+
+
+  // medium
+  const [isActive1, setIsActive1] = useState(false);
+
+  // large
+  const [isActive2, setIsActive2] = useState(false);
+
+  // xl
+  const [isActive3, setIsActive3] = useState(false);
+
+
+
+
+
 
 
 
@@ -145,14 +163,9 @@ const EditForm = ({ isLoading, authProvider }) => {
       {/* Test:2 ---------Start DropDownBox */}
 
 
-
+{/* ############################################################################################################## */}
 
       <div className="dropdown-new">
-
-
-
-
-
 
         <div
           onClick={(e) => {
@@ -161,14 +174,10 @@ const EditForm = ({ isLoading, authProvider }) => {
           className="button button-muted w-100-mobile">
 
 
-
-
           <h3>Ingredients Small</h3>
 
 
-
-          {/* // Test Start */}
-
+          {/* // Test Start Ingredients Component*/}
 
 
           {isActive ? (
@@ -245,6 +254,284 @@ const EditForm = ({ isLoading, authProvider }) => {
                             <Field
                               key={`${param}`}
                               name={`parameters1.${index}.${param}`}
+                              // placeholder={`${"index"}.${param}`}
+                              className="field-ingredients"
+
+                            />
+                          ))}
+                          <button
+                            type="button"
+                            onClick={() => arrayHelpers.remove(index)}
+                          >
+                            {" "}
+                            -{" "}
+                          </button>
+                        </div>
+
+                      ))}
+                    <button
+                      type="button"
+                      onClick={() =>
+                        arrayHelpers.push({ name: "", preis1: "" })
+                      }
+                    >
+                      {" "}
+                      +{" "}
+                    </button>
+                  </div>
+                )}
+              />
+
+            </div>
+
+
+
+
+
+
+
+            {/* <h1>One</h1> */}
+
+
+
+
+
+
+
+
+
+
+          </div>
+
+
+        </div>
+      </div>
+
+
+
+
+    {/* ##############################################################################################################  */}
+
+
+      <div className="dropdown-new">
+
+
+        <div
+          onClick={(e) => {
+            setIsActive1(!isActive1);
+          }}
+          className="button button-muted w-100-mobile">
+
+
+
+          <h3>Ingredients Medium</h3>
+
+
+          {/* // Test Start Ingredients Component*/}
+
+
+          {isActive1 ? (
+            <FiArrowUpCircle
+              // className='bigger' 
+              style={{ color: "#F76631", width: "24px", height: "24px", marginInlineStart: "auto" }} />
+
+          ) : (
+            <FiArrowDownCircle
+
+              // className='bigger' 
+              style={{ color: "#F76631", width: "24px", height: "24px", marginInlineStart: "auto" }} />
+          )}
+
+
+
+
+          {/* // Test End */}
+
+
+
+
+
+          <h2>{selected}</h2>
+          <span
+            className={isActive1 ? "fas fa-caret-up" : "fas fa-caret-down"}
+          />
+        </div>
+
+
+
+
+
+        <div
+          className="dropdown-content"
+          style={{ display: isActive1 ? "block" : "none" }}
+        >
+
+
+          <div
+            // onClick={(e) => {
+            //   setIsSelected(e.target.textContent);
+            //   setIsActive(!isActive);
+            // }}
+            className="item-new"
+          >
+
+
+
+            {/* Here comes the component */}
+
+            <div className='fieldarray-top' >
+              <h4>Ingredients</h4>
+              <FieldArray
+
+                name="parameters2"
+                // disabled={isLoading}
+                className="fieldarray"
+
+                render={arrayHelpers => (
+
+                  <div>
+                    {values.parameters2?.length > 0 &&
+                      values.parameters2.map((paramList, index) => (
+
+                        <div key={index}>
+                          {Object.keys(paramList).map(param => (
+
+                            <Field
+                              key={`${param}`}
+                              name={`parameters2.${index}.${param}`}
+                              placeholder={`${index}.${param}`}
+                              className="field-ingredients"
+
+                            />
+                          ))}
+                          <button
+                            type="button"
+                            onClick={() => arrayHelpers.remove(index)}
+                          >
+                            {" "}
+                            -{" "}
+                          </button>
+                        </div>
+
+                      ))}
+                    <button
+                      type="button"
+                      onClick={() =>
+                        arrayHelpers.push({ name: "", preis1: "" })
+                      }
+                    >
+                      {" "}
+                      +{" "}
+                    </button>
+                  </div>
+                )}
+              />
+
+            </div>
+
+
+
+
+            {/* <h1>One</h1> */}
+
+
+
+
+          </div>
+
+
+        </div>
+      </div>
+
+
+
+    {/* ##############################################################################################################  */}
+
+
+
+      <div className="dropdown-new">
+
+
+        <div
+          onClick={(e) => {
+            setIsActive2(!isActive2);
+          }}
+          className="button button-muted w-100-mobile">
+
+
+          <h3>Ingredients Large</h3>
+
+
+          {/* // Test Start Ingredients Component*/}
+
+
+          {isActive2 ? (
+            <FiArrowUpCircle
+              // className='bigger' 
+              style={{ color: "#F76631", width: "24px", height: "24px", marginInlineStart: "auto" }} />
+
+          ) : (
+            <FiArrowDownCircle
+
+              // className='bigger' 
+              style={{ color: "#F76631", width: "24px", height: "24px", marginInlineStart: "auto" }} />
+          )}
+
+
+
+          {/* // Test End */}
+
+
+
+          <h2>{selected}</h2>
+          <span
+            className={isActive2 ? "fas fa-caret-up" : "fas fa-caret-down"}
+          />
+        </div>
+
+
+
+
+
+        <div
+          className="dropdown-content"
+          style={{ display: isActive2 ? "block" : "none" }}
+        >
+
+
+          <div
+            // onClick={(e) => {
+            //   setIsSelected(e.target.textContent);
+            //   setIsActive(!isActive);
+            // }}
+            className="item-new"
+          >
+
+
+
+
+            {/* Here comes the component */}
+
+            <div className='fieldarray-top' >
+              <h4>Ingredients</h4>
+              <FieldArray
+
+                name="parameters3"
+                // disabled={isLoading}
+                className="fieldarray"
+
+                render={arrayHelpers => (
+
+                  <div>
+                    {values.parameters3?.length > 0 &&
+                      values.parameters3.map((paramList, index) => (
+
+                        <div key={index}>
+                          {Object.keys(paramList).map(param => (
+
+                            <Field
+                              key={`${param}`}
+                              name={`parameters3.${index}.${param}`}
                               placeholder={`${index}.${param}`}
                               className="field-ingredients"
 
@@ -297,6 +584,151 @@ const EditForm = ({ isLoading, authProvider }) => {
 
         </div>
       </div>
+
+
+    {/* ##############################################################################################################  */}
+
+
+
+      <div className="dropdown-new">
+
+
+        <div
+          onClick={(e) => {
+            setIsActive3(!isActive3);
+          }}
+          className="button button-muted w-100-mobile">
+
+
+
+
+          <h3>Ingredients Extra Large</h3>
+
+
+
+          {/* // Test Start Ingredients Component*/}
+
+
+
+          {isActive3 ? (
+            <FiArrowUpCircle
+              // className='bigger' 
+              style={{ color: "#F76631", width: "24px", height: "24px", marginInlineStart: "auto" }} />
+
+          ) : (
+            <FiArrowDownCircle
+
+              // className='bigger' 
+              style={{ color: "#F76631", width: "24px", height: "24px", marginInlineStart: "auto" }} />
+          )}
+
+
+
+
+          {/* // Test End */}
+
+
+
+
+
+          <h2>{selected}</h2>
+          <span
+            className={isActive3 ? "fas fa-caret-up" : "fas fa-caret-down"}
+          />
+        </div>
+
+
+
+
+
+        <div
+          className="dropdown-content"
+          style={{ display: isActive3 ? "block" : "none" }}
+        >
+
+
+          <div
+            // onClick={(e) => {
+            //   setIsSelected(e.target.textContent);
+            //   setIsActive(!isActive);
+            // }}
+            className="item-new"
+          >
+
+
+
+
+
+
+
+
+            {/* Here comes the component */}
+
+            <div className='fieldarray-top' >
+              <h4>Ingredients</h4>
+              <FieldArray
+
+                name="parameters4"
+                // disabled={isLoading}
+                className="fieldarray"
+
+                render={arrayHelpers => (
+
+                  <div>
+                    {values.parameters4?.length > 0 &&
+                      values.parameters4.map((paramList, index) => (
+
+                        <div key={index}>
+                          {Object.keys(paramList).map(param => (
+
+                            <Field
+                              key={`${param}`}
+                              name={`parameters4.${index}.${param}`}
+                              placeholder={`${index}.${param}`}
+                              className="field-ingredients"
+
+                            />
+                          ))}
+                          <button
+                            type="button"
+                            onClick={() => arrayHelpers.remove(index)}
+                          >
+                            {" "}
+                            -{" "}
+                          </button>
+                        </div>
+
+                      ))}
+                    <button
+                      type="button"
+                      onClick={() =>
+                        arrayHelpers.push({ name: "", preis1: "" })
+                      }
+                    >
+                      {" "}
+                      +{" "}
+                    </button>
+                  </div>
+                )}
+              />
+
+            </div>
+
+
+
+
+            {/* <h1>One</h1> */}
+
+
+
+          </div>
+
+
+        </div>
+      </div>
+
+    {/* ##############################################################################################################  */}
+
 
 
       {/* Test:2 ---------End */}
