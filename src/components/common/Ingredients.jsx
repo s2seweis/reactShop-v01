@@ -12,12 +12,15 @@ import React, { useState } from "react";
 // import "./styles.css";
 
 
+// instead of {number} maybe better if selected then active and status true otherwise status false, boolean statement
+
+
 const Ingredients = () => {
 
   const [checkedState, setCheckedState] = useState(
     new Array(toppings.length).fill(false));
 
-  console.log(checkedState)
+  // console.log(checkedState)
 
 
 
@@ -91,7 +94,7 @@ const Ingredients = () => {
 
   return (
     <div className="App">
-      <h3>Select Toppings</h3>
+      <h3>Select Toppings3.1</h3>
       <ul className="toppings-list">
         {toppings.map(({ name, price }, index) => {
           return (
@@ -117,7 +120,7 @@ const Ingredients = () => {
         })}
         <li>
           <div className="toppings-list-item">
-            <div className="left-section">Total:</div>
+            <div className="left-section">Total3.1:</div>
             <div className="right-section">{getFormattedPrice(total)}</div>
           </div>
 

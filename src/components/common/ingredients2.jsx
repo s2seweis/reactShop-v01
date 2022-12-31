@@ -91,7 +91,7 @@ const Ingredients2 = () => {
 
   return (
     <div className="App">
-      <h3>Select Toppings</h3>
+      <h3>Select Toppings2.1</h3>
       <ul className="toppings-list">
         {toppings2.map(({ name, price }, index) => {
           return (
@@ -117,7 +117,7 @@ const Ingredients2 = () => {
         })}
         <li>
           <div className="toppings-list-item">
-            <div className="left-section">Total:</div>
+            <div className="left-section">Total2.1:</div>
             <div className="right-section">{getFormattedPrice(total)}</div>
           </div>
 

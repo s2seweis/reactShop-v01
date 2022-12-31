@@ -18,7 +18,6 @@ import { Link, useParams } from 'react-router-dom';
 
 import Select from 'react-select';
 
-// import Ingredients from 'components/common/Ingredients';
 
 import FormikFieldArrayForm from 'components/common/FormikFieldArrayForm';
 
@@ -30,15 +29,16 @@ import ReactDOM from "react-dom";
 
 import { Formik, Field, Form, FieldArray, ErrorMessage } from "formik";
 
-// import Ingredients from "../../components/common/Ingredients"
 
 import Ingredients2 from "../../components/common/Ingredients2"
+import Ingredients from "../../components/common/Ingredients"
 
 
 // Test:1 Bringing Ingredients into index
 
 
 import { toppings } from "../../views/admin/ingredients/toppings";
+import { string } from 'prop-types';
 
 
 
@@ -118,8 +118,8 @@ const ViewProduct = (parameters, demo) => {
     // console.log(event.value);
     // console.log(event.label);
     // console.log(event.value.email);
-    // console.log(event.value.name);
   }
+
 
 
   const [dropValue, setDropValue] = useState();
@@ -137,7 +137,11 @@ const ViewProduct = (parameters, demo) => {
   console.log(option2)
 
   const [option3, setOption3] = useState();
-  // console.log(option3)
+  console.log(option3)
+
+
+
+
 
 
   // Test: 1 ----Start
@@ -166,10 +170,10 @@ const ViewProduct = (parameters, demo) => {
       number3: option3
 
     });
-    console.log(option)
-    console.log(option1)
-    console.log(option2)
-    console.log(option3)
+    // console.log(option)
+    // console.log(option1)
+    // console.log(option2)
+    // console.log(option3)
 
   };
 
@@ -258,7 +262,7 @@ const ViewProduct = (parameters, demo) => {
   const [checkedState, setCheckedState] = useState(
     new Array(toppings.length).fill(false));
 
-  console.log(checkedState)
+  // console.log(checkedState)
 
 
 
@@ -268,8 +272,8 @@ const ViewProduct = (parameters, demo) => {
 
   const [name, setName] = useState("");
 
-  console.log(total)
-  console.log(name)
+  // console.log(total)
+  // console.log(name)
 
 
   const handleOnChange = (position) => {
@@ -284,7 +288,7 @@ const ViewProduct = (parameters, demo) => {
         if (currentState === true) {
           return sum
             + toppings[index].price;
-          console.log(sum);
+          // console.log(sum);
         }
         return sum
           ;
@@ -439,18 +443,15 @@ const ViewProduct = (parameters, demo) => {
 
 
 
-              
+
 
 
 
               <h1>{displayMoney(option ? option : 0)}</h1>
-              
+
               <h1>{displayMoney(Number(option ? option : 0) + (total ? total : 0))}</h1>
 
-              <h1>{displayMoney(total ? total : 0)}</h1>
 
-
-             { displayMoney(option ? option : 0) }
 
 
 
@@ -466,15 +467,7 @@ const ViewProduct = (parameters, demo) => {
 
 
 
-              {/* Test: 9 -----Start
 
-
-              {/* <div className="ingredients">
-                <Ingredients></Ingredients>
-              </div> */}
-
-
-              {/* Test: 9 -----End
 
 
 
@@ -500,7 +493,7 @@ const ViewProduct = (parameters, demo) => {
               {/* Test: 5 ---------Start */}
 
 
-              {/* <FormikFieldArrayForm parameters={{ paramLists: tickets }} /> */}
+              <h1>{product.tickets?.index(0)}</h1>
 
 
               {/* Test: 5 ------End */}
@@ -512,17 +505,17 @@ const ViewProduct = (parameters, demo) => {
 
               {/* Test:11 -------------Start */}
 
+              {/* ################################################################################# */}
 
-
-              <div className="show_hide">
-                {/* <button onClick={handleFooPress}>Show Foo</button>
-                <button onClick={handleBarPress}>Show Bar</button> */}
+              {/* <div className="show_hide">
+                <button onClick={handleFooPress}>Show Foo</button>
+                <button onClick={handleBarPress}>Show Bar</button>
                 {isFooVisible &&
 
 
 
                   <div className="App">
-                    <h3>Select Toppings</h3>
+                    <h3>Select Toppings1.1</h3>
                     <ul className="toppings-list">
                       {toppings.map(({ name, price }, index) => {
                         return (
@@ -541,14 +534,76 @@ const ViewProduct = (parameters, demo) => {
                               </div>
                               <div className="right-section">{getFormattedPrice(price)}</div>
 
-                              {/* <div className="right-section">{getFormattedName(name)}</div> */}
+                              <div className="right-section">{getFormattedName(name)}</div>
                             </div>
                           </li>
                         );
                       })}
                       <li>
                         <div className="toppings-list-item">
-                          <div className="left-section">Total:</div>
+                          <div className="left-section">Total3:</div>
+                          <div className="right-section">{getFormattedPrice(total)}</div>
+
+                        </div>
+
+                        <div className="toppings-list-item-b">
+                          <div className="left-section">Name Total:</div>
+                          <div className="right-section">{getFormattedName(name)}</div>
+                        </div>
+
+
+                      </li>
+                    </ul>
+                  </div>
+                }
+
+
+
+               
+
+
+              </div> */}
+
+
+
+
+              {/* ################################################################################# */}
+
+
+              {/* <div className="show_hide">
+                <button onClick={handleFooPress}>Show Foo</button>
+                <button onClick={handleBarPress}>Show Bar</button>
+                {isFooVisible &&
+
+
+
+                  <div className="App">
+                    <h3>Select Toppings1.1</h3>
+                    <ul className="toppings-list">
+                      {toppings.map(({ name, price }, index) => {
+                        return (
+                          <li key={index}>
+                            <div className="toppings-list-item">
+                              <div className="left-section">
+                                <input
+                                  type="checkbox"
+                                  id={`custom-checkbox-${index}`}
+                                  name={name}
+                                  value={name}
+                                  checked={checkedState[index]}
+                                  onChange={() => handleOnChange(index)}
+                                />
+                                <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
+                              </div>
+                              <div className="right-section">{getFormattedPrice(price)}</div>
+
+                            </div>
+                          </li>
+                        );
+                      })}
+                      <li>
+                        <div className="toppings-list-item">
+                          <div className="left-section">Total1.1:</div>
                           <div className="right-section">{getFormattedPrice(total)}</div>
                         </div>
 
@@ -570,22 +625,7 @@ const ViewProduct = (parameters, demo) => {
 
                 }
                 {isBarVisible && <h1>Bar</h1>}
-              </div>
-
-              <div className="show_hide">
-                {/* <button onClick={handleFooPress}>Show Foo</button>
-                <button onClick={handleBarPress}>Show Bar</button> */}
-                {isFooVisible &&
-
-
-
-                  <Ingredients2 />
-
-
-
-                }
-                {isBarVisible && <h1>Bar</h1>}
-              </div>
+              </div> */}
 
 
 
@@ -593,15 +633,32 @@ const ViewProduct = (parameters, demo) => {
 
               {/* Test:11 -------------End */}
 
+              <div> {option1?.trim() === "small" ? <Ingredients /> : ""} </div>
 
 
-              <div> {option2 === "100" ?
 
 
+
+
+
+
+
+              {/* down its working
+              <div> {option1 === "100" ? <Ingredients /> : ""} </div> */}
+
+
+
+
+              {/* <div> {option2 === "100" ?
+
+
+
+
+              >>>>>>>>  <Ingredients /> <<<<<<<<
 
 
                 <div className="App">
-                  <h3>Select Toppings</h3>
+                  <h3>Select Toppings1.1</h3>
                   <ul className="toppings-list">
                     {toppings.map(({ name, price }, index) => {
                       return (
@@ -620,14 +677,13 @@ const ViewProduct = (parameters, demo) => {
                             </div>
                             <div className="right-section">{getFormattedPrice(price)}</div>
 
-                            {/* <div className="right-section">{getFormattedName(name)}</div> */}
                           </div>
                         </li>
                       );
                     })}
                     <li>
                       <div className="toppings-list-item">
-                        <div className="left-section">Total:</div>
+                        <div className="left-section">Total1.1:</div>
                         <div className="right-section">{getFormattedPrice(total)}</div>
                       </div>
 
@@ -648,8 +704,24 @@ const ViewProduct = (parameters, demo) => {
 
 
 
-                : ""} </div>
-              <div> {option3 === "200" ? <Ingredients2 /> : ""} </div>
+                : ""} </div> */}
+
+
+
+              {/* #################################################################################  */}
+
+
+
+
+              {/* <div> {option3 === "200" ? <Ingredients2 /> : ""} </div> */}
+
+
+              <div> {option1?.trim() === "medium" ? <Ingredients2 /> : ""} </div>
+
+
+
+
+
 
 
 
@@ -683,3 +755,11 @@ const ViewProduct = (parameters, demo) => {
 
 
 export default ViewProduct;
+
+
+
+// Review:
+// Functions being called more than Me anticipated, results into too many console.log(), too many calls.
+// Needs a better conditional Statement, better then {option2 === 100 ? Ingredients : ""}. => now using option 1 ,ab bit better already
+// Instead of {number} maybe better if selected isactive then state true otherwise states false.
+// Instead using the string, maybe calling direct the field of the array.
