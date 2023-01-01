@@ -73,7 +73,7 @@ const ProductItem = ({ product, isItemOnBasket, addToBasket }) => {
             onClick={handleAddToBasket}
             type="button"
           >
-            {itemOnBasket ? 'Remove from basket' : 'Add to basket1'}
+            {itemOnBasket ? 'Remove from basket1' : 'Add to basket1'}
           </button>
         )}
 

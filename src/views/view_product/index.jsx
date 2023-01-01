@@ -272,8 +272,8 @@ const ViewProduct = (parameters, demo) => {
 
   const [name, setName] = useState("");
 
-  // console.log(total)
-  // console.log(name)
+  console.log(total)
+  console.log(name)
 
 
   const handleOnChange = (position) => {
@@ -310,9 +310,9 @@ const ViewProduct = (parameters, demo) => {
       ""
     );
 
-    // console.log(totalPrice)
+    console.log(totalPrice)
 
-    // console.log(totalName)
+    console.log(totalName)
 
 
     setTotal(totalPrice);
@@ -333,6 +333,19 @@ const ViewProduct = (parameters, demo) => {
   //   : "";
 
   // console.log(checkedItems);
+
+
+
+
+
+  // Test: 1
+
+
+
+
+  // Test: 1
+
+
 
 
 
@@ -447,7 +460,7 @@ const ViewProduct = (parameters, demo) => {
 
 
 
-              <h1>{displayMoney(option ? option : 0)}</h1>
+              {/* <h1>{displayMoney(option ? option : 0)}</h1> */}
 
               <h1>{displayMoney(Number(option ? option : 0) + (total ? total : 0))}</h1>
 
@@ -461,7 +474,7 @@ const ViewProduct = (parameters, demo) => {
                   onClick={handleAddToBasket}
                   type="button"
                 >
-                  {isItemOnBasket(product.id) ? 'Remove From Basket' : 'Add To Basket'}
+                  {isItemOnBasket(product.id) ? 'Remove From Basket2' : 'Add To Basket'}
                 </button>
               </div>
 
@@ -493,7 +506,7 @@ const ViewProduct = (parameters, demo) => {
               {/* Test: 5 ---------Start */}
 
 
-              <h1>{product.tickets?.index(0)}</h1>
+              <h1>{product.tickets.index}</h1>
 
 
               {/* Test: 5 ------End */}
@@ -633,7 +646,7 @@ const ViewProduct = (parameters, demo) => {
 
               {/* Test:11 -------------End */}
 
-              <div> {option1?.trim() === "small" ? <Ingredients /> : ""} </div>
+              <div> {option1?.trim() === "small" ? <Ingredients  /> : ""} </div>
 
 
 
@@ -763,3 +776,12 @@ export default ViewProduct;
 // Needs a better conditional Statement, better then {option2 === 100 ? Ingredients : ""}. => now using option 1 ,ab bit better already
 // Instead of {number} maybe better if selected isactive then state true otherwise states false.
 // Instead using the string, maybe calling direct the field of the array.
+
+
+// In React we can access the child’s state using Refs.  we will assign a Refs for the child component in the parent component. then using Refs we can access the child’s state. not sure
+
+
+// To render multiple JSX elements in React, you can loop through an array with the .map() method and return a single element.
+
+
+// https://stackoverflow.com/questions/68885949/how-to-access-particular-child-state-from-parent-with-multiple-children

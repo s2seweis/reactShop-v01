@@ -4,7 +4,7 @@ import { Field, useFormikContext } from 'formik';
 import React from 'react';
 
 const ShippingForm = () => {
-  const { values } = useFormikContext();
+  // const { values } = useFormikContext();
   return (
     <div className="checkout-shipping-wrapper">
       <div className="checkout-shipping-form">
@@ -39,9 +39,9 @@ const ShippingForm = () => {
               component={CustomInput}
             />
           </div>
-          <div className="d-block checkout-field">
+          {/* <div className="d-block checkout-field">
             <CustomMobileInput name="mobile" defaultValue={values.mobile} />
-          </div>
+          </div> */}
         </div>
         <div className="checkout-fieldset">
           <Field name="isInternational">
