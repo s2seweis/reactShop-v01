@@ -646,7 +646,7 @@ const ViewProduct = (parameters, demo) => {
 
               {/* Test:11 -------------End */}
 
-              <div> {option1?.trim() === "small" ? <Ingredients  /> : ""} </div>
+              <div> {option1?.trim() === "small" ? <Ingredients option={option}  /> : ""} </div>
 
 
 

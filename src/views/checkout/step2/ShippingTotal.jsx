@@ -5,6 +5,7 @@ import React from 'react';
 
 const ShippingTotal = ({ subtotal }) => {
   const { values } = useFormikContext();
+  console.log(subtotal)
 
   return (
     <div className="checkout-total d-flex-end padding-right-m">
