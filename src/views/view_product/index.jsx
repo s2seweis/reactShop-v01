@@ -53,22 +53,27 @@ import { string } from 'prop-types';
 
 const ViewProduct = (parameters, demo) => {
 
-  const { id } = useParams();
-  const { product, isLoading, error } = useProduct(id);
-  const { addToBasket, isItemOnBasket } = useBasket(id);
-
   useScrollTop();
   useDocumentTitle(`View ${product?.name || 'Item'}`);
+
+
+  const { id } = useParams();
+  const { product, isLoading, error } = useProduct(id);
+  console.log(product);
+  const { addToBasket, isItemOnBasket } = useBasket(id);
+
 
   const [selectedImage, setSelectedImage] = useState(product?.image || '');
 
   const [selectedSize, setSelectedSize] = useState('');
+  console.log(selectedSize);
 
   const [selectedSizeNew, setSelectedSizeNew] = useState('');
 
   const [selectedPrice, setSelectedPrice] = useState('');
 
   const [selectedColor, setSelectedColor] = useState('');
+  console.log(selectedColor);
 
 
 
@@ -112,8 +117,8 @@ const ViewProduct = (parameters, demo) => {
   const handleChange2 = (event) => {
     setOption(event.value)
     setOption1(event.label)
-    setOption2(event.number)
-    setOption3(event.number)
+    // setOption2(event.number)
+    // setOption3(event.number)
     // setOption(event.label)
     // console.log(event.value);
     // console.log(event.label);
@@ -133,11 +138,11 @@ const ViewProduct = (parameters, demo) => {
 
   // Test: 1 ----Start
 
-  const [option2, setOption2] = useState();
-  console.log(option2)
+  // const [option2, setOption2] = useState();
+  // console.log(option2)
 
-  const [option3, setOption3] = useState();
-  console.log(option3)
+  // const [option3, setOption3] = useState();
+  // console.log(option3)
 
 
 
@@ -166,8 +171,8 @@ const ViewProduct = (parameters, demo) => {
 
       selectedPrice: option,
       selectedSizeNew: option1,
-      number: option2,
-      number3: option3
+      // number: option2,
+      // number3: option3
 
     });
     // console.log(option)
@@ -646,7 +651,28 @@ const ViewProduct = (parameters, demo) => {
 
               {/* Test:11 -------------End */}
 
-              <div> {option1?.trim() === "small" ? <Ingredients option={option}  /> : ""} </div>
+              <div> {option1?.trim() === "small" ? 
+              
+
+
+
+              <Ingredients 
+              
+              option={option} 
+              option1={option1}  
+              selectedSize={selectedSize}  
+              selectedColor={selectedColor}  
+              product={product}  
+              id={id}  
+
+
+              
+              /> 
+              
+              
+              
+              
+              : ""} </div>
 
 
 
@@ -729,7 +755,8 @@ const ViewProduct = (parameters, demo) => {
               {/* <div> {option3 === "200" ? <Ingredients2 /> : ""} </div> */}
 
 
-              <div> {option1?.trim() === "medium" ? <Ingredients2 /> : ""} </div>
+
+              <div> {option1?.trim() === "medium" ? <Ingredients2 option={option}  /> : ""} </div>
 
 
 

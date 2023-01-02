@@ -8,16 +8,24 @@ import { Formik, Field, Form, FieldArray } from "formik";
 
 import React, { useState } from "react";
 
+import { displayMoney } from 'helpers/utils';
+
+
 
 // import "./styles.css";
 
 
-const Ingredients2 = () => {
+// instead of {number} maybe better if selected then active and status true otherwise status false, boolean statement
+
+
+const Ingredients2 = (option) => {
 
   const [checkedState, setCheckedState] = useState(
     new Array(toppings2.length).fill(false));
 
-  console.log(checkedState)
+  // console.log(checkedState)
+  console.log(option.option)
+
 
 
 
@@ -91,7 +99,7 @@ const Ingredients2 = () => {
 
   return (
     <div className="App">
-      <h3>Select Toppings2.1</h3>
+      <h3>Select Toppings3.1</h3>
       <ul className="toppings-list">
         {toppings2.map(({ name, price }, index) => {
           return (
@@ -117,7 +125,7 @@ const Ingredients2 = () => {
         })}
         <li>
           <div className="toppings-list-item">
-            <div className="left-section">Total2.1:</div>
+            <div className="left-section">Total3.1:</div>
             <div className="right-section">{getFormattedPrice(total)}</div>
           </div>
 
@@ -127,6 +135,8 @@ const Ingredients2 = () => {
           </div>
 
 
+
+          <h1>{displayMoney(Number(option.option.trim()) + (total))}</h1>
 
 
 
