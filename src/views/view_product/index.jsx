@@ -62,21 +62,21 @@ const ViewProduct = (parameters, demo) => {
   const { product, isLoading, error } = useProduct(id);
   // console.log(product);
   const { addToBasket, isItemOnBasket } = useBasket(id);
-  console.log(addToBasket);
-  console.log(isItemOnBasket);
+  // console.log(addToBasket);
+  // console.log(isItemOnBasket);
 
 
   const [selectedImage, setSelectedImage] = useState(product?.image || '');
 
   const [selectedSize, setSelectedSize] = useState('');
-  console.log(selectedSize);
+  // console.log(selectedSize);
 
   const [selectedSizeNew, setSelectedSizeNew] = useState('');
 
   const [selectedPrice, setSelectedPrice] = useState('');
 
   const [selectedColor, setSelectedColor] = useState('');
-  console.log(selectedColor);
+  // console.log(selectedColor);
 
 
 
@@ -133,11 +133,11 @@ const ViewProduct = (parameters, demo) => {
   const [dropValue, setDropValue] = useState();
 
   const [option, setOption] = useState();
-  console.log(option)
+  // console.log(option)
 
 
   const [option1, setOption1] = useState();
-  console.log(option1)
+  // console.log(option1)
 
   // Test: 1 ----Start
 
@@ -280,8 +280,8 @@ const ViewProduct = (parameters, demo) => {
 
   const [name, setName] = useState("");
 
-  console.log(total)
-  console.log(name)
+  // console.log(total)
+  // console.log(name)
 
 
   const handleOnChange = (position) => {
@@ -318,9 +318,9 @@ const ViewProduct = (parameters, demo) => {
       ""
     );
 
-    console.log(totalPrice)
+    // console.log(totalPrice)
 
-    console.log(totalName)
+    // console.log(totalName)
 
 
     setTotal(totalPrice);

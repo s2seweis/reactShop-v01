@@ -35,20 +35,21 @@ const Ingredients = (option, option1, selectedSize, selectedColor, id, isItemOnB
     new Array(toppings.length).fill(false));
 
   // console.log(checkedState)
-  console.log(option.option)
-  console.log(option.option1)
-  console.log(option.selectedSize)
-  console.log(option.selectedColor)
-  console.log(option.id)
-  console.log(option.isItemOnBasket)
-  console.log(option.addToBasket)
+  
+  // console.log(option.option)
+  // console.log(option.option1)
+  // console.log(option.selectedSize)
+  // console.log(option.selectedColor)
+  // console.log(option.id)
+  // console.log(option.isItemOnBasket)
+  // console.log(option.addToBasket)
 
   
 
 const selectedColorNew = option.selectedColor
 
 const id1 = option.id
-console.log(id1)
+// console.log(id1)
 
 
 
@@ -57,8 +58,8 @@ console.log(id1)
 
   const [name, setName] = useState("");
 
-  console.log(total)
-  console.log(name)
+  // console.log(total)
+  // console.log(name)
 
 
   const handleOnChange = (position) => {
@@ -73,7 +74,7 @@ console.log(id1)
         if (currentState === true) {
           return sum
             + toppings[index].price;
-          console.log(sum);
+          // console.log(sum);
         }
         return sum
           ;
