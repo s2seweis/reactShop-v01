@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import { toppings } from "../../views/admin/ingredients/toppings";
+import { toppings1 } from "../../views/admin/ingredients/toppings";
 
 // import { useDocumentTitle, useScrollTop } from 'hooks';
 // import React from 'react';
@@ -21,6 +21,9 @@ import {
 
 import { Link, useParams } from 'react-router-dom';
 
+import { useDispatch, useSelector } from 'react-redux';
+
+
 
 
 // import "./styles.css";
@@ -32,10 +35,10 @@ import { Link, useParams } from 'react-router-dom';
 const Ingredients = (option, option1, selectedSize, selectedColor, id, isItemOnBasket, addToBasket) => {
 
   const [checkedState, setCheckedState] = useState(
-    new Array(toppings.length).fill(false));
+    new Array(toppings1?.length).fill(false));
 
   // console.log(checkedState)
-  
+
   // console.log(option.option)
   // console.log(option.option1)
   // console.log(option.selectedSize)
@@ -54,7 +57,34 @@ const id1 = option.id
 
 
 
-  const [total, setTotal] = useState(0);
+const { ingredients } = useSelector((state) => ({
+  ingredients: state.ingredients,
+}));
+
+console.log(ingredients)
+
+
+// const initFormikValues = {
+  
+
+//   toppings: ingredients?.toppings?.map((person) => ({ name: person.name, price: person.price })) || [],
+
+//   parameters2: ingredients?.parameters2?.map((person) => ({ name: person.name, price: person.price })) ||  [],
+
+//   parameters3: ingredients?.parameters3?.map((person) => ({ name: person.name, price: person.price })) ||  [],
+
+//   parameters4: ingredients?.parameters4?.map((person) => ({ name: person.name, price: person.price })) ||  []
+
+
+// };
+
+// console.log(initFormikValues.toppings);
+
+
+
+  const [total, setTotal] = useState();
+  console.log(total)
+  console.log(setTotal)
 
   const [name, setName] = useState("");
 
@@ -63,17 +93,17 @@ const id1 = option.id
 
 
   const handleOnChange = (position) => {
-    const updatedCheckedState = checkedState.map((item, index) =>
+    const updatedCheckedState = checkedState?.map((item, index) =>
       index === position ? !item : item
     );
 
     setCheckedState(updatedCheckedState);
 
-    const totalPrice = updatedCheckedState.reduce(
+    const totalPrice = updatedCheckedState?.reduce(
       (sum, currentState, index) => {
         if (currentState === true) {
           return sum
-            + toppings[index].price;
+            + toppings1[index]?.price;
           // console.log(sum);
         }
         return sum
@@ -81,20 +111,25 @@ const id1 = option.id
 
 
       },
-      0
+      
     );
 
-    const totalName = updatedCheckedState.reduce(
+    console.log(totalPrice)
+
+    const totalName = updatedCheckedState?.reduce(
       (sum, currentState, index) => {
         if (currentState === true) {
           return sum
-            + "+" + toppings[index].name;
+            + "+" + toppings1[index]?.name;
         }
         return sum
           ;
       },
-      ""
+      
     );
+
+        console.log(totalName)
+
 
     // console.log(totalPrice)
 
@@ -106,9 +141,12 @@ const id1 = option.id
     setName(totalName);
   };
 
-  const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
+  const getFormattedPrice = (price) => `$${price}`;
+  console.log(getFormattedPrice)
 
   const getFormattedName = (name) => `${name}`;
+  console.log(getFormattedName)
+
 
   // const getFormattedName = (name) => `${name}`;
 
@@ -159,13 +197,23 @@ const id1 = option.id
   };
 
 
+
+
+  const toppings2 = ingredients?.parameters1?.map((person) => ({ name: person.name, price: person.price })) || []
+
+  console.log(toppings2)
+  console.log(toppings1)
+
+
   // Test: End
 
   return (
     <div className="App">
       <h3>Select Toppings3.1</h3>
       <ul className="toppings-list">
-        {toppings.map(({ name, price }, index) => {
+
+
+        {toppings1.map(({ name, price }, index) => {
           return (
             <li key={index}>
               <div className="toppings-list-item">
@@ -194,7 +242,7 @@ const id1 = option.id
           </div>
 
           <div className="toppings-list-item-b">
-            <div className="left-section">Name Total:</div>
+            <div className="left-section">Name Total1:</div>
             <div className="right-section">{getFormattedName(name)}</div>
           </div>
 
@@ -232,3 +280,5 @@ const id1 = option.id
 
 
 export default Ingredients;
+
+

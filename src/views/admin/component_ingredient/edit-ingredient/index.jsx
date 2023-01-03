@@ -90,7 +90,7 @@ const EditIngredients = () => {
 
   
 
-  console.log(initFormikValues)
+  console.log(initFormikValues.parameters1)
 
   const {
     imageFile,

@@ -103,9 +103,9 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
 
 
 
-
   };
   console.log(initFormikValues)
+  console.log(initFormikValues.tickets)
 
   const {
     imageFile,
@@ -157,7 +157,7 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
   //   ;
 
 
-  
+
 
 
   return (
@@ -458,7 +458,7 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
                                 -{" "}
                               </button>
                             </div>
-                            
+
                           ))}
                         <button
                           type="button"

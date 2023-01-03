@@ -37,7 +37,7 @@ import Ingredients from "../../components/common/Ingredients"
 // Test:1 Bringing Ingredients into index
 
 
-import { toppings } from "../../views/admin/ingredients/toppings";
+import { toppings1 } from "../../views/admin/ingredients/toppings";
 import { string } from 'prop-types';
 
 
@@ -51,7 +51,7 @@ import { string } from 'prop-types';
 
 
 
-const ViewProduct = (parameters, demo) => {
+const ViewProduct = () => {
 
   useScrollTop();
   useDocumentTitle(`View ${product?.name || 'Item'}`);
@@ -267,8 +267,8 @@ const ViewProduct = (parameters, demo) => {
 
 
 
-  const [checkedState, setCheckedState] = useState(
-    new Array(toppings.length).fill(false));
+  // const [checkedState, setCheckedState] = useState(
+  //   new Array(toppings1.length).fill(false));
 
   // console.log(checkedState)
 
@@ -276,61 +276,61 @@ const ViewProduct = (parameters, demo) => {
 
 
 
-  const [total, setTotal] = useState(0);
+  // const [total, setTotal] = useState(0);
 
-  const [name, setName] = useState("");
+  // const [name, setName] = useState("");
 
   // console.log(total)
   // console.log(name)
 
 
-  const handleOnChange = (position) => {
-    const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
-    );
+  // const handleOnChange = (position) => {
+  //   const updatedCheckedState = checkedState.map((item, index) =>
+  //     index === position ? !item : item
+  //   );
 
-    setCheckedState(updatedCheckedState);
+  //   setCheckedState(updatedCheckedState);
 
-    const totalPrice = updatedCheckedState.reduce(
-      (sum, currentState, index) => {
-        if (currentState === true) {
-          return sum
-            + toppings[index].price;
-          // console.log(sum);
-        }
-        return sum
-          ;
+  //   const totalPrice = updatedCheckedState.reduce(
+  //     (sum, currentState, index) => {
+  //       if (currentState === true) {
+  //         return sum
+  //           + toppings[index].price;
+  //         // console.log(sum);
+  //       }
+  //       return sum
+  //         ;
 
 
-      },
-      0
-    );
+  //     },
+  //     0
+  //   );
 
-    const totalName = updatedCheckedState.reduce(
-      (sum, currentState, index) => {
-        if (currentState === true) {
-          return sum
-            + "+" + toppings[index].name;
-        }
-        return sum
-          ;
-      },
-      ""
-    );
+    // const totalName = updatedCheckedState.reduce(
+    //   (sum, currentState, index) => {
+    //     if (currentState === true) {
+    //       return sum
+    //         + "+" + toppings[index].name;
+    //     }
+    //     return sum
+    //       ;
+    //   },
+    //   ""
+    // );
 
     // console.log(totalPrice)
 
     // console.log(totalName)
 
 
-    setTotal(totalPrice);
+  //   setTotal(totalPrice);
 
-    setName(totalName);
-  };
+  //   setName(totalName);
+  // };
 
-  const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
+  // const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
 
-  const getFormattedName = (name) => `${name}`;
+  // const getFormattedName = (name) => `${name}`;
 
   // const getFormattedName = (name) => `${name}`;
 
@@ -470,7 +470,7 @@ const ViewProduct = (parameters, demo) => {
 
               {/* <h1>{displayMoney(option ? option : 0)}</h1> */}
 
-              <h1>{displayMoney(Number(option ? option : 0) + (total ? total : 0))}</h1>
+              {/* <h1>{displayMoney(Number(option ? option : 0) + (total ? total : 0))}</h1> */}
 
 
 
@@ -482,7 +482,7 @@ const ViewProduct = (parameters, demo) => {
                   onClick={handleAddToBasket}
                   type="button"
                 >
-                  {isItemOnBasket(product.id) ? 'Remove From Basket2' : 'Add To Basket'}
+                  {isItemOnBasket(product.id) ? 'Remove From Basket2' : 'Add To Basket1'}
                 </button>
               </div>
 
@@ -514,7 +514,7 @@ const ViewProduct = (parameters, demo) => {
               {/* Test: 5 ---------Start */}
 
 
-              <h1>{product.tickets.index}</h1>
+              {/* <h1>{product.tickets.index}</h1> */}
 
 
               {/* Test: 5 ------End */}
