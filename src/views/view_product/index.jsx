@@ -58,9 +58,12 @@ const ViewProduct = (parameters, demo) => {
 
 
   const { id } = useParams();
+  // console.log(id);
   const { product, isLoading, error } = useProduct(id);
-  console.log(product);
+  // console.log(product);
   const { addToBasket, isItemOnBasket } = useBasket(id);
+  console.log(addToBasket);
+  console.log(isItemOnBasket);
 
 
   const [selectedImage, setSelectedImage] = useState(product?.image || '');
@@ -664,6 +667,8 @@ const ViewProduct = (parameters, demo) => {
               selectedColor={selectedColor}  
               product={product}  
               id={id}  
+              addToBasket={addToBasket}  
+              isItemOnBasket={isItemOnBasket}  
 
 
               

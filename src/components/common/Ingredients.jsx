@@ -29,7 +29,7 @@ import { Link, useParams } from 'react-router-dom';
 // instead of {number} maybe better if selected then active and status true otherwise status false, boolean statement
 
 
-const Ingredients = (option, option1, selectedSize, selectedColor, id) => {
+const Ingredients = (option, option1, selectedSize, selectedColor, id, isItemOnBasket, addToBasket) => {
 
   const [checkedState, setCheckedState] = useState(
     new Array(toppings.length).fill(false));
@@ -40,6 +40,8 @@ const Ingredients = (option, option1, selectedSize, selectedColor, id) => {
   console.log(option.selectedSize)
   console.log(option.selectedColor)
   console.log(option.id)
+  console.log(option.isItemOnBasket)
+  console.log(option.addToBasket)
 
   
 
@@ -124,8 +126,8 @@ console.log(id1)
 
 
   // const { id } = useParams();
-  const { product, isLoading, error } = useProduct(option.id);
-  const { addToBasket, isItemOnBasket } = useBasket(option.id);
+  const { product, isLoading, error } = useProduct(id1);
+  // const { addToBasket, isItemOnBasket } = useBasket(id1);
 
 
   // const [selectedImage, setSelectedImage] = useState(product?.image || '');
@@ -140,7 +142,7 @@ console.log(id1)
 
 
   const handleAddToBasket = () => {
-    addToBasket({
+    option.addToBasket({
       ...product,
       selectedColorNew,
       selectedSize: option.selectedSize,
@@ -207,11 +209,11 @@ console.log(id1)
 
           <div className="product-modal-action">
             <button
-              className={`button button-small ${isItemOnBasket(product?.id1) ? 'button-border button-border-gray' : ''}`}
+              className={`button button-small ${option.isItemOnBasket(product?.id) ? 'button-border button-border-gray' : ''}`}
               onClick={handleAddToBasket}
               type="button"
             >
-              {isItemOnBasket(product?.id1) ? 'Remove From Basket2' : 'Add To Basket'}
+              {option.isItemOnBasket(product?.id) ? 'Remove From Basket2' : 'Add To Basket'}
             </button>
           </div>
 
