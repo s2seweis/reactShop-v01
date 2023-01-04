@@ -82,7 +82,7 @@ console.log(ingredients)
 
 
 
-  const [total, setTotal] = useState();
+  const [total, setTotal] = useState(0);
   console.log(total)
   console.log(setTotal)
 

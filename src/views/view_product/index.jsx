@@ -41,10 +41,15 @@ import { toppings1 } from "../../views/admin/ingredients/toppings";
 import { string } from 'prop-types';
 
 
+import { useDispatch, useSelector } from 'react-redux';
+
+
 
 
 
 // Test:1 Bringing Ingredients into index
+
+
 
 
 
@@ -77,6 +82,17 @@ const ViewProduct = () => {
 
   const [selectedColor, setSelectedColor] = useState('');
   // console.log(selectedColor);
+
+
+  const { ingredients } = useSelector((state) => ({
+    ingredients: state.ingredients,
+  }));
+
+
+  const toppings2 = ingredients?.parameters1?.map((person) => ({ name: person.name, price: person.price })) || []
+  console.log(toppings2)
+
+  console.log(toppings1)
 
 
 
@@ -267,92 +283,76 @@ const ViewProduct = () => {
 
 
 
-  // const [checkedState, setCheckedState] = useState(
-  //   new Array(toppings1.length).fill(false));
-
-  // console.log(checkedState)
+  const [checkedState, setCheckedState] = useState(
+    new Array(toppings2.length).fill(false));
 
 
 
 
 
-  // const [total, setTotal] = useState(0);
 
-  // const [name, setName] = useState("");
+  const [total, setTotal] = useState(0);
 
-  // console.log(total)
-  // console.log(name)
-
-
-  // const handleOnChange = (position) => {
-  //   const updatedCheckedState = checkedState.map((item, index) =>
-  //     index === position ? !item : item
-  //   );
-
-  //   setCheckedState(updatedCheckedState);
-
-  //   const totalPrice = updatedCheckedState.reduce(
-  //     (sum, currentState, index) => {
-  //       if (currentState === true) {
-  //         return sum
-  //           + toppings[index].price;
-  //         // console.log(sum);
-  //       }
-  //       return sum
-  //         ;
-
-
-  //     },
-  //     0
-  //   );
-
-    // const totalName = updatedCheckedState.reduce(
-    //   (sum, currentState, index) => {
-    //     if (currentState === true) {
-    //       return sum
-    //         + "+" + toppings[index].name;
-    //     }
-    //     return sum
-    //       ;
-    //   },
-    //   ""
-    // );
-
-    // console.log(totalPrice)
-
-    // console.log(totalName)
-
-
-  //   setTotal(totalPrice);
-
-  //   setName(totalName);
-  // };
-
-  // const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
-
-  // const getFormattedName = (name) => `${name}`;
-
-  // const getFormattedName = (name) => `${name}`;
-
-  // const checkedItems = checkedState.length
-  //   ? checkedState.reduce((total, item) => {
-  //     return total + " + " + item;
-  //   })
-  //   : "";
-
-  // console.log(checkedItems);
+  const [name, setName] = useState("");
 
 
 
 
+  const handleOnChange = (position) => {
+    const updatedCheckedState = checkedState.map((item, index) =>
+      index === position ? !item : item
+    );
 
-  // Test: 1
+    setCheckedState(updatedCheckedState);
+
+    const totalPrice = updatedCheckedState.reduce(
+      (sum, currentState, index) => {
+        if (currentState === true) {
+          return sum
+            + toppings2[index].price;
+          // console.log(sum);
+        }
+        return sum
+          ;
+
+
+      },
+      0
+    );
+
+    const totalName = updatedCheckedState.reduce(
+      (sum, currentState, index) => {
+        if (currentState === true) {
+          return sum
+            + "+" + toppings2[index].name;
+        }
+        return sum
+          ;
+      },
+      ""
+    );
 
 
 
 
-  // Test: 1
+    setTotal(totalPrice);
 
+    setName(totalName);
+  };
+
+
+
+
+  const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
+
+  const getFormattedName = (name) => `${name}`;
+
+
+  const checkedItems = checkedState.length
+    ? checkedState.reduce((total, item) => {
+      return total + " + " + item;
+    })
+    : "";
 
 
 
@@ -360,6 +360,11 @@ const ViewProduct = () => {
 
 
   // Test: 1
+
+
+
+
+
 
 
   return (
@@ -654,30 +659,101 @@ const ViewProduct = () => {
 
               {/* Test:11 -------------End */}
 
-              <div> {option1?.trim() === "small" ? 
-              
+              <div> {option1?.trim() === "small" ?
 
 
 
-              <Ingredients 
-              
-              option={option} 
-              option1={option1}  
-              selectedSize={selectedSize}  
-              selectedColor={selectedColor}  
-              product={product}  
-              id={id}  
-              addToBasket={addToBasket}  
-              isItemOnBasket={isItemOnBasket}  
+
+                // <Ingredients 
+
+                // option={option} 
+                // option1={option1}  
+                // selectedSize={selectedSize}  
+                // selectedColor={selectedColor}  
+                // product={product}  
+                // id={id}  
+                // addToBasket={addToBasket}  
+                // isItemOnBasket={isItemOnBasket}  
 
 
-              
-              /> 
-              
-              
-              
-              
-              : ""} </div>
+
+                // /> 
+
+
+
+
+                <div className="App">
+                  <h3>Select Toppings3.1</h3>
+                  <ul className="toppings-list">
+
+
+                    {toppings2.map(({ name, price }, index) => {
+                      return (
+                        <li key={index}>
+                          <div className="toppings-list-item">
+                            <div className="left-section">
+                              <input
+                                type="checkbox"
+                                id={`custom-checkbox-${index}`}
+                                name={name}
+                                value={name}
+                                checked={checkedState[index]}
+                                onChange={() => handleOnChange(index)}
+                              />
+                              <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
+                            </div>
+                            <div className="right-section">{getFormattedPrice(price)}</div>
+
+                            {/* <div className="right-section">{getFormattedName(name)}</div> */}
+                          </div>
+                        </li>
+                      );
+                    })}
+                    <li>
+                      <div className="toppings-list-item">
+                        <div className="left-section">Total3.1:</div>
+                        <div className="right-section">{getFormattedPrice(total)}</div>
+                      </div>
+
+                      <div className="toppings-list-item-b">
+                        <div className="left-section">Name Total1:</div>
+                        <div className="right-section">{getFormattedName(name)}</div>
+                      </div>
+
+
+
+                      <h1>{displayMoney(Number(option.trim()) + (total))}</h1>
+
+                      {/* {option1.option1} */}
+
+
+                      {/* Test:Start */}
+
+
+                      <div className="product-modal-action">
+                        <button
+                          className={`button button-small ${isItemOnBasket(product?.id) ? 'button-border button-border-gray' : ''}`}
+                          onClick={handleAddToBasket}
+                          type="button"
+                        >
+                          {isItemOnBasket(product?.id) ? 'Remove From Basket2' : 'Add To Basket'}
+                        </button>
+                      </div>
+
+
+
+                      {/* Test:Endt */}
+
+
+
+                    </li>
+                  </ul>
+                </div>
+
+
+
+
+                : ""} </div>
 
 
 
@@ -761,7 +837,7 @@ const ViewProduct = () => {
 
 
 
-              <div> {option1?.trim() === "medium" ? <Ingredients2 option={option}  /> : ""} </div>
+              <div> {option1?.trim() === "medium" ? <Ingredients2 option={option} /> : ""} </div>
 
 
 
