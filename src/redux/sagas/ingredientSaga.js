@@ -1,5 +1,5 @@
 import { UPDATE_EMAIL, UPDATE_INGREDIENTS, ADD_INGREDIENT, GET_INGREDIENT, UPDATE_INGREDIENT } from 'constants/constants';
-import { ADMIN_INGREDIENTS, ADMIN_USERS1 } from 'constants/routes';
+import { ADMIN_INGREDIENTS, ADMIN_USERS1, ADMIN_INGREDIENTS_NEW } from 'constants/routes';
 import { displayActionMessage } from 'helpers/utils';
 import { call, put, select } from 'redux-saga/effects';
 import { history } from 'routers/AppRouter';
@@ -145,7 +145,7 @@ function* ingredientSaga({ type, payload }) {
         }
 
         yield put(setLoading(false));
-        yield call(history.push, ADMIN_INGREDIENTS);
+        yield call(history.push, ADMIN_INGREDIENTS_NEW);
         yield call(displayActionMessage, 'Ingredients Updated Successfully!', 'success');
       } catch (e) {
         console.log(e);

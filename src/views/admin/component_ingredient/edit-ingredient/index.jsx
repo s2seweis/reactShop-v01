@@ -16,6 +16,9 @@ import { call, put, select } from 'redux-saga/effects';
 
 import { IngredientsNavbar } from '../../component_ingredient';
 
+import PropType from 'prop-types';
+
+
 
 
 
@@ -27,9 +30,9 @@ import EditForm from './EditForm';
 
 const FormSchema = Yup.object().shape({
   fullname: Yup.string(),
-  // .min(4, 'Full name should be at least 4 characters.')
-  // .max(60, 'Full name should be only be 4 characters long.')
-  // .required('Full name is required'),
+  parameter1: Yup.number()
+    .integer('Price should be an integer.')
+    .required('Price is required.'),
   email: Yup.string()
     .email('Email is not valid.'),
   // .required('Email is required.'),
@@ -77,13 +80,13 @@ const EditIngredients = () => {
 
     // parameters1: ingredients?.parameters1 || [],
 
-    parameters1: ingredients?.parameters1?.map((person) => ({ name: person.name, preis1: person.preis1 })) || [],
+    parameters1: ingredients?.parameters1?.map((person) => ({ name: person.name, price: person.price })) || [],
 
-    parameters2: ingredients?.parameters2?.map((person) => ({ name: person.name, preis1: person.preis1 })) ||  [],
+    parameters2: ingredients?.parameters2?.map((person) => ({ name: person.name, price: person.price })) ||  [],
 
-    parameters3: ingredients?.parameters3?.map((person) => ({ name: person.name, preis1: person.preis1 })) ||  [],
+    parameters3: ingredients?.parameters3?.map((person) => ({ name: person.name, price: person.price })) ||  [],
 
-    parameters4: ingredients?.parameters4?.map((person) => ({ name: person.name, preis1: person.preis1 })) ||  []
+    parameters4: ingredients?.parameters4?.map((person) => ({ name: person.name, price: person.price })) ||  []
 
 
   };
@@ -116,7 +119,7 @@ const EditIngredients = () => {
         parameters3: form.parameters3 ||  [],
         parameters4: form.parameters4 ||  [],
 
-        // parameters1: form?.parameters1?.map((person) => ({ name: person.name, preis1: person.preis1 })) || []
+        // parameters1: form?.parameters1?.map((person) => ({ name: person.name, price: person.price })) || []
 
       },
       files: {
@@ -301,7 +304,7 @@ const EditIngredients = () => {
                         <button
                           type="button"
                           onClick={() =>
-                            arrayHelpers.push({ name: "", preis1: "", preis2: "", preis3: "", preis4: "" })
+                            arrayHelpers.push({ name: "", price: "", preis2: "", preis3: "", preis4: "" })
                           }
                         >
                           {" "}
@@ -341,6 +344,36 @@ const EditIngredients = () => {
       </div>
     </Boundary>
   );
+};
+
+EditIngredients.propTypes = {
+  ingredients: PropType.shape({
+    price: PropType.number
+  //   name: PropType.string,
+  //   brand: PropType.string,
+  //   price: PropType.number,
+
+  //   sizes_new: PropType.object,
+
+  //   prices_new: PropType.object,
+
+  //   maxQuantity: PropType.number,
+  //   description: PropType.string,
+  //   keywords: PropType.arrayOf(PropType.string),
+  //   imageCollection: PropType.arrayOf(PropType.object),
+  //   sizes: PropType.arrayOf(PropType.string),
+  //   image: PropType.string,
+  //   imageUrl: PropType.string,
+  //   isFeatured: PropType.bool,
+  //   isRecommended: PropType.bool,
+  //   availableColors: PropType.arrayOf(PropType.string)
+
+
+  }).isRequired,
+  onSubmit: PropType.func.isRequired,
+  isLoading: PropType.bool.isRequired
+
+
 };
 
 export default EditIngredients;

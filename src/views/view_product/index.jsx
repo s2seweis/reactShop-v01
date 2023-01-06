@@ -30,15 +30,12 @@ import ReactDOM from "react-dom";
 import { Formik, Field, Form, FieldArray, ErrorMessage } from "formik";
 
 
-import Ingredients2 from "../../components/common/Ingredients2"
-import Ingredients from "../../components/common/Ingredients"
+// Ingredients Child Component
+import Ingredients1 from "../../components/common/ingredients/Ingredients1"
+import Ingredients2 from "../../components/common/ingredients/ingredients2"
+import Ingredients3 from "../../components/common/ingredients/ingredients3"
+import Ingredients4 from "../../components/common/ingredients/ingredients4"
 
-
-// Test:1 Bringing Ingredients into index
-
-
-import { toppings1 } from "../../views/admin/ingredients/toppings";
-import { string } from 'prop-types';
 
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -47,7 +44,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 
-// Test:1 Bringing Ingredients into index
+
 
 
 
@@ -88,17 +85,6 @@ const ViewProduct = () => {
     ingredients: state.ingredients,
   }));
 
-
-  const toppings2 = ingredients?.parameters1?.map((person) => ({ name: person.name, price: person.price })) || []
-  console.log(toppings2)
-
-  console.log(toppings1)
-
-
-
-
-
-
   const {
     recommendedProducts,
     fetchRecommendedProducts,
@@ -107,7 +93,6 @@ const ViewProduct = () => {
   } = useRecommendedProducts(6);
 
   const colorOverlay = useRef(null);
-  // console.log(colorOverlay)
 
 
   useEffect(() => {
@@ -153,22 +138,7 @@ const ViewProduct = () => {
 
 
   const [option1, setOption1] = useState();
-  // console.log(option1)
-
-  // Test: 1 ----Start
-
-  // const [option2, setOption2] = useState();
-  // console.log(option2)
-
-  // const [option3, setOption3] = useState();
-  // console.log(option3)
-
-
-
-
-
-
-  // Test: 1 ----Start
+  console.log(option1)
 
 
 
@@ -190,24 +160,15 @@ const ViewProduct = () => {
 
       selectedPrice: option,
       selectedSizeNew: option1,
-      // number: option2,
-      // number3: option3
+
 
     });
-    // console.log(option)
-    // console.log(option1)
-    // console.log(option2)
-    // console.log(option3)
+
 
   };
 
 
   // Test:10 ------Start
-
-  // const tickets = product?.tickets
-  //   || []
-  //   ;
-  //   console.log(tickets)
 
 
   const tickets = product?.tickets.map(({ email, name, key, value, id, number, number1 }) => ({ [email]: name, [name]: email, ["number"]: number }))
@@ -218,37 +179,7 @@ const ViewProduct = () => {
 
 
 
-
-
-
-
-
-
-
-  // console.log(product?.tickets)
-
-  // tickets.sort();
-
-  // product?.tickets.sort()
-  // console.log(tickets)
-
   // Test:10 ------End
-
-
-
-  // tickets.sort((firstItem, secondItem) => firstItem.email - secondItem.email);
-
-
-
-  const tickets1 = [
-    { Name: 'Lazslo', Nachname: 'Jamf' },
-    { Name: 'Pig', Nachname: 'Bodine' },
-    { Name: 'Pirate', Nachname: 'Prentice' }
-  ];
-
-  // Test:11 ---------------------------Start
-
-
 
 
   const [isFooVisible, setIsFooVisible] = useState(false);
@@ -265,107 +196,6 @@ const ViewProduct = () => {
     setIsBarVisible((isVisible) => !isVisible);
     setIsFooVisible(false);
   };
-
-
-
-
-
-
-  // Test:11 ---------------------------End
-
-
-
-
-  // Test: 1
-
-
-
-
-
-
-  const [checkedState, setCheckedState] = useState(
-    new Array(toppings2.length).fill(false));
-    console.log(checkedState)
-    // console.log(setCheckedState)
-
-
-
-
-
-
-  const [total, setTotal] = useState(0);
-
-  const [name, setName] = useState("");
-
-
-
-
-  const handleOnChange = (position) => {
-    const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
-    );
-
-    setCheckedState(updatedCheckedState);
-
-    const totalPrice = updatedCheckedState.reduce(
-      (sum, currentState, index) => {
-        if (currentState === true) {
-          return sum
-            + toppings2[index].price;
-          // console.log(sum);
-        }
-        return sum
-          ;
-
-
-      },
-      0
-    );
-
-    const totalName = updatedCheckedState.reduce(
-      (sum, currentState, index) => {
-        if (currentState === true) {
-          return sum
-            + "+" + toppings2[index].name;
-        }
-        return sum
-          ;
-      },
-      ""
-    );
-
-
-
-
-    setTotal(totalPrice);
-
-    setName(totalName);
-  };
-
-
-
-
-  const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
-
-  const getFormattedName = (name) => `${name}`;
-
-
-  const checkedItems = checkedState.length
-    ? checkedState.reduce((total, item) => {
-      return total + " + " + item;
-    })
-    : "";
-
-
-
-
-
-
-  // Test: 1
-
-
-
-
 
 
 
@@ -470,19 +300,6 @@ const ViewProduct = () => {
               )}
 
 
-
-
-
-
-
-              {/* <h1>{displayMoney(option ? option : 0)}</h1> */}
-
-              {/* <h1>{displayMoney(Number(option ? option : 0) + (total ? total : 0))}</h1> */}
-
-
-
-
-
               <div className="product-modal-action">
                 <button
                   className={`button button-small ${isItemOnBasket(product.id) ? 'button-border button-border-gray' : ''}`}
@@ -494,12 +311,6 @@ const ViewProduct = () => {
               </div>
 
 
-
-
-
-
-
-              {/* Test: 10 -----Start "Its working like it should"  */}
 
               <div className='product-vari'>
                 <Select
@@ -513,338 +324,91 @@ const ViewProduct = () => {
 
               </div>
 
-              {/* Test: 10 -----End
 
-
-
-
-              {/* Test: 5 ---------Start */}
-
-
-              {/* <h1>{product.tickets.index}</h1> */}
-
-
-              {/* Test: 5 ------End */}
-
-
-
-
-
-
-              {/* Test:11 -------------Start */}
-
-              {/* ################################################################################# */}
-
-              {/* <div className="show_hide">
-                <button onClick={handleFooPress}>Show Foo</button>
-                <button onClick={handleBarPress}>Show Bar</button>
-                {isFooVisible &&
-
-
-
-                  <div className="App">
-                    <h3>Select Toppings1.1</h3>
-                    <ul className="toppings-list">
-                      {toppings.map(({ name, price }, index) => {
-                        return (
-                          <li key={index}>
-                            <div className="toppings-list-item">
-                              <div className="left-section">
-                                <input
-                                  type="checkbox"
-                                  id={`custom-checkbox-${index}`}
-                                  name={name}
-                                  value={name}
-                                  checked={checkedState[index]}
-                                  onChange={() => handleOnChange(index)}
-                                />
-                                <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
-                              </div>
-                              <div className="right-section">{getFormattedPrice(price)}</div>
-
-                              <div className="right-section">{getFormattedName(name)}</div>
-                            </div>
-                          </li>
-                        );
-                      })}
-                      <li>
-                        <div className="toppings-list-item">
-                          <div className="left-section">Total3:</div>
-                          <div className="right-section">{getFormattedPrice(total)}</div>
-
-                        </div>
-
-                        <div className="toppings-list-item-b">
-                          <div className="left-section">Name Total:</div>
-                          <div className="right-section">{getFormattedName(name)}</div>
-                        </div>
-
-
-                      </li>
-                    </ul>
-                  </div>
-                }
-
-
-
-               
-
-
-              </div> */}
-
-
-
-
-              {/* ################################################################################# */}
-
-
-              {/* <div className="show_hide">
-                <button onClick={handleFooPress}>Show Foo</button>
-                <button onClick={handleBarPress}>Show Bar</button>
-                {isFooVisible &&
-
-
-
-                  <div className="App">
-                    <h3>Select Toppings1.1</h3>
-                    <ul className="toppings-list">
-                      {toppings.map(({ name, price }, index) => {
-                        return (
-                          <li key={index}>
-                            <div className="toppings-list-item">
-                              <div className="left-section">
-                                <input
-                                  type="checkbox"
-                                  id={`custom-checkbox-${index}`}
-                                  name={name}
-                                  value={name}
-                                  checked={checkedState[index]}
-                                  onChange={() => handleOnChange(index)}
-                                />
-                                <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
-                              </div>
-                              <div className="right-section">{getFormattedPrice(price)}</div>
-
-                            </div>
-                          </li>
-                        );
-                      })}
-                      <li>
-                        <div className="toppings-list-item">
-                          <div className="left-section">Total1.1:</div>
-                          <div className="right-section">{getFormattedPrice(total)}</div>
-                        </div>
-
-                        <div className="toppings-list-item-b">
-                          <div className="left-section">Name Total:</div>
-                          <div className="right-section">{getFormattedName(name)}</div>
-                        </div>
-
-
-
-
-
-
-                      </li>
-                    </ul>
-                  </div>
-
-
-
-                }
-                {isBarVisible && <h1>Bar</h1>}
-              </div> */}
-
-
-
-
-
-              {/* Test:11 -------------End */}
+              {/* Test:Ingredients Child Component, bringing Parent state into it -------------Start */}
 
               <div> {option1?.trim() === "small" ?
 
 
+                <Ingredients1
 
+                  option={option}
+                  option1={option1}
+                  selectedSize={selectedSize}
+                  selectedColor={selectedColor}
+                  product={product}
+                  id={id}
+                  addToBasket={addToBasket}
+                  isItemOnBasket={isItemOnBasket}
 
-                // <Ingredients 
 
-                // option={option} 
-                // option1={option1}  
-                // selectedSize={selectedSize}  
-                // selectedColor={selectedColor}  
-                // product={product}  
-                // id={id}  
-                // addToBasket={addToBasket}  
-                // isItemOnBasket={isItemOnBasket}  
+                /> : ""} </div>
 
 
+              <div> {option1?.trim() === "medium" ?
 
-                // /> 
 
+                <Ingredients2
 
+                  option={option}
+                  option1={option1}
+                  selectedSize={selectedSize}
+                  selectedColor={selectedColor}
+                  product={product}
+                  id={id}
+                  addToBasket={addToBasket}
+                  isItemOnBasket={isItemOnBasket}
 
 
-                <div className="App">
-                  <h3>Select Toppings3.1</h3>
-                  <ul className="toppings-list">
+                /> : ""} </div>
 
 
-                    {toppings2.map(({ name, price }, index) => {
-                      return (
-                        <li key={index}>
-                          <div className="toppings-list-item">
-                            <div className="left-section">
-                              <input
-                                type="checkbox"
-                                id={`custom-checkbox-${index}`}
-                                name={name}
-                                value={name}
-                                checked={checkedState[index]}
-                                onChange={() => handleOnChange(index)}
-                              />
-                              <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
-                            </div>
-                            <div className="right-section">{getFormattedPrice(price)}</div>
+              <div> {option1?.trim() === "large" ?
 
-                            {/* <div className="right-section">{getFormattedName(name)}</div> */}
-                          </div>
-                        </li>
-                      );
-                    })}
-                    <li>
-                      <div className="toppings-list-item">
-                        <div className="left-section">Total3.1:</div>
-                        <div className="right-section">{getFormattedPrice(total)}</div>
-                      </div>
 
-                      <div className="toppings-list-item-b">
-                        <div className="left-section">Name Total1:</div>
-                        <div className="right-section">{getFormattedName(name)}</div>
-                      </div>
+                <Ingredients3
 
+                  option={option}
+                  option1={option1}
+                  selectedSize={selectedSize}
+                  selectedColor={selectedColor}
+                  product={product}
+                  id={id}
+                  addToBasket={addToBasket}
+                  isItemOnBasket={isItemOnBasket}
 
 
-                      <h1>{displayMoney(Number(option.trim()) + (total))}</h1>
+                /> : ""} </div>
 
-                      {/* {option1.option1} */}
+                
+              <div> {option1?.trim() === "extra large" ?
 
 
-                      {/* Test:Start */}
+                <Ingredients4
 
+                  option={option}
+                  option1={option1}
+                  selectedSize={selectedSize}
+                  selectedColor={selectedColor}
+                  product={product}
+                  id={id}
+                  addToBasket={addToBasket}
+                  isItemOnBasket={isItemOnBasket}
 
-                      <div className="product-modal-action">
-                        <button
-                          className={`button button-small ${isItemOnBasket(product?.id) ? 'button-border button-border-gray' : ''}`}
-                          onClick={handleAddToBasket}
-                          type="button"
-                        >
-                          {isItemOnBasket(product?.id) ? 'Remove From Basket2' : 'Add To Basket'}
-                        </button>
-                      </div>
 
+                /> : ""} </div>
 
 
-                      {/* Test:Endt */}
 
 
+              {/* <div> {option1?.trim() === "medium" ? <Ingredients2 option={option} /> : ""} </div>
 
-                    </li>
-                  </ul>
-                </div>
+              <div> {option1?.trim() === "large" ? <Ingredients3 option={option} /> : ""} </div>
 
+              <div> {option1?.trim() === "extra large" ? <Ingredients4 option={option} /> : ""} </div> */}
 
 
-
-                : ""} </div>
-
-
-
-
-
-
-
-
-
-              {/* down its working
-              <div> {option1 === "100" ? <Ingredients /> : ""} </div> */}
-
-
-
-
-              {/* <div> {option2 === "100" ?
-
-
-
-
-              >>>>>>>>  <Ingredients /> <<<<<<<<
-
-
-                <div className="App">
-                  <h3>Select Toppings1.1</h3>
-                  <ul className="toppings-list">
-                    {toppings.map(({ name, price }, index) => {
-                      return (
-                        <li key={index}>
-                          <div className="toppings-list-item">
-                            <div className="left-section">
-                              <input
-                                type="checkbox"
-                                id={`custom-checkbox-${index}`}
-                                name={name}
-                                value={name}
-                                checked={checkedState[index]}
-                                onChange={() => handleOnChange(index)}
-                              />
-                              <label htmlFor={`custom-checkbox-${index}`}>{name}</label>
-                            </div>
-                            <div className="right-section">{getFormattedPrice(price)}</div>
-
-                          </div>
-                        </li>
-                      );
-                    })}
-                    <li>
-                      <div className="toppings-list-item">
-                        <div className="left-section">Total1.1:</div>
-                        <div className="right-section">{getFormattedPrice(total)}</div>
-                      </div>
-
-                      <div className="toppings-list-item-b">
-                        <div className="left-section">Name Total:</div>
-                        <div className="right-section">{getFormattedName(name)}</div>
-                      </div>
-
-
-
-
-
-
-                    </li>
-                  </ul>
-                </div>
-
-
-
-
-                : ""} </div> */}
-
-
-
-              {/* #################################################################################  */}
-
-
-
-
-              {/* <div> {option3 === "200" ? <Ingredients2 /> : ""} </div> */}
-
-
-
-              <div> {option1?.trim() === "medium" ? <Ingredients2 option={option} /> : ""} </div>
-
-
-
-
-
+              {/* Test:11 -------------End */}
 
 
 
@@ -870,7 +434,7 @@ const ViewProduct = () => {
     </main>
   );
 
-  // Test 1
+
 
 
 };
@@ -880,18 +444,3 @@ const ViewProduct = () => {
 export default ViewProduct;
 
 
-
-// Review:
-// Functions being called more than Me anticipated, results into too many console.log(), too many calls.
-// Needs a better conditional Statement, better then {option2 === 100 ? Ingredients : ""}. => now using option 1 ,ab bit better already
-// Instead of {number} maybe better if selected isactive then state true otherwise states false.
-// Instead using the string, maybe calling direct the field of the array.
-
-
-// In React we can access the child’s state using Refs.  we will assign a Refs for the child component in the parent component. then using Refs we can access the child’s state. not sure
-
-
-// To render multiple JSX elements in React, you can loop through an array with the .map() method and return a single element.
-
-
-// https://stackoverflow.com/questions/68885949/how-to-access-particular-child-state-from-parent-with-multiple-children

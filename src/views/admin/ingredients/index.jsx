@@ -9,7 +9,7 @@ import React, { useState } from "react";
 
 import { toppings } from "../ingredients/toppings"
 
-import Ingredients from "../../../components/common/Ingredients"
+import Ingredients from "../../../components/common/ingredients/Ingredients1"
 
 
 const getFormattedPrice = (price) => `$${price.toFixed(2)}`;

@@ -18,9 +18,13 @@ export { default as Side } from './Side';
 export { default as MenuBurger } from './MenuBurger';
 
 // ingredients
-export { default as Ingredients } from './Ingredients';
+export { default as Ingredients1 } from './ingredients/Ingredients1';
 
-export { default as Ingredients2 } from './Ingredients2';
+export { default as Ingredients2 } from './ingredients/ingredients3';
+
+export { default as Ingredients3 } from './ingredients/ingredients3';
+
+export { default as Ingredients4 } from './ingredients/ingredients3';
 
 
 export { default as FormikFieldArrayForm } from './FormikFieldArrayForm';

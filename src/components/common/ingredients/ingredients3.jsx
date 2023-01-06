@@ -1,5 +1,5 @@
 // import { useState } from "react";
-import { toppings1 } from "../../views/admin/ingredients/toppings";
+import { toppings1 } from "../../../views/admin/ingredients/toppings";
 
 // import { useDocumentTitle, useScrollTop } from 'hooks';
 // import React from 'react';
@@ -32,13 +32,31 @@ import { useDispatch, useSelector } from 'react-redux';
 // instead of {number} maybe better if selected then active and status true otherwise status false, boolean statement
 
 
-const Ingredients = (option, option1, selectedSize, selectedColor, id, isItemOnBasket, addToBasket) => {
+const ingredient3 = (option, option1, selectedSize, selectedColor, id, isItemOnBasket, addToBasket) => {
+
+
+
+
+  const { ingredients } = useSelector((state) => ({
+    ingredients: state.ingredients,
+  }));
+
+
+
+
+
+
+  const toppings2 = ingredients?.parameters3?.map((person) => ({ name: person.name, price: person.price })) || []
+
+
+
+
+
 
   const [checkedState, setCheckedState] = useState(
-    new Array(toppings1?.length).fill(false));
+    new Array(toppings2?.length).fill(false));
 
   // console.log(checkedState)
-
   // console.log(option.option)
   // console.log(option.option1)
   // console.log(option.selectedSize)
@@ -47,69 +65,43 @@ const Ingredients = (option, option1, selectedSize, selectedColor, id, isItemOnB
   // console.log(option.isItemOnBasket)
   // console.log(option.addToBasket)
 
-  
 
-const selectedColorNew = option.selectedColor
 
-const id1 = option.id
-// console.log(id1)
+  const selectedColorNew = option.selectedColor
+  const id1 = option.id
 
 
 
 
-const { ingredients } = useSelector((state) => ({
-  ingredients: state.ingredients,
-}));
-
-console.log(ingredients)
 
 
-// const initFormikValues = {
-  
-
-//   toppings: ingredients?.toppings?.map((person) => ({ name: person.name, price: person.price })) || [],
-
-//   parameters2: ingredients?.parameters2?.map((person) => ({ name: person.name, price: person.price })) ||  [],
-
-//   parameters3: ingredients?.parameters3?.map((person) => ({ name: person.name, price: person.price })) ||  [],
-
-//   parameters4: ingredients?.parameters4?.map((person) => ({ name: person.name, price: person.price })) ||  []
 
 
-// };
-
-// console.log(initFormikValues.toppings);
 
 
-const toppings2 = ingredients?.parameters1?.map((person) => ({ name: person.name, price: person.price })) || []
 
-  console.log(toppings2)
-  console.log(toppings1)
 
 
 
   const [total, setTotal] = useState(0);
-  console.log(total)
-  console.log(setTotal)
 
   const [name, setName] = useState("");
 
-  // console.log(total)
-  // console.log(name)
+
 
 
   const handleOnChange = (position) => {
-    const updatedCheckedState = checkedState?.map((item, index) =>
+    const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
     );
 
     setCheckedState(updatedCheckedState);
 
-    const totalPrice = updatedCheckedState?.reduce(
+    const totalPrice = updatedCheckedState.reduce(
       (sum, currentState, index) => {
         if (currentState === true) {
           return sum
-            + toppings1[index]?.price;
+            + toppings2[index].price;
           // console.log(sum);
         }
         return sum
@@ -117,29 +109,24 @@ const toppings2 = ingredients?.parameters1?.map((person) => ({ name: person.name
 
 
       },
-      
+      0
     );
 
     console.log(totalPrice)
 
-    const totalName = updatedCheckedState?.reduce(
+    const totalName = updatedCheckedState.reduce(
       (sum, currentState, index) => {
         if (currentState === true) {
           return sum
-            + "+" + toppings1[index]?.name;
+            + "+" + toppings2[index].name;
         }
         return sum
           ;
       },
-      
+      ""
     );
 
-        console.log(totalName)
 
-
-    // console.log(totalPrice)
-
-    // console.log(totalName)
 
 
     setTotal(totalPrice);
@@ -147,11 +134,9 @@ const toppings2 = ingredients?.parameters1?.map((person) => ({ name: person.name
     setName(totalName);
   };
 
-  const getFormattedPrice = (price) => `$${price}`;
-  console.log(getFormattedPrice)
+  const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
 
   const getFormattedName = (name) => `${name}`;
-  console.log(getFormattedName)
 
 
   // const getFormattedName = (name) => `${name}`;
@@ -162,7 +147,6 @@ const toppings2 = ingredients?.parameters1?.map((person) => ({ name: person.name
   //   })
   //   : "";
 
-  // console.log(checkedItems);
 
 
 
@@ -195,28 +179,28 @@ const toppings2 = ingredients?.parameters1?.map((person) => ({ name: person.name
 
       selectedPrice: option.option,
       selectedSizeNew: option.option1,
-    
+
 
     });
-  
+
 
   };
 
 
 
 
-  
+
 
 
   // Test: End
 
   return (
     <div className="App">
-      <h3>Select Toppings3.1</h3>
+      <h3>-3- working-</h3>
       <ul className="toppings-list">
 
 
-        {toppings1.map(({ name, price }, index) => {
+        {toppings2.map(({ name, price }, index) => {
           return (
             <li key={index}>
               <div className="toppings-list-item">
@@ -253,7 +237,8 @@ const toppings2 = ingredients?.parameters1?.map((person) => ({ name: person.name
 
           <h1>{displayMoney(Number(option.option.trim()) + (total))}</h1>
 
-          {/* {option1.option1} */}
+          <h2>{option1.option1}</h2>
+
 
 
           {/* Test:Start */}
@@ -282,6 +267,6 @@ const toppings2 = ingredients?.parameters1?.map((person) => ({ name: person.name
 };
 
 
-export default Ingredients;
+export default ingredient3;
 
 

@@ -1,7 +1,7 @@
 // import { useState } from "react";
-import { toppings2 } from "../../views/admin/ingredients/toppings";
+import { toppings1 } from "../../../views/admin/ingredients/toppings";
 
-import { useDocumentTitle, useScrollTop } from 'hooks';
+// import { useDocumentTitle, useScrollTop } from 'hooks';
 // import React from 'react';
 
 import { Formik, Field, Form, FieldArray } from "formik";
@@ -9,6 +9,17 @@ import { Formik, Field, Form, FieldArray } from "formik";
 import React, { useState } from "react";
 
 import { displayMoney } from 'helpers/utils';
+
+import {
+  useBasket,
+  useDocumentTitle,
+  useProduct,
+  useRecommendedProducts,
+  useScrollTop
+} from 'hooks';
+
+
+import { Link, useParams } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -21,7 +32,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // instead of {number} maybe better if selected then active and status true otherwise status false, boolean statement
 
 
-const Ingredients2 = (option) => {
+const ingredients2 = (option, option1, selectedSize, selectedColor, id, isItemOnBasket, addToBasket) => {
 
 
 
@@ -31,24 +42,40 @@ const Ingredients2 = (option) => {
   }));
 
 
-  const toppings3 = ingredients?.parameters1.map((person) => ({ name: person.name, price: person.price })) || []
-  console.log(toppings2)
-  console.log(toppings3)
+
+
+
+
+  const toppings2 = ingredients?.parameters2?.map((person) => ({ name: person.name, price: person.price })) || []
+
 
 
 
 
 
   const [checkedState, setCheckedState] = useState(
-    new Array(toppings3?.length).fill(false));
-
-    console.log(checkedState)
-
-
-
+    new Array(toppings2?.length).fill(false));
 
   // console.log(checkedState)
-  console.log(option.option)
+  // console.log(option.option)
+  // console.log(option.option1)
+  // console.log(option.selectedSize)
+  // console.log(option.selectedColor)
+  // console.log(option.id)
+  // console.log(option.isItemOnBasket)
+  // console.log(option.addToBasket)
+
+
+
+  const selectedColorNew = option.selectedColor
+  const id1 = option.id
+
+
+
+
+
+
+
 
 
 
@@ -60,8 +87,7 @@ const Ingredients2 = (option) => {
 
   const [name, setName] = useState("");
 
-  console.log(total)
-  console.log(name)
+
 
 
   const handleOnChange = (position) => {
@@ -75,8 +101,8 @@ const Ingredients2 = (option) => {
       (sum, currentState, index) => {
         if (currentState === true) {
           return sum
-            + toppings3[index].price;
-          console.log(sum);
+            + toppings2[index].price;
+          // console.log(sum);
         }
         return sum
           ;
@@ -86,11 +112,13 @@ const Ingredients2 = (option) => {
       0
     );
 
+    console.log(totalPrice)
+
     const totalName = updatedCheckedState.reduce(
       (sum, currentState, index) => {
         if (currentState === true) {
           return sum
-            + "+" + toppings3[index].name;
+            + "+" + toppings2[index].name;
         }
         return sum
           ;
@@ -98,9 +126,7 @@ const Ingredients2 = (option) => {
       ""
     );
 
-    // console.log(totalPrice)
 
-    // console.log(totalName)
 
 
     setTotal(totalPrice);
@@ -112,6 +138,7 @@ const Ingredients2 = (option) => {
 
   const getFormattedName = (name) => `${name}`;
 
+
   // const getFormattedName = (name) => `${name}`;
 
   // const checkedItems = checkedState.length
@@ -120,13 +147,60 @@ const Ingredients2 = (option) => {
   //   })
   //   : "";
 
-  // console.log(checkedItems);
+
+
+
+
+  // Test: Start
+
+
+  // const { id } = useParams();
+  const { product, isLoading, error } = useProduct(id1);
+  // const { addToBasket, isItemOnBasket } = useBasket(id1);
+
+
+  // const [selectedImage, setSelectedImage] = useState(product?.image || '');
+
+  // const [selectedSize, setSelectedSize] = useState('');
+
+  // const [selectedSizeNew, setSelectedSizeNew] = useState('');
+
+  // const [selectedPrice, setSelectedPrice] = useState('');
+
+  // const [selectedColor, setSelectedColor] = useState('');
+
+
+  const handleAddToBasket = () => {
+    option.addToBasket({
+      ...product,
+      selectedColorNew,
+      selectedSize: option.selectedSize,
+
+
+      selectedPrice: option.option,
+      selectedSizeNew: option.option1,
+
+
+    });
+
+
+  };
+
+
+
+
+
+
+
+  // Test: End
 
   return (
     <div className="App">
-      <h3>Select Toppings3.100</h3>
+      <h3>-2- working-</h3>
       <ul className="toppings-list">
-        {toppings3.map(({ name, price }, index) => {
+
+
+        {toppings2.map(({ name, price }, index) => {
           return (
             <li key={index}>
               <div className="toppings-list-item">
@@ -155,7 +229,7 @@ const Ingredients2 = (option) => {
           </div>
 
           <div className="toppings-list-item-b">
-            <div className="left-section">Name Total:</div>
+            <div className="left-section">Name Total1:</div>
             <div className="right-section">{getFormattedName(name)}</div>
           </div>
 
@@ -163,6 +237,26 @@ const Ingredients2 = (option) => {
 
           <h1>{displayMoney(Number(option.option.trim()) + (total))}</h1>
 
+          <h2>{option1.option1}</h2>
+
+
+
+          {/* Test:Start */}
+
+
+          <div className="product-modal-action">
+            <button
+              className={`button button-small ${option.isItemOnBasket(product?.id) ? 'button-border button-border-gray' : ''}`}
+              onClick={handleAddToBasket}
+              type="button"
+            >
+              {option.isItemOnBasket(product?.id) ? 'Remove From Basket2' : 'Add To Basket'}
+            </button>
+          </div>
+
+
+
+          {/* Test:Endt */}
 
 
 
@@ -173,4 +267,6 @@ const Ingredients2 = (option) => {
 };
 
 
-export default Ingredients2;
+export default ingredients2;
+
+
