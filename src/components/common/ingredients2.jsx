@@ -10,6 +10,9 @@ import React, { useState } from "react";
 
 import { displayMoney } from 'helpers/utils';
 
+import { useDispatch, useSelector } from 'react-redux';
+
+
 
 
 // import "./styles.css";
@@ -20,11 +23,33 @@ import { displayMoney } from 'helpers/utils';
 
 const Ingredients2 = (option) => {
 
+
+
+
+  const { ingredients } = useSelector((state) => ({
+    ingredients: state.ingredients,
+  }));
+
+
+  const toppings3 = ingredients?.parameters1.map((person) => ({ name: person.name, price: person.price })) || []
+  console.log(toppings2)
+  console.log(toppings3)
+
+
+
+
+
   const [checkedState, setCheckedState] = useState(
-    new Array(toppings2.length).fill(false));
+    new Array(toppings3?.length).fill(false));
+
+    console.log(checkedState)
+
+
+
 
   // console.log(checkedState)
   console.log(option.option)
+
 
 
 
@@ -50,7 +75,7 @@ const Ingredients2 = (option) => {
       (sum, currentState, index) => {
         if (currentState === true) {
           return sum
-            + toppings2[index].price;
+            + toppings3[index].price;
           console.log(sum);
         }
         return sum
@@ -65,7 +90,7 @@ const Ingredients2 = (option) => {
       (sum, currentState, index) => {
         if (currentState === true) {
           return sum
-            + "+" + toppings2[index].name;
+            + "+" + toppings3[index].name;
         }
         return sum
           ;
@@ -99,9 +124,9 @@ const Ingredients2 = (option) => {
 
   return (
     <div className="App">
-      <h3>Select Toppings3.1</h3>
+      <h3>Select Toppings3.100</h3>
       <ul className="toppings-list">
-        {toppings2.map(({ name, price }, index) => {
+        {toppings3.map(({ name, price }, index) => {
           return (
             <li key={index}>
               <div className="toppings-list-item">

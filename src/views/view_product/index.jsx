@@ -285,6 +285,8 @@ const ViewProduct = () => {
 
   const [checkedState, setCheckedState] = useState(
     new Array(toppings2.length).fill(false));
+    console.log(checkedState)
+    // console.log(setCheckedState)
 
 
 

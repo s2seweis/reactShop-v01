@@ -81,6 +81,12 @@ console.log(ingredients)
 // console.log(initFormikValues.toppings);
 
 
+const toppings2 = ingredients?.parameters1?.map((person) => ({ name: person.name, price: person.price })) || []
+
+  console.log(toppings2)
+  console.log(toppings1)
+
+
 
   const [total, setTotal] = useState(0);
   console.log(total)
@@ -199,10 +205,7 @@ console.log(ingredients)
 
 
 
-  const toppings2 = ingredients?.parameters1?.map((person) => ({ name: person.name, price: person.price })) || []
-
-  console.log(toppings2)
-  console.log(toppings1)
+  
 
 
   // Test: End
