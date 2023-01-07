@@ -141,7 +141,7 @@ const EditForm = ({ isLoading, authProvider }) => {
               <button
                 type="button"
                 onClick={() =>
-                  arrayHelpers.push({ name: "", preis1: "" })
+                  arrayHelpers.push({ name: "", price: "" })
                 }
               >
                 {" "}
@@ -234,6 +234,10 @@ const EditForm = ({ isLoading, authProvider }) => {
 
             {/* Here comes the component */}
 
+            <div className="example-ingredients">
+            <h5>example: 1.00/ 1.50/ 2.00</h5>
+            </div>
+
             <div className='fieldarray-top' >
               {/* <h4>Ingredients</h4> */}
               <FieldArray
@@ -256,9 +260,18 @@ const EditForm = ({ isLoading, authProvider }) => {
                               name={`parameters1.${index}.${param}`}
                               // placeholder={`${"index"}.${param}`}
                               className="field-ingredients"
+                              placeholder={`${param}`}
+
 
                             />
                           ))}
+                          <button
+                            type="button"
+                            style={{ width: "15px" }}
+                          >
+                            {" "}
+                            €{" "}
+                          </button>
                           <button
                             type="button"
                             onClick={() => arrayHelpers.remove(index)}
@@ -273,7 +286,7 @@ const EditForm = ({ isLoading, authProvider }) => {
                     <button
                       type="button"
                       onClick={() =>
-                        arrayHelpers.push({ name: "", preis1: "" })
+                        arrayHelpers.push({ name: "", price: "" })
                       }
                     >
                       {" "}
@@ -418,7 +431,7 @@ const EditForm = ({ isLoading, authProvider }) => {
                     <button
                       type="button"
                       onClick={() =>
-                        arrayHelpers.push({ name: "", preis1: "" })
+                        arrayHelpers.push({ name: "", price: "" })
                       }
                     >
                       {" "}
@@ -551,7 +564,7 @@ const EditForm = ({ isLoading, authProvider }) => {
                     <button
                       type="button"
                       onClick={() =>
-                        arrayHelpers.push({ name: "", preis1: "" })
+                        arrayHelpers.push({ name: "", price: "" })
                       }
                     >
                       {" "}
@@ -703,7 +716,7 @@ const EditForm = ({ isLoading, authProvider }) => {
                     <button
                       type="button"
                       onClick={() =>
-                        arrayHelpers.push({ name: "", preis1: "" })
+                        arrayHelpers.push({ name: "", price: "" })
                       }
                     >
                       {" "}

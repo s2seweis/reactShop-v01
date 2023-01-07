@@ -31,11 +31,12 @@
 
 .user-profile-banner {
   width: 100%;
-  height: 150px;
+  // height: 150px;
   position: relative;
 
   @include mobile {
-    height: 100px;
+    // height: 100px;
+    width: 95%;
   }
 }
 
@@ -108,4 +109,14 @@
   @include mobile {
     width: 280px;
   }
+}
+
+
+.example-ingredients {
+ width: auto;
+ display:flex;
+
+ @include mobile {
+  width: 280px;
+}
 }

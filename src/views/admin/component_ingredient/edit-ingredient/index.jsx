@@ -30,9 +30,7 @@ import EditForm from './EditForm';
 
 const FormSchema = Yup.object().shape({
   fullname: Yup.string(),
-  parameter1: Yup.number()
-    .integer('Price should be an integer.')
-    .required('Price is required.'),
+  
   email: Yup.string()
     .email('Email is not valid.'),
   // .required('Email is required.'),
@@ -80,7 +78,7 @@ const EditIngredients = () => {
 
     // parameters1: ingredients?.parameters1 || [],
 
-    parameters1: ingredients?.parameters1?.map((person) => ({ name: person.name, price: person.price })) || [],
+    parameters1: ingredients?.parameters1?.map((person) => ({ name: person.name, price: person.price.toFixed(2) })) || [],
 
     parameters2: ingredients?.parameters2?.map((person) => ({ name: person.name, price: person.price })) ||  [],
 
@@ -114,7 +112,8 @@ const EditIngredients = () => {
         avatar: form.avatar,
         banner: form.banner,
 
-        parameters1: form.parameters1 || [],
+        // parameters1: form.parameters1 || [],
+        parameters1: form?.parameters1?.map((person) => ({ name: person.name, price: Number(person.price) })) || [],
         parameters2: form.parameters2 ||  [],
         parameters3: form.parameters3 ||  [],
         parameters4: form.parameters4 ||  [],
@@ -193,7 +192,7 @@ const EditIngredients = () => {
 
 
                 <div className="user-profile-banner">
-                  <div className="user-profile-banner-wrapper">
+                  {/* <div className="user-profile-banner-wrapper">
                     <ImageLoader
                       alt="Banner"
                       className="user-profile-banner-img"
@@ -219,7 +218,7 @@ const EditIngredients = () => {
                         <EditOutlined />
                       </label>
                     )}
-                  </div>
+                  </div> */}
                   {/* <div className="user-profile-avatar-wrapper">
                     <ImageLoader
                       alt="Avatar"
@@ -348,7 +347,7 @@ const EditIngredients = () => {
 
 EditIngredients.propTypes = {
   ingredients: PropType.shape({
-    price: PropType.number
+    preis1: PropType.number
   //   name: PropType.string,
   //   brand: PropType.string,
   //   price: PropType.number,
