@@ -18,6 +18,13 @@ import { FiArrowLeftCircle, FiArrowRightCircle, FiArrowDownCircle, FiArrowUpCirc
 
 
 
+// import { render } from "react-dom";
+
+
+
+
+
+
 
 
 const EditForm = ({ isLoading, authProvider }) => {
@@ -59,6 +66,19 @@ const EditForm = ({ isLoading, authProvider }) => {
 
 
 
+
+  // Test: React Final Form
+
+
+  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+  const onSubmit = async values => {
+    await sleep(300);
+    window.alert(JSON.stringify(values, 0, 2));
+  };
+
+
+  // Test: React Final Form
 
 
 
@@ -163,7 +183,7 @@ const EditForm = ({ isLoading, authProvider }) => {
       {/* Test:2 ---------Start DropDownBox */}
 
 
-{/* ############################################################################################################## */}
+      {/* ############################################################################################################## */}
 
       <div className="dropdown-new">
 
@@ -235,7 +255,7 @@ const EditForm = ({ isLoading, authProvider }) => {
             {/* Here comes the component */}
 
             <div className="example-ingredients">
-            <h5>example: 1.00/ 1.50/ 2.00</h5>
+              <h5>example: 1.00/ 1.50/ 2.00</h5>
             </div>
 
             <div className='fieldarray-top' >
@@ -260,6 +280,7 @@ const EditForm = ({ isLoading, authProvider }) => {
                               name={`parameters1.${index}.${param}`}
                               // placeholder={`${"index"}.${param}`}
                               className="field-ingredients"
+                              // placeholder={`${param}`}
                               placeholder={`${param}`}
 
 
@@ -296,6 +317,10 @@ const EditForm = ({ isLoading, authProvider }) => {
                 )}
               />
 
+
+
+
+
             </div>
 
 
@@ -324,7 +349,7 @@ const EditForm = ({ isLoading, authProvider }) => {
 
 
 
-    {/* ##############################################################################################################  */}
+      {/* ##############################################################################################################  */}
 
 
       <div className="dropdown-new">
@@ -459,7 +484,7 @@ const EditForm = ({ isLoading, authProvider }) => {
 
 
 
-    {/* ##############################################################################################################  */}
+      {/* ##############################################################################################################  */}
 
 
 
@@ -600,7 +625,7 @@ const EditForm = ({ isLoading, authProvider }) => {
       </div>
 
 
-    {/* ##############################################################################################################  */}
+      {/* ##############################################################################################################  */}
 
 
 
@@ -741,7 +766,7 @@ const EditForm = ({ isLoading, authProvider }) => {
         </div>
       </div>
 
-    {/* ##############################################################################################################  */}
+      {/* ##############################################################################################################  */}
 
 
 
@@ -769,13 +794,6 @@ const EditForm = ({ isLoading, authProvider }) => {
 
 
 
-
-
-
-
-
-
-
         <button
           className="button w-100-mobile"
           // disabled={isLoading}
@@ -790,24 +808,23 @@ const EditForm = ({ isLoading, authProvider }) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       </div>
+
+
+
+
+
+
+      <h1>Test: React Final Form</h1>
+
+
+
+
+
+
+
+
+
     </div>
   );
 };
