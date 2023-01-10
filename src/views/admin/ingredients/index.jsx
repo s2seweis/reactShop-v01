@@ -1,38 +1,150 @@
-import { useDocumentTitle, useScrollTop } from 'hooks';
-// import React from 'react';
+import { EditOutlined, LoadingOutlined } from '@ant-design/icons';
+import { Boundary, ImageLoader } from 'components/common';
+import { Formik, Field, Form, FieldArray, useFormikContext } from 'formik';
+import {
+  useDocumentTitle, useFileHandler, useModal, useScrollTop
+} from 'hooks';
+import React, { useEffect, useState, lazy } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoading } from 'redux/actions/miscActions';
+import { addIngredients, updateIngredient } from 'redux/actions/ingredientActions';
 
 
-import React, { useState } from "react";
-
-import { render } from "react-dom";
-import Styles from "./Styles";
-import { Form, Field } from "react-final-form";
-import arrayMutators from "final-form-arrays";
-import { FieldArray } from "react-final-form-arrays";
+import * as Yup from 'yup';
+import ConfirmModal from '../../admin/component_ingredient/edit-ingredient/ConfirmModal';
 
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+import { call, put, select } from 'redux-saga/effects';
 
-const onSubmit = async values => {
-  await sleep(300);
-  window.alert(JSON.stringify(values, 0, 2));
-};
+
+import PropType from 'prop-types';
 
 
 
+
+
+
+import EditForm from './EditForm';
+
+
+
+
+const FormSchema = Yup.object().shape({
+  fullname: Yup.string(),
+  
+  email: Yup.string()
+    .email('Email is not valid.'),
+  // .required('Email is required.'),
+  address: Yup.string(),
+  mobile: Yup.object()
+    .shape({
+      country: Yup.string(),
+      countryCode: Yup.string(),
+      dialCode: Yup.string(),
+      value: Yup.string()
+    })
+});
 
 const IngredientsForm = () => {
-  useDocumentTitle('Welcome | Admin IngredientsForm');
+
+  useDocumentTitle('Edit Account | Dign1 - Ingredients ');
   useScrollTop();
 
 
+  const dispatch = useDispatch();
 
+  useEffect(() => () => {
+    dispatch(setLoading(false));
+  }, []);
+
+  const { ingredients, profile, auth, isLoading } = useSelector((state) => ({
+    profile: state.profile,
+    ingredients: state.ingredients,
+    auth: state.auth,
+    isLoading: state.app.loading
+  }));
 
 
   
 
+  console.log(ingredients)
+
+  const initFormikValues = {
+    fullname: ingredients?.email || '',
+    email: ingredients?.email || '',
+    address: ingredients?.address || '',
+    mobile: ingredients?.mobile || {},
+    avatar: ingredients?.avatar || {},
+    banner: ingredients?.banner || {},
+
+    // parameters1: ingredients?.parameters1 || [],
+
+    parameters1: ingredients?.parameters1?.map((person) => ({ name: person.name, price: person.price.toFixed(2) })) || [],
+
+    parameters2: ingredients?.parameters2?.map((person) => ({ name: person.name, price: person.price })) ||  [],
+
+    parameters3: ingredients?.parameters3?.map((person) => ({ name: person.name, price: person.price })) ||  [],
+
+    parameters4: ingredients?.parameters4?.map((person) => ({ name: person.name, price: person.price })) ||  []
 
 
+  };
+
+  
+
+  console.log(initFormikValues.parameters1)
+
+  const {
+    imageFile,
+    isFileLoading,
+    onFileChange
+  } = useFileHandler({ avatar: {}, banner: {} });
+
+
+
+  const update = (form) => {
+    dispatch(updateIngredient({
+      updates: {
+        fullname: form.fullname,
+        email: form.email,
+        address: form.address,
+        mobile: form.mobile,
+        // it stazys empty when updating it
+        avatar: form.avatar,
+        banner: form.banner,
+
+        // parameters1: form.parameters1 || [],
+        parameters1: form?.parameters1?.map((person) => ({ name: person.name, price: Number(person.price) })) || [],
+        parameters2: form.parameters2 ||  [],
+        parameters3: form.parameters3 ||  [],
+        parameters4: form.parameters4 ||  [],
+
+        // parameters1: form?.parameters1?.map((person) => ({ name: person.name, price: person.price })) || []
+
+      },
+      files: {
+        bannerFile: imageFile.banner.file,
+        avatarFile: imageFile.avatar.file
+      },
+      // credentials
+    }));
+  };
+
+  
+
+  const onSubmitUpdate = (form) => {
+    // check if data has changed
+    const fieldsChanged = Object.keys(form).some((key) => ingredients[key] !== form[key]);
+
+
+    if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
+      update(form);
+      // modal.onOpenModal();
+    } else {
+      console.log("failed to add: ");
+    }
+
+  };
 
 
 
@@ -41,101 +153,227 @@ const IngredientsForm = () => {
 
 
   return (
-    <div className="loader" >
-      <h2>Welcome to admin IngredientsForm</h2>
-
-      <div>
+    <Boundary>
 
 
-      <Styles>
-    <h1>🏁 React Final Form - Array Fields</h1>
-    <a href="https://github.com/erikras/react-final-form#-react-final-form">
-      Read Docs
-    </a>
-    <Form
-      onSubmit={onSubmit}
-      mutators={{
-        ...arrayMutators
-      }}
-      initialValues={{ customers: [{ firstName: "test", lastName: "test" }] }}
-      render={({
-        handleSubmit,
-        form: {
-          mutators: { push, pop }
-        }, // injected from final-form-arrays above
-        pristine,
-        form,
-        submitting,
-        values
-      }) => {
-        return (
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label>Company</label>
-              <Field name="company" component="input" />
-            </div>
-            <div className="buttons">
-              <button
-                type="button"
-                onClick={() => push("customers", undefined)}
-              >
-                Add Customer
-              </button>
-              <button type="button" onClick={() => pop("customers")}>
-                Remove Customer
-              </button>
-            </div>
-            <FieldArray name="customers">
-              {({ fields }) =>
-                fields.map((name, index) => (
-                  <div key={name}>
-                    <label>Cust. #{index + 1}</label>
-                    <Field
-                      name={`${name}.firstName`}
-                      component="input"
-                      placeholder="First Name"
+
+
+      {/* <IngredientsNavbar
+      settingsCount={store.ingredients.items.length}
+      totalSettingsCount={store.ingredients.total}
+      /> */}
+
+      <div className="product-admin-items">
+        <div className="edit-user">
+          <h3 className="text-center">Edit Ingredient Details3</h3>
+          <Formik
+            initialValues={initFormikValues}
+            validateOnChange
+            // validationSchema={FormSchema}
+
+
+
+            onSubmit={onSubmitUpdate}
+
+        
+
+
+
+
+
+          >
+
+
+
+            {(values, setValues) => (
+              <>
+
+
+
+
+
+                <div className="user-profile-banner">
+                  {/* <div className="user-profile-banner-wrapper">
+                    <ImageLoader
+                      alt="Banner"
+                      className="user-profile-banner-img"
+                      src={imageFile.banner.url || ingredients.banner}
                     />
-                    <Field
-                      name={`${name}.lastName`}
-                      component="input"
-                      placeholder="Last Name"
+                    {isFileLoading ? (
+                      <div className="loading-wrapper">
+                        <LoadingOutlined />
+                      </div>
+                    ) : (
+                      <label
+                        className="edit-button edit-banner-button"
+                        htmlFor="edit-banner"
+                      >
+                        <input
+                          accept="image/x-png,image/jpeg"
+                          // disabled={isLoading}
+                          hidden
+                          id="edit-banner"
+                          onChange={(e) => onFileChange(e, { name: 'banner', type: 'single' })}
+                          type="file"
+                        />
+                        <EditOutlined />
+                      </label>
+                    )}
+                  </div> */}
+                  {/* <div className="user-profile-avatar-wrapper">
+                    <ImageLoader
+                      alt="Avatar"
+                      className="user-profile-img"
+                      src={imageFile.avatar.url || ingredients.avatar}
                     />
-                    <span
-                      onClick={() => fields.remove(index)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      ❌
-                    </span>
-                  </div>
-                ))
-              }
-            </FieldArray>
-
-            <div className="buttons">
-              <button type="submit" disabled={submitting || pristine}>
-                Submit
-              </button>
-              <button
-                type="button"
-                onClick={form.reset}
-                disabled={submitting || pristine}
-              >
-                Reset
-              </button>
-            </div>
-            <pre>{JSON.stringify(values, 0, 2)}</pre>
-          </form>
-        );
-      }}
-    />
-  </Styles>
+                    {isFileLoading ? (
+                      <div className="loading-wrapper">
+                        <LoadingOutlined />
+                      </div>
+                    ) : (
+                      <label
+                        className="edit-button edit-avatar-button"
+                        htmlFor="edit-avatar"
+                      >
+                        <input
+                          accept="image/x-png,image/jpeg"
+                          // disabled={isLoading}
+                          hidden
+                          id="edit-avatar"
+                          onChange={(e) => onFileChange(e, { name: 'avatar', type: 'single' })}
+                          type="file"
+                        />
+                        <EditOutlined />
+                      </label>
+                    )}
+                  </div> */}
+                </div>
 
 
 
 
+                <EditForm  />
+
+
+             
+
+
+
+
+
+
+
+
+
+
+                {/* <div className='fieldarray-top' >
+                  <h4>Add Sizes</h4>
+                  <FieldArray
+
+                    name="parameters1"
+                    // disabled={isLoading}
+                    className="fieldarray"
+
+                    render={arrayHelpers => (
+
+                      <div>
+                        {values.parameters1?.length > 0 &&
+                          values.parameters1.map((paramList, index) => (
+
+                            <div key={index}>
+                              {Object.keys(paramList).map(param => (
+
+                                <Field
+                                  key={`${param}`}
+                                  name={`parameters1.${index}.${param}`}
+                                  placeholder={`${index}.${param}`}
+                                  className="field-ingredients"
+
+                                />
+                              ))}
+                              <button
+                                type="button"
+                                onClick={() => arrayHelpers.remove(index)}
+                              >
+                                {" "}
+                                -{" "}
+                              </button>
+                            </div>
+
+                          ))}
+                        <button
+                          type="button"
+                          onClick={() =>
+                            arrayHelpers.push({ name: "", price: "", preis2: "", preis3: "", preis4: "" })
+                          }
+                        >
+                          {" "}
+                          +{" "}
+                        </button>
+                      </div>
+                    )}
+                  />
+
+                </div> */}
+
+                {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
+
+
+
+
+
+
+              </>
+
+
+
+
+             )} 
+
+
+
+
+
+
+          </Formik>
+
+
+
+
+        </div>
       </div>
-    </div >
+    </Boundary>
   );
+};
+
+IngredientsForm.propTypes = {
+  ingredients: PropType.shape({
+    preis1: PropType.number
+  //   name: PropType.string,
+  //   brand: PropType.string,
+  //   price: PropType.number,
+
+  //   sizes_new: PropType.object,
+
+  //   prices_new: PropType.object,
+
+  //   maxQuantity: PropType.number,
+  //   description: PropType.string,
+  //   keywords: PropType.arrayOf(PropType.string),
+  //   imageCollection: PropType.arrayOf(PropType.object),
+  //   sizes: PropType.arrayOf(PropType.string),
+  //   image: PropType.string,
+  //   imageUrl: PropType.string,
+  //   isFeatured: PropType.bool,
+  //   isRecommended: PropType.bool,
+  //   availableColors: PropType.arrayOf(PropType.string)
+
+
+  }).isRequired,
+  onSubmit: PropType.func.isRequired,
+  isLoading: PropType.bool.isRequired
+
+
 };
 
 export default IngredientsForm;
