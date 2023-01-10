@@ -87,6 +87,16 @@ const EditForm = ({ isLoading, authProvider }) => {
   };
 
 
+  const test1 = {customers: ingredients?.parameters1?.map((person) => ({ name: person.name, price: person.price.toFixed(2) })) || []}
+  console.log(test1)
+
+
+  const test2= { customers: [{ name: "test", price: "test" }, { name: "test1", price: "test1" }] }
+  // const test2=  [{ name: "test", price: "test" }, { name: "test1", price: "test1" }] 
+
+  console.log(test2)
+
+
   // Test: React Final Form
 
 
@@ -194,12 +204,14 @@ const EditForm = ({ isLoading, authProvider }) => {
                 mutators={{
                   ...arrayMutators
                 }}
-                initialValues={{ customers: [{ firstName: "test", lastName: "test" }, { firstName: "test1", lastName: "test1" }] }}
+                // initialValues={{ customers: [{ name: "test", price: "test" }, { name: "test1", price: "test1" }] }}
+
                 // initialValues={ingredients.parameters1}
 
 
                 
-                // initialValues={ingredients.parameters1}
+                // initialValues={test1}
+                initialValues={test1}
 
 
 
@@ -215,10 +227,10 @@ const EditForm = ({ isLoading, authProvider }) => {
                 }) => {
                   return (
                     <form onSubmit={handleSubmit}>
-                      <div>
+                      {/* <div>
                         <label>Company</label>
                         <Field name="company" component="input" />
-                      </div>
+                      </div> */}
                       <div className="buttons">
                         <button
                           type="button"
@@ -234,16 +246,18 @@ const EditForm = ({ isLoading, authProvider }) => {
                         {({ fields }) =>
                           fields.map((name, index) => (
                             <div key={name}>
-                              <label>Cust. #{index + 1}</label>
+                              <label>Nr. {index + 1}</label>
                               <Field
-                                name={`${name}.firstName`}
+                                name={`${name}.name`}
                                 component="input"
-                                placeholder="First Name"
+                                placeholder="Ingredient"
+
                               />
                               <Field
-                                name={`${name}.lastName`}
+                                name={`${name}.price`}
                                 component="input"
-                                placeholder="Last Name"
+                                placeholder="e.g. 0.50, 1.00"
+
                               />
                               <span
                                 onClick={() => fields.remove(index)}
