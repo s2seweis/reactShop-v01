@@ -78,6 +78,8 @@ const EditForm = ({ isLoading, authProvider }) => {
 
   // Test: React Final Form
 
+// Submit the Form
+
 
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -86,6 +88,8 @@ const EditForm = ({ isLoading, authProvider }) => {
     window.alert(JSON.stringify(values, 0, 2));
   };
 
+
+  // get the state from the database
 
   const test1 = {customers: ingredients?.parameters1?.map((person) => ({ name: person.name, price: person.price.toFixed(2) })) || []}
   console.log(test1)
@@ -271,7 +275,9 @@ const EditForm = ({ isLoading, authProvider }) => {
                       </FieldArray>
 
                       <div className="buttons">
-                        <button type="submit" disabled={submitting || pristine}>
+                        <button type="submit" 
+                        // disabled={submitting || pristine}
+                        >
                           Submit
                         </button>
                         <button
