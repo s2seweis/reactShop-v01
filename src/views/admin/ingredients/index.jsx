@@ -18,11 +18,7 @@ import { call, put, select } from 'redux-saga/effects';
 
 import PropType from 'prop-types';
 
-
-
-
-
-
+import EditForm from '../ingredients/EditForm';
 
 
 
@@ -39,6 +35,13 @@ import arrayMutators from "final-form-arrays";
 import { FieldArray } from "react-final-form-arrays";
 
 import { FiArrowLeftCircle, FiArrowRightCircle, FiArrowDownCircle, FiArrowUpCircle } from 'react-icons/fi';
+
+
+// #############################################################################################
+
+
+
+
 
 
 
@@ -97,10 +100,6 @@ const IngredientsForm = (values) => {
 
 
   };
-
-
-
-
 
 
 
@@ -194,7 +193,7 @@ const IngredientsForm = (values) => {
 
   // Test: React Final Form
 
-  // Submit the Form
+  // Submit the Form, values hast the form state
 
 
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -218,6 +217,7 @@ const IngredientsForm = (values) => {
 
         // parameters1: form.parameters1 || [],
         customers: values,
+
         // parameters2: values.parameters2 || [],
         // parameters3: values.parameters3 || [],
         // parameters4: values.parameters4 || [],
@@ -235,12 +235,6 @@ const IngredientsForm = (values) => {
 
 
 
-
-
-
-
-
-
     window.alert(JSON.stringify(values, 0, 2));
 
     console.log(values)
@@ -248,37 +242,29 @@ const IngredientsForm = (values) => {
 
 
 
-
-
-
-
-    // here goes the dispatch? where is the form state?
-
-    
-
-
-
   };
 
-  console.log(onSubmit.values)
 
 
 
   // get the state from the database
 
-  // const test1 = { customers: ingredients?.parameters1?.map((person) => ({ name: person.name, price: person.price.toFixed(2) })) || [] }
-  // const test1 = { customers: ingredients?.customers?.map((person) => ({ name: person.name, price: person.price.toFixed(2) })) || [] }
   const test1 = { customers: ingredients.customers?.customers?.map((person) => ({ name: person.name, price: person.price })) || [] }
   // console.log(test1)
 
 
-  const test2 = { customers: [{ name: "test", price: "test" }, { name: "test1", price: "test1" }] }
-  // const test2=  [{ name: "test", price: "test" }, { name: "test1", price: "test1" }] 
-
-  // console.log(test2)
 
 
   // Test: React Final Form
+
+
+  // #############################################################################################
+
+
+
+
+
+
 
 
 
@@ -294,9 +280,18 @@ const IngredientsForm = (values) => {
       totalSettingsCount={store.ingredients.total}
       /> */}
 
+
+
+      {/* ############################################################################################# */}
+
+
+
+
       <div className="product-admin-items">
         <div className="edit-user">
-          <h3 className="text-center">Edit Ingredient Details3</h3>
+          <h3 className="text-center"
+            style={{ marginBottom: "30px" }}
+          >Edit Ingredient Details - Parent/ React Final Form</h3>
 
           <div className="dropdown-new">
 
@@ -307,7 +302,7 @@ const IngredientsForm = (values) => {
               className="button button-muted w-100-mobile">
 
 
-              <h3>Ingredients Small</h3>
+              <h3>Ingredients Small - Inside Parent Compoent</h3>
 
 
               {/* // Test Start Ingredients Component*/}
@@ -360,11 +355,6 @@ const IngredientsForm = (values) => {
 
 
 
-
-
-
-
-
                 {/* Here comes the component */}
 
                 <div className="example-ingredients">
@@ -384,7 +374,12 @@ const IngredientsForm = (values) => {
 
 
                 <Styles>
-                  <h1>🏁 React Final Form - Array Fields</h1>
+                  <h1
+
+
+                  >🏁 React Final Form - Array Fields</h1>
+
+
                   <a href="https://github.com/erikras/react-final-form#-react-final-form">
                     Read Docs
                   </a>
@@ -443,12 +438,28 @@ const IngredientsForm = (values) => {
                                     placeholder="Ingredient"
 
                                   />
+
+
+
+
+
+                          
+
+
+
+
                                   <Field
                                     name={`${name}.price`}
                                     component="input"
                                     placeholder="e.g. 0.50, 1.00"
 
                                   />
+
+
+
+
+
+
                                   <span
                                     onClick={() => fields.remove(index)}
                                     style={{ cursor: "pointer" }}
@@ -497,15 +508,6 @@ const IngredientsForm = (values) => {
 
 
 
-                {/* <h1>One</h1> */}
-
-
-
-
-
-
-
-
 
 
               </div>
@@ -517,6 +519,8 @@ const IngredientsForm = (values) => {
 
 
           </div>
+
+          <EditForm />
 
 
 

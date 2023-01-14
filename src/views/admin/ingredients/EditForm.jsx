@@ -1,7 +1,6 @@
 import { ArrowLeftOutlined, CheckOutlined, LoadingOutlined } from '@ant-design/icons';
 import { CustomInput, CustomMobileInput } from 'components/formik';
 import { ADMIN_SETTINGS, ADMIN_INGREDIENDTS_NEW } from 'constants/routes';
-import { useFormikContext } from 'formik';
 import PropType from 'prop-types';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
@@ -17,28 +16,62 @@ import { useState } from "react";
 import { FiArrowLeftCircle, FiArrowRightCircle, FiArrowDownCircle, FiArrowUpCircle } from 'react-icons/fi';
 
 
+import { addIngredients, updateIngredient } from 'redux/actions/ingredientActions';
 
-// import { render } from "react-dom";
+import StatefulInput from "./StatefulInput";
+
+// Test:1 Gradual Field
+
+
+import { Mutator } from "final-form";
+
+
+
+
+
+
+
 
 // Test: React Final Form 
+
+
+import arrayMutators from "final-form-arrays";
+import { FieldArray } from "react-final-form-arrays";
+
+// Test: React Final Form 
+
+
 
 
 import { render } from "react-dom";
 import Styles from "./Styles";
 import { Form, Field } from "react-final-form";
-import arrayMutators from "final-form-arrays";
-import { FieldArray } from "react-final-form-arrays";
+import numeral from "numeral";
+import setFieldData from "final-form-set-field-data";
+import { GracefulField } from "react-final-form-graceful-field";
+
+
+import { useFormState } from 'react-final-form';
 
 
 
 
 
 
+// Child component
 
 
 const EditForm = ({ isLoading, authProvider }) => {
   const history = useHistory();
-  const { values, submitForm, resetForm } = useFormikContext();
+
+  const dispatch = useDispatch();
+
+  const {
+    imageFile,
+    isFileLoading,
+    onFileChange
+  } = useFileHandler({ avatar: {}, banner: {} });
+
 
 
 
@@ -78,33 +111,148 @@ const EditForm = ({ isLoading, authProvider }) => {
 
   // Test: React Final Form
 
-// Submit the Form
+  // Submit the Form
 
 
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
   const onSubmit = async values => {
+
+
+
     await sleep(300);
+
+
+
+    dispatch(updateIngredient({
+      updates: {
+        // fullname: form.fullname,
+        // email: form.email,
+        // address: form.address,
+        // mobile: form.mobile,
+        // it stazys empty when updating it
+
+
+        // parameters1: form.parameters1 || [],
+        // customers: values,
+        customers: values?.customers?.map((person) => ({ name: person.name, price: Number(person.price) })) || [],
+
+        // const test1 = { customers: ingredients.customers?.customers?.map((person) => ({ name: person.name, price: person.price.toFixed(2) })) || [] }
+
+
+        // parameters2: values.parameters2 || [],
+        // parameters3: values.parameters3 || [],
+        // parameters4: values.parameters4 || [],
+
+        // parameters1: values?.parameters1?.map((person) => ({ name: person.name, price: person.price })) || []
+
+      },
+      files: {
+        bannerFile: imageFile.banner.file,
+        avatarFile: imageFile.avatar.file
+      },
+      // credentials
+    }));
+
+
+
+
+
+
+
+
     window.alert(JSON.stringify(values, 0, 2));
+
+
+    console.log(customers)
+
+
+
   };
+
+
+
+  console.log(onSubmit.values)
+
+
+
+
+
+  const parse = value => (isNaN(parseFloat(value)) ? "" : parseFloat(value));
+
+  const required = value => (value ? undefined : 'Required')
+
+  const mustBeNumber = value => (isNaN(value) ? 'Must be a number' : undefined)
+
+  const composeValidators = (...validators) => value =>
+    validators.reduce((error, validator) => error || validator(value), undefined)
+
 
 
   // get the state from the database
 
-  const test1 = {customers: ingredients?.parameters1?.map((person) => ({ name: person.name, price: person.price.toFixed(2) })) || []}
+  const test1 = { customers: ingredients.customers?.map((person) => ({ name: person.name, price: person.price.toFixed(2) })) || [] }
   console.log(test1)
 
 
-  const test2= { customers: [{ name: "test", price: "test" }, { name: "test1", price: "test1" }] }
+
+  // const test2 = { customers: [{ name: "test", price: "test" }, { name: "test1", price: "test1" }] }
   // const test2=  [{ name: "test", price: "test" }, { name: "test1", price: "test1" }] 
 
-  console.log(test2)
+  // console.log(test2)
 
 
   // Test: React Final Form
 
+  {/* ############################################################################################################## */ }
 
 
+  // Test:1 Graceful Field
+
+
+  const parseInteger = (value) => {
+    value = value ? value.trim() : null;
+    if (!value) return null;
+    const parsed = numeral(value).value();
+    if (!Number.isFinite(parsed)) throw new Error(`invalid number`);
+    if (parsed % 1) throw new Error(`must be an integer`);
+    return parsed;
+  };
+
+  const parsePrice = (value) => {
+    value = value ? value.trim() : null;
+    if (!value) return null;
+    const parsed = numeral(value).value();
+    if (!Number.isFinite(parsed)) throw new Error(`invalid number`);
+    return parsed;
+  };
+
+  const formatNumber = (value) => (!Number.isFinite(value) ? "" : String(value));
+
+  const formatPrice = (value) =>
+    !Number.isFinite(value)
+      ? "" // make controlled
+      : numeral(value).format("$0,0.00");
+
+  const requirePositiveNumber = (value) =>
+    !Number.isFinite(value)
+      ? "is required"
+      : value <= 0
+        ? "must be > 0"
+        : undefined;
+
+  const TextField = ({ input, meta: { touched, error }, label }) => (
+    <div className={touched && error ? "error" : ""}>
+      <label>{label}</label>
+      <input {...input} />
+      {touched && error && <p className="helper-text">{error}</p>}
+    </div>
+  );
+
+
+
+
+ 
 
   return (
     <div className="user-profile-details">
@@ -122,7 +270,7 @@ const EditForm = ({ isLoading, authProvider }) => {
           className="button button-muted w-100-mobile">
 
 
-          <h3>Ingredients Small</h3>
+          <h3>Ingredients Small - Child Component</h3>
 
 
           {/* // Test Start Ingredients Component*/}
@@ -193,7 +341,7 @@ const EditForm = ({ isLoading, authProvider }) => {
 
 
 
-      {/* ############################################################################################################## */}
+            {/* ############################################################################################################## */}
 
 
 
@@ -213,7 +361,7 @@ const EditForm = ({ isLoading, authProvider }) => {
                 // initialValues={ingredients.parameters1}
 
 
-                
+
                 // initialValues={test1}
                 initialValues={test1}
 
@@ -251,18 +399,46 @@ const EditForm = ({ isLoading, authProvider }) => {
                           fields.map((name, index) => (
                             <div key={name}>
                               <label>Nr. {index + 1}</label>
+
                               <Field
                                 name={`${name}.name`}
                                 component="input"
                                 placeholder="Ingredient"
 
                               />
+
+
                               <Field
                                 name={`${name}.price`}
-                                component="input"
+                                // component="input"
+                                component={TextField}
                                 placeholder="e.g. 0.50, 1.00"
+                                validate={composeValidators(required, mustBeNumber)}
+                                // validate={required}
+
 
                               />
+
+
+
+                              {/* 
+                               */}
+
+
+                           
+
+                              {/* <GracefulField
+                                name="price"
+                                component="input"
+                                // label="Price"
+                                type="text"
+                                format={formatPrice}
+                                parse={parsePrice}
+                                validate={requirePositiveNumber}
+                              /> */}
+
+
+
                               <span
                                 onClick={() => fields.remove(index)}
                                 style={{ cursor: "pointer" }}
@@ -275,8 +451,8 @@ const EditForm = ({ isLoading, authProvider }) => {
                       </FieldArray>
 
                       <div className="buttons">
-                        <button type="submit" 
-                        // disabled={submitting || pristine}
+                        <button type="submit"
+                          disabled={submitting || pristine}
                         >
                           Submit
                         </button>
@@ -298,7 +474,7 @@ const EditForm = ({ isLoading, authProvider }) => {
 
 
 
-      {/* ############################################################################################################## */}
+            {/* ############################################################################################################## */}
 
 
 
@@ -307,16 +483,6 @@ const EditForm = ({ isLoading, authProvider }) => {
 
 
             {/* Test: React Final form */}
-
-
-
-
-            {/* <h1>One</h1> */}
-
-
-
-
-
 
 
 
@@ -361,7 +527,7 @@ const EditForm = ({ isLoading, authProvider }) => {
 
 
 
-        <button
+        {/* <button
           className="button w-100-mobile"
           // disabled={isLoading}
           onClick={submitForm}
@@ -370,22 +536,12 @@ const EditForm = ({ isLoading, authProvider }) => {
           {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
           &nbsp;
           {isLoading ? 'Loading' : 'Update Ingredients'}
-        </button>
+        </button> */}
 
 
 
 
       </div>
-
-
-
-
-
-
-
-
-
-
 
 
 
