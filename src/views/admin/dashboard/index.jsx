@@ -13,11 +13,12 @@ const Dashboard = () => {
 
   return (
     <div className="loader-new">
-      <h2>Welcome to admin dashboard1</h2>
+      <h2 style={{ textAlign: "center" }}
+      >Welcome to admin dashboard1</h2>
 
 
       <div className="dropdown-new">
-        <div
+        {/* <div
           onClick={(e) => {
             setIsActive(!isActive);
           }}
@@ -46,7 +47,7 @@ const Dashboard = () => {
           </div>
          
          
-        </div>
+        </div> */}
       </div>
 
 

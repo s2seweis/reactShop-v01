@@ -208,7 +208,7 @@ const Side = () => {
 
 
 
-              <MenuItem>Skill Matrix</MenuItem>
+              {/* <MenuItem>Skill Matrix</MenuItem> */}
               {/* <MenuItem>Know Your Company</MenuItem>
               <MenuItem>Joining Day Information</MenuItem>
               <MenuItem>Feedback</MenuItem>

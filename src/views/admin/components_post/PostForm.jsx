@@ -76,7 +76,7 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
     removeImage1,
   } = useFileHandler1({ image1: {} });
 
-  
+
   const {
     imageFile2,
     isFileLoading2,
@@ -90,7 +90,7 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
     onFileChange3,
     removeImage3,
   } = useFileHandler3({ image3: {} });
-  
+
   const onSubmitForm = (form) => {
     if (imageFile1.image1.file1, imageFile2.image2.file2, imageFile3.image3.file3 || post.imageUrl) {
       onSubmit({
@@ -292,7 +292,7 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
               <br />
               <br />
               <br />
-              <div className="product-form-field product-form-submit">
+              {/* <div className="product-form-field product-form-submit">
                 <button
                   className="button"
                   disabled={isLoading}
@@ -302,99 +302,120 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
                   &nbsp;
                   {isLoading ? 'Saving Post' : 'Save Post'}
                 </button>
-              </div>
+              </div> */}
             </div>
 
             <div className="d-flex">
 
-            {/* ----THUBMNAIL ----1 */}
-            <div className="product-form-file">
-              <div className="product-form-field">
-                <span className="d-block padding-s">* Thumbnail 1</span>
-                {!isFileLoading1 && (
-                  <label htmlFor="product-input-file1">
-                    <input
-                      disabled={isLoading}
-                      hidden
-                      id="product-input-file1"
-                      onChange={(e) => onFileChange1(e, { name1: 'image1', type: 'single' })}
-                      readOnly={isLoading}
-                      type="file"
+              {/* ----THUBMNAIL ----1 */}
+              <div className="product-form-file">
+                <div className="product-form-field">
+                  <span className="d-block padding-s">* Thumbnail 1</span>
+                  {!isFileLoading1 && (
+                    <label htmlFor="product-input-file1">
+                      <input
+                        disabled={isLoading}
+                        hidden
+                        id="product-input-file1"
+                        onChange={(e) => onFileChange1(e, { name1: 'image1', type: 'single' })}
+                        readOnly={isLoading}
+                        type="file"
+                      />
+                      Choose Image 1
+                    </label>
+                  )}
+                </div>
+                <div className="product-form-image-wrapper">
+                  {(imageFile1.image1.url || post.image1) && (
+                    <ImageLoader
+                      alt=""
+                      className="product-form-image-preview"
+                      src={imageFile1.image1.url || post.image1}
                     />
-                    Choose Image 1
-                  </label>
-                )}
+                  )}
+                </div>
               </div>
-              <div className="product-form-image-wrapper">
-                {(imageFile1.image1.url || post.image1) && (
-                  <ImageLoader
-                    alt=""
-                    className="product-form-image-preview"
-                    src={imageFile1.image1.url || post.image1}
-                  />
-                )}
-              </div>
-            </div>
-            {/* ----THUBMNAIL ----2 */}
-            <div className="product-form-file">
-              <div className="product-form-field">
-                <span className="d-block padding-s">* Thumbnail 2</span>
-                {!isFileLoading2 && (
-                  <label htmlFor="product-input-file2">
-                    <input
-                      disabled={isLoading}
-                      hidden
-                      id="product-input-file2"
-                      onChange={(e) => onFileChange2(e, { name2: 'image2', type: 'single' })}
-                      readOnly={isLoading}
-                      type="file"
+              {/* ----THUBMNAIL ----2 */}
+              <div className="product-form-file">
+                <div className="product-form-field">
+                  <span className="d-block padding-s">* Thumbnail 2</span>
+                  {!isFileLoading2 && (
+                    <label htmlFor="product-input-file2">
+                      <input
+                        disabled={isLoading}
+                        hidden
+                        id="product-input-file2"
+                        onChange={(e) => onFileChange2(e, { name2: 'image2', type: 'single' })}
+                        readOnly={isLoading}
+                        type="file"
+                      />
+                      Choose Image 2
+                    </label>
+                  )}
+                </div>
+                <div className="product-form-image-wrapper">
+                  {(imageFile2.image2.url || post.image2) && (
+                    <ImageLoader
+                      alt=""
+                      className="product-form-image-preview"
+                      src={imageFile2.image2.url || post.image2}
                     />
-                    Choose Image 2
-                  </label>
-                )}
+                  )}
+                </div>
               </div>
-              <div className="product-form-image-wrapper">
-                {(imageFile2.image2.url || post.image2) && (
-                  <ImageLoader
-                    alt=""
-                    className="product-form-image-preview"
-                    src={imageFile2.image2.url || post.image2}
-                  />
-                )}
-              </div>
-            </div>
-            {/* ----THUBMNAIL ----3 */}
-            <div className="product-form-file">
-              <div className="product-form-field">
-                <span className="d-block padding-s">* Thumbnail 3</span>
-                {!isFileLoading3 && (
-                  <label htmlFor="product-input-file3">
-                    <input
-                      disabled={isLoading}
-                      hidden
-                      id="product-input-file3"
-                      onChange={(e) => onFileChange3(e, { name3: 'image3', type: 'single' })}
-                      readOnly={isLoading}
-                      type="file"
+              {/* ----THUBMNAIL ----3 */}
+              <div className="product-form-file">
+                <div className="product-form-field">
+                  <span className="d-block padding-s">* Thumbnail 3</span>
+                  {!isFileLoading3 && (
+                    <label htmlFor="product-input-file3">
+                      <input
+                        disabled={isLoading}
+                        hidden
+                        id="product-input-file3"
+                        onChange={(e) => onFileChange3(e, { name3: 'image3', type: 'single' })}
+                        readOnly={isLoading}
+                        type="file"
+                      />
+                      Choose Image 3
+                    </label>
+                  )}
+                </div>
+                <div className="product-form-image-wrapper">
+                  {(imageFile3.image3.url || post.image3) && (
+                    <ImageLoader
+                      alt=""
+                      className="product-form-image-preview"
+                      src={imageFile3.image3.url || post.image3}
                     />
-                    Choose Image 3
-                  </label>
-                )}
+                  )}
+                </div>
               </div>
-              <div className="product-form-image-wrapper">
-                {(imageFile3.image3.url || post.image3) && (
-                  <ImageLoader
-                    alt=""
-                    className="product-form-image-preview"
-                    src={imageFile3.image3.url || post.image3}
-                  />
-                )}
-              </div>
+
+              {/* ----THUBMNAIL ----END */}
+
+
+
+
+
+
+
             </div>
 
-            {/* ----THUBMNAIL ----END */}
-            </div>
-           
+
+            <div className="product-form-field product-form-submit">
+                <button
+                  className="button"
+                  disabled={isLoading}
+                  type="submit"
+                  style={{ margin: "auto", marginTop: "30px", marginBottom: "30px" }}
+                >
+                  {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
+                  &nbsp;
+                  {isLoading ? 'Saving Post' : 'Save Post'}
+                </button>
+              </div>
+
           </Form>
         )}
       </Formik>

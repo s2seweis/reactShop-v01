@@ -14,6 +14,15 @@ import * as Yup from 'yup';
 
 import FormikFieldArrayForm from 'components/common/FormikFieldArrayForm';
 
+import { ADMIN_PRODUCTS } from 'constants/routes';
+
+import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
+
+import { useHistory } from 'react-router-dom';
+
+
+
+
 
 
 
@@ -157,6 +166,7 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
   //   ;
 
 
+  const history = useHistory();
 
 
 
@@ -178,6 +188,22 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
         >
           {({ values, setValues }) => (
             <Form className="product-form">
+
+
+              <button
+                className="button-back-new button-muted w-100-mobile"
+                // disabled={authProvider !== 'password' || isLoading}
+                onClick={() => history.push(ADMIN_PRODUCTS)}
+                type="button"
+              >
+                <ArrowLeftOutlined />
+                &nbsp;
+                Back
+              </button>
+
+
+
+
               <div className="product-form-inputs">
                 <div className="d-flex">
                   <div className="product-form-field">
