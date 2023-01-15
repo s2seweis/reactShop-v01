@@ -161,7 +161,7 @@ const EditForm = ({ isLoading, authProvider }) => {
 
 
 
-    window.alert(JSON.stringify(values, 0, 2));
+    // window.alert(JSON.stringify(values, 0, 2));
 
 
     console.log(customers)
@@ -182,7 +182,7 @@ const EditForm = ({ isLoading, authProvider }) => {
 
   const required = value => (value ? undefined : 'Required')
 
-  const mustBeNumber = value => (isNaN(value) ? 'Must be a number' : undefined)
+  const mustBeNumber = value => (isNaN(value) ? <h5>Must be a number</h5> : undefined)
 
   const composeValidators = (...validators) => value =>
     validators.reduce((error, validator) => error || validator(value), undefined)
@@ -244,7 +244,8 @@ const EditForm = ({ isLoading, authProvider }) => {
   const TextField = ({ input, meta: { touched, error }, label }) => (
     <div className={touched && error ? "error" : ""}>
       <label>{label}</label>
-      <input {...input} />
+      <input style={{ width: "100px" }}
+        {...input} />
       {touched && error && <p className="helper-text">{error}</p>}
     </div>
   );
@@ -252,7 +253,7 @@ const EditForm = ({ isLoading, authProvider }) => {
 
 
 
- 
+
 
   return (
     <div className="user-profile-details">
@@ -352,6 +353,8 @@ const EditForm = ({ isLoading, authProvider }) => {
                 Read Docs
               </a>
               <Form
+                style={{ display: "table" }}
+
                 onSubmit={onSubmit}
                 mutators={{
                   ...arrayMutators
@@ -384,31 +387,68 @@ const EditForm = ({ isLoading, authProvider }) => {
                         <Field name="company" component="input" />
                       </div> */}
                       <div className="buttons">
-                        <button
+                        {/* <button
                           type="button"
                           onClick={() => push("customers", undefined)}
                         >
-                          Add Customer
+                          Add
+                        </button> */}
+
+                        <button
+                          type="button"
+                          onClick={form.reset}
+                          disabled={submitting || pristine}
+                        >
+                          Reset
                         </button>
-                        <button type="button" onClick={() => pop("customers")}>
+                        {/* <button type="button" onClick={() => pop("customers")}>
                           Remove Customer
-                        </button>
+                        </button> */}
                       </div>
+
+
+                      {/* <div classname="center-form"> */}
                       <FieldArray name="customers">
                         {({ fields }) =>
                           fields.map((name, index) => (
-                            <div key={name}>
-                              <label>Nr. {index + 1}</label>
+                            <div key={name}
+                              style={{ width: "50%" }}>
+                              <label
+                                style={{ width: "25px" }}
+                              > {index + 1}</label>
 
-                              <Field
+
+
+
+
+
+
+
+                              {/* <Field
                                 name={`${name}.name`}
-                                component="input"
+                                // component="input"
+                                component={TextField}
+
                                 placeholder="Ingredient"
+                                style={{ width: "100px" }}
 
-                              />
+
+                              /> */}
 
 
-                              <Field
+
+                              <Field name={`${name}.name`} validate={composeValidators(required)}>
+                                {({ input, meta }) => (
+                                  <div>
+                                    {/* <label>Price</label> */}
+                                    <input style={{ width: "100px" }} {...input} type="text" placeholder="Ingredient" />
+                                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                                  </div>
+                                )}
+                              </Field>
+
+
+                              {/* <Field
                                 name={`${name}.price`}
                                 // component="input"
                                 component={TextField}
@@ -416,8 +456,37 @@ const EditForm = ({ isLoading, authProvider }) => {
                                 validate={composeValidators(required, mustBeNumber)}
                                 // validate={required}
 
+                                // style={{  width: "50px" }} 
+                                className="field-ingredients1"
+                                style={{ width: "100px" }}
 
-                              />
+                              /> */}
+
+
+
+
+
+
+                              <Field name={`${name}.price`} validate={composeValidators(required, mustBeNumber)}>
+                                {({ input, meta }) => (
+                                  <div>
+                                    {/* <label>Price</label> */}
+                                    <input style={{ width: "70px" }} {...input} type="text" placeholder="Price" />
+                                    {meta.error && meta.touched && <span>{meta.error}</span>}
+                                  </div>
+                                )}
+                              </Field>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -425,7 +494,7 @@ const EditForm = ({ isLoading, authProvider }) => {
                                */}
 
 
-                           
+
 
                               {/* <GracefulField
                                 name="price"
@@ -450,21 +519,40 @@ const EditForm = ({ isLoading, authProvider }) => {
                         }
                       </FieldArray>
 
+                      {/* </div> */}
+
+
                       <div className="buttons">
+
+
+
+
                         <button type="submit"
                           disabled={submitting || pristine}
                         >
-                          Submit
+                          Save
                         </button>
-                        <button
+
+
+                        {/* <button
                           type="button"
                           onClick={form.reset}
                           disabled={submitting || pristine}
                         >
                           Reset
+                        </button> */}
+
+
+                        <button
+                          type="button"
+                          onClick={() => push("customers", undefined)}
+                        >
+                          Add
                         </button>
+
+
                       </div>
-                      <pre>{JSON.stringify(values, 0, 2)}</pre>
+                      {/* <pre>{JSON.stringify(values, 0, 2)}</pre> */}
                     </form>
                   );
                 }}

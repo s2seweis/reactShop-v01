@@ -1,3 +1,4 @@
+import { withWidth } from '@material-ui/core'
 import styled, { css } from 'styled-components'
 
 const btn = (light, dark) => css`
@@ -26,6 +27,7 @@ const btn = (light, dark) => css`
     cursor: not-allowed;
   }
 `
+
 
 const btnDefault = css`${btn('#ffffff', '#d5d5d5')} color: #555;`
 
@@ -65,13 +67,15 @@ export default styled.div`
   }
 
   form {
-    max-width: 600px;
+    max-width: 250px;
     margin: 10px auto;
-    border: 1px solid #ccc;
-    padding: 20px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    // border: 1px solid #ccc;
+    // makes the form tighter
+    // padding: 20px;
+    // box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     border-radius: 3px;
     position: relative;
+    display: Table;
 
     & > div {
       display: flex;
@@ -82,17 +86,24 @@ export default styled.div`
       & > label {
         color: #333;
         width: 110px;
-        min-width: 60px;
-        font-size: 1em;
+
+        // reducing the label
+        min-width: 25px;
+        // font-size: 1em;
         line-height: 32px;
       }
       & > input,
       & > select,
       & > textarea {
-        flex: 1;
+
+
+// for the width of the first field
+
+        // flex: 1;
         padding: 3px 5px;
-        font-size: 1em;
-        margin-left: 15px;
+        // makes the font smaller
+        // font-size: 1em;
+        margin-left: 5px;
         border: 1px solid #ccc;
         border-radius: 3px;
       }
@@ -100,7 +111,7 @@ export default styled.div`
         margin-top: 7px;
       }
       & > div {
-        margin-left: 16px;
+        margin-left: 5px;
         & > label {
           display: block;
           & > input {
@@ -134,7 +145,7 @@ export default styled.div`
       }
     }
     .error {
-      display: flex;
+      // display: flex;
       font-weight: bold;
       color: #800;
       flex-flow: row nowrap;
