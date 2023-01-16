@@ -60,6 +60,7 @@
     align-items: center;
     flex-direction: column;
     animation: fadeIn .3s ease;
+    padding-top: 50px;
 
     @include mobile {
         min-height: 80vh;

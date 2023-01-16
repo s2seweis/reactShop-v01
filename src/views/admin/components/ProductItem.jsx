@@ -38,7 +38,7 @@ const ProductItem = ({ product }) => {
       highlightColor="#f2f2f2"
     >
       <div
-        className={`item item-products ${!product.id && 'item-loading'}`}
+        className={`item item ${!product.id && 'item-loading'}`}
         ref={productRef}
       >
         <div className="grid grid-count-6">

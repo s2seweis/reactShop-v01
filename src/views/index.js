@@ -24,6 +24,8 @@ export { default as AddUser1 } from './admin/add_user1';
 
 export { default as Dashboard } from './admin/dashboard';
 
+export { default as Docs } from './admin/docs';
+
 
 
 export { default as Ingredients } from './admin/ingredients';

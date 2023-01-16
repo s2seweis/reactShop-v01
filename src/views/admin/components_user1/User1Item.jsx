@@ -41,7 +41,7 @@ const User1Item = ({ user1 }) => {
       highlightColor="#f2f2f2"
     >
       <div
-        className={`item item-products ${!user1.id && 'item-loading'}`}
+        className={`item item ${!user1.id && 'item-loading'}`}
         ref={user1Ref}
       >
         <div className="grid grid-count-8">

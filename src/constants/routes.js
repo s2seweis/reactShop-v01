@@ -32,6 +32,8 @@ export const ADMIN_ORDERS = '/admin/orders';
 export const ADMIN_POSTS = '/admin/posts';
 export const ADMIN_USERS1 = '/admin/users1';
 
+export const ADMIN_DOCS = '/admin/docs';
+
 export const ADMIN_SETTINGS = '/admin/settings';
 export const ADMIN_INGREDIENDTS_NEW = '/admin/ingredients-new';
 

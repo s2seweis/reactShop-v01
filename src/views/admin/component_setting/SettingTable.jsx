@@ -37,12 +37,12 @@ const UserAccount = () => {
       </div>
 
 
-      <div index={2} label="Advanced">
+      <div index={2} label="Taxes">
         <Suspense fallback={<Loader />}>
           <UserWishListTab />
         </Suspense>
       </div>
-      <div index={1} label="My Orders">
+      <div index={1} label="Print">
         <Suspense fallback={<Loader />}>
           <UserOrdersTab />
         </Suspense>

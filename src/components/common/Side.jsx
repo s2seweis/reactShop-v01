@@ -10,7 +10,7 @@ import { Sidebar, Menu, MenuItem, useProSidebar, collapseSidebar, SubMenu } from
 
 import { FiArrowLeftCircle, FiArrowRightCircle } from 'react-icons/fi';
 
-import { ADMIN_PRODUCTS, ADMIN_ORDERS, ADMIN_POSTS, ADMIN_USERS1, ADMIN_SETTINGS, ADMIN_DASHBOARD, ADMIN_INGREDIENTS, ADMIN_INGREDIENTS_NEW } from 'constants/routes';
+import { ADMIN_PRODUCTS, ADMIN_ORDERS, ADMIN_POSTS, ADMIN_USERS1, ADMIN_SETTINGS, ADMIN_DASHBOARD, ADMIN_INGREDIENTS, ADMIN_INGREDIENTS_NEW, ADMIN_DOCS } from 'constants/routes';
 
 import { NavLink, useHistory, useLocation, Link } from 'react-router-dom';
 
@@ -168,7 +168,7 @@ const Side = () => {
 
 
 
-            <MenuItem
+            {/* <MenuItem
               routerLink={<Link to={ADMIN_PRODUCTS} />}
               active={window.location.pathname === "/admin/products"}
               icon={<Icon name="products" />}
@@ -176,10 +176,9 @@ const Side = () => {
 
               Products
 
-              {/* <Link to="/admin/dashboard" /> */}
 
 
-            </MenuItem>
+            </MenuItem> */}
 
 
 
@@ -189,7 +188,10 @@ const Side = () => {
 
 
 
-            <SubMenu label="Stages" icon={<Icon name="products" />}>
+            <SubMenu label="Stages" icon={<Icon name="products" />}
+             routerLink={<Link to={ADMIN_PRODUCTS} />}
+             active={window.location.pathname === "/admin/products"}
+             >
 
 
 
@@ -242,8 +244,8 @@ const Side = () => {
 
 
             <MenuItem
-              // routerLink={<Link to={ADMIN_ORDERS} />}
-              // active={window.location.pathname === "/admin/orders"}
+              routerLink={<Link to={ADMIN_DOCS} />}
+              active={window.location.pathname === "/admin/docs"}
               icon={<Icon name="book-2" />}
             >
 

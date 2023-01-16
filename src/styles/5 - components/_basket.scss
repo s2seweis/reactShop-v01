@@ -163,7 +163,7 @@
   padding: 0 $s-size;
 
   display: grid;
-  grid-template-columns: 100px 1fr 80px 40px;
+  grid-template-columns: 70px 1fr 80px 40px;
 }
 
 .order-item-wrapper {
@@ -216,10 +216,11 @@
 .basket-item-img-wrapper {
   display: flex;
   align-items: center;
-  width: 90px;
-  height: 90px;
+  // width: 90px;
+  // height: 90px;
   margin-right: $m-size;
   position: relative;
+  width: 85%;
 }
 
 .order-item-img-wrapper {
@@ -260,6 +261,7 @@
 
 .basket-item-remove {
   align-self: center;
+  color: red;
 }
 
 .basket-clear {

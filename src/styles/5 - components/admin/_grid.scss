@@ -39,6 +39,7 @@
   top: 0;
   left: 0;
   z-index: 2;
+  margin-top: 30px;
 }
 
 .product-admin-header-title {
@@ -57,7 +58,7 @@
   justify-content: start;
   // display: flex;
   // width: 800px;
-  padding: 10px;
+  // padding: 10px;
 
   @media (max-width: $mobile) {
 

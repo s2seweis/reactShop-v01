@@ -15,14 +15,16 @@ const Users1Navbar = (props) => {
 
 
       <h5 className="product-admin-header-title"
+      
        style={{ 
           width: '200px', 
          
           // backgroundColor: 'red'
-          color: 'red'
+          // color: 'red'
         }}
       
       >
+        Users &nbsp;
         {/* Users2 &nbsp; */}
         (
         {`${users1Count} / ${totalUsers1Count}`}
@@ -32,14 +34,14 @@ const Users1Navbar = (props) => {
 
 
 
-      <SearchBar />
+      {/* <SearchBar /> */}
             &nbsp;
-      {/* <FiltersToggle>
+      <FiltersToggle>
         <button className="button-muted button-small" type="button">
           <FilterOutlined />
           &nbsp;More Filters
         </button>
-      </FiltersToggle> */}
+      </FiltersToggle>
       <button
         className="button button-small"
         onClick={() => history.push(ADD_USER1)}

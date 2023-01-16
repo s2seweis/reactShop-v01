@@ -212,6 +212,14 @@ const AppRouter = () => {
             component={view.Orders}
             path={ROUTES.ADMIN_ORDERS}
           />
+
+
+          <AdminRoute
+            component={view.Docs}
+            path={ROUTES.ADMIN_DOCS}
+          />
+
+          
           <AdminRoute
             component={view.Posts}
             path={ROUTES.ADMIN_POSTS}

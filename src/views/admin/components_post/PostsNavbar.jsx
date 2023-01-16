@@ -17,7 +17,7 @@ const PostsNavbar = (props) => {
         {`${postsCount} / ${totalPostsCount}`}
         )
       </h5>
-      <SearchBar />
+      {/* <SearchBar /> */}
             &nbsp;
       <FiltersTooglePost>
         <button className="button-muted button-small-products" type="button">

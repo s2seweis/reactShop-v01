@@ -11,12 +11,12 @@ const OrdersNavbar = (props) => {
 
   return (
     <div className="product-admin-header">
-      <h3 className="product-admin-header-title">
-        Orders2 &nbsp;
+      <h5 className="product-admin-header-title">
+        Orders &nbsp;
         (
         {`${ordersCount} / ${totalOrdersCount}`}
         )
-      </h3>
+      </h5>
       <SearchBar />
             &nbsp;
       {/* <FiltersToogleMenu>
