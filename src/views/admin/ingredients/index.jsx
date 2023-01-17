@@ -216,7 +216,7 @@ const IngredientsForm = (values) => {
 
 
         // parameters1: form.parameters1 || [],
-        customers: values,
+        // customers: values,
 
         // parameters2: values.parameters2 || [],
         // parameters3: values.parameters3 || [],

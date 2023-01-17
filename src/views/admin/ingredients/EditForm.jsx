@@ -116,7 +116,7 @@ const EditForm = ({ isLoading, authProvider, customers }) => {
 
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-  const onSubmit = async values => {
+  const onSubmit1 = async values => {
 
 
 
@@ -136,6 +136,9 @@ const EditForm = ({ isLoading, authProvider, customers }) => {
         // parameters1: form.parameters1 || [],
         // customers: values,
         customers: values?.customers?.map((person) => ({ name: person.name, price: Number(person.price) })) || [],
+        // customers1: values?.customers1?.map((person) => ({ name: person.name, price: Number(person.price) })) || [],
+        // customers2: values?.customers2?.map((person) => ({ name: person.name, price: Number(person.price) })) || [],
+        // customers3: values?.customers3?.map((person) => ({ name: person.name, price: Number(person.price) })) || [],
 
         // const test1 = { customers: ingredients.customers?.customers?.map((person) => ({ name: person.name, price: person.price.toFixed(2) })) || [] }
 
@@ -155,24 +158,139 @@ const EditForm = ({ isLoading, authProvider, customers }) => {
     }));
 
 
+    // window.alert(JSON.stringify(values, 0, 2));
+
+    console.log(customers)
 
 
+  };
+
+  const onSubmit2 = async values => {
+    await sleep(300);
+    dispatch(updateIngredient({
+      updates: {
+        // fullname: form.fullname,
+        // email: form.email,
+        // address: form.address,
+        // mobile: form.mobile,
+        // it stazys empty when updating it
 
 
+        // parameters1: form.parameters1 || [],
+        // customers: values,
+      
+        customers1: values?.customers1?.map((person) => ({ name: person.name, price: Number(person.price) })) || [],
+     
+        // const test1 = { customers: ingredients.customers?.customers?.map((person) => ({ name: person.name, price: person.price.toFixed(2) })) || [] }
+
+
+        // parameters2: values.parameters2 || [],
+        // parameters3: values.parameters3 || [],
+        // parameters4: values.parameters4 || [],
+
+        // parameters1: values?.parameters1?.map((person) => ({ name: person.name, price: person.price })) || []
+
+      },
+      files: {
+        bannerFile: imageFile.banner.file,
+        avatarFile: imageFile.avatar.file
+      },
+      // credentials
+    }));
 
 
     // window.alert(JSON.stringify(values, 0, 2));
 
+    console.log(customers)
+
+
+  };
+
+  const onSubmit3 = async values => {
+    await sleep(300);
+    dispatch(updateIngredient({
+      updates: {
+        // fullname: form.fullname,
+        // email: form.email,
+        // address: form.address,
+        // mobile: form.mobile,
+        // it stazys empty when updating it
+
+
+        // parameters1: form.parameters1 || [],
+        // customers: values,
+      
+        customers2: values?.customers2?.map((person) => ({ name: person.name, price: Number(person.price) })) || [],
+     
+        // const test1 = { customers: ingredients.customers?.customers?.map((person) => ({ name: person.name, price: person.price.toFixed(2) })) || [] }
+
+
+        // parameters2: values.parameters2 || [],
+        // parameters3: values.parameters3 || [],
+        // parameters4: values.parameters4 || [],
+
+        // parameters1: values?.parameters1?.map((person) => ({ name: person.name, price: person.price })) || []
+
+      },
+      files: {
+        bannerFile: imageFile.banner.file,
+        avatarFile: imageFile.avatar.file
+      },
+      // credentials
+    }));
+
+
+    // window.alert(JSON.stringify(values, 0, 2));
 
     console.log(customers)
 
+
+  };
+
+  const onSubmit4 = async values => {
+    await sleep(300);
+    dispatch(updateIngredient({
+      updates: {
+        // fullname: form.fullname,
+        // email: form.email,
+        // address: form.address,
+        // mobile: form.mobile,
+        // it stazys empty when updating it
+
+
+        // parameters1: form.parameters1 || [],
+        // customers: values,
+      
+        customers3: values?.customers3?.map((person) => ({ name: person.name, price: Number(person.price) })) || [],
+     
+        // const test1 = { customers: ingredients.customers?.customers?.map((person) => ({ name: person.name, price: person.price.toFixed(2) })) || [] }
+
+
+        // parameters2: values.parameters2 || [],
+        // parameters3: values.parameters3 || [],
+        // parameters4: values.parameters4 || [],
+
+        // parameters1: values?.parameters1?.map((person) => ({ name: person.name, price: person.price })) || []
+
+      },
+      files: {
+        bannerFile: imageFile.banner.file,
+        avatarFile: imageFile.avatar.file
+      },
+      // credentials
+    }));
+
+
+    // window.alert(JSON.stringify(values, 0, 2));
+
+    console.log(customers)
 
 
   };
 
 
 
-  console.log(onSubmit.values)
+  console.log(onSubmit1.values)
 
 
 
@@ -364,7 +482,7 @@ const EditForm = ({ isLoading, authProvider, customers }) => {
               <Form
                 style={{ display: "table" }}
 
-                onSubmit={onSubmit}
+                onSubmit={onSubmit1}
                 mutators={{
                   ...arrayMutators
                 }}
@@ -649,7 +767,7 @@ const EditForm = ({ isLoading, authProvider, customers }) => {
               <Form
                 style={{ display: "table" }}
 
-                onSubmit={onSubmit}
+                onSubmit={onSubmit2}
                 mutators={{
                   ...arrayMutators
                 }}
@@ -938,7 +1056,7 @@ const EditForm = ({ isLoading, authProvider, customers }) => {
               <Form
                 style={{ display: "table" }}
 
-                onSubmit={onSubmit}
+                onSubmit={onSubmit3}
                 mutators={{
                   ...arrayMutators
                 }}
@@ -1228,7 +1346,7 @@ const EditForm = ({ isLoading, authProvider, customers }) => {
               <Form
                 style={{ display: "table" }}
 
-                onSubmit={onSubmit}
+                onSubmit={onSubmit4}
                 mutators={{
                   ...arrayMutators
                 }}
