@@ -97,7 +97,7 @@ const Side = () => {
 
 
 
-            <MenuItem
+            {/* <MenuItem
               routerLink={<Link to={ADMIN_INGREDIENTS_NEW} />}
               active={window.location.pathname === "/admin/ingredients-new"}
               icon={<Icon name="messages" />}
@@ -105,10 +105,9 @@ const Side = () => {
 
               Ingredients New
 
-              {/* <Link to="/admin/dashboard" /> */}
 
 
-            </MenuItem>
+            </MenuItem> */}
 
 
 

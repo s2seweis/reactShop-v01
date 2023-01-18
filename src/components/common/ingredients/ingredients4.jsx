@@ -46,7 +46,7 @@ const ingredients4 = (option, option1, selectedSize, selectedColor, id, isItemOn
 
 
 
-  const toppings2 = ingredients?.parameters4?.map((person) => ({ name: person.name, price: person.price })) || []
+  const toppings2 = ingredients?.customers3?.map((person) => ({ name: person.name, price: person.price })) || []
 
 
 

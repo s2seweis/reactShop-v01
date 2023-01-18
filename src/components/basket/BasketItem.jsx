@@ -52,6 +52,29 @@ const BasketItem = ({ product }) => {
                 
               </h5>
             </div>
+
+
+            <div>
+              <span className="spec-title">Toppings</span>
+              {/* <h5 className="my-0">
+                {product.selectedSize}
+                {' '}
+                mm
+              </h5>
+              <h5 className="my-0">
+                {product.selectedPrice}
+                {' '}
+                €
+              </h5> */}
+              <h5 className="my-0">
+                {product.toppings}
+                {' '}
+                
+              </h5>
+            </div>
+
+
+
             <div>
               <span className="spec-title">Color</span>
               <div style={{
@@ -65,9 +88,9 @@ const BasketItem = ({ product }) => {
           </div>
         </div>
         <div className="basket-item-price">
-          <h4 className="my-0">{displayMoney(product.selectedPrice * product.quantity)}</h4>
-          {/* <h4 className="my-0">{displayMoney(product.price * product.quantity)}</h4> */}
-          {/* <h4 className="my-0">{displayMoney(product.selectedSize * product.quantity)}</h4> */}
+          {/* <h4 className="my-0">{displayMoney(product.selectedPrice * product.quantity)}</h4> */}
+          <h4 className="my-0">{displayMoney(product.selectedPriceTotal2 * product.quantity)}</h4>
+        
         </div>
         <button
           className="basket-item-remove button button-border button-border-gray button-small-basket"

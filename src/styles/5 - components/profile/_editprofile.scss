@@ -78,3 +78,14 @@
   }
 }
 
+
+.input-test {
+ width: 150px;
+
+  @include mobile {
+   
+    max-width: 90px;
+   
+  }
+}
+

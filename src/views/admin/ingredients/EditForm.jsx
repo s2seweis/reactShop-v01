@@ -583,7 +583,13 @@ const EditForm = ({ isLoading, authProvider, customers }) => {
                                 {({ input, meta }) => (
                                   <div>
                                     {/* <label>Price</label> */}
-                                    <input style={{ width: "70px" }} {...input} type="text" placeholder="Price" />
+                                    <input 
+                                    className='input-test' 
+                                    // style={{ width: "70px" }} 
+                                    {...input} 
+                                    type="text" 
+                                    placeholder="e.g. 1.00" 
+                                    />
                                     {meta.error && meta.touched && <span>{meta.error}</span>}
                                   </div>
                                 )}

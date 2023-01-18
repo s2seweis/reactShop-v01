@@ -46,7 +46,7 @@ const Ingredients1 = (option, option1, selectedSize, selectedColor, id, isItemOn
 
 
 
-  const toppings2 = ingredients?.parameters1?.map((person) => ({ name: person.name, price: person.price })) || []
+  const toppings2 = ingredients?.customers?.map((person) => ({ name: person.name, price: person.price })) || []
 
 
 
@@ -86,6 +86,9 @@ const Ingredients1 = (option, option1, selectedSize, selectedColor, id, isItemOn
   const [total, setTotal] = useState(0);
 
   const [name, setName] = useState("");
+
+  console.log(name)
+  console.log(total)
 
 
 
@@ -136,6 +139,9 @@ const Ingredients1 = (option, option1, selectedSize, selectedColor, id, isItemOn
 
   const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
 
+  const getFormattedPrice1 = (price) => `$${price.toFixed(2)}`;
+
+
   const getFormattedName = (name) => `${name}`;
 
 
@@ -178,7 +184,15 @@ const Ingredients1 = (option, option1, selectedSize, selectedColor, id, isItemOn
 
 
       selectedPrice: option.option,
+      selectedPriceTotal1: selectedProceTotal1,
+      selectedPriceTotal2: selectedProceTotal2,
+
       selectedSizeNew: option.option1,
+
+      toppings: name
+
+
+      // selectedSizeNew: option.option1,
 
 
     });
@@ -186,9 +200,26 @@ const Ingredients1 = (option, option1, selectedSize, selectedColor, id, isItemOn
 
   };
 
+  console.log(option.option)
+  // console.log(option1.option1)
+
+
+// console.log(displayMoney(Number(option.option.trim()) + (total)))
+
+
+const selectedProceTotal1 = displayMoney(Number(option.option.trim()) + (total))
+
+const selectedProceTotal2 = (Number(option.option.trim()) + (total))
+
+console.log(selectedProceTotal1)
+console.log(selectedProceTotal2)
+
+
+console.log((option.option.trim()) + (total))
 
 
 
+{/* <h1>{displayMoney(Number(option.option.trim()) + (total))}</h1> */}
 
 
 
@@ -217,7 +248,6 @@ const Ingredients1 = (option, option1, selectedSize, selectedColor, id, isItemOn
                 </div>
                 <div className="right-section">{getFormattedPrice(price)}</div>
 
-                {/* <div className="right-section">{getFormattedName(name)}</div> */}
               </div>
             </li>
           );
@@ -235,10 +265,12 @@ const Ingredients1 = (option, option1, selectedSize, selectedColor, id, isItemOn
 
 
 
+
           <h1>{displayMoney(Number(option.option.trim()) + (total))}</h1>
 
-          <h2>{option1.option1}</h2>
+          {/* <h1>{getFormattedPrice1(option.option)}</h1> */}
 
+          <h2>{option1.option1}</h2>
 
 
           {/* Test:Start */}
