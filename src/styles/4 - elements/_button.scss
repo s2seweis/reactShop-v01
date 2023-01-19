@@ -20,6 +20,29 @@
   }
 }
 
+.button-users {
+  background: $button-color;
+  padding: $m-size;
+  border: 1px solid $button-color;
+  color: $white;
+  font-weight: bold;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  margin: auto;
+  // min-width: 100px;
+  @include bezier-transition(all, .3s, ease);
+
+  &:hover {
+    cursor: pointer;
+    background: $button-hover;
+    border: 1px solid $button-hover;
+    text-decoration: none;
+  }
+}
+
 
 .button-shop-now {
   background: $button-color;
@@ -134,6 +157,19 @@
   background: $background-color-01;
   color: lighten($paragraph-color, 20%);
   border: 1px solid $border-color;
+
+  &:hover {
+    background: $background-color;
+    border: 1px solid $border-color-focus;
+  }
+}
+
+.button-muted-orders {
+  @extend .button;
+  background: $background-color-01;
+  color: lighten($paragraph-color, 20%);
+  border: 1px solid $border-color;
+  margin-left: 1.6rem;
 
   &:hover {
     background: $background-color;

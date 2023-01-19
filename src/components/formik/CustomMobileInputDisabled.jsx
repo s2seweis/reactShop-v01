@@ -4,7 +4,7 @@ import PropType from 'prop-types';
 import React from 'react';
 import PhoneInput from 'react-phone-input-2';
 
-const CustomMobileInput = (props, authProvider, isLoading) => {
+const CustomMobileInputDisabled = (props, authProvider, isLoading) => {
   const [field, meta, helpers] = useField(props);
   const { label, placeholder, defaultValue } = props;
   const { touched, error } = meta;
@@ -45,22 +45,22 @@ const CustomMobileInput = (props, authProvider, isLoading) => {
         onChange={handleChange}
         placeholder={placeholder}
         value={defaultValue.value}
-        // disabled={authProvider !== 'password' || isLoading}
+        disabled={authProvider !== 'password' || isLoading}
 
       />
     </div>
   );
 };
 
-CustomMobileInput.defaultProps = {
+CustomMobileInputDisabled.defaultProps = {
   label: 'Mobile Number',
   placeholder: '09254461351'
 };
 
-CustomMobileInput.propTypes = {
+CustomMobileInputDisabled.propTypes = {
   label: PropType.string,
   placeholder: PropType.string,
   defaultValue: PropType.object.isRequired
 };
 
-export default CustomMobileInput;
+export default CustomMobileInputDisabled;

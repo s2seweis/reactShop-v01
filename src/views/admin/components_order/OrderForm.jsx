@@ -4,7 +4,7 @@ import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
 import { ImageLoader } from 'components/common';
 import {
-  CustomColorInput, CustomCreatableSelect, CustomInput, CustomTextarea, CustomMobileInput
+  CustomColorInput, CustomCreatableSelect, CustomInput, CustomTextarea, CustomMobileInputDisabled
 } from 'components/formik';
 import {
   Field, FieldArray, Form, Formik
@@ -441,7 +441,7 @@ const OrderForm = ({ order, onSubmit, isLoading, basket, authProvider }) => {
 
 
             <button
-              className="button-back-new button-muted w-100-mobile"
+              className="button-back-new button-muted-orders w-100-mobile"
               // disabled={authProvider !== 'password' || isLoading}
               onClick={() => history.push(ADMIN_ORDERS)}
               type="button"
@@ -533,8 +533,8 @@ const OrderForm = ({ order, onSubmit, isLoading, basket, authProvider }) => {
 
 
 
-                <CustomMobileInput
-                  disabled={authProvider !== 'password' || isLoading}
+                <CustomMobileInputDisabled
+                  disabled
                   defaultValue={values.mobile}
                   name="mobile"
                   label="Mobile Number"

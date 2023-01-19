@@ -18,6 +18,13 @@ import PropType from 'prop-types';
 import React from 'react';
 import * as Yup from 'yup';
 
+import { useHistory } from 'react-router-dom';
+import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import { ADMIN_POSTS } from 'constants/routes';
+
+
+
+
 // Default brand names that I used. You can use what you want
 const brandOptions = [
   { value: 'Salt Maalat', label: 'Salt Maalat' },
@@ -111,8 +118,17 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
     }
   };
 
+  const history = useHistory();
+
   return (
     <div>
+
+
+
+
+
+
+
       <Formik
         initialValues={initFormikValues}
         validateOnChange
@@ -121,6 +137,22 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
       >
         {({ values, setValues }) => (
           <Form className="product-form">
+
+
+
+            <button
+              className="button-back-new button-muted w-100-mobile"
+              // disabled={authProvider !== 'password' || isLoading}
+              onClick={() => history.push(ADMIN_POSTS)}
+              type="button"
+            >
+              <ArrowLeftOutlined />
+              &nbsp;
+              Back
+            </button>
+
+
+
             <div className="product-form-inputs">
               <div className="d-flex">
                 <div className="product-form-field">
@@ -404,17 +436,17 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
 
 
             <div className="product-form-field product-form-submit">
-                <button
-                  className="button"
-                  disabled={isLoading}
-                  type="submit"
-                  style={{ margin: "auto", marginTop: "30px", marginBottom: "30px" }}
-                >
-                  {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
-                  &nbsp;
-                  {isLoading ? 'Saving Post' : 'Save Post'}
-                </button>
-              </div>
+              <button
+                className="button"
+                disabled={isLoading}
+                type="submit"
+                style={{ margin: "auto", marginTop: "30px", marginBottom: "30px" }}
+              >
+                {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
+                &nbsp;
+                {isLoading ? 'Saving Post' : 'Save Post'}
+              </button>
+            </div>
 
           </Form>
         )}

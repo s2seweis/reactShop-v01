@@ -12,6 +12,10 @@ import PropType from 'prop-types';
 import React from 'react';
 import * as Yup from 'yup';
 
+import { useHistory } from 'react-router-dom';
+import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import { ADMIN_USERS1 } from 'constants/routes';
+
 // Default role names that I used. You can use what you want
 const roleOptions = [
   { value: 'admin', label: 'admin' },
@@ -76,7 +80,7 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
   // } = useFileHandler({ image: {}, imageCollection: user1?.imageCollection || [] });
 
   const onSubmitForm = (form) => {
-     {
+    {
       onSubmit({
         ...form,
         // quantity: 1,
@@ -87,7 +91,7 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
         // image: imageFile?.image?.file || user1.imageUrl,
         // imageCollection: imageFile.imageCollection
       });
-    } 
+    }
   };
 
   // const onSubmitForm = (form) => {
@@ -108,6 +112,9 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
   //   }
   // };
 
+  const history = useHistory();
+
+
   return (
     <div>
       <Formik
@@ -118,6 +125,22 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
       >
         {({ values, setValues }) => (
           <Form className="product-form">
+
+
+            <button
+              className="button-back-new button-muted w-100-mobile"
+              // disabled={authProvider !== 'password' || isLoading}
+              onClick={() => history.push(ADMIN_USERS1)}
+              type="button"
+            >
+              <ArrowLeftOutlined />
+              &nbsp;
+              Back
+            </button>
+
+
+
+
             <div className="product-form-inputs">
               <div className="d-flex">
                 <div className="product-form-field">
@@ -308,13 +331,13 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
               <br />
               <div className="product-form-field product-form-submit">
                 <button
-                  className="button"
+                  className="button-users"
                   disabled={isLoading}
                   type="submit"
                 >
                   {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
                   &nbsp;
-                  {isLoading ? 'Saving Product' : 'Save Product'}
+                  {isLoading ? 'Saving User' : 'Save User'}
                 </button>
               </div>
               {/* <div className="product-form-field product-form-submit">

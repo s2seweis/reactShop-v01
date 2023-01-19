@@ -19,6 +19,7 @@ import { ADMIN_PRODUCTS } from 'constants/routes';
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
 
 import { useHistory } from 'react-router-dom';
+import { SET_LAST_REF_KEY } from 'constants/constants';
 
 
 
@@ -108,7 +109,10 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
 
     // https://stackoverflow.com/questions/40348171/es6-map-an-array-of-objects-to-return-an-array-of-objects-with-new-keys
 
-    tickets: product?.tickets?.map((person) => ({ name: person.name, email: person.email })) || []
+    tickets: product?.tickets?.map((person) => ({ name: person.name, email: person.email })) || [],
+
+
+    toggle: false,
 
 
 
@@ -266,6 +270,19 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
                     />
                   </div>
                 </div>
+
+
+                {/* ########################################### */}
+                {/* Test:1 Checkbox  */}
+                <label style={{ width: "100px", padding:"4rem" }} >
+                  <Field type="checkbox" name="toggle"  />
+                  {`${values.toggle}`}
+                </label>
+
+                {/* Test:1 Checkbox  */}
+              {/* ########################################### */} 
+
+
 
 
                 {/* Test: adding price and size variations, becoming a table, later will become an own component (refactoring) + using formik dynamic forms */}
@@ -660,3 +677,7 @@ ProductForm.propTypes = {
 
 export default ProductForm;
 
+
+
+// Extra: 
+// Checkbox for change the state to extraIngredients active, via setting it to true, ingredients will be called
