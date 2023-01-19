@@ -300,7 +300,7 @@ const ViewProduct = () => {
               )}
 
 
-              <div className="product-modal-action">
+              {/* <div className="product-modal-action">
                 <button
                   className={`button button-small ${isItemOnBasket(product.id) ? 'button-border button-border-gray' : ''}`}
                   onClick={handleAddToBasket}
@@ -308,7 +308,7 @@ const ViewProduct = () => {
                 >
                   {isItemOnBasket(product.id) ? 'Remove From Basket2' : 'Add To Basket1'}
                 </button>
-              </div>
+              </div> */}
 
 
 
@@ -342,7 +342,21 @@ const ViewProduct = () => {
                   isItemOnBasket={isItemOnBasket}
 
 
-                /> : ""} </div>
+                /> : ""
+                
+
+              //     <div className="product-modal-action">
+              //   <button
+              //     className={`button button-small ${isItemOnBasket(product.id) ? 'button-border button-border-gray' : ''}`}
+              //     onClick={handleAddToBasket}
+              //     type="button"
+              //   >
+              //     {isItemOnBasket(product.id) ? 'Remove From Basket2' : 'Add To Basket1'}
+              //   </button>
+              // </div>
+                
+                
+                } </div>
 
 
               <div> {option1?.trim() === "medium" ?

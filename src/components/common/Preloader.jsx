@@ -88,8 +88,8 @@ const Preloader = () => (
           attributeName="transform"
           dur="2s"
           type="rotate"
-          from="0 50 48"
-          to="360 50 52"
+          from="0 50 44"
+          to="360 50 44"
           repeatCount="indefinite" />
 
       </circle>

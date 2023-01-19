@@ -48,7 +48,7 @@ const Home = () => {
               Glasses, sunglasses, and contacts—we’ve got your eyes covered.
             </p>
             <br />
-            <Link to={SHOP} className="button">
+            <Link to={SHOP} className="button-shop-now">
               Shop Now &nbsp;
               <ArrowRightOutlined />
             </Link>

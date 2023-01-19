@@ -452,7 +452,7 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
 
                 {/* <FormikFieldArrayForm parameters={{ paramLists: tickets }} /> */}
                 <div className='fieldarray-top' >
-                  <h4>Add Sizes</h4>
+                  <h4>Add Sizes - Still Required!!!!</h4>
                   <FieldArray
 
                     name="tickets"

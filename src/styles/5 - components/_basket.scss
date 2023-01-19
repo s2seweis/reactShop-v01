@@ -259,6 +259,15 @@
   position: relative;
 }
 
+.basket-item-toppings {
+  margin: $s-size 0;
+  // width: 142px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+}
+
 .basket-item-remove {
   align-self: center;
   color: red;

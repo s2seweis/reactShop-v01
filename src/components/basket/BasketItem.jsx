@@ -13,9 +13,12 @@ const BasketItem = ({ product }) => {
   const onRemoveFromBasket = () => dispatch(removeFromBasket(product.id));
 
   return (
+
+    <div>
     <div className="basket-item">
       <BasketItemControl product={product} />
       <div className="basket-item-wrapper">
+
         <div className="basket-item-img-wrapper">
           <ImageLoader
             alt={product.name}
@@ -23,12 +26,19 @@ const BasketItem = ({ product }) => {
             src={product.image}
           />
         </div>
+
+
         <div className="basket-item-details">
           <Link to={`/product/${product.id}`} onClick={() => document.body.classList.remove('is-basket-open')}>
-            <h4 className="underline basket-item-name">
+            <h3 className="underline basket-item-name">
               {product.name}
-            </h4>
+            </h3>
           </Link>
+
+
+
+
+
           <div className="basket-item-specs">
             <div>
               <span className="spec-title">Quantity</span>
@@ -49,29 +59,20 @@ const BasketItem = ({ product }) => {
               <h5 className="my-0">
                 {product.selectedSizeNew}
                 {' '}
-                
+
               </h5>
             </div>
 
 
-            <div>
+            {/* <div>
               <span className="spec-title">Toppings</span>
-              {/* <h5 className="my-0">
-                {product.selectedSize}
-                {' '}
-                mm
-              </h5>
-              <h5 className="my-0">
-                {product.selectedPrice}
-                {' '}
-                €
-              </h5> */}
+             
               <h5 className="my-0">
                 {product.toppings}
                 {' '}
                 
               </h5>
-            </div>
+            </div> */}
 
 
 
@@ -87,11 +88,15 @@ const BasketItem = ({ product }) => {
             </div>
           </div>
         </div>
+
+
         <div className="basket-item-price">
           {/* <h4 className="my-0">{displayMoney(product.selectedPrice * product.quantity)}</h4> */}
           <h4 className="my-0">{displayMoney(product.selectedPriceTotal2 * product.quantity)}</h4>
-        
+
         </div>
+
+
         <button
           className="basket-item-remove button button-border button-border-gray button-small-basket"
           onClick={onRemoveFromBasket}
@@ -100,6 +105,21 @@ const BasketItem = ({ product }) => {
           <CloseOutlined />
         </button>
       </div>
+
+
+
+
+
+    </div>
+
+      <div className="basket-item-toppings">
+        <h4 >
+          Extra Toppings:
+         <h5> {product.toppings}</h5>
+        </h4>
+      </div>
+
+
     </div>
   );
 };
