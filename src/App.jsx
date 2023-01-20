@@ -7,6 +7,12 @@ import { PersistGate } from 'redux-persist/integration/react';
 import AppRouter from 'routers/AppRouter';
 import { ProSidebarProvider } from 'react-pro-sidebar';
 
+import { Elements } from '@stripe/react-stripe-js';
+
+import { stripePromise } from './helpers/stripe/stripe.util'
+
+
+
 
 
 const App = ({ store, persistor }) => { 
@@ -20,7 +26,13 @@ const App = ({ store, persistor }) => {
   <StrictMode>
     <Provider store={store}>
       <PersistGate loading={<Preloader />} persistor={persistor}>
+
+        <Elements stripe={stripePromise}>
+
         <AppRouter />
+
+        </Elements>
+
       </PersistGate>
     </Provider>
     

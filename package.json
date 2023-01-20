@@ -63,19 +63,28 @@
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "@material-ui/core": "^4.12.4",
+    "@stripe/react-stripe-js": "^1.16.4",
+    "@stripe/stripe-js": "^1.46.0",
     "bootstrap": "5.0.2",
+    "final-form": "4.20.7",
+    "final-form-arrays": "3.1.4",
+    "final-form-set-field-data": "1.0.2",
     "firebase": "^8.4.3",
     "formik": "^2.2.6",
     "history": "^4.10.0",
     "jquery": "^3.6.1",
     "moment": "^2.29.1",
     "normalize.css": "^8.0.1",
+    "numeral": "2.0.6",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-bootstrap": "1.6.1",
     "react-burger-menu": "^3.0.8",
     "react-compound-slider": "^3.3.1",
     "react-dom": "^17.0.2",
+    "react-final-form": "6.5.9",
+    "react-final-form-arrays": "3.1.4",
+    "react-final-form-graceful-field": "1.0.0",
     "react-i18next": "^12.0.0",
     "react-icons": "^4.1.0",
     "react-intl": "5.20.7",
@@ -96,17 +105,6 @@
     "styled-components": "5.3.0",
     "uuid": "^8.3.2",
     "webfontloader": "^1.6.28",
-    "yup": "^0.32.9",
-
-
-
-
-    "final-form": "4.20.7",
-    "final-form-arrays": "3.1.4",
-    "react-final-form": "6.5.9",
-    "react-final-form-arrays": "3.1.4",
-    "final-form-set-field-data": "1.0.2",
-    "numeral": "2.0.6",
-    "react-final-form-graceful-field": "1.0.0"
+    "yup": "^0.32.9"
   }
 }

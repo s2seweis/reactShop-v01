@@ -12,6 +12,8 @@ import withCheckout from '../hoc/withCheckout';
 
 import { setOrderDetails } from 'redux/actions/checkoutActions';
 
+import PaymentForm from 'components/payment-form/payment-form.component';
+
 
 const Order = ({ basket, payment, shipping, subtotal, Total }) => {
   // useDocumentTitle('Check Out Step 1 | Dign');
@@ -68,6 +70,10 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
             &nbsp;
             Continue Shopping
           </button> */}
+
+
+          <PaymentForm />
+
 
           <button
             className="button button-muted"

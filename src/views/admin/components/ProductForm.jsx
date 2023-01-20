@@ -72,7 +72,7 @@ const FormSchema = Yup.object().shape({
     .min(1, 'Please add a default color for this product.')
 });
 
-const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters }) => {
+const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) => {
   const initFormikValues = {
     name: product?.name || '',
     brand: product?.brand || '',
@@ -156,7 +156,6 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
     }
   };
 
-  console.log()
 
 
 
@@ -171,6 +170,8 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
 
 
   const history = useHistory();
+
+  console.log()
 
 
 
@@ -274,10 +275,16 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
 
                 {/* ########################################### */}
                 {/* Test:1 Checkbox  */}
-                <label style={{ width: "100px", padding:"4rem" }} >
+                <div className='checkbox-ingredients' 
+                style={{ display: "flex", width:"300px", alignItems:"center" }}
+                >
+                  <h3 style={{  marginTop:"20px" }}>Checkbox:</h3>
+                <label style={{ width: "100px", padding:"4rem", marginTop:"20px", marginLeft:"20px" }} >
                   <Field type="checkbox" name="toggle"  />
                   {`${values.toggle}`}
                 </label>
+                </div>
+                
 
                 {/* Test:1 Checkbox  */}
               {/* ########################################### */} 
