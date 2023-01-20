@@ -1,21 +1,41 @@
 import React from 'react';
 
 
-import { CardElement } from '@stripe/react-stripe-js'
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 
 import Button from '../CustomButton/custom-button'
 
+import { PaymentFormContainer, FormContainer } from './payment-form.styles'
+
+
 const PaymentForm = () => {
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const paymentHandler = async (e) => {
+    e.preventDefault();
+
+
+if(!stripe || !elements) {
+  return;
+}
+
+
+  }
 
   return (
 
-    <div>
+    <PaymentFormContainer>
+      <FormContainer>
 
-      <CardElement />
+        <h2>Credit Card Payment:</h2>
 
-      <Button>Pay Now</Button>
+        <CardElement />
 
-    </div>
+        <Button>Pay Now</Button>
+
+      </FormContainer>
+    </PaymentFormContainer>
 
   )
 
