@@ -8,7 +8,7 @@
 
 // @ts-ignore
 try {
-    self['workbox:core:6.5.2'] && _();
+    self['workbox:core:6.5.3'] && _();
 }
 catch (e) { }
 
@@ -21,7 +21,7 @@ catch (e) { }
 
 // @ts-ignore
 try {
-    self['workbox:expiration:6.5.2'] && _();
+    self['workbox:expiration:6.5.3'] && _();
 }
 catch (e) { }
 
@@ -34,7 +34,7 @@ catch (e) { }
 
 // @ts-ignore
 try {
-    self['workbox:precaching:6.5.2'] && _();
+    self['workbox:precaching:6.5.3'] && _();
 }
 catch (e) { }
 
@@ -47,7 +47,7 @@ catch (e) { }
 
 // @ts-ignore
 try {
-    self['workbox:routing:6.5.2'] && _();
+    self['workbox:routing:6.5.3'] && _();
 }
 catch (e) { }
 
@@ -60,7 +60,7 @@ catch (e) { }
 
 // @ts-ignore
 try {
-    self['workbox:strategies:6.5.2'] && _();
+    self['workbox:strategies:6.5.3'] && _();
 }
 catch (e) { }
 
@@ -1799,15 +1799,23 @@ class PrecacheStrategy extends Strategy_Strategy {
             const integrityInManifest = params.integrity;
             const integrityInRequest = request.integrity;
             const noIntegrityConflict = !integrityInRequest || integrityInRequest === integrityInManifest;
+            // Do not add integrity if the original request is no-cors
+            // See https://github.com/GoogleChrome/workbox/issues/3096
             response = await handler.fetch(new Request(request, {
-                integrity: integrityInRequest || integrityInManifest,
+                integrity: request.mode !== 'no-cors'
+                    ? integrityInRequest || integrityInManifest
+                    : undefined,
             }));
             // It's only "safe" to repair the cache if we're using SRI to guarantee
             // that the response matches the precache manifest's expectations,
             // and there's either a) no integrity property in the incoming request
             // or b) there is an integrity, and it matches the precache manifest.
             // See https://github.com/GoogleChrome/workbox/issues/2858
-            if (integrityInManifest && noIntegrityConflict) {
+            // Also if the original request users no-cors we don't use integrity.
+            // See https://github.com/GoogleChrome/workbox/issues/3096
+            if (integrityInManifest &&
+                noIntegrityConflict &&
+                request.mode !== 'no-cors') {
                 this._useDefaultCacheabilityPluginIfNeeded();
                 const wasCached = await handler.cachePut(request, response.clone());
                 if (false) {}
@@ -3391,6 +3399,11 @@ class NavigationRoute extends (/* unused pure expression or super */ null && (Ro
      * and [`search`]{@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLHyperlinkElementUtils/search}
      * portions of the requested URL.
      *
+     * *Note*: These RegExps may be evaluated against every destination URL during
+     * a navigation. Avoid using
+     * [complex RegExps](https://github.com/GoogleChrome/workbox/issues/3077),
+     * or else your users may see delays when navigating your site.
+     *
      * @param {workbox-routing~handlerCallback} handler A callback
      * function that returns a Promise resulting in a Response.
      * @param {Object} options
@@ -3932,7 +3945,7 @@ class NetworkOnly extends (/* unused pure expression or super */ null && (Strate
 
 /**
  * An implementation of a
- * [stale-while-revalidate](https://developer.chrome.com/docs/workbox/reference/workbox-strategies/#type-StaleWhileRevalidate)
+ * [stale-while-revalidate](https://developer.chrome.com/docs/workbox/caching-strategies-overview/#stale-while-revalidate)
  * request strategy.
  *
  * Resources are requested from both the cache and the network in parallel.
@@ -4059,7 +4072,7 @@ function dontWaitFor(promise) {
     void promise.then(() => { });
 }
 
-;// CONCATENATED MODULE: ./node_modules/workbox-expiration/node_modules/idb/build/esm/wrap-idb-value.js
+;// CONCATENATED MODULE: ./node_modules/workbox-expiration/node_modules/idb/build/wrap-idb-value.js
 const instanceOfAny = (object, constructors) => constructors.some((c) => object instanceof c);
 
 let idbProxyableTypes;
@@ -4246,7 +4259,7 @@ const unwrap = (value) => reverseTransformCache.get(value);
 
 
 
-;// CONCATENATED MODULE: ./node_modules/workbox-expiration/node_modules/idb/build/esm/index.js
+;// CONCATENATED MODULE: ./node_modules/workbox-expiration/node_modules/idb/build/index.js
 
 
 
@@ -4262,17 +4275,21 @@ function openDB(name, version, { blocked, upgrade, blocking, terminated } = {}) 
     const openPromise = wrap(request);
     if (upgrade) {
         request.addEventListener('upgradeneeded', (event) => {
-            upgrade(wrap(request.result), event.oldVersion, event.newVersion, wrap(request.transaction));
+            upgrade(wrap(request.result), event.oldVersion, event.newVersion, wrap(request.transaction), event);
         });
     }
-    if (blocked)
-        request.addEventListener('blocked', () => blocked());
+    if (blocked) {
+        request.addEventListener('blocked', (event) => blocked(
+        // Casting due to https://github.com/microsoft/TypeScript-DOM-lib-generator/pull/1405
+        event.oldVersion, event.newVersion, event));
+    }
     openPromise
         .then((db) => {
         if (terminated)
             db.addEventListener('close', () => terminated());
-        if (blocking)
-            db.addEventListener('versionchange', () => blocking());
+        if (blocking) {
+            db.addEventListener('versionchange', (event) => blocking(event.oldVersion, event.newVersion, event));
+        }
     })
         .catch(() => { });
     return openPromise;
@@ -4284,8 +4301,11 @@ function openDB(name, version, { blocked, upgrade, blocking, terminated } = {}) 
  */
 function deleteDB(name, { blocked } = {}) {
     const request = indexedDB.deleteDatabase(name);
-    if (blocked)
-        request.addEventListener('blocked', () => blocked());
+    if (blocked) {
+        request.addEventListener('blocked', (event) => blocked(
+        // Casting due to https://github.com/microsoft/TypeScript-DOM-lib-generator/pull/1405
+        event.oldVersion, event));
+    }
     return wrap(request).then(() => undefined);
 }
 
@@ -5178,7 +5198,7 @@ function skipWaiting() {
 
 
 
-precacheAndRoute([{'revision':'a253e86e558ec113946e78669c046773','url':'/404.html'},{'revision':null,'url':'/images/banner-girl-1.24e9b8f48d5a0ac32680edd194503695.png'},{'revision':null,'url':'/images/banner-girl.789f1fa6f451ad26c5039fcbc049ace7.png'},{'revision':null,'url':'/images/banner-guy.fbf4f0f7396fe31ca288dc1dd9822342.png'},{'revision':null,'url':'/images/creditcards.9024dc86450bbd2666b162083f5f91dd.png'},{'revision':null,'url':'/images/defaultAvatar.4e9edb2a624547982816014bf128fcd5.jpg'},{'revision':null,'url':'/images/defaultBanner.accdc757f2c48d61f24c4fbcef2742fd.jpg'},{'revision':null,'url':'/images/logo-full.059e10fa5fedbfb65165e7565ed3936f.png'},{'revision':null,'url':'/images/logo-wordmark.c9095b79e4c1cb5d9f82799542443b19.png'},{'revision':'a253e86e558ec113946e78669c046773','url':'/index.html'},{'revision':null,'url':'/js/404.8a30534906d73f6102c4.js'},{'revision':null,'url':'/js/503.f1a9d55ac294fbd389ce.js'},{'revision':null,'url':'/js/99.c807deead9588fbebcb1.js'},{'revision':null,'url':'/js/main.749f9919929b8fded174.js'},{'revision':null,'url':'/js/vendor.830412f9082e0cf600ce.js'},{'revision':'f2bf0f24470da4cdb9b70601464c4387','url':'/main.css'},{'revision':'b127f7589a1b597b853947114cce97f1','url':'/static/banner.jpg'},{'revision':'f866913f47c4b6b837a6920189f8b265','url':'/static/creditcards.png'},{'revision':'c1558c012afbfb5c95a86f1a99786826','url':'/static/favicon.png'},{'revision':'0fe515be36c779c448b8099a43c48aea','url':'/static/logo-full.png'},{'revision':'6cb5664eba350b2d6c6bd0c25ad53d08','url':'/static/logo-wordmark.png'},{'revision':'9e041348b72afb7287a8074e1f9ee9c2','url':'/static/profile.jpg'},{'revision':'2e88ba459d46a9001f05b408b3058809','url':'/static/salt-image-1.png'},{'revision':'b920335ece6eef0cac097dabef93b4a1','url':'/static/salt-image-10.png'},{'revision':'cf3804871087b1f605cdb983702a0b02','url':'/static/salt-image-2.png'},{'revision':'66524363461b77249e983bb30dd3894f','url':'/static/salt-image-3.png'},{'revision':'afb2bd6986a1e26cb9341e1feb6f0aa3','url':'/static/salt-image-4.png'},{'revision':'c0833c0f6e8bd9be978827cc8754e4d8','url':'/static/salt-image-5.png'},{'revision':'04c3a5f007cc5877607ad4412ab05342','url':'/static/salt-image-7.png'},{'revision':'47f60be69484dc71192b465f37776861','url':'/static/screeny1.png'},{'revision':'cf5ae31f6e8fad6040284b96181420ab','url':'/static/screeny2.png'},{'revision':'b3fe41604e587c865e0f5b60e410c040','url':'/static/screeny3.png'},{'revision':'a18ae486f9c28c584e43d130f0d705bf','url':'/static/screeny4.png'},{'revision':'9c3a19c74ae80e4932bc8931755613a6','url':'/static/screeny5.png'},{'revision':'7909f7f1c602912af6c46c8ccd5c5ca7','url':'/static/screeny6.png'},{'revision':'56e89aa2ffa41af611af0f27052a7d22','url':'/static/screeny7.png'},{'revision':'dada1fb3d0791f3615f6b2e8782026e1','url':'/static/screeny8.png'},{'revision':'b5c8bb366fedd517ef17750883c3061e','url':'/static/screeny9.png'},{'revision':'b1e0a283928cc4ce2a1b8b77c0163933','url':'/vendor.css'}]);
+precacheAndRoute([{'revision':'6e8efafa50afae863fa4d32315288ba2','url':'/404.html'},{'revision':null,'url':'/images/banner-girl-1.24e9b8f48d5a0ac32680edd194503695.png'},{'revision':null,'url':'/images/banner-girl.789f1fa6f451ad26c5039fcbc049ace7.png'},{'revision':null,'url':'/images/banner-guy.fbf4f0f7396fe31ca288dc1dd9822342.png'},{'revision':null,'url':'/images/cash.0856aaa09980f7d51ce94db602ee1603.png'},{'revision':null,'url':'/images/creditcards.9024dc86450bbd2666b162083f5f91dd.png'},{'revision':null,'url':'/images/defaultAvatar.4e9edb2a624547982816014bf128fcd5.jpg'},{'revision':null,'url':'/images/defaultBanner.accdc757f2c48d61f24c4fbcef2742fd.jpg'},{'revision':null,'url':'/images/dign-logo.230cf3a70d6bf7fa5c7537cbceb699de.png'},{'revision':null,'url':'/images/logo-full.059e10fa5fedbfb65165e7565ed3936f.png'},{'revision':null,'url':'/images/logo-wordmark.c9095b79e4c1cb5d9f82799542443b19.png'},{'revision':'69c11bb6ecd55eef660495c5a23cac3d','url':'/index.html'},{'revision':null,'url':'/js/279.4420108292e56273b33b.js'},{'revision':null,'url':'/js/404.1d58ba863571befbb07f.js'},{'revision':null,'url':'/js/449.fd8e23ba1777bc64758d.js'},{'revision':null,'url':'/js/503.b5349193ec834a3b30de.js'},{'revision':null,'url':'/js/521.e96a32590f6beaf8a5a8.js'},{'revision':null,'url':'/js/99.8f35a858e914a54526ce.js'},{'revision':null,'url':'/js/main.4288af4bd4c6586f10c8.js'},{'revision':null,'url':'/js/vendor.dbb31d5897eaf861dace.js'},{'revision':'a565f3bddba75d134a393cc49e04e59a','url':'/main.css'},{'revision':'b127f7589a1b597b853947114cce97f1','url':'/static/banner.jpg'},{'revision':'63a7526ff10843c80b0869ce4c2cd2e6','url':'/static/cash.png'},{'revision':'f866913f47c4b6b837a6920189f8b265','url':'/static/creditcards.png'},{'revision':'e1679fc44fb4f6ccad6ab0e1113db09d','url':'/static/dign-logo.png'},{'revision':'c1558c012afbfb5c95a86f1a99786826','url':'/static/favicon.png'},{'revision':'2163c68fbf796e3c89e6f21fc440aa29','url':'/static/favicondign.png'},{'revision':'0fe515be36c779c448b8099a43c48aea','url':'/static/logo-full.png'},{'revision':'6cb5664eba350b2d6c6bd0c25ad53d08','url':'/static/logo-wordmark.png'},{'revision':'9e041348b72afb7287a8074e1f9ee9c2','url':'/static/profile.jpg'},{'revision':'2e88ba459d46a9001f05b408b3058809','url':'/static/salt-image-1.png'},{'revision':'b920335ece6eef0cac097dabef93b4a1','url':'/static/salt-image-10.png'},{'revision':'cf3804871087b1f605cdb983702a0b02','url':'/static/salt-image-2.png'},{'revision':'66524363461b77249e983bb30dd3894f','url':'/static/salt-image-3.png'},{'revision':'afb2bd6986a1e26cb9341e1feb6f0aa3','url':'/static/salt-image-4.png'},{'revision':'c0833c0f6e8bd9be978827cc8754e4d8','url':'/static/salt-image-5.png'},{'revision':'04c3a5f007cc5877607ad4412ab05342','url':'/static/salt-image-7.png'},{'revision':'47f60be69484dc71192b465f37776861','url':'/static/screeny1.png'},{'revision':'cf5ae31f6e8fad6040284b96181420ab','url':'/static/screeny2.png'},{'revision':'b3fe41604e587c865e0f5b60e410c040','url':'/static/screeny3.png'},{'revision':'a18ae486f9c28c584e43d130f0d705bf','url':'/static/screeny4.png'},{'revision':'9c3a19c74ae80e4932bc8931755613a6','url':'/static/screeny5.png'},{'revision':'7909f7f1c602912af6c46c8ccd5c5ca7','url':'/static/screeny6.png'},{'revision':'56e89aa2ffa41af611af0f27052a7d22','url':'/static/screeny7.png'},{'revision':'dada1fb3d0791f3615f6b2e8782026e1','url':'/static/screeny8.png'},{'revision':'b5c8bb366fedd517ef17750883c3061e','url':'/static/screeny9.png'},{'revision':'79b78e7286090a275f931bd4eda08e43','url':'/styles.css'},{'revision':'b1e0a283928cc4ce2a1b8b77c0163933','url':'/vendor.css'}]);
 var currentCacheNames = Object.assign({
   precacheTemp: workbox_core_cacheNames_cacheNames.precache + "-temp"
 }, workbox_core_cacheNames_cacheNames);
@@ -5188,8 +5208,9 @@ registerRoute(/https:\/\/fonts.(?:googleapis|gstatic).com\/(.*)/, new CacheFirst
   plugins: [new ExpirationPlugin({
     maxEntries: 30
   })]
-}), "GET"); // clean up old SW caches
+}), "GET");
 
+// clean up old SW caches
 self.addEventListener("activate", function (event) {
   event.waitUntil(caches.keys().then(function (cacheNames) {
     var validCacheSet = new Set(Object.values(currentCacheNames));
