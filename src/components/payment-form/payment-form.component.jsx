@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {} from '../../../netflify/functions/create-payment-intent'
+// import {} from '../../../netflify/functions/create-payment-intent'
 
 
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
