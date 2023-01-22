@@ -6,3 +6,5 @@ node_modules/
 
 
 # ignores files and not push it to github!!!
+
+# dist/
