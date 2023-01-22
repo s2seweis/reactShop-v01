@@ -24,7 +24,7 @@ if(!stripe || !elements) {
 }
 
 
-const response = await fetch('/.netflify/functions/create-payment-intent.js', {
+const response = await fetch('/.netflify/functions/create-payment-intent', {
 // const response = await fetch('../../../netflify/functions/create-payment-intent.js', {
 
 method: 'post',
