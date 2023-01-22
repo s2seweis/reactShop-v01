@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import {} from '../../../netflify/functions/create-payment-intent.js'
+import {} from '../../../netflify/functions/create-payment-intent'
 
 
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
@@ -24,7 +24,8 @@ if(!stripe || !elements) {
 }
 
 
-const response = await fetch('../../../netflify/functions/create-payment-intent.js', {
+const response = await fetch('/.netflify/functions/create-payment-intent.js', {
+// const response = await fetch('../../../netflify/functions/create-payment-intent.js', {
 
 method: 'post',
 
@@ -46,7 +47,7 @@ console.log(response);
   return (
 
     <PaymentFormContainer>
-      <FormContainer onSubmit = {paymentHandler} >
+      <FormContainer onSubmit= {paymentHandler} >
 
         <h2>Credit Card Payment:</h2>
 
