@@ -6,6 +6,7 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import Button from '../CustomButton/custom-button'
 
 import { PaymentFormContainer, FormContainer } from './payment-form.styles'
+import { ConsoleSqlOutlined } from '@ant-design/icons';
 
 
 const PaymentForm = () => {
@@ -21,12 +22,29 @@ if(!stripe || !elements) {
 }
 
 
-  }
+const response = await fetch('/.netlify/functions/create-payment-intent', {
+
+method: 'post',
+
+headers: {
+
+  'Content-Type': 'application/json'
+
+},
+
+body: JSON.stringify( { amount: 1000} )
+
+}).then(res => res.json());
+
+
+console.log(response);
+
+  };
 
   return (
 
     <PaymentFormContainer>
-      <FormContainer>
+      <FormContainer onSubmit = {paymentHandler} >
 
         <h2>Credit Card Payment:</h2>
 
