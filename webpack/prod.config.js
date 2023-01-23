@@ -97,6 +97,17 @@ module.exports = merge(baseConfig, {
       "process.env.FIREBASE_APP_ID": JSON.stringify(
         process.env.FIREBASE_APP_ID
       ),
+
+      // ###############################
+
+      "process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY": JSON.stringify(
+        process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY
+      ),
+
+      // ##############################################
+
+
+
     }),
     //  // keep module.id stable when vendor modules does not change
     // new webpack.HashedModuleIdsPlugin(),
