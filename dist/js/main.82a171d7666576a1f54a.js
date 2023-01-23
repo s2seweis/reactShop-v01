@@ -14808,7 +14808,7 @@ var PaymentForm = function PaymentForm() {
             return _context.abrupt("return");
           case 3:
             _context.next = 5;
-            return fetch('/.netflify/functions/create-payment-intent', {
+            return fetch('/.netlify/functions/create-payment-intent', {
               // const response = await fetch('../../../netflify/functions/create-payment-intent', {
 
               method: 'post',
@@ -25148,4 +25148,4 @@ webpackContext.id = 46700;
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=main.8ca57f50210be116ab28.js.map
+//# sourceMappingURL=main.82a171d7666576a1f54a.js.map
