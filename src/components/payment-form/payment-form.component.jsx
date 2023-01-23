@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import {} from '../../../netflify/functions/create-payment-intent'
 
 
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
@@ -24,8 +23,8 @@ if(!stripe || !elements) {
 }
 
 
-// const response = await fetch('/.netflify/functions/create-payment-intent', {
-const response = await fetch('../../../netflify/functions/create-payment-intent', {
+const response = await fetch('/.netflify/functions/create-payment-intent', {
+// const response = await fetch('../../../netflify/functions/create-payment-intent', {
 
 method: 'post',
 
