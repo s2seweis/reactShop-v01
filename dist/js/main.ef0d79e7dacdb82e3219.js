@@ -19538,8 +19538,9 @@ var stripe_esm = __webpack_require__(54465);
 
 // export const stripePromise = loadStripe("pk_test_51MSB2wIlCEHks7DgasuuHAllQvZd4jicmn6wWE2y7PaMEKfZmA8EHRMYL0w7nwiQ3XX45OKlICGcX4VYbENIpHCp00hdOnSYPY");
 
-// export const stripePromise = loadStripe("process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY");
+// export const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 var stripePromise = (0,stripe_esm/* loadStripe */.J)("pk_test_51MSB2wIlCEHks7DgasuuHAllQvZd4jicmn6wWE2y7PaMEKfZmA8EHRMYL0w7nwiQ3XX45OKlICGcX4VYbENIpHCp00hdOnSYPY");
+// export const stripePromise = loadStripe("pk_test_51MSB2wIlCEHks7DgasuuHAllQvZd4jicmn6wWE2y7PaMEKfZmA8EHRMYL0w7nwiQ3XX45OKlICGcX4VYbENIpHCp00hdOnSYPY");
 ;// CONCATENATED MODULE: ./src/App.jsx
 /* eslint-disable react/forbid-prop-types */
 
@@ -25148,4 +25149,4 @@ webpackContext.id = 46700;
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=main.07db5ec3a35d8a185288.js.map
+//# sourceMappingURL=main.ef0d79e7dacdb82e3219.js.map
