@@ -8,7 +8,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
 
 // export async function handler(event) {
 
-  exports.handler = async (event) => {
+  export async function   handler(event) {
 // export async function handler(event) {
 
   try {
