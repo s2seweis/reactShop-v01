@@ -14788,9 +14788,6 @@ function payment_form_component_asyncGeneratorStep(gen, resolve, reject, _next, 
 function payment_form_component_asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { payment_form_component_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { payment_form_component_asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
-// import {} from '../../../netflify/functions/create-payment-intent'
-
-
 
 
 
@@ -14811,8 +14808,8 @@ var PaymentForm = function PaymentForm() {
             return _context.abrupt("return");
           case 3:
             _context.next = 5;
-            return fetch('/.netflify/functions/create-payment-intent.js', {
-              // const response = await fetch('../../../netflify/functions/create-payment-intent.js', {
+            return fetch('/.netflify/functions/create-payment-intent', {
+              // const response = await fetch('../../../netflify/functions/create-payment-intent', {
 
               method: 'post',
               headers: {
@@ -25151,4 +25148,4 @@ webpackContext.id = 46700;
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=main.d8bd723c00925fbf03d7.js.map
+//# sourceMappingURL=main.07db5ec3a35d8a185288.js.map
