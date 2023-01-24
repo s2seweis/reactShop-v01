@@ -14796,7 +14796,7 @@ var PaymentForm = function PaymentForm() {
   var elements = (0,react_stripe_umd.useElements)();
   var paymentHandler = /*#__PURE__*/function () {
     var _ref = payment_form_component_asyncToGenerator( /*#__PURE__*/payment_form_component_regeneratorRuntime().mark(function _callee(e) {
-      var response;
+      var response, client_secret;
       return payment_form_component_regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
@@ -14823,8 +14823,11 @@ var PaymentForm = function PaymentForm() {
             });
           case 5:
             response = _context.sent;
-            console.log(response);
-          case 7:
+            // console.log(response);
+            // console.log(response);
+            client_secret = response.paymentIntent.client_secret;
+            console.log(client_secret);
+          case 8:
           case "end":
             return _context.stop();
         }
@@ -19536,10 +19539,12 @@ var stripe_esm = __webpack_require__(54465);
 ;// CONCATENATED MODULE: ./src/helpers/stripe/stripe.util.js
 
 
-// export const stripePromise = loadStripe("pk_test_51MSB2wIlCEHks7DgasuuHAllQvZd4jicmn6wWE2y7PaMEKfZmA8EHRMYL0w7nwiQ3XX45OKlICGcX4VYbENIpHCp00hdOnSYPY");
 
-// export const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+// working
 var stripePromise = (0,stripe_esm/* loadStripe */.J)("pk_test_51MSB2wIlCEHks7DgasuuHAllQvZd4jicmn6wWE2y7PaMEKfZmA8EHRMYL0w7nwiQ3XX45OKlICGcX4VYbENIpHCp00hdOnSYPY");
+
+// test - working too - only if deloyed on Netlify
+// export const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);git
 ;// CONCATENATED MODULE: ./src/App.jsx
 /* eslint-disable react/forbid-prop-types */
 
@@ -25148,4 +25153,4 @@ webpackContext.id = 46700;
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=main.82a171d7666576a1f54a.js.map
+//# sourceMappingURL=main.8887731107239cfd1138.js.map

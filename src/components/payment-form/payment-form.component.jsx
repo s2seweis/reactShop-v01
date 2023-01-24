@@ -40,6 +40,7 @@ body: JSON.stringify( { amount: 1000} )
 
 
 // console.log(response);
+// console.log(response);
 
 
 const {paymentIntent: {client_secret}} = response;
