@@ -16,5 +16,5 @@ export const stripePromise = loadStripe("pk_test_51MSB2wIlCEHks7DgasuuHAllQvZd4j
 
 
 
-// test - working too
-// export const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+// test - working too - only if deloyed on Netlify
+// export const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);git
