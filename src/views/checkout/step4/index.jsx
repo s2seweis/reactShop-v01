@@ -72,9 +72,7 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
           </button> */}
 
 
-          <PaymentForm
-          subtotal={subtotal}
-          />
+          <PaymentForm />
 
 
           <button

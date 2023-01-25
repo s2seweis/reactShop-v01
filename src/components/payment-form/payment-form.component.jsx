@@ -1,19 +1,5 @@
 import React from 'react';
 
-import { useState } from 'react';
-
-import { useSelector } from 'react-redux';
-
-
-
-// example
-
-// import { selectCartTotal } from '../../store/cart/cart.selector';
-// import { selectCurrentUser } from '../../store/user/user.selector';
-
-// example
-
-
 
 
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
@@ -24,18 +10,9 @@ import { PaymentFormContainer, FormContainer } from './payment-form.styles'
 import { ConsoleSqlOutlined } from '@ant-design/icons';
 
 
-const PaymentForm = (subtotal) => {
+const PaymentForm = () => {
   const stripe = useStripe();
   const elements = useElements();
-
-  console.log(subtotal)
-
-  // example
-
-  // const amount = useSelector(selectCartTotal);
-  // const selectCurrentUser = useSelector(selectCurrentUser);
-
-  // example
 
   const paymentHandler = async (e) => {
     e.preventDefault();
@@ -57,11 +34,7 @@ const PaymentForm = (subtotal) => {
 
       },
 
-      // body: JSON.stringify({ amount: 1000 }),
-
-      // example
-      body: JSON.stringify({ amount: subtotal * 100 }),
-      // example
+      body: JSON.stringify({ amount: 1000 })
 
     }).then(res => res.json());
 
@@ -76,21 +49,11 @@ const PaymentForm = (subtotal) => {
     const paymentResult = await stripe.confirmCardPayment(client_secret, {
       payment_method: {
         card: elements.getElement(CardElement),
-
-        // example
         billing_details: {
-          // example
-          // name: currentUser ? currentUser.displayName : 'Guest',
-          // example
-          name:  'Sebastian Weissenborn'
-        },
-
-
-      },
+          name: 'Basti Weiss'
+        }
+      }
     });
-
-
-
 
     if (paymentResult.error) {
       alert(paymentResult.error);
