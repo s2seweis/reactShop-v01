@@ -13,9 +13,10 @@ import { CompassOutlined, ConsoleSqlOutlined } from '@ant-design/icons';
 const PaymentForm = (subtotal) => {
   const stripe = useStripe();
   const elements = useElements();
-  console.log(subtotal)
+  // console.log(subtotal)
+  console.log(subtotal.subtotal)
 
-  const amount = subtotal;
+  const amount = subtotal.subtotal;
 
 console.log(amount)
 
@@ -39,7 +40,7 @@ console.log(amount)
 
       },
 
-      body: JSON.stringify({ amount: "1000" }),
+      body: JSON.stringify({ amount: amount * 100 }),
 
     }).then(res => res.json());
 
