@@ -112,6 +112,7 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
         <PaymentForm className='stripe-step4'
           subtotal={subtotal}
           shipping={shipping}
+          basket={basket}
           
           />
 

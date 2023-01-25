@@ -21,6 +21,8 @@ const PaymentForm = ( shipping, subtotal, payment, basket ) => {
   const elements = useElements();
   console.log(shipping.subtotal);
   console.log(shipping.shipping.fullname);
+  console.log(shipping.basket)
+  console.log(shipping)
 
   const dispatch = useDispatch();
 
@@ -94,10 +96,10 @@ console.log(amount)
 
   const onClickNext = (form) => {
     dispatch(setOrderDetails({
-      basket: basket,
-      payment: payment,
+      // basket: basket,
+      // payment: payment,
       shipping: shipping,
-      subtotal: subtotal,
+      // subtotal: subtotal,
       // dateAdded: new Date().getTime(),
       // Total: Total
 
