@@ -9,20 +9,25 @@ import Button from '../CustomButton/custom-button'
 import { PaymentFormContainer, FormContainer } from './payment-form.styles'
 import { CompassOutlined, ConsoleSqlOutlined } from '@ant-design/icons';
 
+import { useDispatch } from 'react-redux';
 
-const PaymentForm = (subtotal, basket, shipping) => {
+import { setOrderDetails } from 'redux/actions/checkoutActions';
+
+
+
+
+const PaymentForm = ( shipping, subtotal, payment, basket ) => {
   const stripe = useStripe();
   const elements = useElements();
-  // console.log(subtotal)
-  console.log(subtotal);
-  console.log(subtotal.shipping.fullname);
-  console.log(subtotal.subtotal);
-  console.log(shipping?.shipping);
-  console.log(basket);
+  console.log(shipping.subtotal);
+  console.log(shipping.shipping.fullname);
+
  
 
-  const amount = subtotal.subtotal;
-  const customer = subtotal.shipping.fullname;
+ 
+
+  const amount = shipping.subtotal;
+  const customer = shipping.shipping.fullname;
 
 console.log(amount)
 
@@ -71,23 +76,39 @@ console.log(amount)
       alert(paymentResult.error);
     } else {
       if (paymentResult.paymentIntent.status === 'succeeded') {
-        alert('Payment Successful');
+        // alert('Payment Successful');
+        onClickNext
       }
     }
 
 
   };
 
+
+
+  const onClickNext = (form) => {
+    dispatch(setOrderDetails({
+      basket: basket,
+      payment: payment,
+      shipping: shipping,
+      subtotal: subtotal,
+      // dateAdded: new Date().getTime(),
+      // Total: Total
+
+    }));
+    // history.push(CHECKOUT_STEP_2);
+  };
+
   return (
 
-    <PaymentFormContainer>
-      <FormContainer onSubmit={paymentHandler} >
+    <PaymentFormContainer   >
+      <FormContainer  onSubmit={paymentHandler} >
 
         <h2>Credit Card Payment:</h2>
 
-        <CardElement />
+        <CardElement  />
 
-        <Button>Pay Now</Button>
+        <Button style={{ margin: 'auto',  marginTop: '50px' }} >Pay Now</Button>
 
       </FormContainer>
     </PaymentFormContainer>

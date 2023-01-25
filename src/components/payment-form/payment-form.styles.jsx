@@ -11,6 +11,6 @@ justify-content: center;
 
 export const FormContainer = styled.form`
 height: 100px;
-min-width: 500px
+// min-width: 500px
 
 `;

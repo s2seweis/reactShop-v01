@@ -36,10 +36,10 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
     // history.push(CHECKOUT_STEP_2);
   };
 
-  // console.log(subtotal)
-  // console.log(shipping)
-  // console.log(payment)
-  console.log(shipping.fullname)
+ 
+
+
+  
 
   return (
     <div className="checkout">
@@ -77,12 +77,11 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
           </button> */}
 
 
-          <PaymentForm
+          {/* <PaymentForm
           subtotal={subtotal}
           shipping={shipping}
-          basket={basket}
           
-          />
+          /> */}
 
 
           <button
@@ -104,7 +103,18 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
             &nbsp;
             <ArrowRightOutlined />
           </button>
+
+
+
+
         </div>
+
+        <PaymentForm
+          subtotal={subtotal}
+          shipping={shipping}
+          
+          />
+
       </div>
     </div>
   );
