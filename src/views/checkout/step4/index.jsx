@@ -109,7 +109,7 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
 
         </div>
 
-        <PaymentForm
+        <PaymentForm className='stripe-step4'
           subtotal={subtotal}
           shipping={shipping}
           

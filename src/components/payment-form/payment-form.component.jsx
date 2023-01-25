@@ -77,7 +77,7 @@ console.log(amount)
     } else {
       if (paymentResult.paymentIntent.status === 'succeeded') {
         // alert('Payment Successful');
-        onClickNext
+        onClickNext();
       }
     }
 
