@@ -39,7 +39,7 @@ console.log(amount)
 
       },
 
-      body: JSON.stringify({ amount: amount * 100 }),
+      body: JSON.stringify({ amount: "1000" }),
 
     }).then(res => res.json());
 
