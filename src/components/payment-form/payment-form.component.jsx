@@ -7,12 +7,17 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import Button from '../CustomButton/custom-button'
 
 import { PaymentFormContainer, FormContainer } from './payment-form.styles'
-import { ConsoleSqlOutlined } from '@ant-design/icons';
+import { CompassOutlined, ConsoleSqlOutlined } from '@ant-design/icons';
 
 
-const PaymentForm = () => {
+const PaymentForm = (subtotal) => {
   const stripe = useStripe();
   const elements = useElements();
+  console.log(subtotal)
+
+  const amount = subtotal;
+
+console.log(amount)
 
   const paymentHandler = async (e) => {
     e.preventDefault();
@@ -34,7 +39,7 @@ const PaymentForm = () => {
 
       },
 
-      body: JSON.stringify({ amount: 1000 })
+      body: JSON.stringify({ amount: amount * 100 }),
 
     }).then(res => res.json());
 
@@ -50,7 +55,7 @@ const PaymentForm = () => {
       payment_method: {
         card: elements.getElement(CardElement),
         billing_details: {
-          name: 'Basti Weiss'
+          name: 'Sebastian Weissenborn'
         }
       }
     });
