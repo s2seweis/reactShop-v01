@@ -22,6 +22,9 @@ const PaymentForm = ( shipping, subtotal, payment, basket ) => {
   console.log(shipping.subtotal);
   console.log(shipping.shipping.fullname);
 
+  const dispatch = useDispatch();
+
+
  
 
  
@@ -77,6 +80,9 @@ console.log(amount)
     } else {
       if (paymentResult.paymentIntent.status === 'succeeded') {
         // alert('Payment Successful');
+
+
+
         onClickNext();
       }
     }
