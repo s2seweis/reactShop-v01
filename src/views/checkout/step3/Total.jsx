@@ -18,6 +18,7 @@ const Total = ({ isInternational, subtotal }) => {
   const { values, submitForm } = useFormikContext();
   const history = useHistory();
   const dispatch = useDispatch();
+  console.log(isInternational)
 
   const onClickBack = () => {
     // destructure to only select left fields omitting cardnumber and ccv

@@ -36,6 +36,11 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
     // history.push(CHECKOUT_STEP_2);
   };
 
+  // console.log(subtotal)
+  // console.log(shipping)
+  // console.log(payment)
+  console.log(shipping.fullname)
+
   return (
     <div className="checkout">
       <StepTracker current={4} />
@@ -73,7 +78,11 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
 
 
           <PaymentForm
-          subtotal={subtotal} />
+          subtotal={subtotal}
+          shipping={shipping}
+          basket={basket}
+          
+          />
 
 
           <button

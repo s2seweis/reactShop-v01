@@ -10,13 +10,19 @@ import { PaymentFormContainer, FormContainer } from './payment-form.styles'
 import { CompassOutlined, ConsoleSqlOutlined } from '@ant-design/icons';
 
 
-const PaymentForm = (subtotal) => {
+const PaymentForm = (subtotal, basket, shipping) => {
   const stripe = useStripe();
   const elements = useElements();
   // console.log(subtotal)
-  console.log(subtotal.subtotal)
+  console.log(subtotal);
+  console.log(subtotal.shipping.fullname);
+  console.log(subtotal.subtotal);
+  console.log(shipping?.shipping);
+  console.log(basket);
+ 
 
   const amount = subtotal.subtotal;
+  const customer = subtotal.shipping.fullname;
 
 console.log(amount)
 
@@ -56,7 +62,7 @@ console.log(amount)
       payment_method: {
         card: elements.getElement(CardElement),
         billing_details: {
-          name: 'Sebastian Weissenborn'
+          name: customer
         }
       }
     });
