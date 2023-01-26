@@ -25,7 +25,7 @@ const App = ({ store, persistor }) => {
     
   <StrictMode>
     <Provider store={store}>
-      <PersistGate loading={<Preloader />} persistor={persistor}>
+      <PersistGate loading={<Preloader  />} persistor={persistor}>
 
         <Elements stripe={stripePromise}>
 

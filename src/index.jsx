@@ -20,7 +20,7 @@ const { store, persistor } = configureStore();
 const root = document.getElementById('app');
 
 // Render the preloader on initial load
-render(<Preloader />, root);
+render(<Preloader  />, root);
 
 firebase.auth.onAuthStateChanged((user) => {
   if (user) {

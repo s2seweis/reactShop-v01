@@ -22,10 +22,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin: auto;
 
     img {
-        width: 200px;
-        height: 120px;
+       width: 50%;
         object-fit: contain;
     }
 }

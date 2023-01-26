@@ -12,6 +12,8 @@ import { signIn } from 'redux/actions/authActions';
 import { setAuthenticating, setAuthStatus } from 'redux/actions/miscActions';
 import * as Yup from 'yup';
 
+import Preloader from '../../../components/common/Preloader'
+
 const SignInSchema = Yup.object().shape({
   email: Yup.string()
     .email('Email is not valid.')
@@ -108,6 +110,8 @@ const SignIn = ({ history }) => {
                         >
                           <span>Forgot password?</span>
                         </Link>
+
+
                         <button
                           className="button auth-button"
                           disabled={isAuthenticating}
@@ -117,6 +121,9 @@ const SignIn = ({ history }) => {
                           &nbsp;
                           {isAuthenticating ? <LoadingOutlined /> : <ArrowRightOutlined />}
                         </button>
+
+
+
                       </div>
                     </Form>
                   )}
@@ -143,6 +150,12 @@ const SignIn = ({ history }) => {
           </div>
         </>
       )}
+
+
+      <Preloader />
+
+
+
     </div>
   );
 };

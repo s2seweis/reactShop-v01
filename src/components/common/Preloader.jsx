@@ -2,6 +2,9 @@ import React from 'react';
 import logoWordmark from '../../../static/logo-wordmark.png';
 import dignlogo from '../../../static/dign-logo.png';
 
+import { ArrowRightOutlined, LoadingOutlined } from '@ant-design/icons';
+
+
 
 const Preloader = () => (
   <div className="preloaderNew">
@@ -58,24 +61,23 @@ const Preloader = () => (
     {/* Version 3 */}
 
     <svg version="1.1" id="L3" x="0px" y="0px"
-      width="150"
+      width="180"
+      height="400"
       viewBox="0 0 100 100" enableBackground="new 0 0 0 0">
-
-
-
-
-
-      {/* <circle fill="yellow" stroke="black" stroke-Width="4" cx="50" cy="50" r="44"
-        // style="opacity:0.5;" 
-        opacity="0.3"
-      /> */}
 
       <defs>
         <clipPath id="myCircle">
           <circle cx="50" cy="50" r="44" fill="#FFFFFF" />
         </clipPath>
       </defs>
-      <image width="120" height="120" href="../../../static/dign-logo.png"
+      
+      
+      
+      <image  
+
+style={{ marginLeft:"50px", height:"90px", width:"100%" }}
+    
+      href="../../../static/dign-logo.png"
         clipPath="url(#myCircle)"
       />
 
