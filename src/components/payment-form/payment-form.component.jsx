@@ -2,7 +2,14 @@ import React from 'react';
 
 
 
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
+import {
+
+  CardElement,
+  useStripe,
+  useElements
+
+
+} from '@stripe/react-stripe-js'
 
 import Button from '../CustomButton/custom-button'
 
@@ -16,7 +23,7 @@ import { setOrderDetails } from 'redux/actions/checkoutActions';
 
 
 
-const PaymentForm = ( shipping, subtotal, payment, basket ) => {
+const PaymentForm = (shipping, subtotal, payment, basket) => {
   const stripe = useStripe();
   const elements = useElements();
   console.log(shipping.subtotal);
@@ -27,14 +34,14 @@ const PaymentForm = ( shipping, subtotal, payment, basket ) => {
   const dispatch = useDispatch();
 
 
- 
 
- 
+
+
 
   const amount = shipping.subtotal;
   const customer = shipping.shipping.fullname;
 
-console.log(amount)
+  console.log(amount)
 
   const paymentHandler = async (e) => {
     e.preventDefault();
@@ -110,13 +117,15 @@ console.log(amount)
   return (
 
     <PaymentFormContainer   >
-      <FormContainer  onSubmit={paymentHandler} >
+      <FormContainer onSubmit={paymentHandler} >
 
         <h2>Credit Card Payment:</h2>
 
-        <CardElement  />
+        <CardElement />
 
-        <Button style={{ margin: 'auto',  marginTop: '50px' }} >Pay Now</Button>
+
+
+        <Button style={{ margin: 'auto', marginTop: '50px' }} >Pay Now</Button>
 
       </FormContainer>
     </PaymentFormContainer>
