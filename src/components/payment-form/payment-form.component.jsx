@@ -11,9 +11,16 @@ import {
 
 } from '@stripe/react-stripe-js'
 
-import Button from '../CustomButton/custom-button'
+// import CustomButton from '../CustomButton/custom-button'
 
 import { PaymentFormContainer, FormContainer } from './payment-form.styles'
+
+
+import { BUTTON_TYPE_CLASSES } from '../CustomButton/button/button.component';
+
+import { PaymentButton } from './payment-form.styles';
+
+
 import { CompassOutlined, ConsoleSqlOutlined } from '@ant-design/icons';
 
 import { useDispatch } from 'react-redux';
@@ -134,12 +141,12 @@ const PaymentForm = (shipping, subtotal, payment, basket) => {
 
 
 
-        <Button
-          style={{ margin: 'auto', marginTop: '50px' }}
-          disabled={isProcessingPayment}
+        <PaymentButton
+          buttonType={BUTTON_TYPE_CLASSES.inverted}
+          isLoading={isProcessingPayment}
         >
           Pay Now
-        </Button>
+        </PaymentButton>
 
       </FormContainer>
     </PaymentFormContainer>
