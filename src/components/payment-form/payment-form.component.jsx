@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 
 
@@ -26,10 +26,11 @@ import { setOrderDetails } from 'redux/actions/checkoutActions';
 const PaymentForm = (shipping, subtotal, payment, basket) => {
   const stripe = useStripe();
   const elements = useElements();
-  console.log(shipping.subtotal);
-  console.log(shipping.shipping.fullname);
-  console.log(shipping.basket)
-  console.log(shipping)
+
+
+  // console.log(shipping.subtotal);
+  // console.log(shipping.shipping.fullname);
+
 
   const dispatch = useDispatch();
 
@@ -40,6 +41,8 @@ const PaymentForm = (shipping, subtotal, payment, basket) => {
 
   const amount = shipping.subtotal;
   const customer = shipping.shipping.fullname;
+  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+
 
   console.log(amount)
 
@@ -50,6 +53,8 @@ const PaymentForm = (shipping, subtotal, payment, basket) => {
     if (!stripe || !elements) {
       return;
     }
+
+    setIsProcessingPayment(true);
 
 
     const response = await fetch('/.netlify/functions/create-payment-intent', {
@@ -84,15 +89,19 @@ const PaymentForm = (shipping, subtotal, payment, basket) => {
       }
     });
 
+
+    setIsProcessingPayment(false);
+
+
     if (paymentResult.error) {
       alert(paymentResult.error);
     } else {
       if (paymentResult.paymentIntent.status === 'succeeded') {
-        // alert('Payment Successful');
+        alert('Payment Successful');
 
 
 
-        onClickNext();
+        // onClickNext();
       }
     }
 
@@ -125,7 +134,12 @@ const PaymentForm = (shipping, subtotal, payment, basket) => {
 
 
 
-        <Button style={{ margin: 'auto', marginTop: '50px' }} >Pay Now</Button>
+        <Button
+          style={{ margin: 'auto', marginTop: '50px' }}
+          disabled={isProcessingPayment}
+        >
+          Pay Now
+        </Button>
 
       </FormContainer>
     </PaymentFormContainer>
