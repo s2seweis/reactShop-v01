@@ -9,7 +9,7 @@ import { ProSidebarProvider } from 'react-pro-sidebar';
 
 import { Elements } from '@stripe/react-stripe-js';
 
-import { stripePromise } from './helpers/stripe/stripe.util'
+// import { stripePromise } from './helpers/stripe/stripe.util'
 
 
 
@@ -27,11 +27,11 @@ const App = ({ store, persistor }) => {
     <Provider store={store}>
       <PersistGate loading={<Preloader  />} persistor={persistor}>
 
-        <Elements stripe={stripePromise}>
+        {/* <Elements stripe={stripePromise}> */}
 
         <AppRouter />
 
-        </Elements>
+        {/* </Elements> */}
 
       </PersistGate>
     </Provider>

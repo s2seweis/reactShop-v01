@@ -12,16 +12,68 @@ import withCheckout from '../hoc/withCheckout';
 
 import { setOrderDetails } from 'redux/actions/checkoutActions';
 
-import PaymentForm from 'components/payment-form/payment-form.component';
+// Test Start: 1 - Stripe
+
+import { useEffect, useState } from "react";
+
+import { Elements } from "@stripe/react-stripe-js";
+
+import CheckoutForm from "../../../components/stripe/CheckoutForm";
+
+import { loadStripe } from "@stripe/stripe-js";
+
+// Test End: 1 - Stripe
+
+
+
+
 
 
 const Order = ({ basket, payment, shipping, subtotal, Total }) => {
-  // useDocumentTitle('Check Out Step 1 | Dign');
-  // useScrollTop();
+  useDocumentTitle('Stripe Intergration | Step 4');
+
+
+  // Test Start:1 - Stripe
+
+
+  const [stripePromise, setStripePromise] = useState(null);
+  const [clientSecret, setClientSecret] = useState("");
+
+  useEffect(() => {
+    fetch("/api/config").then(async (r) => {
+      const { publishableKey } = await r.json();
+      setStripePromise(loadStripe(publishableKey));
+    });
+  }, []);
+
+  useEffect(() => {
+    // Create PaymentIntent as soon as the page loads
+    fetch("/api/create-payment-intent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(
+        {
+          items: { id: "xl-tshirt" },
+          price: { id: "11000" },
+          customer: { id: "swt" }
+        }
+      ),
+      // body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
+    })
+      .then((res) => res.json())
+      .then((data) => setClientSecret(data.clientSecret));
+  }, []);
+
+
+  // Test End:1 - Stripe
+
+
+
+
+
   const dispatch = useDispatch();
   const history = useHistory();
-  // const onClickPrevious = () => history.push('/');
-  // const onClickNext = () => history.push(CHECKOUT_STEP_2);
+
 
   const onClickNext = (form) => {
     dispatch(setOrderDetails({
@@ -30,16 +82,14 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
       shipping: shipping,
       subtotal: subtotal,
       dateAdded: new Date().getTime(),
-      // Total: Total
 
     }));
-    // history.push(CHECKOUT_STEP_2);
   };
 
- 
 
 
-  
+
+
 
   return (
     <div className="checkout">
@@ -48,41 +98,9 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
         <h3 className="text-center">Order Summary</h3>
         <span className="d-block text-center">Almost Complete. </span>
         <br />
-        {/* <div className="checkout-items">
-          {basket.map((product) => (
-            <BasketItem
-              basket={basket}
-              dispatch={dispatch}
-              key={product.id}
-              product={product}
-            />
-          ))}
-        </div> */}
-        <br />
-        {/* <div className="basket-total text-right">
-          <p className="basket-total-title">Subtotal:</p>
-          <h2 className="basket-total-amount">{displayMoney(subtotal)}</h2>
-        </div> */}
+
         <br />
         <div className="checkout-shipping-action">
-
-          {/* <button
-            className="button button-muted"
-            onClick={onClickPrevious}
-            type="button"
-          >
-            <ShopOutlined />
-            &nbsp;
-            Continue Shopping
-          </button> */}
-
-
-          {/* <PaymentForm
-          subtotal={subtotal}
-          shipping={shipping}
-          
-          /> */}
-
 
           <button
             className="button button-muted"
@@ -105,25 +123,34 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
           </button>
 
 
-
-
         </div>
 
-        <PaymentForm className='stripe-step4'
-          subtotal={subtotal}
-          shipping={shipping}
-          basket={basket}
-          
-          />
+
 
       </div>
+
+
+      <div className='stripe-test1'>
+
+
+        <h1
+        style={{ textAlign:"center", marginTop:"50px"}}
+        >React Stripe and the Payment Element, Test:1</h1>
+        {clientSecret && stripePromise && (
+          <Elements stripe={stripePromise} options={{ clientSecret }}>
+            <CheckoutForm />
+          </Elements>
+        )}
+
+
+
+      </div>
+
+
     </div>
   );
 };
 
-// OrderSummary.propTypes = {
-//   basket: PropType.arrayOf(PropType.object).isRequired,
-//   subtotal: PropType.number.isRequired
-// };
+
 
 export default withCheckout(Order);

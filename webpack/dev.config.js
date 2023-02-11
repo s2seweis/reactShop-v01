@@ -12,7 +12,19 @@ DotEnv.config({ path: ".env.dev" });
 module.exports = merge(baseConfig, {
   mode: "development",
   devtool: "inline-source-map",
+
+
   devServer: {
+
+    proxy: {
+      '/api': {
+           target: 'http://localhost:8080',
+           router: () => 'http://localhost:5252',
+           logLevel: 'debug' /*optional*/
+      }
+   },
+
+
     contentBase: false,
     publicPath: "/",
     historyApiFallback: true,
