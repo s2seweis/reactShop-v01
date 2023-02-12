@@ -39,7 +39,7 @@ app.get("/api/config", (req, res) => {
 
 app.post("/api/create-payment-intent", async (req, res) => {
 
-  // const { items, price } = req.body;
+  const { items, price } = req.body;
 
     // console.log(price.id);
 

@@ -54,8 +54,8 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
       body: JSON.stringify(
         {
           items: { id: "xl-tshirt" },
-          price: { id: "11000" },
-          customer: { id: "swt" }
+          // price: { id: "11000" },
+          // customer: { id: "swt" }
         }
       ),
       // body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
@@ -130,12 +130,15 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
       </div>
 
 
-      <div className='stripe-test1'>
+      <div className='stripe-test1'
+              style={{ display:"flex" }}
+
+      >
 
 
-        <h1
+        {/* <h1
         style={{ textAlign:"center", marginTop:"50px"}}
-        >React Stripe and the Payment Element, Test:1</h1>
+        >React Stripe and the Payment Element, Test:1</h1> */}
         {clientSecret && stripePromise && (
           <Elements stripe={stripePromise} options={{ clientSecret }}>
             <CheckoutForm />

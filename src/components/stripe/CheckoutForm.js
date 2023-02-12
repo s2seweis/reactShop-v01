@@ -1,10 +1,16 @@
 import { PaymentElement } from "@stripe/react-stripe-js";
-import { useState } from "react";
+// import { useState } from "react";
+
+import React, { useState } from 'react';
+
 
 
 // Test:1 ###### (LinkAuthenticationElement)
 import { useStripe, useElements, LinkAuthenticationElement } from "@stripe/react-stripe-js";
 // Test:1 ###### (LinkAuthenticationElement)
+
+import { ArrowRightOutlined, ShopOutlined, ArrowLeftOutlined } from '@ant-design/icons';
+
 
 export default function CheckoutForm() {
   const stripe = useStripe();
@@ -47,22 +53,43 @@ export default function CheckoutForm() {
   };
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
+    <form id="payment-form" onSubmit={handleSubmit}
+    style={{ width:"600px", margin: "auto", marginTop: "70px" }}
+    >
       <h1>Test:1</h1>
 
       {/* Test:1 ###### */}
       <LinkAuthenticationElement
         id="link-authentication-element"
-        onChange={(e) => setEmail(e.target.value)}/>
+        onChange={(e) => setEmail(e.target.value)} />
       {/* Test:1 ###### */}
 
       <PaymentElement id="payment-element" />
 
-      <button disabled={isProcessing || !stripe || !elements} id="submit">
+      {/* <button disabled={isProcessing || !stripe || !elements} id="submit">
         <span id="button-text">
           {isProcessing ? "Processing ... " : "Pay now"}
         </span>
+      </button> */}
+
+
+      <button
+        style={{ background: "#f2f2f2", color: "#7d7d7d", border: "1px solid #e1e1e1", marginTop: "30px" }}
+        disabled={isProcessing || !stripe || !elements} id="submit"
+        className="button"
+      // onClick={onClickNext}
+      // type="submit"
+
+      >
+        <span id="button-text">
+          {isProcessing ? "Processing ... " : "Pay now"}
+        </span>
+        &nbsp;
+        {/* <ArrowRightOutlined /> */}
       </button>
+
+
+
       {/* Show any error or success messages */}
       {message && <div id="payment-message">{message}</div>}
     </form>
