@@ -19,7 +19,8 @@ module.exports = merge(baseConfig, {
     proxy: {
       '/api': {
            target: 'http://localhost:8080',
-           router: () => 'http://localhost:5252',
+           router: () => 'http://localhost:4242',
+          //  router: () => 'http://localhost:5252',
            logLevel: 'debug' /*optional*/
       }
    },

@@ -54,7 +54,43 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
       body: JSON.stringify(
         {
           items: { id: "xl-tshirt" },
+
+          
+          basket: [
+
+           
+            
+            {
+
+            id: 1,
+            name: "iPhone 12 Pro",
+            brand: "Apple",
+            desc: "6.1-inch display",
+            price: 999
+            
+          },
+
+          {
+            id: 2,
+            name: "iPhone 12",
+            brand: "Apple",
+            desc: "5.4-inch mini display",
+            price: 699
+          },
+          {
+            id: 3,
+            name: "iPhone 15",
+            brand: "Apple",
+            desc: "7.4-inch mini display",
+            price: 999
+          }
+        
+        
+        ],
+
           // price: { id: "11000" },
+          userId1: { id: "123" },
+          userId2: "123",
           // customer: { id: "swt" }
         }
       ),
@@ -131,7 +167,7 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
 
 
       <div className='stripe-test1'
-              style={{ display:"flex" }}
+        style={{ display: "flex" }}
 
       >
 
