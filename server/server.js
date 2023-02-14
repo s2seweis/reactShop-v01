@@ -48,61 +48,64 @@ app.post("/api/create-payment-intent", async (req, res) => {
   const customer = await stripe.customers.create({
     metadata: {
       userId: req.body.userId2,
-      // cart: JSON.stringify(req.body.basket)
+      preName: req.body.preName,
+      // cart: req.body.basket,
+      cart: JSON.stringify(req.body.cart)
     }
   });
 
-  // console.log(customer);
+  console.log(customer);
 
-  const line_items = req.body?.basket?.map((item) => {
-    return {
+  // const line_items = req.body?.basket?.map((item) => {
+  //   return {
+
+
+  //     price_data: {
+  //       currency: "usd",
+  //       amount: "300",
+        
+  //       product_data: {
+
+
+  //         name: item.name,
+  //         description: item.desc,
+
+  //         metadata: {
+  //           id: item.id
+  //         },
+
+          
+  //       },
+
+  //     },
 
 
       // price_data: {
       //   currency: "usd",
       //   amount: "300",
-        
+      //   name: item.name,
+      //   description: item.desc,
+      //   id: item.id,
+      //   price: item.price,
+
+      //   // https://www.youtube.com/watch?v=_TVrn-pyTo8, 17:33
+      //   // its too nested - need to adjust index.js , dummy data is not correct stored
       //   product_data: {
-
-
-      //     name: item.name,
-      //     description: item.desc,
+      //     test1: item.desc,
 
       //     metadata: {
-      //       id: item.id
+      //       test2: item.id
       //     },
-
-          
       //   },
 
       // },
 
-
-      price_data: {
-        currency: "usd",
-        amount: "300",
-        name: item.name,
-        description: item.desc,
-        id: item.id,
-
-        // https://www.youtube.com/watch?v=_TVrn-pyTo8, 17:33
-        // its too nested - need to adjust index.js , dummy data is not correct stored
-        product_data: {
-          test1: item.desc,
-
-          metadata: {
-            test2: item.id
-          },
-        },
-
-      },
-
-    };
+  //   };
 
 
-  });
+  // });
 
-  console.log(line_items)
+  // console.log(line_items)
   
 
   const { items, price } = req.body;

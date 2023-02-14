@@ -32,6 +32,8 @@ import { loadStripe } from "@stripe/stripe-js";
 const Order = ({ basket, payment, shipping, subtotal, Total }) => {
   useDocumentTitle('Stripe Intergration | Step 4');
 
+  // console.log(basket)
+
 
   // Test Start:1 - Stripe
 
@@ -56,41 +58,43 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
           items: { id: "xl-tshirt" },
 
           
-          basket: [
+        //   basket: [
 
            
             
-            {
+        //     {
 
-            id: 1,
-            name: "iPhone 12 Pro",
-            brand: "Apple",
-            desc: "6.1-inch display",
-            price: 999
+        //     id: 1,
+        //     name: "iPhone 12 Pro",
+        //     brand: "Apple",
+        //     desc: "6.1-inch display",
+        //     price: 999
             
-          },
+        //   },
 
-          {
-            id: 2,
-            name: "iPhone 12",
-            brand: "Apple",
-            desc: "5.4-inch mini display",
-            price: 699
-          },
-          {
-            id: 3,
-            name: "iPhone 15",
-            brand: "Apple",
-            desc: "7.4-inch mini display",
-            price: 999
-          }
+        //   {
+        //     id: 2,
+        //     name: "iPhone 12",
+        //     brand: "Apple",
+        //     desc: "5.4-inch mini display",
+        //     price: 699
+        //   },
+        //   {
+        //     id: 3,
+        //     name: "iPhone 15",
+        //     brand: "Apple",
+        //     desc: "7.4-inch mini display",
+        //     price: 999
+        //   }
         
         
-        ],
+        // ],
 
           // price: { id: "11000" },
           userId1: { id: "123" },
           userId2: "123",
+          cart: basket,
+          preName: "Weissenborn",
           // customer: { id: "swt" }
         }
       ),
@@ -99,6 +103,8 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));
   }, []);
+
+  console.log(basket)
 
 
   // Test End:1 - Stripe
