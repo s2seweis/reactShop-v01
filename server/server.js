@@ -52,7 +52,8 @@ app.post("/api/create-payment-intent", async (req, res) => {
 
       // preName: req.body.preName,
       // cart: req.body.basket,
-      payment: JSON.stringify(req.body.payment)
+      payment: JSON.stringify(req.body.payment),
+      shipping: JSON.stringify(req.body.shipping)
     }
   });
 
