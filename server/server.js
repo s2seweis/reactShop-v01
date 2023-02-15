@@ -48,36 +48,38 @@ app.post("/api/create-payment-intent", async (req, res) => {
   const customer = await stripe.customers.create({
     metadata: {
       userId: req.body.userId2,
-      preName: req.body.preName,
+      // payment: req.body.payment,
+
+      // preName: req.body.preName,
       // cart: req.body.basket,
-      cart: JSON.stringify(req.body.cart)
+      payment: JSON.stringify(req.body.payment)
     }
   });
 
   console.log(customer);
 
-  // const line_items = req.body?.basket?.map((item) => {
-  //   return {
+  const line_items = req.body?.basket?.map((item) => {
+    return {
 
 
-  //     price_data: {
-  //       currency: "usd",
-  //       amount: "300",
+      price_data: {
+        currency: "usd",
+        amount: "300",
         
-  //       product_data: {
+        product_data: {
 
 
-  //         name: item.name,
-  //         description: item.desc,
+          name: item.name,
+          description: item.desc,
 
-  //         metadata: {
-  //           id: item.id
-  //         },
+          metadata: {
+            id: item.id
+          },
 
           
-  //       },
+        },
 
-  //     },
+      },
 
 
       // price_data: {
@@ -100,10 +102,10 @@ app.post("/api/create-payment-intent", async (req, res) => {
 
       // },
 
-  //   };
+    };
 
 
-  // });
+  });
 
   // console.log(line_items)
   
