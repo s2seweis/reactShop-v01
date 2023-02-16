@@ -32,8 +32,9 @@ import { loadStripe } from "@stripe/stripe-js";
 const Order = ({ basket, payment, shipping, subtotal, Total }) => {
   useDocumentTitle('Stripe Intergration | Step 4');
 
-  // console.log(basket)
-
+  // console.log(payment)
+  // console.log(shipping)
+  console.log(basket);
 
   // Test Start:1 - Stripe
 
@@ -56,44 +57,157 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
       body: JSON.stringify(
         {
           items: { id: "xl-tshirt" },
+          shipping: shipping,
+          // basket: basket,
 
-          
-        //   basket: [
+// better to pass down the basket items then the basket completly, basket not fits not into the metadata
+// Or passing down instead the card just the staus of the payment like: done or pending, and fetching this state from the database and populate or update with it the order, not that good
 
-           
-            
-        //     {
+// storing in cart only the product ids, price for each item, comment, quantity instead the complete data 
 
-        //     id: 1,
-        //     name: "iPhone 12 Pro",
-        //     brand: "Apple",
-        //     desc: "6.1-inch display",
-        //     price: 999
-            
-        //   },
 
-        //   {
-        //     id: 2,
-        //     name: "iPhone 12",
-        //     brand: "Apple",
-        //     desc: "5.4-inch mini display",
-        //     price: 699
-        //   },
-        //   {
-        //     id: 3,
-        //     name: "iPhone 15",
-        //     brand: "Apple",
-        //     desc: "7.4-inch mini display",
-        //     price: 999
-        //   }
-        
-        
-        // ],
+          basket: [
+            {
+              "name": "basket",
+              "mode": "REPEATED",
+              "type": "RECORD",
+              "description": "basket",
+              "fields": [
+                {
+                  "name": "availableColors",
+                  "mode": "REPEATED",
+                  "type": "STRING",
+                  "description": "availableColors",
+                },
+               
+                {
+                  "name": "keywords",
+                  "mode": "REPEATED",
+                  "type": "STRING",
+                  "description": "keywords",
+                },
+                {
+                  "name": "maxQuantity",
+                  "mode": "NULLABLE",
+                  "type": "INTEGER",
+                  "description": "maxQuantity",
+                },
+                {
+                  "name": "description",
+                  "mode": "NULLABLE",
+                  "type": "STRING",
+                  "description": "description",
+                },
+                {
+                  "name": "dateAdded",
+                  "mode": "NULLABLE",
+                  
+                },
+              ]
+            }
+          ],
+          basket1: [
+            {
+              "name": "basket",
+              "mode": "REPEATED",
+              "type": "RECORD",
+              "description": "basket",
+              "fields": [
+                {
+                  "name": "availableColors",
+                  "mode": "REPEATED",
+                  "type": "STRING",
+                  "description": "availableColors",
+                },
+               
+                {
+                  "name": "keywords",
+                  "mode": "REPEATED",
+                  "type": "STRING",
+                  "description": "keywords",
+                },
+                {
+                  "name": "maxQuantity",
+                  "mode": "NULLABLE",
+                  "type": "INTEGER",
+                  "description": "maxQuantity",
+                },
+                {
+                  "name": "description",
+                  "mode": "NULLABLE",
+                  "type": "STRING",
+                  "description": "description",
+                },
+                {
+                  "name": "dateAdded",
+                  "mode": "NULLABLE",
+                  
+                },
+              ]
+            }
+          ],
+
+          // basket: [
+
+
+
+          //   {
+
+          //     id: 1,
+          //     name: "iPhone 12 Pro",
+          //     brand: "Apple",
+          //     desc: "6.1-inch display",
+          //     price: 999,
+          //     keywords: [{ test1: "test1" }, { test2: "test2" }, { test3: "test3" }],
+          //     sizes: {
+
+          //       test1: "test1",
+
+          //       test2: [
+
+          //         { test1: "1" }, { test2: "2" }, {test3: {test4:"4", test5:"5"}}
+
+          //       ]
+
+          //     }
+
+
+          //   },
+
+          //   {
+          //     id: 2,
+          //     name: "iPhone 12",
+          //     brand: "Apple",
+          //     desc: "5.4-inch mini display",
+          //     price: 699
+          //   },
+          //   {
+          //     id: 3,
+          //     name: "iPhone 15",
+          //     brand: "Apple",
+          //     desc: "7.4-inch mini display",
+          //     price: 999
+          //   }
+
+
+          // ],
+
+          payment: {
+
+            expiry: "04/24",
+            name: "Doe",
+            type: "card"
+
+
+          }
+
+
+          ,
 
           // price: { id: "11000" },
           userId1: { id: "123" },
           userId2: "123",
-          cart: basket,
+          // cart: basket,
           preName: "Weissenborn",
           // customer: { id: "swt" }
         }
@@ -104,7 +218,7 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
       .then((data) => setClientSecret(data.clientSecret));
   }, []);
 
-  console.log(basket)
+  // console.log(basket)
 
 
   // Test End:1 - Stripe

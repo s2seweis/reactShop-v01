@@ -175,21 +175,23 @@ const Ingredients1 = (option, option1, selectedSize, selectedColor, id, isItemOn
 
   // const [selectedColor, setSelectedColor] = useState('');
 
+  console.log(product);
+
 
   const handleAddToBasket = () => {
     option.addToBasket({
       ...product,
-      selectedColorNew,
-      selectedSize: option.selectedSize,
+      // selectedColorNew,
+      // selectedSize: option.selectedSize,
 
 
-      selectedPrice: option.option,
-      selectedPriceTotal1: selectedProceTotal1,
-      selectedPriceTotal2: selectedProceTotal2,
+      // selectedPrice: option.option,
+      // selectedPriceTotal1: selectedProceTotal1,
+      // selectedPriceTotal2: selectedProceTotal2,
 
-      selectedSizeNew: option.option1,
+      // selectedSizeNew: option.option1,
 
-      toppings: name
+      // toppings: name
 
 
       // selectedSizeNew: option.option1,
