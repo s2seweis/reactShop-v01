@@ -48,12 +48,16 @@ app.post("/api/create-payment-intent", async (req, res) => {
   const customer = await stripe.customers.create({
     metadata: {
       userId: req.body.userId2,
-      // payment: req.body.payment,
-
-      // preName: req.body.preName,
-      // cart: req.body.basket,
+      
       payment: JSON.stringify(req.body.payment),
-      shipping: JSON.stringify(req.body.shipping)
+      shipping: JSON.stringify(req.body.shipping),
+      basket: JSON.stringify(req.body.basket),
+      basket1: JSON.stringify(req.body.basket1),
+
+      // not working too many characters
+      // basket: JSON.stringify(req.body.basket)
+
+
     }
   });
 
