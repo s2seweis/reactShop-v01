@@ -88,7 +88,7 @@ const Ingredients1 = (option, option1, selectedSize, selectedColor, id, isItemOn
   const [name, setName] = useState("");
 
   console.log(name)
-  console.log(total)
+  // console.log(total)
 
 
 
@@ -181,17 +181,17 @@ const Ingredients1 = (option, option1, selectedSize, selectedColor, id, isItemOn
   const handleAddToBasket = () => {
     option.addToBasket({
       ...product,
-      // selectedColorNew,
-      // selectedSize: option.selectedSize,
+      selectedColorNew,
+      selectedSize: option.selectedSize,
 
 
-      // selectedPrice: option.option,
-      // selectedPriceTotal1: selectedProceTotal1,
-      // selectedPriceTotal2: selectedProceTotal2,
+      selectedPrice: option.option,
+      selectedPriceTotal1: selectedProceTotal1,
+      selectedPriceTotal2: selectedProceTotal2,
 
-      // selectedSizeNew: option.option1,
+      selectedSizeNew: option.option1,
 
-      // toppings: name
+      toppings: name
 
 
       // selectedSizeNew: option.option1,
@@ -203,6 +203,8 @@ const Ingredients1 = (option, option1, selectedSize, selectedColor, id, isItemOn
   };
 
   console.log(option.option)
+  console.log(selectedProceTotal1);
+  console.log(selectedProceTotal2);
   // console.log(option1.option1)
 
 

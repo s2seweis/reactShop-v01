@@ -21,6 +21,8 @@ const OrderSummary = ({ basket, subtotal }) => {
   const onClickPrevious = () => history.push('/');
   // const onClickNext = () => history.push(CHECKOUT_STEP_2);
 
+  console.log(subtotal)
+
   const onClickNext = (form) => {
     dispatch(setBasketDetails({
       basket: basket,
@@ -60,8 +62,9 @@ const OrderSummary = ({ basket, subtotal }) => {
 
         <br />
         <div className="basket-total text-right">
-          <p className="basket-total-title">Subtotal:</p>
+          <p className="basket-total-title">Subtotal1:</p>
           <h2 className="basket-total-amount">{displayMoney(subtotal)}</h2>
+          {/* <h2 className="basket-total-amount">{subtotal}</h2> */}
         </div>
         <br />
         <div className="checkout-shipping-action">

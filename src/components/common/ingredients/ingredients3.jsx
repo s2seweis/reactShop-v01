@@ -32,7 +32,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // instead of {number} maybe better if selected then active and status true otherwise status false, boolean statement
 
 
-const ingredient3 = (option, option1, selectedSize, selectedColor, id, isItemOnBasket, addToBasket) => {
+const Ingredients3 = (option, option1, selectedSize, selectedColor, id, isItemOnBasket, addToBasket) => {
 
 
 
@@ -87,6 +87,9 @@ const ingredient3 = (option, option1, selectedSize, selectedColor, id, isItemOnB
 
   const [name, setName] = useState("");
 
+  console.log(name)
+  // console.log(total)
+
 
 
 
@@ -136,6 +139,9 @@ const ingredient3 = (option, option1, selectedSize, selectedColor, id, isItemOnB
 
   const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
 
+  const getFormattedPrice1 = (price) => `$${price.toFixed(2)}`;
+
+
   const getFormattedName = (name) => `${name}`;
 
 
@@ -169,6 +175,8 @@ const ingredient3 = (option, option1, selectedSize, selectedColor, id, isItemOnB
 
   // const [selectedColor, setSelectedColor] = useState('');
 
+  console.log(product);
+
 
   const handleAddToBasket = () => {
     option.addToBasket({
@@ -178,7 +186,15 @@ const ingredient3 = (option, option1, selectedSize, selectedColor, id, isItemOnB
 
 
       selectedPrice: option.option,
+      selectedPriceTotal1: selectedProceTotal1,
+      selectedPriceTotal2: selectedProceTotal2,
+
       selectedSizeNew: option.option1,
+
+      toppings: name
+
+
+      // selectedSizeNew: option.option1,
 
 
     });
@@ -186,9 +202,28 @@ const ingredient3 = (option, option1, selectedSize, selectedColor, id, isItemOnB
 
   };
 
+  console.log(option.option)
+  console.log(selectedProceTotal1);
+  console.log(selectedProceTotal2);
+  // console.log(option1.option1)
+
+
+// console.log(displayMoney(Number(option.option.trim()) + (total)))
+
+
+const selectedProceTotal1 = displayMoney(Number(option.option.trim()) + (total))
+
+const selectedProceTotal2 = (Number(option.option.trim()) + (total))
+
+console.log(selectedProceTotal1)
+console.log(selectedProceTotal2)
+
+
+console.log((option.option.trim()) + (total))
 
 
 
+{/* <h1>{displayMoney(Number(option.option.trim()) + (total))}</h1> */}
 
 
 
@@ -196,7 +231,7 @@ const ingredient3 = (option, option1, selectedSize, selectedColor, id, isItemOnB
 
   return (
     <div className="App">
-      <h3>-3- working-</h3>
+      <h3>-1- working-</h3>
       <ul className="toppings-list">
 
 
@@ -217,7 +252,6 @@ const ingredient3 = (option, option1, selectedSize, selectedColor, id, isItemOnB
                 </div>
                 <div className="right-section">{getFormattedPrice(price)}</div>
 
-                {/* <div className="right-section">{getFormattedName(name)}</div> */}
               </div>
             </li>
           );
@@ -235,10 +269,12 @@ const ingredient3 = (option, option1, selectedSize, selectedColor, id, isItemOnB
 
 
 
+
           <h1>{displayMoney(Number(option.option.trim()) + (total))}</h1>
 
-          <h2>{option1.option1}</h2>
+          {/* <h1>{getFormattedPrice1(option.option)}</h1> */}
 
+          <h2>{option1.option1}</h2>
 
 
           {/* Test:Start */}
@@ -267,6 +303,6 @@ const ingredient3 = (option, option1, selectedSize, selectedColor, id, isItemOnB
 };
 
 
-export default ingredient3;
+export default Ingredients3;
 
 

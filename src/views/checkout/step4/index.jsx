@@ -65,6 +65,7 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
 
 // storing in cart only the product ids, price for each item, comment, quantity instead the complete data 
 
+// handle add to basket in ingredientSaga.js only adding the smallest amount of data to the basket!!!
 
           basket: [
             {
