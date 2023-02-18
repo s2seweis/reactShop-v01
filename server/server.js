@@ -5,12 +5,6 @@ const { resolve } = require("path");
 
 
 
-// const { resolve } = require("../../testShop-CRUD-Salinaka");
-
-// const { resolve } = require("../index.html");
-
-
-
 // Replace if using a different env file or config
 const env = require("dotenv").config({ path: "./.env" });
 
@@ -22,10 +16,9 @@ app.use(express.static(process.env.STATIC_DIR));
 
 
 
-// ##### here is maybe the rror for the verification, has to be .raw({type:""})
+// ##### here is maybe the error for the verification, has to be .raw({type:""})
 app.use(express.json());
 // #####
-
 
 
 
@@ -48,11 +41,11 @@ app.post("/api/create-payment-intent", async (req, res) => {
   const customer = await stripe.customers.create({
     metadata: {
       userId: req.body.userId2,
+      subtotal: req.body.subtotal,
+      profileId: req.body.profileId,
       
-      payment: JSON.stringify(req.body.payment),
-      shipping: JSON.stringify(req.body.shipping),
-      basket: JSON.stringify(req.body.basket),
-      basket1: JSON.stringify(req.body.basket1),
+      idList: JSON.stringify(req.body.idList),
+      // shipping: JSON.stringify(req.body.shipping),
 
       // not working too many characters
       // basket: JSON.stringify(req.body.basket)
@@ -87,37 +80,15 @@ app.post("/api/create-payment-intent", async (req, res) => {
       },
 
 
-      // price_data: {
-      //   currency: "usd",
-      //   amount: "300",
-      //   name: item.name,
-      //   description: item.desc,
-      //   id: item.id,
-      //   price: item.price,
-
-      //   // https://www.youtube.com/watch?v=_TVrn-pyTo8, 17:33
-      //   // its too nested - need to adjust index.js , dummy data is not correct stored
-      //   product_data: {
-      //     test1: item.desc,
-
-      //     metadata: {
-      //       test2: item.id
-      //     },
-      //   },
-
-      // },
-
     };
 
 
   });
 
-  // console.log(line_items)
   
 
   const { items, price } = req.body;
 
-  // console.log(price.id);
 
 
 
