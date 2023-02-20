@@ -43,8 +43,13 @@ app.post("/api/create-payment-intent", async (req, res) => {
       userId: req.body.userId2,
       subtotal: req.body.subtotal,
       profileId: req.body.profileId,
-      
+
       idList: JSON.stringify(req.body.idList),
+
+      // ########### - Test: 1
+      productData: JSON.stringify(req.body.productData),
+      // ###########
+
       // shipping: JSON.stringify(req.body.shipping),
 
       // not working too many characters
@@ -56,36 +61,41 @@ app.post("/api/create-payment-intent", async (req, res) => {
 
   console.log(customer);
 
-  const line_items = req.body?.basket?.map((item) => {
+  // const line_items = req.body.cartItems.map((item) => {
+  //   return {
+  //     price_data: {
+  //       currency: "usd",
+  //       product_data: {
+  //         name: item.name,
+  //         images: [item.image],
+  //         description: item.desc,
+  //         metadata: {
+  //           id: item.id,
+  //         },
+  //       },
+  //       unit_amount: item.price * 100,
+  //     },
+  //     quantity: item.cartQuantity,
+  //   };
+  // });
+
+
+
+  // line_items is for checkout session not support via payment intent
+  const line_items = req.body.basket?.map((product) => {
     return {
-
-
-      price_data: {
-        currency: "usd",
-        amount: "300",
-        
-        product_data: {
-
-
-          name: item.name,
-          description: item.desc,
-
-          metadata: {
-            id: item.id
-          },
-
-          
-        },
-
-      },
-
-
+      items: {
+        name: product.name,
+        size: product.selectedSizeNew,
+        price: product.selectedPrice,
+        extra_ingredients: product.toppings,
+      }
     };
-
-
   });
 
-  
+  // console.log(line_items)
+
+
 
   const { items, price } = req.body;
 
@@ -110,7 +120,14 @@ app.post("/api/create-payment-intent", async (req, res) => {
       enabled: true,
     },
 
+    // line_items,
+    customer: customer.id,
+    metadata: customer.metadata,
+
+
   });
+
+  console.log(paymentIntent)
 
 
 
@@ -121,6 +138,48 @@ app.post("/api/create-payment-intent", async (req, res) => {
 
 
 });
+
+// ###### - Test: Create Order Start
+
+const createOrder = async (customer, data) => {
+
+  const Items = JSON.parse(customer.metadata.productData);
+  console.log(Items)
+
+  const products = Items
+
+  console.log(products)
+
+  const newOrder = new Order({
+    userId: customer.metadata.userId,
+    customerId: data.customer,
+    paymentIntentId: data.payment_intent,
+    products,
+    subtotal: data.metadata.subtotal,
+    userId: data.metaData.userId,
+    payment_status: data.payment_status,
+  });
+
+  console.log(newOrder)
+
+  try {
+    const savedOrder = await newOrder.save();
+    console.log("Processed Order:", savedOrder);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+console.log(createOrder)
+
+// ###### - Test: Create Order End
+
+
+
+
+
+
+
 
 
 
@@ -133,12 +192,19 @@ let endpointSecret;
 
 // endpointSecret = "whsec_ca8c87e7b073c1eb7eb22e196666cb0fcb2ce97ff7f96370508d6dcda8bc286b";
 
-app.post('/api/webhook', express.raw({ type: 'application/json' }), (request, response) => {
+app.post('/api/webhook', express.raw({ type: 'application/json' }), (req, res) => {
 
 
   // for verification that the event calls or the webhook comes from stripe
   // #########################################################################
-  const sig = request.headers['stripe-signature'];
+
+
+  const payload = req.body;
+
+
+  const sig = req.headers['stripe-signature'];
+
+  const endpointSecret = "whsec_ca8c87e7b073c1eb7eb22e196666cb0fcb2ce97ff7f96370508d6dcda8bc286b"
 
 
   let data;
@@ -154,11 +220,11 @@ app.post('/api/webhook', express.raw({ type: 'application/json' }), (request, re
     // this weekdays, because webhook verification still not working, there is a issue
 
     try {
-      event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+      event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
       console.log("Webhook verified!")
     } catch (err) {
       console.log(`Webhook Error: ${err.message}`)
-      response.status(400).send(`Webhook Error: ${err.message}`);
+      res.status(400).send(`Webhook Error: ${err.message}`);
       return;
     }
 
@@ -177,9 +243,22 @@ app.post('/api/webhook', express.raw({ type: 'application/json' }), (request, re
 
   // Handle the event
 
-  if (eventType === "checkout.session.completed") {
+  if (eventType === "payment_intent.succeeded") {
+    // if (eventType === "checkout.session.completed") {
+
+    stripe.customers.retrieve(data.customer).then(
+      (customer) => {
+
+        console.log(customer);
+        console.log("data:", data);
+
+        createOrder(customer, data)
+
+      }).catch(err => console.log(err.message));
+
 
   }
+  
 
 
 
@@ -193,14 +272,27 @@ app.post('/api/webhook', express.raw({ type: 'application/json' }), (request, re
   //     console.log(`Unhandled event type ${event.type}`);
   // }
 
-  // Return a 200 response to acknowledge receipt of the event
-  response.send().end();
-  // response.send();
+  // Return a 200 res to acknowledge receipt of the event
+  res.send().end();
+  // res.send();
 });
 
 
 
-// Test:2 Start - Webhook 
+// Test:2 End - Webhook 
+
+// #############################
+
+
+
+
+
+
+
+
+
+
+
 
 // app.listen(5252, () =>
 //   console.log(`Node server listening at http://localhost:5252`)
@@ -213,3 +305,4 @@ app.post('/api/webhook', express.raw({ type: 'application/json' }), (request, re
 app.listen(4242, () =>
   console.log(`Node server listening at http://localhost:4242`)
 );
+
