@@ -41,6 +41,8 @@ const Ingredients1 = (option, option1, selectedSize, selectedColor, id, isItemOn
     ingredients: state.ingredients,
   }));
 
+  console.log(ingredients)
+
 
 
 
@@ -174,6 +176,11 @@ const Ingredients1 = (option, option1, selectedSize, selectedColor, id, isItemOn
   // const [selectedPrice, setSelectedPrice] = useState('');
 
   // const [selectedColor, setSelectedColor] = useState('');
+
+
+  // ###test
+
+  
 
   console.log(product);
 

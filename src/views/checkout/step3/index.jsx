@@ -102,6 +102,7 @@ Payment.propTypes = {
     ccv: PropType.string,
     type: PropType.string
   }).isRequired,
+  // subtotal: PropType.string.isRequired
   subtotal: PropType.number.isRequired
 };
 

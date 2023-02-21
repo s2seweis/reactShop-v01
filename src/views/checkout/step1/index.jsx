@@ -21,7 +21,7 @@ const OrderSummary = ({ basket, subtotal }) => {
   const onClickPrevious = () => history.push('/');
   // const onClickNext = () => history.push(CHECKOUT_STEP_2);
 
-  console.log(subtotal)
+  // console.log(subtotal)
 
   const onClickNext = (form) => {
     dispatch(setBasketDetails({
@@ -94,6 +94,7 @@ const OrderSummary = ({ basket, subtotal }) => {
 
 OrderSummary.propTypes = {
   basket: PropType.arrayOf(PropType.object).isRequired,
+  // subtotal: PropType.string.isRequired
   subtotal: PropType.number.isRequired
 };
 

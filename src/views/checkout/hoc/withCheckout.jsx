@@ -17,6 +17,7 @@ const withCheckout = (Component) => withRouter((props) => {
   const shippingFee = state.shipping.isInternational ? 50 : 0;
   const subtotal = calculateTotal(state.basket.map((product) => product.selectedPriceTotal2 * product.quantity));
   console.log(subtotal)
+  console.log(+subtotal)
 
   if (!state.isAuth) {
     return <Redirect to={SIGNIN} />;
@@ -31,8 +32,8 @@ const withCheckout = (Component) => withRouter((props) => {
         payment={state.payment}
         profile={state.profile}
         shipping={state.shipping}
-        // subtotal={Number(subtotal + shippingFee)}
-        subtotal={(subtotal + shippingFee)}
+        subtotal={Number(+subtotal)}
+        // subtotal={(subtotal + shippingFee)}
         // subtotal={Number(subtotal + shippingFee)}
       />
     );

@@ -79,4 +79,7 @@ export { default as ViewProduct } from './view_product';
 export { default as ViewPost } from './view_post';
 // export { default as ViewSetting } from './view_settings';
 
+export { default as Checkout } from '../components/stripe-checkout/Checkout';
+export { default as Success } from '../components/stripe-checkout/Success';
+export { default as Canceled } from '../components/stripe-checkout/Canceled';
 // okay

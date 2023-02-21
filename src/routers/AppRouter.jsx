@@ -93,6 +93,25 @@ const AppRouter = () => {
             path={ROUTES.RECOMMENDED_PRODUCTS}
           />
 
+          {/* ######### */}
+
+          <PublicRoute
+            component={view.Checkout}
+            path={ROUTES.CHECKOUT_STRIPE}
+          />
+
+          <PublicRoute
+            component={view.Success}
+            path={ROUTES.SUCCESS_STRIPE}
+          />
+
+          <PublicRoute
+            component={view.Canceled}
+            path={ROUTES.CANCELED_STRIPE}
+          />
+
+          {/* ######### */}
+
           <PublicRoute
             component={view.Completion}
             path={ROUTES.COMPLETION}
@@ -225,7 +244,7 @@ const AppRouter = () => {
             path={ROUTES.ADMIN_DOCS}
           />
 
-          
+
           <AdminRoute
             component={view.Posts}
             path={ROUTES.ADMIN_POSTS}

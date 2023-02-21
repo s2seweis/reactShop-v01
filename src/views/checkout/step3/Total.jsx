@@ -109,6 +109,7 @@ const Total = ({ isInternational, subtotal }) => {
 Total.propTypes = {
   isInternational: PropType.bool.isRequired,
   subtotal: PropType.number.isRequired
+  // subtotal: PropType.string.isRequired
 };
 
 export default Total;

@@ -5,7 +5,7 @@ import { displayMoney } from 'helpers/utils';
 import { useDocumentTitle, useScrollTop } from 'hooks';
 import PropType from 'prop-types';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { StepTracker } from '../components';
 import withCheckout from '../hoc/withCheckout';
@@ -21,6 +21,10 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../../../components/stripe/CheckoutForm";
 
 import { loadStripe } from "@stripe/stripe-js";
+import Checkout from 'components/stripe-checkout/Checkout';
+import PayButton from 'components/stripe-checkout/PayButton';
+
+
 
 // Test End: 1 - Stripe
 
@@ -32,194 +36,125 @@ import { loadStripe } from "@stripe/stripe-js";
 const Order = ({ basket, payment, shipping, subtotal, Total }) => {
   useDocumentTitle('Stripe Intergration | Step 4');
 
-  // console.log(payment)
-  // console.log(shipping)
-  console.log(basket);
+
+
+  // ############################################## - get the auth ID, product ID
 
   // Test Start:1 - Stripe
+
+  const { auth } = useSelector((state) => ({
+    auth: state.auth,
+  }));
+
+
+  const productId = basket.map((product) => product.id)
+
+  const basketItems = basket.map((product) => product)
+  console.log(basketItems)
+  console.log(basket)
+
+
+
+  // ###### - Test: 1 - Meta Data too small for it, makes only sense if passing down only the product.id and later fetching the product via the ID
+  const line_items = basket?.map((product) => {
+    return {
+      items: {
+        name: product.name,
+        size: product.selectedSizeNew,
+        price: product.selectedPrice,
+        extra_ingredients: product.toppings,
+
+        // brand: product.brand,
+        // availableColors: product.availableColors,
+        // description: product.description,
+        // id: product.id,
+        // image: product.image,
+        // imageCollection: product.imageCollection
+      }
+    };
+  });
+
+  console.log(line_items)
+
+  // ###### - Test: 1
+
+
+
+  // console.log(auth.id);
+  // console.log(productId);
+  // console.log(subtotal);
+  // console.log(shipping);
+
+  // Test Start:1 - Stripe
+
+  // ##############################################
+
 
 
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
 
-  useEffect(() => {
-    fetch("/api/config").then(async (r) => {
-      const { publishableKey } = await r.json();
-      setStripePromise(loadStripe(publishableKey));
-    });
-  }, []);
 
-  useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
-    fetch("/api/create-payment-intent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(
-        {
-          items: { id: "xl-tshirt" },
-          shipping: shipping,
-          // basket: basket,
 
-// better to pass down the basket items then the basket completly, basket not fits not into the metadata
-// Or passing down instead the card just the staus of the payment like: done or pending, and fetching this state from the database and populate or update with it the order, not that good
-
-// storing in cart only the product ids, price for each item, comment, quantity instead the complete data 
-
-// handle add to basket in ingredientSaga.js only adding the smallest amount of data to the basket!!!
-
-          basket: [
-            {
-              "name": "basket",
-              "mode": "REPEATED",
-              "type": "RECORD",
-              "description": "basket",
-              "fields": [
-                {
-                  "name": "availableColors",
-                  "mode": "REPEATED",
-                  "type": "STRING",
-                  "description": "availableColors",
-                },
-               
-                {
-                  "name": "keywords",
-                  "mode": "REPEATED",
-                  "type": "STRING",
-                  "description": "keywords",
-                },
-                {
-                  "name": "maxQuantity",
-                  "mode": "NULLABLE",
-                  "type": "INTEGER",
-                  "description": "maxQuantity",
-                },
-                {
-                  "name": "description",
-                  "mode": "NULLABLE",
-                  "type": "STRING",
-                  "description": "description",
-                },
-                {
-                  "name": "dateAdded",
-                  "mode": "NULLABLE",
-                  
-                },
-              ]
-            }
-          ],
-          basket1: [
-            {
-              "name": "basket",
-              "mode": "REPEATED",
-              "type": "RECORD",
-              "description": "basket",
-              "fields": [
-                {
-                  "name": "availableColors",
-                  "mode": "REPEATED",
-                  "type": "STRING",
-                  "description": "availableColors",
-                },
-               
-                {
-                  "name": "keywords",
-                  "mode": "REPEATED",
-                  "type": "STRING",
-                  "description": "keywords",
-                },
-                {
-                  "name": "maxQuantity",
-                  "mode": "NULLABLE",
-                  "type": "INTEGER",
-                  "description": "maxQuantity",
-                },
-                {
-                  "name": "description",
-                  "mode": "NULLABLE",
-                  "type": "STRING",
-                  "description": "description",
-                },
-                {
-                  "name": "dateAdded",
-                  "mode": "NULLABLE",
-                  
-                },
-              ]
-            }
-          ],
-
-          // basket: [
+  // useEffect(() => {
+  //   fetch("/api/config").then(async (r) => {
+  //     const { publishableKey } = await r.json();
+  //     setStripePromise(loadStripe(publishableKey));
+  //   });
+  // }, []);
 
 
 
-          //   {
+  // useEffect(() => {
+  //   // Create PaymentIntent as soon as the page loads
+  //   fetch("/api/create-payment-intent", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(
+  //       {
+  //         items: { id: "xl-tshirt" },
+  //         // shipping: shipping,
+  //         subtotal: subtotal,
+  //         idList: productId,
+  //         profileId: auth.id,
 
-          //     id: 1,
-          //     name: "iPhone 12 Pro",
-          //     brand: "Apple",
-          //     desc: "6.1-inch display",
-          //     price: 999,
-          //     keywords: [{ test1: "test1" }, { test2: "test2" }, { test3: "test3" }],
-          //     sizes: {
-
-          //       test1: "test1",
-
-          //       test2: [
-
-          //         { test1: "1" }, { test2: "2" }, {test3: {test4:"4", test5:"5"}}
-
-          //       ]
-
-          //     }
+  //         // ###### - Test: 1
+  //         productData: line_items,
+  //         basket: basket,
+  //         // ###### - Test: 1
 
 
-          //   },
-
-          //   {
-          //     id: 2,
-          //     name: "iPhone 12",
-          //     brand: "Apple",
-          //     desc: "5.4-inch mini display",
-          //     price: 699
-          //   },
-          //   {
-          //     id: 3,
-          //     name: "iPhone 15",
-          //     brand: "Apple",
-          //     desc: "7.4-inch mini display",
-          //     price: 999
-          //   }
 
 
-          // ],
+  //         // #################### - Comment:     
 
-          payment: {
+  //         // better to pass down the basket items then the basket completly, basket not fits not into the metadata, only 500 characters, thats the way!!!
 
-            expiry: "04/24",
-            name: "Doe",
-            type: "card"
+  //         // need maping over the basket and populate the single basketitems as metadata to stripe 
+
+  //         // #################### - https://www.youtube.com/watch?v=_TVrn-pyTo8 - 19:07        
+
+  //         // #################### - passing down only the productId so far, subTotal, authId, delivery Informations !!!
 
 
-          }
 
 
-          ,
+  //         // The order needs the status of the payment: pending or paid
 
-          // price: { id: "11000" },
-          userId1: { id: "123" },
-          userId2: "123",
-          // cart: basket,
-          preName: "Weissenborn",
-          // customer: { id: "swt" }
-        }
-      ),
-      // body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
-    })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
-  }, []);
 
-  // console.log(basket)
+
+
+
+  //         userId2: "123",
+
+  //       }
+  //     ),
+  //     // body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => setClientSecret(data.clientSecret));
+  // }, []);
+
 
 
   // Test End:1 - Stripe
@@ -253,6 +188,34 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
       <StepTracker current={4} />
       <div className="checkout-step-1">
         <h3 className="text-center">Order Summary</h3>
+
+
+
+        <div className="checkout-items"
+        >
+          {basket.map((product) => (
+            <BasketItem
+              basket={basket}
+              dispatch={dispatch}
+              key={product.id}
+              product={product}
+            />
+          ))}
+        </div>
+
+
+
+        <h1
+          style={{ textAlign: "center" }}
+        >{displayMoney(subtotal)}
+
+          {/* {displayMoney(subtotal + (isInternational ? 50 : 0))} */}
+
+        </h1>
+
+
+
+
         <span className="d-block text-center">Almost Complete. </span>
         <br />
 
@@ -287,15 +250,13 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
       </div>
 
 
-      <div className='stripe-test1'
+      {/* <div className='stripe-test1'
         style={{ display: "flex" }}
 
       >
 
 
-        {/* <h1
-        style={{ textAlign:"center", marginTop:"50px"}}
-        >React Stripe and the Payment Element, Test:1</h1> */}
+
         {clientSecret && stripePromise && (
           <Elements stripe={stripePromise} options={{ clientSecret }}>
             <CheckoutForm />
@@ -304,7 +265,13 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
 
 
 
-      </div>
+      </div> */}
+
+
+      <Checkout />
+
+
+      {/* <PayButton /> */}
 
 
     </div>

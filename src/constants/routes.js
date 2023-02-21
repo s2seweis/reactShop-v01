@@ -65,6 +65,11 @@ export const SIGNOUT = '/signout';
 export const SIGNUP = '/signup';
 
 export const COMPLETION = '/completion';
+// #########
+export const CHECKOUT_STRIPE= '/checkout-stripe';
+export const SUCCESS_STRIPE= '/success-stripe';
+export const CANCELED_STRIPE= '/canceld-stripe';
+// #########
 
 export const FORGOT_PASSWORD = '/forgot_password';
 export const CHECKOUT_STEP_1 = '/checkout/step1';

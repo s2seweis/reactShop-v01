@@ -53,7 +53,8 @@ const ShippingDetails = ({ profile, shipping, subtotal }) => {
     isDone: shipping.isDone || false
   };
 
-console.log(initFormikValues.fullname)
+// console.log(initFormikValues.fullname)
+// console.log(subtotal)
 
 
   const onSubmitForm = (form) => {
@@ -81,28 +82,16 @@ console.log(initFormikValues.fullname)
             onSubmit={onSubmitForm}
           >
 
-
-
-
             {() => (
-
-
 
               <Form>
 
-
-
                 <ShippingForm />
-
-
 
                 <br />
 
-
-
                 {/*  ---- TOTAL --------- */}
                 <ShippingTotal subtotal={subtotal} />
-
 
                 <br />
 
@@ -128,8 +117,6 @@ console.log(initFormikValues.fullname)
                   </button>
                 </div>
 
-
-
               </Form>
             )}
 
@@ -142,6 +129,7 @@ console.log(initFormikValues.fullname)
 };
 
 ShippingDetails.propTypes = {
+  // subtotal: PropType.string.isRequired,
   subtotal: PropType.number.isRequired,
   profile: PropType.shape({
     fullname: PropType.string,

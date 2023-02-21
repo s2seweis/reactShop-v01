@@ -6,6 +6,19 @@ import React from 'react';
 const ShippingTotal = ({ subtotal }) => {
   const { values } = useFormikContext();
   console.log(subtotal)
+  console.log(+subtotal)
+
+  const deliveryCosts1 = +50;
+  console.log(deliveryCosts1)
+
+  const deliveryCosts2 = 50;
+  console.log(deliveryCosts2)
+
+  const deliveryCosts3 = "50";
+  console.log(deliveryCosts3)
+
+  const costsTotal = subtotal + deliveryCosts1
+  console.log(costsTotal)
 
   return (
     <div className="checkout-total d-flex-end padding-right-m">
@@ -46,7 +59,8 @@ const ShippingTotal = ({ subtotal }) => {
 
               {/* Using for add ingredients component  */}
               <h2 className="basket-total-amount text-right">
-                {displayMoney(Number(subtotal) + (values.isInternational ? 50 : 0))}
+                {/* {displayMoney(Number(subtotal) + (values.isInternational ? 50 : 0))} */}
+                {displayMoney(Number(subtotal) + (values.isInternational ? deliveryCosts2 : 0))}
               </h2>
             </td>
           </tr>
@@ -57,6 +71,7 @@ const ShippingTotal = ({ subtotal }) => {
 };
 
 ShippingTotal.propTypes = {
+  // subtotal: PropType.string.isRequired
   subtotal: PropType.number.isRequired
 };
 
