@@ -52,11 +52,13 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
   const basketItems = basket.map((product) => product)
   console.log(basketItems)
   console.log(basket)
+  console.log(subtotal)
+  console.log(auth.id)
 
 
 
   // ###### - Test: 1 - Meta Data too small for it, makes only sense if passing down only the product.id and later fetching the product via the ID
-  const line_items = basket?.map((product) => {
+  const lineItems = basket?.map((product) => {
     return {
       items: {
         name: product.name,
@@ -74,7 +76,7 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
     };
   });
 
-  console.log(line_items)
+  console.log(lineItems)
 
   // ###### - Test: 1
 
@@ -268,7 +270,7 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
       </div> */}
 
 
-      <Checkout />
+      <Checkout basket={basket} />
 
 
       {/* <PayButton /> */}

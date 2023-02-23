@@ -117,7 +117,8 @@
     "axios": "^0.21.1"
   },
 
-  "proxy": "http://localhost:8080"
+  "proxy": "http://localhost:8080/api"
+
  
 
 

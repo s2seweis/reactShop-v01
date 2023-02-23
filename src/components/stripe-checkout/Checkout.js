@@ -2,7 +2,12 @@ import React from 'react';
 
 import PayButton from './PayButton';
 
-const Checkout = () => {
+const Checkout = (basket) => {
+
+console.log(basket)
+
+
+
   return (
     <div className="sr-root">
       <div className="sr-main">
@@ -21,10 +26,19 @@ const Checkout = () => {
           </div>
 
           <form action="/api/create-checkout-session" method="POST">
-            <button id="submit" role="link">Buy</button>
+            {/* <PayButton
+            basket={basket}
+            id="submit" role="link">Buy1</PayButton> */}
+            <button id="submit" role="link">Buy1</button>
           </form>
 
-          {/* <PayButton /> */}
+
+          <form action="/api/create-checkout-session" method="POST">
+            {/* <PayButton
+            basket={basket}
+            id="submit" role="link">Buy1</PayButton> */}
+            <PayButton id="submit" role="link">Buy2</PayButton>
+          </form>
 
 
         </section>

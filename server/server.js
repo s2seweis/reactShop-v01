@@ -329,6 +329,8 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY, {
 
 
 app.use(express.static(process.env.STATIC_DIR));
+app.use(express.urlencoded());
+
 
 
 
@@ -338,17 +340,17 @@ app.use(express.json());
 
 // app.use(express.static(process.env.STATIC_DIR));
 // app.use(express.urlencoded());
-// app.use(
-//   express.json({
-//     // We need the raw body to verify webhook signatures.
-//     // Let's compute it only when hitting the Stripe webhook endpoint.
-//     verify: function (req, res, buf) {
-//       if (req.originalUrl.startsWith('/webhook')) {
-//         req.rawBody = buf.toString();
-//       }
-//     },
-//   })
-// );
+app.use(
+  express.json({
+    // We need the raw body to verify webhook signatures.
+    // Let's compute it only when hitting the Stripe webhook endpoint.
+    verify: function (req, res, buf) {
+      if (req.originalUrl.startsWith('/webhook')) {
+        req.rawBody = buf.toString();
+      }
+    },
+  })
+);
 
 app.get('/', (req, res) => {
   const path = resolve(process.env.STATIC_DIR + '/index.html');
@@ -362,29 +364,245 @@ app.get('/api/checkout-session', async (req, res) => {
   res.send(session);
 });
 
-app.post('/api/create-checkout-session', async (req, res) => {
-  const domainURL = process.env.DOMAIN;
+try {
 
-  // Create new Checkout Session for the order
-  // Other optional params include:
-  // For full details see https://stripe.com/docs/api/checkout/sessions/create
-  const session = await stripe.checkout.sessions.create({
-    mode: 'payment',
-    line_items: [{
-      price: process.env.PRICE,
-      quantity: 1,
-    }],
-    // ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
-    success_url: `${domainURL}/success-stripe?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${domainURL}/canceled-stripe`,
-    // automatic_tax: { enabled: true }
+  app.post('/api/create-checkout-session', async (req, res) => {
+
+    const domainURL = process.env.DOMAIN;
+
+
+    const customer = await stripe.customers.create({
+      metadata: {
+        userId: req.body.userId,
+        itemsID: JSON.stringify(req.body.itemsID),
+      },
+    });
+
+    console.log(customer)
+
+
+    // Create new Checkout Session for the order
+    // Other optional params include:
+    // For full details see https://stripe.com/docs/api/checkout/sessions/create
+
+
+
+
+    // const basketItems = req.body.basket
+
+    // console.log(basketItems)
+
+
+
+    // const basketItems1 = JSON.stringify(req.body.basket)
+
+    // console.log(basketItems1)
+
+
+
+
+
+    // const line_items1 = req.body.line_items2
+
+    // console.log(line_items1)
+
+
+    // // const userId = req.body.userId
+
+    // // console.log(userId)
+
+
+
+
+
+    // const userId = JSON.stringify(req.body.userId)
+
+    // console.log(userId)
+
+
+    // ########
+
+
+
+    // const line_items1 = req.body.line_items1
+
+    // console.log(line_items1)
+
+
+
+
+
+    // const line_items1 = JSON.stringify(req.body.line_items1)
+
+    // console.log(line_items1)
+
+
+
+    // ##########
+
+
+
+
+
+
+    // const line_items10 = basketItems?.map((item) => {
+    //   return {
+    //     price_data: {
+    //       currency: "usd",
+    //       product_data: {
+    //         name: item.name,
+    //         images: item.image,
+    //         description: item.desc,
+    //         metadata: {
+    //           id: item.id,
+    //         },
+    //       },
+    //       unit_amount: item.price * 100,
+    //     },
+    //     quantity: item.cartQuantity,
+    //   };
+    // });
+
+    // console.log(line_items10)
+
+
+
+
+
+
+
+
+
+
+    const line_items = req.body.basket?.map((item) => {
+      return {
+
+        // need to remove price_data
+        // price_data: {
+        currency: "usd",
+        name: item.name,
+        // product_data: {
+        //   name: item.name,
+        //   images: item.image,
+        //   description: item.desc,
+        //   metadata: {
+        //     id: item.id,
+        //   },
+        // },
+        amount: item.price * 100,
+        // unit_amount: item.price * 100,
+
+        // },
+        quantity: item.quantity,
+      };
+    });
+
+    console.log(line_items)
+
+
+
+
+
+
+
+
+    // try {
+    //   event = stripe.webhooks.constructEvent(
+    //     req.rawBody,
+    //     signature,
+    //     process.env.STRIPE_WEBHOOK_SECRET
+    //   );
+    // } catch (err) {
+    //   console.log(`⚠️  Webhook signature verification failed.`);
+    //   return res.sendStatus(400);
+
+
+    try {
+
+
+      const session = await stripe.checkout.sessions.create({
+        mode: 'payment',
+
+        // line_items: [{
+        //   price: process.env.PRICE,
+        //   quantity: 1,
+        // }],
+
+
+        line_items
+        // line_items: 
+        // line_items: line_items
+        // customer: customer.id
+
+
+
+
+
+        // [
+
+        //   {
+
+        //     amount: 10000,
+        //     // price: process.env.PRICE,
+        //     quantity: 1,
+        //     currency: "usd",
+        //     // unit_amount: item.price * 100,
+        //     name: "shoe1"
+        //   },
+        //   {
+
+        //     amount: 11000,
+        //     // price: process.env.PRICE,
+        //     quantity: 1,
+        //     currency: "usd",
+        //     // unit_amount: item.price * 100,
+        //     name: "shoe5"
+
+
+
+
+        //   }
+
+        // ]
+
+
+
+
+        ,
+
+
+
+
+        // ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
+        success_url: `${domainURL}/success-stripe?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${domainURL}/canceld-stripe`,
+        // automatic_tax: { enabled: true }
+
+
+
+
+
+
+      });
+
+      return res.redirect(303, session.url);
+
+
+    } catch (err) {
+      console.log(err)
+    }
+
+
+    // console.log(session)
+
   });
 
-  return res.redirect(303, session.url);
-});
+} catch (err) {
+  console.log(err)
+}
 
 // Webhook handler for asynchronous events.
-app.post('/webhook',  async (req, res) => {
+app.post('/webhook', async (req, res) => {
   let event;
 
   // Check if webhook signing is configured.
