@@ -31,7 +31,6 @@ const AppRouter = () => {
 
 
 
-
   return (
 
 
@@ -40,23 +39,6 @@ const AppRouter = () => {
 
 
       <>
-
-
-
-
-
-
-        {/* {(pathname === ROUTE.SHOP || pathname === ROUTE.SEARCH) && (
-        
-            <MenuBurger />
-         
-      )} */}
-
-
-
-
-        {/* <MenuBurger /> */}
-
 
 
         <Navigation />
@@ -93,29 +75,17 @@ const AppRouter = () => {
             path={ROUTES.RECOMMENDED_PRODUCTS}
           />
 
-          {/* ######### */}
-
-          <PublicRoute
-            component={view.Checkout}
-            path={ROUTES.CHECKOUT_STRIPE}
-          />
-
-          <PublicRoute
-            component={view.Success}
-            path={ROUTES.SUCCESS_STRIPE}
-          />
-
-          <PublicRoute
-            component={view.Canceled}
-            path={ROUTES.CANCELED_STRIPE}
-          />
-
-          {/* ######### */}
-
+          {/* ### - Stripe */}
           <PublicRoute
             component={view.Completion}
             path={ROUTES.COMPLETION}
           />
+
+          {/* <PublicRoute
+            component={view.Payment}
+            path={ROUTES.PAYMENT}
+          /> */}
+          {/* ### */}
 
           <PublicRoute
             component={view.SignUp}
@@ -138,10 +108,14 @@ const AppRouter = () => {
             component={view.ViewPost}
             path={ROUTES.VIEW_POST}
           />
+
+
           {/* <Route
           component={view.ViewSetting}
           path={ROUTES.VIEW_SETTING}
         /> */}
+
+
           <ClientRoute
             component={view.UserAccount}
             exact

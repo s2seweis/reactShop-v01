@@ -60,7 +60,6 @@ export { default as ForgotPassword } from './auth/forgot_password';
 export { default as SignIn } from './auth/signin';
 export { default as SignUp } from './auth/signup';
 
-export { default as Completion } from '../components/stripe/Completion';
 
 export { default as CheckOutStep1 } from './checkout/step1';
 export { default as CheckOutStep2 } from './checkout/step2';
@@ -79,7 +78,10 @@ export { default as ViewProduct } from './view_product';
 export { default as ViewPost } from './view_post';
 // export { default as ViewSetting } from './view_settings';
 
-export { default as Checkout } from '../components/stripe-checkout/Checkout';
-export { default as Success } from '../components/stripe-checkout/Success';
-export { default as Canceled } from '../components/stripe-checkout/Canceled';
-// okay
+
+
+
+// ###
+export { default as Completion } from '../stripe-payment-element/Completion';
+// export { default as Payment } from '../stripe-payment-element/Payment';
+// ###

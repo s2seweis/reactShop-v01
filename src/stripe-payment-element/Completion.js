@@ -17,18 +17,15 @@ const Completion = () => {
 
     return (
 
+        <>
 
-
-        <div className="confirmation" style={{ display:"block" }}>
-
-
-        <a style={{ textDecoration: "underline" }} href="/">home</a>
+        <a href="/">home</a>
         <h1 style={{ textAlign:"center" }}>Confirmation</h1>
 
         <form id="payment-form" >
-            <h2 style={{ textAlign:"center", marginTop: "3rem" }} htmlFor="name">
+            <label style={{ textAlign:"center" }} htmlFor="name">
                 Payment was successful!!!
-            </h2>
+            </label>
 
             <div id="error-message" role="alert"></div>
 
@@ -37,10 +34,9 @@ const Completion = () => {
         {/* <div id="messages" role="alert"></div> */}
 
 
-        </div>
 
 
-    
+    </>
 
 
 
