@@ -142,20 +142,34 @@ app.post("/api/create-payment-intent", async (req, res) => {
 
 // ### Test: Create Order
 
-const createOrder = async (shipping) => {
-  console.log(shipping);
-  const address = shipping;
+const createOrder = async (data) => {
+  console.log( "line:140", data);
+
+const newOrder2 = {
+  amount: data.object.amount,
+  id: data.object.id,
+  currency: data.object.currency,
+  status: data.object.status
+}
+console.log("line:170", newOrder2)
+
+
+  // const address = data;
+
+  // console.log( "line:150", address);
 
 
 
-  const newOrder = new Order({
+  const newOrder = newOrder2;
+  
+  
+// const newOrder1 = new Order({
 
-    // address,
-    total: "1000"
+//     address,
+//     total: "1000"
 
 
-  });
-
+//   });
 
   console.log("line:120", newOrder)
 
@@ -163,7 +177,7 @@ const createOrder = async (shipping) => {
     const savedOrder = await firestore.collection('orders1').doc().set(newOrder);
     console.log("Processed Order:", savedOrder);
   } catch (err) {
-    console.log(err);
+    console.log( "line:160", err);
   }
 };
 
@@ -221,7 +235,7 @@ app.post('/webhook', async (req, res) => {
 
     try {
       // CREATE ORDER
-      createOrder(shipping, data);
+      createOrder(data);
     } catch (err) {
       console.log(typeof createOrder);
       console.log(err);

@@ -28,14 +28,19 @@ function* checkoutSaga({ type, payload }) {
         // yield initRequest();
 
         const key = yield call(firebase.generateKey);
+        console.log(key)
 
         
         const order = {
           ...payload,
+          instance: key
         };
+
+      
 
 
         yield call(firebase.addOrder, key, order);
+        console.log(key);
 
         // yield put(placeOrderSuccess({
         //   id: key,
@@ -56,5 +61,7 @@ function* checkoutSaga({ type, payload }) {
     }
   }
 }
+
+
 
 export default checkoutSaga;

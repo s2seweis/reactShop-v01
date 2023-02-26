@@ -8,9 +8,11 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
 import { loadStripe } from "@stripe/stripe-js";
 
-function Payment() {
+function Payment(shipping) {
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
+
+  console.log( "test: create order", shipping);
 
   useEffect(() => {
     fetch("/api/config").then(async (r) => {
@@ -31,7 +33,8 @@ function Payment() {
         { 
           items: "t-shirt", 
           price: { id: "33000" },
-          customer: { id: "swt" }
+          customer: { id: "swt" },
+          shipping: shipping
         }
         ),
       // body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),

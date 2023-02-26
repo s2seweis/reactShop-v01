@@ -21,6 +21,8 @@ export default function CheckoutForm() {
   const [message, setMessage] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
+  // !!! best practice: place order first after start payment-intent then update payment status with stripe webhook in the order from pending to paid
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

@@ -132,7 +132,9 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
       <div className='stripe-payment-element'
       style={{  marginTop:"50px" }}>
 
-        <Payment />
+        <Payment
+        shipping={shipping}
+        />
 
       </div>
 

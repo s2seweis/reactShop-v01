@@ -60,7 +60,7 @@ class Firebase {
 
 
 
-    // need build new document
+  // need build new document
   updateIngredient = (VD1F3HkgV9dfWrNyu8ut, updates) =>
     this.db.collection("ingredients").doc("VD1F3HkgV9dfWrNyu8ut").update(updates);
 
@@ -628,8 +628,25 @@ class Firebase {
   // addOrder = (id, order) =>
   //   this.db.collection("orders").doc(id).set(order);
 
-  addOrder = (id, order) =>
+
+
+
+  // ### Test: get the docRef.id
+
+  addOrder = (id, order) => {
+    console.log(id);
     this.db.collection("orders").doc(id).set(order);
+
+  }
+
+  
+
+
+
+  //  ###   
+
+
+
 
   addSetting = (id, settings) =>
     this.db.collection("settings").doc(id).set(settings);
