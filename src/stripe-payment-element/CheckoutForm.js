@@ -9,11 +9,12 @@ import { useState } from "react";
 import { useStripe, useElements, LinkAuthenticationElement } from "@stripe/react-stripe-js";
 // Test:1 ###### (LinkAuthenticationElement)
 
-import {AddressElement} from '@stripe/react-stripe-js';
+import { AddressElement } from '@stripe/react-stripe-js';
 
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
+  
 
   // Test:1 ######
   const [email, setEmail] = useState('');
@@ -59,13 +60,22 @@ export default function CheckoutForm() {
 
       <AddressElement options={{mode: 'shipping'}} />
 
-      
+
+      {/* <AddressElement onChange={(event) => {
+        if (event.complete) {
+          // Extract potentially complete address
+          const address = event.value.address;
+        }
+      }} /> */}
+
+
+
 
       {/* Test:1 ###### */}
       <LinkAuthenticationElement
         id="link-authentication-element"
         onChange={(e) => setEmail(e.target.value)}
-        
+
       />
       {/* Test:1 ###### */}
 

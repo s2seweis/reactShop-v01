@@ -34,7 +34,7 @@ function Payment(shipping) {
         { 
           items: "t-shirt", 
           price: { id: "33000" },
-          customer: { id: "swt" },
+          customer:  "swt" ,
           userId: "1234",
           cartItems: [{id:"01"},{id:"02"},{id:"03"}],
           shipping: shipping,

@@ -99,13 +99,12 @@ app.post("/api/create-payment-intent", async (req, res) => {
     name: req.body.name,
     phone:"+491738051157",
     metadata: {
-      userId: req.body.userId,
+      // userId: req.body.userId,
       shipping: JSON.stringify(req.body.shipping),
       cart: JSON.stringify(req.body.cartItems),
     },
   });
   console.log("line:1", customer)
-  console.log("line:1.1", customer.metadata.userId)
   console.log("line:1.2", customer.metadata.cart)
   console.log("line:1.3", customer.metadata.shipping)
   console.log("line:1.4", customer.name)
@@ -146,6 +145,11 @@ app.post("/api/create-payment-intent", async (req, res) => {
     automatic_payment_methods: {
       enabled: true,
     },
+    customer: customer.id,
+    metadata: {
+      email:customer.email,
+      cart: JSON.stringify(req.body.cartItems)
+    }
 
   });
 
@@ -160,20 +164,26 @@ app.post("/api/create-payment-intent", async (req, res) => {
 
 
 
+  console.log( "line:10", paymentIntent)
 
 });
 
 
+
 // ### Test: Create Order
 
-const createOrder = async (data) => {
+const createOrder = async (data, metadata) => {
   console.log( "line:6", data);
 
 const newOrder2 = {
-  amount: data.object.amount,
-  id: data.object.id,
-  currency: data.object.currency,
-  status: data.object.status
+  amount: data.amount,
+  id: data.id,
+  currency: data.currency,
+  status: data.status,
+  customerId: data.metadata,
+  shipping: data.shipping,
+  // basket:data.customer.metadata
+  // payment_status: data.payment_status
 }
 console.log("line:7", newOrder2)
 
@@ -226,16 +236,32 @@ app.post('/webhook', async (req, res) => {
       console.log(`⚠️  Webhook signature verification failed.`);
       return res.sendStatus(400);
     }
-    data = event.data;
+    data = event.data.object;
     eventType = event.type;
   } else {
     // Webhook signing is recommended, but if the secret is not configured in `config.js`,
     // we can retrieve the event data directly from the request body.
-    data = req.body.data;
+    data = req.body.data.object;
     eventType = req.body.type;
   }
 
   if (eventType === 'payment_intent.succeeded') {
+
+
+    stripe.customers
+        .retrieve(data.metadata)
+        console.log( "line:11", data.metadata)
+        ?.then(async (metadata) => {
+          try {
+            // CREATE ORDER
+            createOrder(metadata, data);
+            console.log( "line:15", metadata)
+          } catch (err) {
+            console.log(typeof createOrder);
+            console.log(err);
+          }
+        })
+        .catch((err) => console.log(err.message));
 
 
     // ### - Test: Create Order
