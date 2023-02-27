@@ -90,12 +90,36 @@ app.get("/api/config", (req, res) => {
 
 app.post("/api/create-payment-intent", async (req, res) => {
 
+
+
+  const customer = await stripe.customers.create({
+    description: "Summer",
+    address: {city:"Trier", country:"Germany", line1:"EG"},
+    email:"test@gmail.com",
+    name: req.body.name,
+    phone:"+491738051157",
+    metadata: {
+      userId: req.body.userId,
+      shipping: JSON.stringify(req.body.shipping),
+      cart: JSON.stringify(req.body.cartItems),
+    },
+  });
+  console.log("line:1", customer)
+  console.log("line:1.1", customer.metadata.userId)
+  console.log("line:1.2", customer.metadata.cart)
+  console.log("line:1.3", customer.metadata.shipping)
+  console.log("line:1.4", customer.name)
+
+
+  
+
+
   // ###
   const { items, price, shipping } = req.body;
   // ###
 
-  console.log("line:1", price.id);
-  console.log("line:2", items);
+  console.log("line:2", price.id);
+  console.log("line:3", items);
   console.log("line:4", shipping);
 
 
@@ -112,7 +136,7 @@ app.post("/api/create-payment-intent", async (req, res) => {
 
 
 
-  console.log("line:3", calculateOrderAmount);
+  console.log("line:5", calculateOrderAmount);
 
 
   const paymentIntent = await stripe.paymentIntents.create({
@@ -143,7 +167,7 @@ app.post("/api/create-payment-intent", async (req, res) => {
 // ### Test: Create Order
 
 const createOrder = async (data) => {
-  console.log( "line:140", data);
+  console.log( "line:6", data);
 
 const newOrder2 = {
   amount: data.object.amount,
@@ -151,7 +175,7 @@ const newOrder2 = {
   currency: data.object.currency,
   status: data.object.status
 }
-console.log("line:170", newOrder2)
+console.log("line:7", newOrder2)
 
 
   // const address = data;
@@ -171,13 +195,13 @@ console.log("line:170", newOrder2)
 
 //   });
 
-  console.log("line:120", newOrder)
+  console.log("line:8", newOrder)
 
   try {
     const savedOrder = await firestore.collection('orders1').doc().set(newOrder);
     console.log("Processed Order:", savedOrder);
   } catch (err) {
-    console.log( "line:160", err);
+    console.log( "line:9", err);
   }
 };
 

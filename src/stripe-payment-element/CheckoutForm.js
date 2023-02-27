@@ -9,6 +9,8 @@ import { useState } from "react";
 import { useStripe, useElements, LinkAuthenticationElement } from "@stripe/react-stripe-js";
 // Test:1 ###### (LinkAuthenticationElement)
 
+import {AddressElement} from '@stripe/react-stripe-js';
+
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
@@ -54,6 +56,10 @@ export default function CheckoutForm() {
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
       <h1>Test:1</h1>
+
+      <AddressElement options={{mode: 'shipping'}} />
+
+      
 
       {/* Test:1 ###### */}
       <LinkAuthenticationElement

@@ -13,6 +13,7 @@ function Payment(shipping) {
   const [clientSecret, setClientSecret] = useState("");
 
   console.log( "test: create order", shipping);
+  console.log( "test: name", shipping.shipping.fullname);
 
   useEffect(() => {
     fetch("/api/config").then(async (r) => {
@@ -34,7 +35,10 @@ function Payment(shipping) {
           items: "t-shirt", 
           price: { id: "33000" },
           customer: { id: "swt" },
-          shipping: shipping
+          userId: "1234",
+          cartItems: [{id:"01"},{id:"02"},{id:"03"}],
+          shipping: shipping,
+          name: shipping.shipping.fullname
         }
         ),
       // body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
