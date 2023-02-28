@@ -635,7 +635,15 @@ class Firebase {
 
   addOrder = (id, order) => {
     console.log(id);
+    console.log(order);
     this.db.collection("orders").doc(id).set(order);
+
+  }
+
+  addOrder1 = (newOrder) => {
+    console.log(newOrder);
+
+    this.db.collection("orders1").doc().set(newOrder);
 
   }
 

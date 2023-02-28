@@ -134,6 +134,7 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
 
         <Payment
         shipping={shipping}
+        basket={basket}
         />
 
       </div>

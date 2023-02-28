@@ -8,12 +8,27 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./CheckoutForm";
 import { loadStripe } from "@stripe/stripe-js";
 
-function Payment(shipping) {
+function Payment(shipping, basket) {
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
 
-  console.log( "test: create order", shipping);
-  console.log( "test: name", shipping.shipping.fullname);
+  console.log( "test: shipping", shipping.shipping);
+  console.log( "test: shipping.fullname", shipping.shipping.fullname);
+  console.log( "test: basket", shipping.basket);
+
+
+const basketItems = shipping.basket.map((item) => {
+  return {
+    name: item.name,
+    size: item.selectedSizeNew,
+    toppings: item.toppings,
+    price: item.selectedPriceTotal1,
+  }
+})
+
+console.log( "test: basketItems", basketItems)
+
+
 
   useEffect(() => {
     fetch("/api/config").then(async (r) => {
@@ -37,8 +52,9 @@ function Payment(shipping) {
           customer:  "swt" ,
           userId: "1234",
           cartItems: [{id:"01"},{id:"02"},{id:"03"}],
-          shipping: shipping,
-          name: shipping.shipping.fullname
+          shipping: shipping.shipping,
+          name: shipping.shipping.fullname,
+          basketItems: basketItems
         }
         ),
       // body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
