@@ -94,23 +94,26 @@ app.post("/api/create-payment-intent", async (req, res) => {
 
   const customer = await stripe.customers.create({
     description: "Summer",
-    address: {city:"Trier", country:"Germany", line1:"EG"},
-    email:"test@gmail.com",
+    address: { city: "Trier", country: "Germany", line1: "EG" },
+    email: "test@gmail.com",
     name: req.body.name,
-    phone:"+491738051157",
+    phone: "+491738051157",
     metadata: {
       // userId: req.body.userId,
-      shipping: JSON.stringify(req.body.shipping),
-      cart: JSON.stringify(req.body.cartItems),
+      // shipping: JSON.stringify(req.body.shipping.shipping),
+      // cart: JSON.stringify(req.body.cartItems),
+      basketItems: JSON.stringify(req.body.basketItems),
+      // basketItems: req.body.basketItems,
     },
   });
   console.log("line:1", customer)
-  console.log("line:1.2", customer.metadata.cart)
-  console.log("line:1.3", customer.metadata.shipping)
+  // console.log("line:1.2", customer.metadata.cart)
+  // console.log("line:1.3", customer.metadata.shipping)
   console.log("line:1.4", customer.name)
+  console.log("line:1.5", customer.metadata.basketItems)
 
 
-  
+
 
 
   // ###
@@ -147,8 +150,9 @@ app.post("/api/create-payment-intent", async (req, res) => {
     },
     customer: customer.id,
     metadata: {
-      email:customer.email,
-      cart: JSON.stringify(req.body.cartItems)
+      // email:customer.email,
+      cartItems: JSON.stringify(req.body.cartItems),
+      // basketItems1: req.body.basketItems,
     }
 
   });
@@ -164,7 +168,7 @@ app.post("/api/create-payment-intent", async (req, res) => {
 
 
 
-  console.log( "line:10", paymentIntent)
+  console.log("line:10", paymentIntent)
 
 });
 
@@ -172,20 +176,23 @@ app.post("/api/create-payment-intent", async (req, res) => {
 
 // ### Test: Create Order
 
-const createOrder = async (data, metadata) => {
-  console.log( "line:6", data);
+const createOrder = async (data, metadata, shipping) => {
+  console.log("line:6", data);
 
-const newOrder2 = {
-  amount: data.amount,
-  id: data.id,
-  currency: data.currency,
-  status: data.status,
-  customerId: data.metadata,
-  shipping: data.shipping,
-  // basket:data.customer.metadata
-  // payment_status: data.payment_status
-}
-console.log("line:7", newOrder2)
+
+
+  const newOrder2 = {
+    amount: data.amount,
+    id: data.id,
+    currency: data.currency,
+    status: data.status,
+    customerId: data.metadata,
+
+    shipping: data.shipping,
+    // saves the fields from the stripe address form ?
+
+  }
+  console.log("line:7", newOrder2)
 
 
   // const address = data;
@@ -195,15 +202,15 @@ console.log("line:7", newOrder2)
 
 
   const newOrder = newOrder2;
-  
-  
-// const newOrder1 = new Order({
-
-//     address,
-//     total: "1000"
 
 
-//   });
+  // const newOrder1 = new Order({
+
+  //     address,
+  //     total: "1000"
+
+
+  //   });
 
   console.log("line:8", newOrder)
 
@@ -211,7 +218,7 @@ console.log("line:7", newOrder2)
     const savedOrder = await firestore.collection('orders1').doc().set(newOrder);
     console.log("Processed Order:", savedOrder);
   } catch (err) {
-    console.log( "line:9", err);
+    console.log("line:9", err);
   }
 };
 
@@ -249,19 +256,19 @@ app.post('/webhook', async (req, res) => {
 
 
     stripe.customers
-        .retrieve(data.metadata)
-        console.log( "line:11", data.metadata)
-        ?.then(async (metadata) => {
-          try {
-            // CREATE ORDER
-            createOrder(metadata, data);
-            console.log( "line:15", metadata)
-          } catch (err) {
-            console.log(typeof createOrder);
-            console.log(err);
-          }
-        })
-        .catch((err) => console.log(err.message));
+      .retrieve(data.metadata)
+    console.log("line:11", data.metadata)
+      ?.then(async (metadata) => {
+        try {
+          // CREATE ORDER
+          createOrder(metadata, data);
+          console.log("line:15", metadata)
+        } catch (err) {
+          console.log(typeof createOrder);
+          console.log(err);
+        }
+      })
+      .catch((err) => console.log(err.message));
 
 
     // ### - Test: Create Order
