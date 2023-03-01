@@ -25,17 +25,70 @@ import {
 import firebase from 'services/firebase';
 
 
+import { useDispatch, useSelector } from 'react-redux';
 
 
 
-  
+
 
 
 
 
 const Completion = (props) => {
 
+    
+
+
+    const { auth } = useSelector((state) => ({
+        auth: state.auth,
+    }));
+    console.log(auth.id)
+
+    const { checkout } = useSelector((state) => ({
+        checkout: state.checkout,
+    }));
+    console.log(checkout)
+
+
+
+
+    const productItems = checkout.data.basket?.map((item) => {
+        return {
+
+            name: item.name,
+            size: item.selectedSizeNew,
+            addToppings: item.toppings,
+            price: item.price,
+            priceWithToppings: item.selectedPriceTotal1
+
+        };
+    });
+
+    console.log("line:1", productItems)
+
+
+    const address = {
+
+        shipping: {
+
+            address: checkout.shipping.address,
+            email: checkout.shipping.email,
+            fullname: checkout.shipping.fullname,
+            isInternational: checkout.shipping.isInternational,
+            mobile: checkout.shipping.mobile,
+
+        }
+    }
+
+
+
+    console.log("line:2", address)
+
+
+
+
     // ###
+
     const [succeeded, setSucceeded] = useState(false);
     const [error, setError] = useState(null);
     const [processing, setProcessing] = useState(false);
@@ -44,6 +97,7 @@ const Completion = (props) => {
     const [clientSecret, setClientSecret] = useState('');
     const stripe = useStripe();
     const elements = useElements();
+
     // ###
 
 
@@ -104,74 +158,71 @@ const Completion = (props) => {
 
     // ###
 
-    const createOrder = async (paymentIntent ) => {
-        console.log("line:6",);
-      
-      
-      
+    const createOrder = async (paymentIntent) => {
+        console.log("line:6", paymentIntent);
+
+        const key = firebase.generateKey();
+        console.log(key)
+
+
         const newOrder2 = {
-          amount: "50",
-          id: "1234",
-          currency: "usd",
-          status: "pending",
-          customerId: "567",
-          name:"John Doe",
-          status : paymentIntent.status,
-      
-          // saves the fields from the stripe address form ?
-      
+            // amount: "50",
+            // id: "1234",
+            
+
+            products: productItems,
+            address: address,
+            paymentStatus: paymentIntent.status,
+            currency: paymentIntent.currency,
+            amountCharged: paymentIntent.amount,
+            payment_method: paymentIntent.payment_method,
+            userId: auth.id,
+            orderId:key
+
+
+
+
         }
         console.log("line:7", newOrder2)
-      
-      
-        // const address =;
-      
-        // console.log( "line:150", address);
-      
-      
-      
+
+
+
+
+
         const newOrder = newOrder2;
-      
-      
-        // const newOrder1 = new Order({
-      
-        //     address,
-        //     total: "1000"
-        
-      
-        //   });
-      
-        const key = "1542476sdfsd52sdf5ds"
-        const key1 = (firebase.generateKey);
-        console.log(key1)
+
+
+
+
+       
 
 
 
 
         console.log("line:8", newOrder)
-      
+
         try {
-          firebase.addOrder1(newOrder)
-          console.log("Processed Order:", newOrder);
+            firebase.addOrder1(newOrder, key)
+            console.log("Processed Order:", newOrder);
         } catch (err) {
-          console.log("line:9", err);
+            console.log("line:9", err);
         }
-      };
+    };
 
     // ###
 
     const saveOrder = async (paymentIntent, orderDetails) => {
-        if (paymentIntent['status'] === "succeeded" || paymentIntent['status'] === "pending") 
-        
-        try {
-            // CREATE ORDER
-            createOrder(paymentIntent);
-            // console.log("line:15",)
-          } catch (err) {
-            console.log(typeof createOrder);
-            console.log(err);
-          }
-        
+        if (paymentIntent['status'] === "succeeded" || paymentIntent['status'] === "pending")
+
+            try {
+                // CREATE ORDER
+                createOrder(paymentIntent);
+                // console.log("line:15",)
+            } catch (err) {
+                console.log(typeof createOrder);
+                console.log(err);
+            }
+
         setProcessing(false)
     }
 

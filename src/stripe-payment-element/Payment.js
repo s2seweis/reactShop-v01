@@ -12,9 +12,9 @@ function Payment(shipping, basket) {
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState("");
 
-  console.log( "test: shipping", shipping.shipping);
-  console.log( "test: shipping.fullname", shipping.shipping.fullname);
-  console.log( "test: basket", shipping.basket);
+  // console.log( "test: shipping", shipping.shipping);
+  // console.log( "test: shipping.fullname", shipping.shipping.fullname);
+  // console.log( "test: basket", shipping.basket);
 
 
 const basketItems = shipping.basket.map((item) => {
@@ -26,7 +26,7 @@ const basketItems = shipping.basket.map((item) => {
   }
 })
 
-console.log( "test: basketItems", basketItems)
+// console.log( "test: basketItems", basketItems)
 
 
 

@@ -40,10 +40,10 @@ const Order = ({ basket, payment, shipping, subtotal, Total }) => {
   const productId = basket.map((product) => product.id)
 
   const basketItems = basket.map((product) => product)
-  console.log(basketItems)
-  console.log(basket)
-  console.log(subtotal)
-  console.log(auth.id)
+  // console.log(basketItems)
+  // console.log(basket)
+  // console.log(subtotal)
+  // console.log(auth.id)
 
 
 

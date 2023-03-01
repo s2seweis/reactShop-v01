@@ -625,33 +625,32 @@ class Firebase {
       .limit(itemsCount)
       .get();
 
-  // addOrder = (id, order) =>
-  //   this.db.collection("orders").doc(id).set(order);
 
 
 
 
-  // ### Test: get the docRef.id
 
   addOrder = (id, order) => {
-    console.log(id);
-    console.log(order);
+    // console.log(id);
+    // console.log(order);
     this.db.collection("orders").doc(id).set(order);
 
   }
 
-  addOrder1 = (newOrder) => {
-    console.log(newOrder);
+// ###
 
-    this.db.collection("orders1").doc().set(newOrder);
+addOrder1 = (newOrder, id) => {
+  // console.log(newOrder);
+  
+  this.db.collection("orders1").doc(id).set(newOrder);
+  
+}
 
-  }
-
+// ###
   
 
 
 
-  //  ###   
 
 
 
