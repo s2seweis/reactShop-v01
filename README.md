@@ -64,3 +64,8 @@ $ npm run build
 * Firebase auth provider authentication
 * Account creation and edit
 
+
+### Upload
+
+* At the moment nothing to commit | still working on gatsby/strapi - portfolio
+

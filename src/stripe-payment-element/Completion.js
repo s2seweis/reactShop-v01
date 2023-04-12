@@ -27,16 +27,19 @@ import firebase from 'services/firebase';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import { clearBasket } from 'redux/actions/basketActions';
 
 
 
 
 
 
+
+// need to be a generator function ?
 
 const Completion = (props) => {
 
-    
+
 
 
     const { auth } = useSelector((state) => ({
@@ -168,7 +171,7 @@ const Completion = (props) => {
         const newOrder2 = {
             // amount: "50",
             // id: "1234",
-            
+
 
             products: productItems,
             address: address,
@@ -177,7 +180,7 @@ const Completion = (props) => {
             amountCharged: paymentIntent.amount,
             payment_method: paymentIntent.payment_method,
             userId: auth.id,
-            orderId:key
+            orderId: key
 
 
 
@@ -194,7 +197,7 @@ const Completion = (props) => {
 
 
 
-       
+
 
 
 
@@ -204,7 +207,21 @@ const Completion = (props) => {
         try {
             firebase.addOrder1(newOrder, key)
             console.log("Processed Order:", newOrder);
-        } catch (err) {
+            clearBasket()
+        } 
+        
+        
+        catch (err) {
+            console.log("line:9", err);
+        }
+
+        try {
+          
+            clearBasket()
+        } 
+        
+        
+        catch (err) {
             console.log("line:9", err);
         }
     };
