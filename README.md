@@ -69,3 +69,5 @@ $ npm run build
 
 * At the moment nothing to commit | still working on gatsby/strapi - portfolio
 
+* working still at the portfolio, looking forward to make here progress
+
