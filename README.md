@@ -71,3 +71,5 @@ $ npm run build
 
 * working still at the portfolio, looking forward to make here progress
 
+# still working on the portfolio
+
