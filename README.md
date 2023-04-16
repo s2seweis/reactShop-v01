@@ -73,3 +73,5 @@ $ npm run build
 
 # still working on the portfolio
 
+# still the same, tomorrow starts the week new
+
