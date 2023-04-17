@@ -75,3 +75,5 @@ $ npm run build
 
 # still the same, tomorrow starts the week new
 
+# tomorrow i need to start earlier
+
