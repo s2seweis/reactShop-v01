@@ -77,3 +77,6 @@ $ npm run build
 
 # tomorrow i need to start earlier
 
+# again just a comment, portfolio still not ready 
+ 
+
