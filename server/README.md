@@ -32,3 +32,13 @@ npm start
 ```
 
 3. The react frontend will be running on `localhost:4242`. Follow the instructions in the README there to install and start the frontend server.
+
+Admin: 
+weissenborn20seb@gmailcom
+Password:
+Gesetz123
+
+User:
+weissenborn21@gmail.com 
+Password:
+Gesetz123
