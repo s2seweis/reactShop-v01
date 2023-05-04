@@ -1,13 +1,12 @@
 # Dign | E-commerce react app
 Simple ecommerce react js app with firebase [typescript].
-![Firebase Deploy](https://github.com/jgudo/ecommerce-react/workflows/Firebase%20Deploy/badge.svg)
 
 ### [Live demo](https://swt-v02.netlify.app/)
 
-![Dign screenshot](https://raw.githubusercontent.com/s2seweis/testShop-CRUD-Salinaka/master/static/screenshot1.png)
-![Dign screenshot](https://raw.githubusercontent.com/jgudo/ecommerce-react/master/static/screenshot2.png)
-![Dign screenshot](https://raw.githubusercontent.com/jgudo/ecommerce-react/master/static/screenshot3.png)
-![Dign screenshot](https://raw.githubusercontent.com/jgudo/ecommerce-react/master/static/screenshot4.png)
+![Dign screenshot]()
+### Adding Screenshots
+https://www.educative.io/answers/adding-images-to-readmemd-in-github
+
 
 ## Run Locally
 ### 1. Install Dependencies
