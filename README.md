@@ -4,7 +4,7 @@ Simple ecommerce react js app with firebase [typescript].
 
 ### [Live demo](https://swt-v02.netlify.app/)
 
-![Dign screenshot](https://raw.githubusercontent.com/jgudo/ecommerce-react/master/static/screenshot1.png)
+![Dign screenshot](https://swt-v02.netlify.app/static/screenshot1)
 ![Dign screenshot](https://raw.githubusercontent.com/jgudo/ecommerce-react/master/static/screenshot2.png)
 ![Dign screenshot](https://raw.githubusercontent.com/jgudo/ecommerce-react/master/static/screenshot3.png)
 ![Dign screenshot](https://raw.githubusercontent.com/jgudo/ecommerce-react/master/static/screenshot4.png)
