@@ -2,12 +2,12 @@
 Simple ecommerce react js app with firebase [typescript].
 ![Firebase Deploy](https://github.com/jgudo/ecommerce-react/workflows/Firebase%20Deploy/badge.svg)
 
-### [Live demo](https://salinaka-ecommerce.web.app/)
+### [Live demo](https://swt-v02.netlify.app/)
 
-![Dign screenshot](https://raw.githubusercontent.com/jgudo/ecommerce-react/master/static/screeny1.png)
-![Dign screenshot](https://raw.githubusercontent.com/jgudo/ecommerce-react/master/static/screeny2.png)
-![Dign screenshot](https://raw.githubusercontent.com/jgudo/ecommerce-react/master/static/screeny3.png)
-![Dign screenshot](https://raw.githubusercontent.com/jgudo/ecommerce-react/master/static/screeny7.png)
+![Dign screenshot](https://raw.githubusercontent.com/jgudo/ecommerce-react/master/static/screenshot1.png)
+![Dign screenshot](https://raw.githubusercontent.com/jgudo/ecommerce-react/master/static/screenshot2.png)
+![Dign screenshot](https://raw.githubusercontent.com/jgudo/ecommerce-react/master/static/screenshot3.png)
+![Dign screenshot](https://raw.githubusercontent.com/jgudo/ecommerce-react/master/static/screenshot4.png)
 
 ## Run Locally
 ### 1. Install Dependencies
@@ -63,20 +63,27 @@ $ npm run build
 * Firebase authentication
 * Firebase auth provider authentication
 * Account creation and edit
+* Add/ delete products
+* Manage Users
+* Manage Orders
+* Extrea Ingredients Component
+* Stripe Integration - via Express
 
 
-### Upload
 
-* At the moment nothing to commit | still working on gatsby/strapi - portfolio
+### Comment:
 
-* working still at the portfolio, looking forward to make here progress
 
-# still working on the portfolio
 
-# still the same, tomorrow starts the week new
 
-# tomorrow i need to start earlier
+### Admin: 
+weissenborn20seb@gmailcom
+Password:
+Gesetz123
 
-# again just a comment, portfolio still not ready 
+### User:
+weissenborn21@gmail.com 
+Password:
+Gesetz123
  
 
