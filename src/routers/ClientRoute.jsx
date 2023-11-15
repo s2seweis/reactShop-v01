@@ -7,51 +7,34 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
-
-
-
 const PrivateRoute = ({
   isAuth, role, component: Component, ...rest
-}) => 
-
-
-{
-
-
-
-
-
-
+}) => {
 
   return (
-
-  <Route
-    {...rest}
-    component={(props) => {
-      if (isAuth && role === 'USER') {
+    <Route
+      {...rest}
+      component={(props) => {
+        if (isAuth && role === 'USER') {
+          return (
+            <main className="content">
+              <Component {...props} />
+            </main>
+          );
+        }
+        if (isAuth && role === 'ADMIN') {
+          return <Redirect to={ADMIN_DASHBOARD} />;
+        }
         return (
-          <main className="content">
-            <Component {...props} />
-
-
-          </main>
+          <Redirect to={{
+            pathname: SIGNIN,
+            // eslint-disable-next-line react/prop-types
+            state: { from: props.location }
+          }}
+          />
         );
-      }
-
-      if (isAuth && role === 'ADMIN') {
-        return <Redirect to={ADMIN_DASHBOARD} />;
-      }
-
-      return (
-        <Redirect to={{
-          pathname: SIGNIN,
-          // eslint-disable-next-line react/prop-types
-          state: { from: props.location }
-        }}
-        />
-      );
-    }}
-  />
+      }}
+    />
 
   )
 };

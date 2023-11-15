@@ -1,5 +1,4 @@
 export { default as SettingAppliedFilters } from './SettingAppliedFilters';
-
 export { default as FeaturedSetting } from './SettingFeatured';
 // export { default as FeaturedUser } from './UserFeatured';
 export { default as SettingGrid } from './SettingGrid';

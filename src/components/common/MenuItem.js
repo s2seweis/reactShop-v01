@@ -15,9 +15,6 @@ const MenuItem = (props) => {
       <Link
         exact
         to={to}
-        // onClick={() => {
-        //   setExpand((e) => !e);
-        // }}
         className={`menu-item`}
       >
         <div className="menu-icon">

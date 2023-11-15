@@ -11,12 +11,8 @@ import Badge from './Badge';
 import FiltersToggle from './FiltersToggle';
 import MobileNavigation from './MobileNavigation';
 import SearchBar from './SearchBar';
-
-
 import MenuBurger from '../../components/common/MenuBurger';
-
 import '../../styles/menu/index.scss'
-
 
 const Navigation = () => {
   const navbar = useRef(null);
@@ -74,12 +70,6 @@ const Navigation = () => {
     <nav className="navigation" ref={navbar}>
 
 
-      {/* <MenuBurger /> */}
-
-
-      {/* <div className="logo">
-        <Link onClick={onClickLink} to="/"><img alt="Logo" src={logo} /></Link>
-      </div> */}
       <ul className="navigation-menu-main">
         <li><NavLink activeClassName="navigation-menu-active" exact to={ROUTE.HOME}>Home</NavLink></li>
         <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.SHOP}>Shop</NavLink></li>
@@ -87,11 +77,7 @@ const Navigation = () => {
         <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.FEATURED_PRODUCTS}>Featured</NavLink></li>
         <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.RECOMMENDED_PRODUCTS}>Recommended</NavLink></li>
       </ul>
-
-
       {/* excluse component by a route */}
-
-
       {(pathname === ROUTE.SHOP || pathname === ROUTE.SEARCH) && (
         <FiltersToggle>
           <button className="button-muted button-small" type="button">
@@ -101,28 +87,21 @@ const Navigation = () => {
         </FiltersToggle>
       )}
 
-
-
-      {/* <MenuBurger /> */}
-
       <SearchBar />
       <ul className="navigation-menu">
         <li className="navigation-menu-item">
           <BasketToggle>
             {({ onClickToggle }) => (
-
               <button
                 className="button-link navigation-menu-link basket-toggle"
                 disabled={basketDisabledpathnames.includes(pathname)}
                 onClick={onClickToggle}
                 type="button"
               >
-
                 <Badge count={store.basketLength}>
                   <ShoppingOutlined style={{ fontSize: '2.4rem' }} />
                 </Badge>
               </button>
-
             )}
           </BasketToggle>
         </li>

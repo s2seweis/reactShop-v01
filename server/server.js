@@ -1,8 +1,4 @@
-
 // ### - Test: Firebase Integration
-
-
-
 const firebase = require('firebase');
 
 const firebaseConfig = {
@@ -21,44 +17,18 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const firestore = firebase.firestore();
-
-// const db = firebase.firestore();
-
-
-// const data = req.body;
-// await firestore.collection('orders').doc().set(data);
-
-
-// ###
-
-
-
-
-
-
-
-
-
 const express = require("express");
 const app = express();
 const { resolve } = require("path");
 
-
-
-
 // Replace if using a different env file or config
 const env = require("dotenv").config({ path: "./.env" });
-
-
-
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY, {
   apiVersion: "2022-08-01",
 });
 
 app.use(express.static(process.env.STATIC_DIR));
-// #####
-// app.use(express.json());
 app.use(
   express.json({
     // We need the raw body to verify webhook signatures.
@@ -70,10 +40,6 @@ app.use(
     },
   })
 );
-// #####
-
-
-
 
 app.get("/", (req, res) => {
   const path = resolve(process.env.STATIC_DIR + "/index.html");
@@ -86,11 +52,7 @@ app.get("/api/config", (req, res) => {
   });
 });
 
-// ### so far okay
-
 app.post("/api/create-payment-intent", async (req, res) => {
-
-
 
   const customer = await stripe.customers.create({
     description: "Summer",
@@ -98,36 +60,12 @@ app.post("/api/create-payment-intent", async (req, res) => {
     email: "test@gmail.com",
     name: req.body.name,
     phone: "+491738051157",
-    metadata: {
-      // userId: req.body.userId,
-      // shipping: JSON.stringify(req.body.shipping.shipping),
-      // cart: JSON.stringify(req.body.cartItems),
+    metadata: {     
       basketItems: JSON.stringify(req.body.basketItems),
-      // basketItems: req.body.basketItems,
     },
   });
-  console.log("line:1", customer)
-  // console.log("line:1.2", customer.metadata.cart)
-  // console.log("line:1.3", customer.metadata.shipping)
-  console.log("line:1.4", customer.name)
-  console.log("line:1.5", customer.metadata.basketItems)
 
-
-
-
-
-  // ###
   const { items, price, shipping } = req.body;
-  // ###
-
-  console.log("line:2", price.id);
-  console.log("line:3", items);
-  console.log("line:4", shipping);
-
-
-
-
-
 
   const calculateOrderAmount = (items) => {
     // Replace this constant with a calculation of the order's amount
@@ -136,51 +74,25 @@ app.post("/api/create-payment-intent", async (req, res) => {
     return 1400;
   };
 
-
-
-  console.log("line:5", calculateOrderAmount);
-
-
   const paymentIntent = await stripe.paymentIntents.create({
     amount: price.id,
-    // amount: calculateOrderAmount(items),
     currency: "eur",
     automatic_payment_methods: {
       enabled: true,
     },
     customer: customer.id,
     metadata: {
-      // email:customer.email,
       cartItems: JSON.stringify(req.body.cartItems),
-      // basketItems1: req.body.basketItems,
     }
-
   });
-
-
 
   res.send({
     clientSecret: paymentIntent.client_secret,
   });
 
-
-
-
-
-
-  console.log("line:10", paymentIntent)
-
 });
 
-
-
-// ### Test: Create Order
-
 const createOrder = async (data, metadata, shipping) => {
-  console.log("line:6", data);
-
-
-
   const newOrder2 = {
     amount: data.amount,
     id: data.id,
@@ -189,30 +101,9 @@ const createOrder = async (data, metadata, shipping) => {
     customerId: data.metadata,
 
     shipping: data.shipping,
-    // saves the fields from the stripe address form ?
-
   }
-  console.log("line:7", newOrder2)
-
-
-  // const address = data;
-
-  // console.log( "line:150", address);
-
-
 
   const newOrder = newOrder2;
-
-
-  // const newOrder1 = new Order({
-
-  //     address,
-  //     total: "1000"
-
-
-  //   });
-
-  console.log("line:8", newOrder)
 
   try {
     const savedOrder = await firestore.collection('orders1').doc().set(newOrder);
@@ -221,9 +112,6 @@ const createOrder = async (data, metadata, shipping) => {
     console.log("line:9", err);
   }
 };
-
-// ###
-
 
 app.post('/webhook', async (req, res) => {
   let data, eventType;
@@ -254,7 +142,6 @@ app.post('/webhook', async (req, res) => {
 
   if (eventType === 'payment_intent.succeeded') {
 
-
     stripe.customers
       .retrieve(data.metadata)
     console.log("line:11", data.metadata)
@@ -270,26 +157,6 @@ app.post('/webhook', async (req, res) => {
       })
       .catch((err) => console.log(err.message));
 
-
-    // ### - Test: Create Order
-
-
-
-    // // CREATE ORDER
-
-    // // ### working
-    // const shipping = req.body;
-    // console.log( "line:10", shipping);
-
-    // // ###
-    // await firestore.collection('orders1').doc().set(shipping);
-
-    // // ###
-
-
-
-
-
     try {
       // CREATE ORDER
       createOrder(data);
@@ -297,12 +164,6 @@ app.post('/webhook', async (req, res) => {
       console.log(typeof createOrder);
       console.log(err);
     }
-
-
-
-
-
-
 
     // Funds have been captured
     // Fulfill any orders, e-mail receipts, etc

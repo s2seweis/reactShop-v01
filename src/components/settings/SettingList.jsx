@@ -31,35 +31,9 @@ const SettingList = (props) => {
     setFetching(false);
   }, [settings.lastRefKey]);
 
-  // if (filteredSettings.length === 0 && !isLoading) {
-  //   return (
-  //     <MessageDisplay message={requestStatus?.message || 'No settings found for the moment.'} />
-  //   );
-  // } if (filteredSettings.length === 0 && requestStatus) {
-  //   return (
-  //     <MessageDisplay
-  //       message={requestStatus?.message || 'Something went wrong :('}
-  //       action={fetchSettings}
-  //       buttonLabel="Try Again"
-  //     />
-  //   );
-  // }
   return (
     <Boundary>
       {children}
-      {/* Show 'Show More' button if settings length is less than total settings */}
-      {/* {settings.items.length < settings.total && (
-        <div className="d-flex-center padding-l">
-          <button
-            className="button button-small"
-            disabled={isFetching}
-            onClick={fetchSettings}
-            type="button"
-          >
-            {isFetching ? 'Fetching Items...' : 'Show More Items'}
-          </button>
-        </div>
-      )} */}
     </Boundary>
   );
 };

@@ -2,11 +2,6 @@ import { Basket } from 'components/basket';
 import { Footer, Navigation } from 'components/common';
 import * as ROUTES from 'constants/routes';
 import * as ROUTE from 'constants/routes';
-
-
-
-
-
 import { createBrowserHistory } from 'history';
 import React from 'react';
 import { Route, Router, Switch, useLocation } from 'react-router-dom';
@@ -14,33 +9,16 @@ import * as view from 'views';
 import AdminRoute from './AdminRoute';
 import ClientRoute from './ClientRoute';
 import PublicRoute from './PublicRoute';
-
 import MenuBurger from '../components/common/MenuBurger';
-
 import '../styles/menu/index.scss'
 
-// Revert back to history v4.10.0 because
-// v5.0 breaks navigation
 export const history = createBrowserHistory();
 
 const AppRouter = () => {
-  // const { pathname } = useLocation();
-
-
-
-
-
 
   return (
-
-
-
     <Router history={history}>
-
-
       <>
-
-
         <Navigation />
         <Basket />
         <Switch>
@@ -74,19 +52,11 @@ const AppRouter = () => {
             exact
             path={ROUTES.RECOMMENDED_PRODUCTS}
           />
-
           {/* ### - Stripe */}
           <PublicRoute
             component={view.Completion}
             path={ROUTES.COMPLETION}
           />
-
-          {/* <PublicRoute
-            component={view.Payment}
-            path={ROUTES.PAYMENT}
-          /> */}
-          {/* ### */}
-
           <PublicRoute
             component={view.SignUp}
             path={ROUTES.SIGNUP}
@@ -108,29 +78,16 @@ const AppRouter = () => {
             component={view.ViewPost}
             path={ROUTES.VIEW_POST}
           />
-
-
-          {/* <Route
-          component={view.ViewSetting}
-          path={ROUTES.VIEW_SETTING}
-        /> */}
-
-
           <ClientRoute
             component={view.UserAccount}
             exact
             path={ROUTES.ACCOUNT}
           />
-
-
           <AdminRoute
             component={view.ProductOverview}
             exact
             path={ROUTES.ADMIN_PRODUCT_OVERVIEW}
           />
-
-
-
           <ClientRoute
             component={view.EditAccount}
             exact
@@ -152,36 +109,21 @@ const AppRouter = () => {
             component={view.CheckOutStep4}
             path={ROUTES.CHECKOUT_STEP_4}
           />
-
-
-
           <AdminRoute
             component={view.EditSetting}
             exact
             path={ROUTES.ADMIN_SETTING_EDIT}
           />
-
-
-          {/* Test:1 --------Start */}
           <AdminRoute
             component={view.EditIngredients}
             exact
             path={ROUTES.ADMIN_INGREDIENT_EDIT}
           />
-
-          {/* Test:1 --------End */}
-
-
-
-
-
           <AdminRoute
             component={view.Dashboard}
             exact
             path={ROUTES.ADMIN_DASHBOARD}
           />
-
-
           <AdminRoute
             component={view.Ingredients}
             exact
@@ -193,8 +135,6 @@ const AppRouter = () => {
             exact
             path={ROUTES.ADMIN_INGREDIENTS_NEW}
           />
-
-
           <AdminRoute
             component={view.Products}
             path={ROUTES.ADMIN_PRODUCTS}
@@ -203,22 +143,14 @@ const AppRouter = () => {
             component={view.Setting}
             path={ROUTES.ADMIN_SETTINGS}
           />
-          {/* <AdminRoute
-            component={view.Ingredient}
-            path={ROUTES.ADMIN_INGREDIENTS}
-          /> */}
           <AdminRoute
             component={view.Orders}
             path={ROUTES.ADMIN_ORDERS}
           />
-
-
           <AdminRoute
             component={view.Docs}
             path={ROUTES.ADMIN_DOCS}
           />
-
-
           <AdminRoute
             component={view.Posts}
             path={ROUTES.ADMIN_POSTS}
@@ -231,14 +163,6 @@ const AppRouter = () => {
             component={view.AddProduct}
             path={ROUTES.ADD_PRODUCT}
           />
-          {/* <AdminRoute
-          component={view.AddSetting}
-          path={ROUTES.ADD_SETTING}
-        /> */}
-          {/* <AdminRoute
-          component={view.AddIngredient}
-          path={ROUTES.ADD_INGREDIENT}
-        /> */}
           <AdminRoute
             component={view.AddOrder}
             path={ROUTES.ADD_ORDER}
@@ -255,10 +179,6 @@ const AppRouter = () => {
             component={view.EditProduct}
             path={`${ROUTES.EDIT_PRODUCT}/:id`}
           />
-          {/* <AdminRoute
-          component={view.EditSetting}
-          path={`${ROUTES.EDIT_SETTING}/:id`}
-        /> */}
           <AdminRoute
             component={view.EditOrder}
             path={`${ROUTES.EDIT_ORDER}/:id`}
@@ -280,5 +200,3 @@ const AppRouter = () => {
 };
 
 export default AppRouter;
-
-// okay

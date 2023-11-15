@@ -24,7 +24,7 @@ button:hover {
 
 button:focus {
   outline: none;
-}   
+}
 
 p {
   color: $paragraph-color;
@@ -32,7 +32,7 @@ p {
   line-height: $line-height;
 }
 
-strong { 
+strong {
   font-weight: bold;
 }
 
@@ -44,8 +44,8 @@ span {
 
 h1,
 h2,
-h3, 
-h4, 
+h3,
+h4,
 h5,
 h6 {
   font-family: 'Tajawal', Helvetica, Arial, sans-serif;
@@ -55,11 +55,11 @@ h6 {
 // body::-webkit-scrollbar {
 //   width: 8px;
 // }
- 
+
 // body::-webkit-scrollbar-track {
 //   -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
 // }
- 
+
 // body::-webkit-scrollbar-thumb {
 //   background-color: $heading-color;
 //   outline: 1px solid lighten($heading-color, 10%);
@@ -79,7 +79,7 @@ h6 {
   display: flex;
   animation: fadeIn .5s ease;
   justify-content: center;
-  
+
 
   @media (max-width: $mobile) {
     padding: 9rem $m-size;
@@ -95,7 +95,7 @@ h6 {
   display: flex;
   animation: fadeIn .5s ease;
   justify-content: center;
-  
+
 
   @media (max-width: $mobile) {
     padding: 5rem $m-size;
@@ -119,20 +119,12 @@ h6 {
 
 .content-admin-wrapper {
   overflow-y: scroll;
-  // flex-grow: 1;
-  // padding: 2rem;
-  // padding-top: 2rem;
   padding-left: 1rem;
-  // padding-top: 0;
   animation: fadeIn .5s ease;
   position: relative;
-  // padding: 10px 10px 10px 10px;
   justify-content: center;
-  // display: flex;
-  // left: 30px;
   width: 800px;
-  // width: auto;
-padding-right: 1rem;
+  padding-right: 1rem;
 
   @media (max-width: $mobile) {
     width: auto;
@@ -142,46 +134,18 @@ padding-right: 1rem;
 }
 
 .content-admin-wrapper-sidebar {
-  // overflow-y: scroll;
-  // flex-grow: 1;
-  // padding: $m-size 0;
-  // padding-top: 0;
   animation: fadeIn .5s ease;
   position: relative;
-  // padding: 10px 10px 10px 10px;
   justify-content: center;
-  // display: flex;
-  // left: 30px;
-  // padding-top: 33px;
   margin-top: 22px;
-
-
 }
+
 .dropdown-content {
- background: white;
- text-align: center;
-//  padding: 2rem;
- padding-top: 0.5rem;
-
+  background: white;
+  text-align: center;
+  padding-top: 0.5rem;
 }
-
-
 
 .dropdown-btn-new {
-//  background: red;
-//  width: 500px;
- text-align: center;
-
+  text-align: center;
 }
-
-
-// Test:1 -------Start Animation
-
-
-
-
-
-// Test:1 -------End Animation
-
-
-

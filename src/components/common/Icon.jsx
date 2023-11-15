@@ -50,13 +50,6 @@ export const Icon = (_a) => {
                 return '';
         }
 
-
-{/* <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
-  <path d=""/>
-  <path d=""/>
-</svg> */}
-
-
     };
     return React.createElement('svg', Object.assign({ xmlns: 'http://www.w3.org/2000/svg', width: size, height: size, viewBox: '0 0 24 24', fill: 'currentColor' }, rest), React.createElement('path', {
         d: getIconPath(),
@@ -64,6 +57,6 @@ export const Icon = (_a) => {
 };
 
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-  <path d=""/>
+    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+    <path d="" />
 </svg>

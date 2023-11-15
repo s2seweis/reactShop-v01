@@ -14,62 +14,16 @@ const OrderItem = ({ product }) => {
 
   return (
     <div className="order-item-list">
-      {/* <OrderItemControl product={product} /> */}
       <div className="order-item-wrapper">
-
-        {/* <div className="order-item-img-wrapper"> */}
-
-
-          {/* <Link to={`/product/${product.id}`} onClick={() => document.body.classList.remove('is-basket-open')}> */}
-
-           <div>
-              {/* <span className="spec-title"></span> */}
-              <h5 className="my-0-orderitem">{product.name}</h5>
-            </div>
-            {/* <h5>
-              {product.name}
-            </h5> */}
-          {/* </Link> */}
-
-
-          {/* <ImageLoader
-            alt={product.name}
-            className="basket-item-img"
-            src={product.image}
-          /> */}
-
-        {/* </div> */}
-
+        <div>
+          <h5 className="my-0-orderitem">{product.name}</h5>
+        </div>
         <div className="basket-item-details">
-          {/* <Link to={`/product/${product.id}`} onClick={() => document.body.classList.remove('is-basket-open')}>
-            <h4 className="underline basket-item-name">
-              {product.name}
-            </h4>
-          </Link> */}
-
-
-
-
-          
           <div className="basket-item-specs">
-
-
-
-            
-
-            {/* <div>
-              <span className="spec-title"></span>
-              <h5 className="my-0-orderitem">{product.name}</h5>
-            </div> */}
-
             <div>
               <span className="spec-title">Quantity</span>
               <h5 className="my-0">{product.quantity}</h5>
             </div>
-
-
-
-
             <div>
               <span className="spec-title">Size</span>
               <h5 className="my-0">
@@ -78,7 +32,6 @@ const OrderItem = ({ product }) => {
                 mm
               </h5>
             </div>
-
             <div>
               <span className="spec-title">Color</span>
               <div style={{
@@ -89,9 +42,6 @@ const OrderItem = ({ product }) => {
               }}
               />
             </div>
-
-
-
             <div>
               <span className="spec-title">Price</span>
               <h5 className="my-0">
@@ -100,27 +50,8 @@ const OrderItem = ({ product }) => {
                 $
               </h5>
             </div>
-
-
           </div>
         </div>
-
-
-
-        {/* <div className="basket-item-price">
-        
-          <h4 className="my-0">{displayMoney(product.price * product.quantity)}</h4>
-        </div> */}
-
-
-
-        {/* <button
-          className="basket-item-remove button button-border button-border-gray button-small"
-          onClick={onRemoveFromBasket}
-          type="button"
-        >
-          <CloseOutlined />
-        </button> */}
       </div>
     </div>
   );

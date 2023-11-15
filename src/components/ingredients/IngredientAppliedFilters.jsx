@@ -5,8 +5,6 @@ import React from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { applyFilter } from 'redux/actions/filterActions';
 
-
-
 const IngredientAppliedFilters = ({ filteredIngredientsCount }) => {
   const filter = useSelector((state) => state.filter, shallowEqual);
   const fields = ['brand', 'minPrice', 'maxPrice', 'sortBy', 'keyword'];

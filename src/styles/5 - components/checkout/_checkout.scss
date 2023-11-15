@@ -1,7 +1,6 @@
 .checkout {
   width: 100%;
   animation: slide-up .5s ease;
-  // justify-content: center;
 
   @include mobile {
     margin-top: 2rem;
@@ -11,7 +10,6 @@
 .order {
   width: 100%;
   animation: slide-up .5s ease;
-  // justify-content: center;
 
   @include mobile {
     margin-top: 2rem;
@@ -34,9 +32,6 @@
 }
 
 .checkout-items {
-  // display: flex;
-  // flex-wrap: wrap;
-  // justify-content: center;
 
   .basket-item {
     margin: .5rem 1rem;
@@ -87,17 +82,10 @@
   flex-direction: column;
   z-index: 1;
 
-
   @include mobile {
     width: 80px;
-
   }
-
-
 }
-
-
-
 
 .checkout-header-step {
   margin: 0;
@@ -298,7 +286,6 @@
   height: 32px;
   background: url('/static/cash.png');
   background-size: 48px 32px;
-  // filter: grayscale(1);
   border-radius: 2px;
 }
 

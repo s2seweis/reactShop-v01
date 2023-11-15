@@ -1,5 +1,4 @@
 export { default as IngredientAppliedFilters } from './IngredientAppliedFilters';
-
 export { default as FeaturedIngredient } from './IngredientFeatured';
 export { default as IngredientGrid } from './IngredientGrid';
 export { default as IngredientItem } from './IngredientItem';

@@ -1,7 +1,4 @@
 import React from 'react';
-
-
-
 import { useEffect, useState } from "react";
 
 import { Elements } from "@stripe/react-stripe-js";
@@ -10,12 +7,8 @@ import { loadStripe } from "@stripe/stripe-js";
 
 function Payment(shipping, basket) {
   const [stripePromise, setStripePromise] = useState(null);
+  console.log("line:500", stripePromise);
   const [clientSecret, setClientSecret] = useState("");
-
-  // console.log( "test: shipping", shipping.shipping);
-  // console.log( "test: shipping.fullname", shipping.shipping.fullname);
-  // console.log( "test: basket", shipping.basket);
-
 
 const basketItems = shipping.basket.map((item) => {
   return {
@@ -26,19 +19,12 @@ const basketItems = shipping.basket.map((item) => {
   }
 })
 
-// console.log( "test: basketItems", basketItems)
-
-
-
   useEffect(() => {
     fetch("/api/config").then(async (r) => {
       const { publishableKey } = await r.json();
       setStripePromise(loadStripe(publishableKey));
     });
   }, []);
-
-
-
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads

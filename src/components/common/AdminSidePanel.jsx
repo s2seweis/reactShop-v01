@@ -2,17 +2,6 @@ import { ADMIN_PRODUCTS, ADMIN_ORDERS, ADMIN_POSTS, ADMIN_USERS1, ADMIN_SETTINGS
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-
-
-
-
-
-
-
-
-
-// import { Home } from 'views';
-
 const SideNavigation = () => (
 
   <aside className="sidenavigation">
@@ -54,11 +43,11 @@ const SideNavigation = () => (
           className="sidenavigation-menu"
           to={ADMIN_SETTINGS}
         >
-          Settings 
+          Settings
         </NavLink>
 
       </div>
-     
+
     </div>
   </aside>
 );

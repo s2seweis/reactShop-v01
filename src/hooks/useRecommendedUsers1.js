@@ -54,5 +54,3 @@ const useRecommendedUsers1 = (itemsCount) => {
 };
 
 export default useRecommendedUsers1;
-
-// okay

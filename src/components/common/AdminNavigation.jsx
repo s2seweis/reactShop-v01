@@ -2,20 +2,12 @@ import { ADMIN_DASHBOARD } from 'constants/routes';
 import logo from 'images/logo-full.png';
 import React from 'react';
 import { useSelector } from 'react-redux';
-// import { Link } from 'react-router-dom';
 import UserAvatar from 'views/account/components/UserAvatar';
-
 import { useState } from "react";
-
 import "../../styles/side/index.css"
 import SideMenu, { menuItems } from "../common/SideMenu";
-
 import { Redirect, Route, BrowserRouter, Router, Switch, Link } from 'react-router-dom';
-
 import { Sidebar, Menu, MenuItem, useProSidebar } from 'react-pro-sidebar';
-
-
-
 
 const AdminNavigation = () => {
   const { isAuthenticating, profile } = useSelector((state) => ({
@@ -23,61 +15,8 @@ const AdminNavigation = () => {
     profile: state.profile
   }));
 
-  // const [inactive, setInactive] = useState(false);
-
-  // const { collapseSidebar } = useProSidebar();
-
-
-
   return (
-
-
-
     <nav className="navigation navigation-admin">
-
-
-
-      {/* <div style={{ display: 'flex', height: '100%' }}>
-        <Sidebar>
-          <Menu>
-            <MenuItem> Documentation</MenuItem>
-            <MenuItem> Calendar</MenuItem>
-            <MenuItem> E-commerce</MenuItem>
-          </Menu>
-        </Sidebar>
-        <main>
-          <button onClick={() => collapseSidebar()}>Collapse</button>
-        </main>
-      </div> */}
-
-
-      {/* <SideMenu
-        onCollapse={(inactive) => {
-          console.log(inactive);
-          setInactive(inactive);
-        }}
-      /> */}
-
-      {/* <div className={`container ${inactive ? "inactive" : ""}`}>
-
-        {menuItems.map((menu, index) => (
-          <>
-            <Route key={menu.name} exact={menu.exact} path={menu.to}>
-              <h1>{menu.name}</h1>
-            </Route>
-            {menu.subMenus && menu.subMenus.length > 0
-              ? menu.subMenus.map((subMenu, i) => (
-                <Route key={subMenu.name} path={subMenu.to}>
-                  <h1>{subMenu.name}</h1>
-                </Route>
-              ))
-              : null}
-          </>
-        ))}
-
-
-      </div> */}
-
       <div className="logo">
         <Link to={ADMIN_DASHBOARD} style={{ display: 'flex', alignItems: 'center' }}>
           {/* <img alt="Logo" src={logo} /> */}
@@ -93,10 +32,6 @@ const AdminNavigation = () => {
         </li>
       </ul>
     </nav>
-
-
-
-
   );
 };
 

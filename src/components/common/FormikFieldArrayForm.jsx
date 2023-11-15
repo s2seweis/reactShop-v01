@@ -2,18 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Formik, Field, Form, FieldArray } from "formik";
 
-
-
-
-
 const FormikFieldArrayForm = ({ parameters }) => (
 
-
-
-
-  
   <div>
-    {/* {console.log(parameters)} */}
     <Formik
       initialValues={parameters}
       onSubmit={values =>
@@ -62,25 +53,8 @@ const FormikFieldArrayForm = ({ parameters }) => (
           <pre>{JSON.stringify(values, null, 2)}</pre>
         </Form>
       )}
-    
-
-    
-    
     </Formik>
   </div>
 );
-
-// const rootElement = document.getElementById("root");
-
-
-// ReactDOM.render(
-
-  // <FormikFieldArrayForm parameters={{ paramLists: [parameters1] }} />
-
-  // ,rootElement
-
-// );
-
-
 
 export default FormikFieldArrayForm;

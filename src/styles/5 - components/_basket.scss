@@ -59,51 +59,27 @@
 
 
 .order-item {
-  // display: flex;
-  // align-items: center;
   border: 1px solid $border-color;
-  // margin-bottom: $s-size;
   background: $white;
   align-content: center;
-  // @include bezier-transition();
-  // animation: slide-up .5s ease;
-
   min-width: 200px;
   min-height: 350px;
-
-  // max-width: 400px;
-  // height: 350px;
 }
 
 .address-item {
-  // display: flex;
   align-items: flex-start;
   border: 1px solid $border-color;
-  // margin-bottom: $s-size;
   background: white;
-  // @include bezier-transition();
-  // animation: slide-up .5s ease;
   min-width: 50%;
   min-height: 298px;
-
-  // max-width: 400px;
-  // height: 175px;
 }
 
 .address-item-line {
-  // display: flex;
   align-items: flex-start;
   border: 1px solid $border-color;
-  // margin-bottom: $s-size;
   background: white;
-  // @include bezier-transition();
-  // animation: slide-up .5s ease;
   min-width: 50%;
-  // min-height: 100px;
   min-height: 118px;
-
-  // max-width: 400px;
-  // height: 175px;
 }
 
 .address-item-line-1 {
@@ -111,15 +87,9 @@
   align-items: center;
   justify-content: center;
   border: 1px solid $border-color;
-  // margin-bottom: $s-size;
   background: #F9F7F7;
-  // @include bezier-transition();
-  // animation: slide-up .5s ease;
   min-width: 50%;
   min-height: 128px;
-
-  // max-width: 400px;
-  // height: 175px;
 }
 
 .address-item-line-2 {
@@ -127,41 +97,26 @@
   align-items: center;
   justify-content: center;
   border: 1px solid $border-color;
-  // margin-bottom: $s-size;
   background: #F9F7F7;
-  // @include bezier-transition();
-  // animation: slide-up .5s ease;
   min-width: 50%;
   min-height: 150px;
-
-  // max-width: 400px;
-  // height: 175px;
 }
-
 
 .address-item-line-3 {
   display: flex;
   align-items: flex-start;
   justify-content: center;
   border: 1px solid $border-color;
-  // margin-bottom: $s-size;
   background: #F9F7F7;
-  // @include bezier-transition();
-  // animation: slide-up .5s ease;
   min-width: 50%;
   min-height: 100px;
-
-  // max-width: 400px;
-  // height: 175px;
 }
 
 .basket-item-wrapper {
   width: 100%;
-  // display: flex;
   align-items: center;
   justify-content: center;
   padding: 0 $s-size;
-
   display: grid;
   grid-template-columns: 70px 1fr 80px 40px;
 }
@@ -169,11 +124,7 @@
 .order-item-wrapper {
   width: 100%;
   min-height: 150px;
-  // display: grid;
-  // grid-template-columns: 100px 1fr;
 }
-
-
 
 .basket-item-specs {
   display: grid;
@@ -208,7 +159,6 @@
   z-index: map-get($z-index, 'basket');
 }
 
-
 .basket-header-title {
   flex-grow: 1;
 }
@@ -216,8 +166,6 @@
 .basket-item-img-wrapper {
   display: flex;
   align-items: center;
-  // width: 90px;
-  // height: 90px;
   margin-right: $m-size;
   position: relative;
   width: 85%;
@@ -228,11 +176,8 @@
   align-items: center;
   width: 50px;
   height: 50px;
-  // margin-right: $m-size;
   position: relative;
 }
-
-
 
 .basket-item-img {
   width: 100%;
@@ -241,8 +186,6 @@
 }
 
 .basket-item-details {
-  // display: flex;
-  // align-items: flex-start;
   flex-grow: 1;
 }
 
@@ -261,7 +204,6 @@
 
 .basket-item-toppings {
   margin: $s-size 0;
-  // width: 142px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -306,7 +248,6 @@
 }
 
 .basket-total {
-  // flex-grow: 1;
 }
 
 .basket-total-title {

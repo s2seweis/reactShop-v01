@@ -31,35 +31,9 @@ const IngredientList = (props) => {
     setFetching(false);
   }, [ingredients.lastRefKey]);
 
-  // if (filteredIngredients.length === 0 && !isLoading) {
-  //   return (
-  //     <MessageDisplay message={requestStatus?.message || 'No ingredients found for the moment.'} />
-  //   );
-  // } if (filteredIngredients.length === 0 && requestStatus) {
-  //   return (
-  //     <MessageDisplay
-  //       message={requestStatus?.message || 'Something went wrong :('}
-  //       action={fetchIngredients}
-  //       buttonLabel="Try Again"
-  //     />
-  //   );
-  // }
   return (
     <Boundary>
       {children}
-      {/* Show 'Show More' button if ingredients length is less than total ingredients */}
-      {/* {ingredients.items.length < ingredients.total && (
-        <div className="d-flex-center padding-l">
-          <button
-            className="button button-small"
-            disabled={isFetching}
-            onClick={fetchIngredients}
-            type="button"
-          >
-            {isFetching ? 'Fetching Items...' : 'Show More Items'}
-          </button>
-        </div>
-      )} */}
     </Boundary>
   );
 };

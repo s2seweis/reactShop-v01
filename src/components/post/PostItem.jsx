@@ -75,9 +75,6 @@ const PostItem = ({ post, isItemOnBasket, addToBasket }) => {
           </div>
           
           </div>
-
-
-
           <div className="product-details">
             <h5 className="product-card-name text-overflow-ellipsis margin-auto">
               {post.name || <Skeleton width={80} />}

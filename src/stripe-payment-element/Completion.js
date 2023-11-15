@@ -1,46 +1,16 @@
 import React from "react";
-
-// import { withRouter } from 'react-router-dom'
-// import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-// import StatusMessages, { useMessages } from './StatusMessages'
-
-// import './App.css';
-
-// ### - Test: place order after payment inten was created
-
-
 import { useEffect, useState } from "react";
-
 
 import {
     CardElement,
     useStripe,
     useElements
 } from '@stripe/react-stripe-js'
-
-
-// ### 
-
-
 import firebase from 'services/firebase';
-
-
 import { useDispatch, useSelector } from 'react-redux';
-
 import { clearBasket } from 'redux/actions/basketActions';
 
-
-
-
-
-
-
-// need to be a generator function ?
-
 const Completion = (props) => {
-
-
-
 
     const { auth } = useSelector((state) => ({
         auth: state.auth,
@@ -51,10 +21,6 @@ const Completion = (props) => {
         checkout: state.checkout,
     }));
     console.log(checkout)
-
-
-
-
     const productItems = checkout.data.basket?.map((item) => {
         return {
 
@@ -66,9 +32,6 @@ const Completion = (props) => {
 
         };
     });
-
-    console.log("line:1", productItems)
-
 
     const address = {
 
@@ -83,15 +46,6 @@ const Completion = (props) => {
         }
     }
 
-
-
-    console.log("line:2", address)
-
-
-
-
-    // ###
-
     const [succeeded, setSucceeded] = useState(false);
     const [error, setError] = useState(null);
     const [processing, setProcessing] = useState(false);
@@ -101,20 +55,11 @@ const Completion = (props) => {
     const stripe = useStripe();
     const elements = useElements();
 
-    // ###
-
-
-
-
-    // ###
-
     useEffect(() => {
 
         if (!stripe) {
             return;
         }
-        // Retrieve the "payment_intent_client_secret" query parameter appended to
-        // your return_url by Stripe.js
         const clientSecret = new URLSearchParams(window.location.search).get(
             'payment_intent_client_secret'
         );
@@ -159,8 +104,6 @@ const Completion = (props) => {
 
     }, [stripe]);
 
-    // ###
-
     const createOrder = async (paymentIntent) => {
         console.log("line:6", paymentIntent);
 
@@ -171,8 +114,6 @@ const Completion = (props) => {
         const newOrder2 = {
             // amount: "50",
             // id: "1234",
-
-
             products: productItems,
             address: address,
             paymentStatus: paymentIntent.status,
@@ -181,60 +122,31 @@ const Completion = (props) => {
             payment_method: paymentIntent.payment_method,
             userId: auth.id,
             orderId: key
-
-
-
-
         }
-        console.log("line:7", newOrder2)
-
-
-
-
 
         const newOrder = newOrder2;
-
-
-
-
-
-
-
-
-
-        console.log("line:8", newOrder)
 
         try {
             firebase.addOrder1(newOrder, key)
             console.log("Processed Order:", newOrder);
             clearBasket()
-        } 
-        
-        
-        catch (err) {
-            console.log("line:9", err);
         }
-
-        try {
-          
-            clearBasket()
-        } 
-        
-        
         catch (err) {
-            console.log("line:9", err);
+            console.log(err);
+        }
+        try {
+            clearBasket()
+        }
+        catch (err) {
+            console.log(err);
         }
     };
-
-    // ###
-
     const saveOrder = async (paymentIntent, orderDetails) => {
         if (paymentIntent['status'] === "succeeded" || paymentIntent['status'] === "pending")
 
             try {
                 // CREATE ORDER
                 createOrder(paymentIntent);
-                // console.log("line:15",)
             } catch (err) {
                 console.log(typeof createOrder);
                 console.log(err);
@@ -243,16 +155,9 @@ const Completion = (props) => {
         setProcessing(false)
     }
 
-    // ###
-
-
-
-
-
     return (
 
         <>
-
             <a href="/">home</a>
             <h1 style={{ textAlign: "center" }}>Confirmation123</h1>
 
@@ -264,18 +169,7 @@ const Completion = (props) => {
                 <div id="error-message" role="alert"></div>
 
             </form>
-
-            {/* <div id="messages" role="alert"></div> */}
-
-
-
-
         </>
-
-
-
-
-
     )
 }
 

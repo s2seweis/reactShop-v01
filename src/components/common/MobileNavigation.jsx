@@ -7,12 +7,8 @@ import UserNav from 'views/account/components/UserAvatar';
 import Badge from './Badge';
 import FiltersToggle from './FiltersToggle';
 import SearchBar from './SearchBar';
-
 import MenuBurger from '../../components/common/MenuBurger';
-
 import '../../styles/menu/index.scss'
-
-
 import { FilterOutlined, ShoppingOutlined } from '@ant-design/icons';
 
 const Navigation = (props) => {
@@ -27,19 +23,13 @@ const Navigation = (props) => {
 
   return (
     <nav className="mobile-navigation">
-
       <MenuBurger />
-
-
       <div className="mobile-navigation-main">
-
-        
         <div className="mobile-navigation-logo">
           <Link onClick={onClickLink} to={HOME}>
             <h2>DIGN</h2>
           </Link>
         </div>
-
         <BasketToggle>
           {({ onClickToggle }) => (
             <button
@@ -48,7 +38,6 @@ const Navigation = (props) => {
               disabled={disabledPaths.includes(pathname)}
               type="button"
             >
-
               <Badge count={basketLength}>
                 <i className="fa fa-shopping-bag" style={{ fontSize: '2rem' }} />
                 <ShoppingOutlined style={{ fontSize: '2.4rem' }} />
@@ -57,8 +46,6 @@ const Navigation = (props) => {
             </button>
           )}
         </BasketToggle>
-
-
 
         <ul className="mobile-navigation-menu">
           {user ? (
@@ -83,15 +70,12 @@ const Navigation = (props) => {
         </ul>
       </div>
       <div className="mobile-navigation-sec">
-
         <SearchBar />
-
         <FiltersToggle>
           <button className="button-link button-small" type="button">
             {/* <i className="fa fa-filter" /> */}
             <FilterOutlined />
             Filter
-
           </button>
         </FiltersToggle>
       </div>

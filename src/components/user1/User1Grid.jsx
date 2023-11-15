@@ -32,5 +32,3 @@ User1Grid.propTypes = {
 };
 
 export default User1Grid;
-
-// okay

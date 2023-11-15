@@ -20,6 +20,8 @@
     "npm": "~18.14.2",
     "yarn": "1.19.2"
   },
+
+  
   "devDependencies": {
     "@babel/core": "^7.14.0",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
@@ -52,9 +54,9 @@
     "jest": "^26.6.3",
     "live-server": "^1.2.1",
     "mini-css-extract-plugin": "^1.6.0",
-    "node-sass": "^8.0.0",
     "optimize-css-assets-webpack-plugin": "^5.0.4",
     "raf": "^3.4.1",
+    "sass": "^1.53.0",
     "sass-loader": "^11.0.1",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^4.1.1",

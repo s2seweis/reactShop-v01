@@ -27,7 +27,6 @@ const SocialLogin = ({ isLoading }) => {
         onClick={onSignInWithFacebook}
         type="button"
       >
-        {/* <i className="fab fa-facebook" /> */}
         <FacebookOutlined />
         Continue with Facebook
       </button>

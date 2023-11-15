@@ -80,5 +80,3 @@ User1List.propTypes = {
 };
 
 export default User1List;
-
-// okay

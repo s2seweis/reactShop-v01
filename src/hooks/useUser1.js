@@ -43,5 +43,3 @@ const useUser1 = (id) => {
 };
 
 export default useUser1;
-
-// okay

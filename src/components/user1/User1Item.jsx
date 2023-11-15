@@ -90,5 +90,3 @@ User1Item.propTypes = {
 };
 
 export default User1Item;
-
-// okay

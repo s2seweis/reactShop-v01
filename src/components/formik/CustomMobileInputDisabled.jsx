@@ -28,11 +28,7 @@ const CustomMobileInputDisabled = (props, authProvider, isLoading) => {
       ) : (
         <label className="label-input" htmlFor={field.name}>{label}</label>
       )}
-
-
-
       <PhoneInput
-
       // disables for the MenuForm
         // disabled={authProvider !== 'password' || isLoading}
         name={field.name}
@@ -46,7 +42,6 @@ const CustomMobileInputDisabled = (props, authProvider, isLoading) => {
         placeholder={placeholder}
         value={defaultValue.value}
         disabled={authProvider !== 'password' || isLoading}
-
       />
     </div>
   );

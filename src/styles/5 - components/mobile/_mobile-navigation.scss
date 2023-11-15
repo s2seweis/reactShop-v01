@@ -3,7 +3,6 @@
   position: fixed;
   top: 0;
   left: 0;
-  // background: $background-color;
   background: #fff;
   z-index: map-get($z-index, 'navigation');
   box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
@@ -45,20 +44,17 @@
 }
 
 .mobile-navigation-item {
-  // width: 50%;
   height: 100%;
   list-style: none;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  // border: 1px solid $border-color;
 }
 
 .mobile-navigation-logo {
   flex-grow: 1;
   padding-left: 7rem;
-  // margin-right: $xl-size;
   padding-top: 20px;
 }
 

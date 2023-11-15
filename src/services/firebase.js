@@ -51,25 +51,12 @@ class Firebase {
 
   docRef1 = () => this.db.collection("ingredients").doc("VD1F3HkgV9dfWrNyu8ut").get();
 
-
-  // updateProfile = (id, updates) =>
-  //   this.db.collection("users").doc(id).update(updates);
-
   updateSetting = (arXIqODlOosmcD38UHhW, updates) =>
     this.db.collection("settings").doc("arXIqODlOosmcD38UHhW").update(updates);
-
-
 
   // need build new document
   updateIngredient = (VD1F3HkgV9dfWrNyu8ut, updates) =>
     this.db.collection("ingredients").doc("VD1F3HkgV9dfWrNyu8ut").update(updates);
-
-
-
-
-
-
-
 
   passwordUpdate = (password) => this.auth.currentUser.updatePassword(password);
 
@@ -115,9 +102,6 @@ class Firebase {
 
   updateProfile = (id, updates) =>
     this.db.collection("users").doc(id).update(updates);
-
-
-
 
   onAuthStateChanged = () =>
     new Promise((resolve, reject) => {
@@ -203,8 +187,6 @@ class Firebase {
     });
   };
 
-
-
   searchProducts = (searchKey) => {
     let didTimeout = false;
 
@@ -228,10 +210,8 @@ class Firebase {
             .where("keywords", "array-contains-any", searchKey.split(" "))
             .limit(12);
 
-          // const totalResult = await totalQueryRef.get();
           const nameSnaps = await searchedNameRef.get();
           const keywordsSnaps = await searchedKeywordsRef.get();
-          // const total = totalResult.docs.length;
 
           clearTimeout(timeout);
           if (!didTimeout) {
@@ -305,8 +285,6 @@ class Firebase {
     this.db.collection("products").doc(id).update(updates);
 
   removeProduct = (id) => this.db.collection("products").doc(id).delete();
-
-
 
   // // SETTING ACTIONS --------------
 
@@ -393,10 +371,8 @@ class Firebase {
             .where("keywords", "array-contains-any", searchKey.split(" "))
             .limit(12);
 
-          // const totalResult = await totalQueryRef.get();
           const nameSnaps = await searchedNameRef.get();
           const keywordsSnaps = await searchedKeywordsRef.get();
-          // const total = totalResult.docs.length;
 
           clearTimeout(timeout);
           if (!didTimeout) {
@@ -452,10 +428,6 @@ class Firebase {
       .limit(itemsCount)
       .get();
 
-
-
-
-
   generateKey = () => this.db.collection("settings").doc().id;
 
   storeImage = async (id, folder, imageFile) => {
@@ -472,16 +444,7 @@ class Firebase {
 
   removeSetting = (id) => this.db.collection("settings").doc(id).delete();
 
-
-  // // SETTING ACTIONS --------------END
-
-
-
-
-
   // // ORDER ACTIONS --------------
-
-
 
   getSingleOrder = (id) => this.db.collection("orders").doc(id).get();
 
@@ -566,10 +529,8 @@ class Firebase {
             .where("keywords", "array-contains-any", searchKey.split(" "))
             .limit(12);
 
-          // const totalResult = await totalQueryRef.get();
           const nameSnaps = await searchedNameRef.get();
           const keywordsSnaps = await searchedKeywordsRef.get();
-          // const total = totalResult.docs.length;
 
           clearTimeout(timeout);
           if (!didTimeout) {
@@ -625,46 +586,19 @@ class Firebase {
       .limit(itemsCount)
       .get();
 
-
-
-
-
-
   addOrder = (id, order) => {
-    // console.log(id);
-    // console.log(order);
     this.db.collection("orders").doc(id).set(order);
-
   }
 
-// ###
-
-addOrder1 = (newOrder, id) => {
-  // console.log(newOrder);
-  
-  this.db.collection("orders1").doc(id).set(newOrder);
-  
-}
-
-// ###
-  
-
-
-
-
-
-
+  addOrder1 = (newOrder, id) => {
+    this.db.collection("orders1").doc(id).set(newOrder);
+  }
 
   addSetting = (id, settings) =>
     this.db.collection("settings").doc(id).set(settings);
 
   addIngredient = (id, ingredients) =>
     this.db.collection("ingredients").doc(id).set(ingredients);
-
-  // updateSetting = (TuXsosfQP6SkWdBrnLpqGqhzEbJ3, updates) =>
-  //   this.db.collection("settings").doc("TuXsosfQP6SkWdBrnLpqGqhzEbJ3").update(updates);
-
-
 
   generateKey = () => this.db.collection("orders").doc().id;
 
@@ -767,10 +701,8 @@ addOrder1 = (newOrder, id) => {
             .where("keywords", "array-contains-any", searchKey.split(" "))
             .limit(12);
 
-          // const totalResult = await totalQueryRef.get();
           const nameSnaps = await searchedNameRef.get();
           const keywordsSnaps = await searchedKeywordsRef.get();
-          // const total = totalResult.docs.length;
 
           clearTimeout(timeout);
           if (!didTimeout) {
@@ -870,7 +802,6 @@ addOrder1 = (newOrder, id) => {
 
   removePost = (id) => this.db.collection("posts").doc(id).delete();
 
-
   // // USER1 ACTIONS --------------
 
   getSingleUser1 = (id) => this.db.collection("users").doc(id).get();
@@ -956,10 +887,8 @@ addOrder1 = (newOrder, id) => {
             .where("keywords", "array-contains-any", searchKey.split(" "))
             .limit(12);
 
-          // const totalResult = await totalQueryRef.get();
           const nameSnaps = await searchedNameRef.get();
           const keywordsSnaps = await searchedKeywordsRef.get();
-          // const total = totalResult.docs.length;
 
           clearTimeout(timeout);
           if (!didTimeout) {
@@ -980,7 +909,6 @@ addOrder1 = (newOrder, id) => {
               });
             }
 
-            // MERGE USERS1
             const mergedUsers1 = [
               ...searchedNameUsers1,
               ...searchedKeywordsUsers1,
@@ -1036,9 +964,6 @@ addOrder1 = (newOrder, id) => {
 
 }
 
-// okay
-
 const firebaseInstance = new Firebase();
 
 export default firebaseInstance;
-

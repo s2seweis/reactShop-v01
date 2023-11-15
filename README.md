@@ -68,15 +68,10 @@ $ npm run build
 * Extrea Ingredients Component
 * Stripe Integration - via Express
 
-
-
 ### Comment:
 
-
-
-
 ### Admin: 
-weissenborn20seb@gmailcom
+weissenborn20seb@gmail.com
 Password:
 Gesetz123
 

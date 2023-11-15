@@ -1,19 +1,10 @@
 import React, { useEffect, useState } from "react";
-// import logo from "../assets/logo/webscript.png";
-// import user from "../assets/user.jpg";
-
 import { ADMIN_PRODUCTS, ADMIN_ORDERS, ADMIN_POSTS, ADMIN_USERS1, ADMIN_SETTINGS, ADMIN_DASHBOARD } from 'constants/routes';
-
-
-
 import MenuItem from "./MenuItem";
-
 /**
  * @author
  * @function SideMenu
  **/
-
-// added more menuItems for testing
 export const menuItems = [
   {
     name: "Dashboard1",
@@ -26,21 +17,12 @@ export const menuItems = [
     exact: true,
     to: "/admin/posts",
     iconClassName: "bi bi-sign-stop",
-    // subMenus: [
-    //   { name: "Courses", to: "/content/courses" },
-    //   { name: "Videos", to: "/content/videos" },
-    // ],
   },
-  // { name: "Design", to: `/design`, iconClassName: "bi bi-shield" },
   {
     name: "Users",
     exact: true,
     to: `/admin/users1`,
     iconClassName: "bi bi-rss",
-    // subMenus: [
-    //   { name: "Courses", to: "/content-2/courses" },
-    //   { name: "Videos", to: "/content-2/videos" },
-    // ],
   },
   { name: "Settings", to: `/admin/settings`, iconClassName: "bi bi-shield" },
   { name: "Products", to: `/admin/products`, iconClassName: "bi bi-vector-pen" },
@@ -50,25 +32,11 @@ export const menuItems = [
 const SideMenu = (props) => {
   const [inactive, setInactive] = useState(false);
 
-  // useEffect(() => {
-  //   if (inactive) {
-  //     removeActiveClassFromSubMenu();
-  //   }
-
-  //   props.onCollapse(inactive);
-  // }, [inactive]);
-
-  //just an improvment and it is not recorded in video :(
-    
   const removeActiveClassFromSubMenu = () => {
     document.querySelectorAll(".sub-menu").forEach((el) => {
       el.classList.remove("active");
     });
   };
-
-  /*just a little improvement over click function of menuItem
-    Now no need to use expand state variable in MenuItem component
-  */
 
   useEffect(() => {
     let menuItems = document.querySelectorAll(".menu-item");
@@ -89,9 +57,6 @@ const SideMenu = (props) => {
   return (
     <div className={`side-menu ${inactive ? "inactive" : ""}`}>
       <div className="top-section">
-        {/* <div className="logo">
-          <img src={logo} alt="webscript" />
-        </div> */}
         <div onClick={() => setInactive(!inactive)} className="toggle-menu-btn">
           {inactive ? (
             <i class="bi bi-arrow-right-square-fill"></i>
@@ -106,8 +71,8 @@ const SideMenu = (props) => {
           <i class="bi bi-search"></i>
         </button>
 
-        <input type="text" 
-        placeholder="search" 
+        <input type="text"
+          placeholder="search"
         />
       </div>
 
@@ -130,12 +95,8 @@ const SideMenu = (props) => {
               }}
             />
           ))}
-
-         
         </ul>
       </div>
-
-      
     </div>
   );
 };

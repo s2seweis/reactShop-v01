@@ -29,11 +29,8 @@ const CustomMobileInput = (props, authProvider, isLoading) => {
         <label className="label-input" htmlFor={field.name}>{label}</label>
       )}
 
-
-
       <PhoneInput
 
-      // disables for the MenuForm
         // disabled={authProvider !== 'password' || isLoading}
         name={field.name}
         country="ph"
@@ -45,8 +42,6 @@ const CustomMobileInput = (props, authProvider, isLoading) => {
         onChange={handleChange}
         placeholder={placeholder}
         value={defaultValue.value}
-        // disabled={authProvider !== 'password' || isLoading}
-
       />
     </div>
   );
