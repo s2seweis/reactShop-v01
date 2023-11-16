@@ -27,7 +27,7 @@ const Navigation = (props) => {
       <div className="mobile-navigation-main">
         <div className="mobile-navigation-logo">
           <Link onClick={onClickLink} to={HOME}>
-            <h2>DIGN</h2>
+            <h2>Shirts Sale!</h2>
           </Link>
         </div>
         <BasketToggle>

@@ -10,7 +10,7 @@ import { Users1Navbar } from '../components_user1';
 import Users1Table from '../components_user1/Users1Table';
 
 const Users1 = () => {
-  useDocumentTitle('User1 List | Dign Admin');
+  useDocumentTitle('User1 List | Shirts Sale! Admin');
   useScrollTop();
 
   const store = useSelector((state) => ({

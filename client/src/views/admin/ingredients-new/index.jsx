@@ -10,7 +10,7 @@ import { IngredientsNavbar } from '../component_ingredient';
 import IngredientsTable from '../component_ingredient/IngredientTable';
 
 const Ingredients = () => {
-  useDocumentTitle('Ingredients | Dign Admin');
+  useDocumentTitle('Ingredients | Shirts Sale! Admin');
   useScrollTop();
 
   const store = useSelector((state) => ({

@@ -10,7 +10,7 @@ import { PostsNavbar } from '../components_post';
 import PostsTable from '../components_post/PostsTable';
 
 const Posts = () => {
-  useDocumentTitle('Product List | Dign Admin');
+  useDocumentTitle('Product List | Shirts Sale! Admin');
   useScrollTop();
 
   const store = useSelector((state) => ({

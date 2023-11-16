@@ -33,7 +33,7 @@ const FormSchema = Yup.object().shape({
 });
 
 const EditSettings = () => {
-  useDocumentTitle('Edit Account | Dign1 ');
+  useDocumentTitle('Edit Account | Shirts Sale! ');
   useScrollTop();
   // const modal = useModal();
   const dispatch = useDispatch();

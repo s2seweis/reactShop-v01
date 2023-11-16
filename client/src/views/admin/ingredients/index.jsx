@@ -21,7 +21,7 @@ import { FiArrowLeftCircle, FiArrowRightCircle, FiArrowDownCircle, FiArrowUpCirc
 
 const IngredientsForm = (values) => {
 
-  useDocumentTitle('Edit Account | Dign1 - Ingredients ');
+  useDocumentTitle('Edit Account | Shirts Sale! - Ingredients ');
   useScrollTop();
   const dispatch = useDispatch();
 

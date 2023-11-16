@@ -33,7 +33,7 @@ const FormSchema = Yup.object().shape({
 
 const EditIngredients = () => {
 
-  useDocumentTitle('Edit Account | Dign1 - Ingredients ');
+  useDocumentTitle('Edit Account | Shirts Sale! - Ingredients ');
   useScrollTop();
   const dispatch = useDispatch();
 

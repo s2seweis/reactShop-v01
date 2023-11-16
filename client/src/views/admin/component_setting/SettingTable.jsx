@@ -18,7 +18,7 @@ const Loader = () => (
 
 const UserAccount = () => {
   useScrollTop();
-  useDocumentTitle('My Settings | Dign');
+  useDocumentTitle('My Settings | Shirts Sale!');
 
   return (
     <SettingTab>

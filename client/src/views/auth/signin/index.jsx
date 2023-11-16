@@ -30,7 +30,7 @@ const SignIn = ({ history }) => {
   const dispatch = useDispatch();
 
   useScrollTop();
-  useDocumentTitle('Sign In | Dign');
+  useDocumentTitle('Sign In | Shirts Sale!');
 
   useEffect(() => () => {
     dispatch(setAuthStatus(null));
@@ -66,7 +66,7 @@ const SignIn = ({ history }) => {
           )}
           <div className={`auth ${authStatus?.message && (!authStatus?.success && 'input-error')}`}>
             <div className="auth-main">
-              <h3>Sign in to Dign</h3>
+              <h3>Sign in to Shirts Sale!</h3>
               <br />
               <div className="auth-wrapper">
                 <Formik

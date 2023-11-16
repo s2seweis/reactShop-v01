@@ -32,7 +32,7 @@ const SignUp = ({ history }) => {
   const dispatch = useDispatch();
 
   useScrollTop();
-  useDocumentTitle('Sign Up | Dign');
+  useDocumentTitle('Sign Up | Shirts Sale!');
 
   useEffect(() => () => {
     dispatch(setAuthStatus(null));

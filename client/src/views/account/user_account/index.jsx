@@ -18,7 +18,7 @@ const Loader = () => (
 
 const UserAccount = () => {
   useScrollTop();
-  useDocumentTitle('My Account | Dign');
+  useDocumentTitle('My Account | Shirts Sale!');
 
   return (
     <UserTab>

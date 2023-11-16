@@ -9,7 +9,7 @@ const User1Form = lazy(() => import('../components_user1/User1Form'));
 
 const AddUser1 = () => {
   useScrollTop();
-  useDocumentTitle('Add New User2 | Dign');
+  useDocumentTitle('Add New User2 | Shirts Sale!');
   const isLoading = useSelector((state) => state.app.loading);
   const dispatch = useDispatch();
 

@@ -10,7 +10,7 @@ import { OrdersNavbar } from '../components_order';
 import OrdersTable from '../components_order/OrdersTable';
 
 const Orders = () => {
-  useDocumentTitle('Order List | Dign Admin');
+  useDocumentTitle('Order List | Shirts Sale! Admin');
   useScrollTop();
 
   const store = useSelector((state) => ({

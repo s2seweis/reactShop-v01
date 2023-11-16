@@ -9,7 +9,7 @@ import { editOrder } from 'redux/actions/orderActions';
 const OrderForm = lazy(() => import('../components_order/OrderForm'));
 
 const EditOrder = ({ match }) => {
-  useDocumentTitle('Order Summary | Dign');
+  useDocumentTitle('Order Summary | Shirts Sale!');
   useScrollTop();
   const { order, error, isLoading } = useOrder(match.params.id);
   const dispatch = useDispatch();

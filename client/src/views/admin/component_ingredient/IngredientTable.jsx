@@ -17,7 +17,7 @@ const Loader = () => (
 
 const UserAccount = () => {
   useScrollTop();
-  useDocumentTitle('My Ingredients | Dign');
+  useDocumentTitle('My Ingredients | Shirts Sale!');
   return (
     <IngredientTab>
       <div index={0} label="General">

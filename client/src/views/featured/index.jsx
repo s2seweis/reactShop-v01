@@ -5,7 +5,7 @@ import bannerImg from 'images/banner-guy.png';
 import React from 'react';
 
 const FeaturedProducts = () => {
-  useDocumentTitle('Featured Products | Dign');
+  useDocumentTitle('Featured Products | Shirts Sale!');
   useScrollTop();
 
   const {

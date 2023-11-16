@@ -9,7 +9,7 @@ import { editPost } from 'redux/actions/postActions';
 const PostForm = lazy(() => import('../components_post/PostForm'));
 
 const EditPost = ({ match }) => {
-  useDocumentTitle('Edit Post | Dign');
+  useDocumentTitle('Edit Post | Shirts Sale!');
   useScrollTop();
   const { post, error, isLoading } = usePost(match.params.id);
   const dispatch = useDispatch();
