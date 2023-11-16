@@ -15,8 +15,6 @@ import {
 
 } from 'constants/constants';
 
-
-
 export const getOrders = (lastRef) => ({
   type: GET_ORDERS,
   payload: lastRef
@@ -62,8 +60,6 @@ export const removeOrder = (id) => ({
   payload: id
 });
 
-
-
 export const removeOrderSuccess = (id) => ({
   type: REMOVE_ORDER_SUCCESS,
   payload: id
@@ -81,4 +77,3 @@ export const editOrderSuccess = (updates) => ({
   type: EDIT_ORDER_SUCCESS,
   payload: updates
 });
-

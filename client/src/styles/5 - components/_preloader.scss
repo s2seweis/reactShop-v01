@@ -35,14 +35,17 @@
     background: $background-color-01;
     position: relative;
     padding: $m-size;
-    display: flex;
+    // display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     animation: fadeIn .3s ease;
+    height: 100vh;
+    margin-top: 30px;
 
     @include mobile {
-        min-height: 80vh;
+        min-height: 100vh;
+        margin-top: 30px;
     }
 }
 
@@ -55,10 +58,12 @@
     align-items: center;
     flex-direction: column;
     animation: fadeIn .3s ease;
-    padding-top: 50px;
+    // padding-top: 50px;
+    margin-top: 30px;
+    height: 100vh;
 
     @include mobile {
-        min-height: 80vh;
+        min-height: 100vh;
     }
 }
 

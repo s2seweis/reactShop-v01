@@ -17,7 +17,6 @@ export const clearIngredients = () => ({
   type: CLEAR_INGREDIENTS
 });
 
-
 // now here, loading the settings 
 
 // export const setSetting = (setting) => ({
@@ -33,7 +32,6 @@ export const updateEmail = (password, newEmail) => ({
   }
 });
 
-
 export const addIngredients = (ingredients) => ({
   type: ADD_INGREDIENT,
   payload: ingredients
@@ -47,15 +45,10 @@ export const addIngredients = (ingredients) => ({
 //   }
 // });
 
-
-
 export const addIngredientSuccess = (ingredients) => ({
   type: ADD_INGREDIENT_SUCCESS,
   payload: ingredients
 });
-
-
-
 
 export const getIngredient = (ingredients) => ({
   type: GET_INGREDIENT,
@@ -66,8 +59,6 @@ export const getIngredientSuccess = (ingredients) => ({
   type: GET_INGREDIENT_SUCCESS,
   payload: ingredients
 });
-
-
 
 export const updateIngredient = (newIngredients) => ({
   type: UPDATE_INGREDIENT,

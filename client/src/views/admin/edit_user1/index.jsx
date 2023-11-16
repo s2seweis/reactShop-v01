@@ -4,7 +4,7 @@ import PropType from 'prop-types';
 import React, { lazy, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
-import { editUser1 } from 'redux/actions/user1Actions';
+import { editUser1 } from 'redux/actions/userActions';
 
 const User1Form = lazy(() => import('../components_user1/User1Form'));
 

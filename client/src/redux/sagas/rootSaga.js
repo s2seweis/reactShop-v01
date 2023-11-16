@@ -6,7 +6,7 @@ import settingSaga from './settingSaga';
 import ingredientSaga from './ingredientSaga';
 import orderSaga from './orderSaga';
 import postSaga from './postSaga';
-import user1Saga from './user1Saga';
+import user1Saga from './userSaga';
 import checkoutSaga from './checkoutSaga';
 import profileSaga from './profileSaga';
 import basketSaga from './basketSaga';

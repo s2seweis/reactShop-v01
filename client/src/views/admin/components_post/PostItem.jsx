@@ -41,8 +41,8 @@ const PostItem = ({ post }) => {
         className={`item item-s ${!post.id && 'item-loading'}`}
         ref={postRef}
       >
-        <div className="grid grid-count-9">
-          <div className="grid-col post-item-img-wrapper">
+        <div className="grid grid-count-4" style={{alignItems:"center"}}>
+          <div style={{marginLeft:"15px"}} className="grid-col post-item-img-wrapper">
             {post.image1 ? (
               <ImageLoader
                 alt={post.name}
@@ -51,7 +51,7 @@ const PostItem = ({ post }) => {
               />
             ) : <Skeleton width={50} height={30} />}
           </div>
-          <div className="grid-col post-item-img-wrapper">
+          {/* <div className="grid-col post-item-img-wrapper">
             {post.image2 ? (
               <ImageLoader
                 alt={post.name}
@@ -68,24 +68,24 @@ const PostItem = ({ post }) => {
                 src={post.image3}
               />
             ) : <Skeleton width={50} height={30} />}
-          </div>
+          </div> */}
           <div className="grid-col">
             <span className="text-overflow-ellipsis">{post.name || <Skeleton width={50} />}</span>
           </div>
           <div className="grid-col">
             <span>{post.brand || <Skeleton width={50} />}</span>
           </div>
-          <div className="grid-col">
+          {/* <div className="grid-col">
             <span>{post.price ? displayMoney(post.price) : <Skeleton width={30} />}</span>
-          </div>
+          </div> */}
           <div className="grid-col">
             <span>
               {post.dateAdded ? displayDate(post.dateAdded) : <Skeleton width={30} />}
             </span>
           </div>
-          <div className="grid-col">
+          {/* <div className="grid-col">
             <span>{post.maxQuantity || <Skeleton width={20} />}</span>
-          </div>
+          </div> */}
         </div>
         {post.id && (
           <div className="item-action-post">

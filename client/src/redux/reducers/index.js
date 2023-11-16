@@ -8,7 +8,7 @@ import settingReducer from './settingReducer';
 import ingredientReducer from './ingredientReducer';
 import orderReducer from './orderReducer';
 import postReducer from './postReducer';
-import user1Reducer from './user1Reducer';
+import user1Reducer from './userReducer';
 import profileReducer from './profileReducer';
 
 const rootReducer = {

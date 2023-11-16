@@ -1,6 +1,7 @@
 .navigation {
   width: 100%;
-  background: $background-color;
+  // background: $background-color;
+background: #f0f0f0;
   display: flex;
   align-items: center;
   padding: .5rem 5rem;
@@ -48,6 +49,7 @@
   padding: .5rem $l-size;
   display: flex;
   justify-content: space-between;
+  background-color: #f9f9f9;
 }
 
 .navigation-menu {
@@ -74,7 +76,6 @@
 
   li {
     display: inline-block;
-    
     
     a {
       padding: 10px 15px;
@@ -125,4 +126,56 @@
 .navigation-menu-active {
   font-weight: bold;
   opacity: 1 !important;
+}
+
+// ###
+
+// ToggleMenu.scss
+.toggle-menu-container {
+  position: relative;
+
+  .toggle-button {
+    padding: 10px;
+    background-color: #3498db; /* Change to your desired button color */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+
+  .navigation-menu-main {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #f1f1f1; /* Change to your desired menu background color */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50px; /* Adjust the top position as needed */
+    left: 0;
+    width: 200px; /* Adjust the width as needed */
+    display: block; /* Ensure the menu is visible */
+  }
+
+  .navigation-menu-main li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .navigation-menu-main li:last-child {
+    border-bottom: none;
+  }
+
+  .navigation-menu-main a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+
+  .navigation-menu-main a:hover {
+    color: #3498db; /* Change to your desired hover color */
+  }
+
+  .navigation-menu-active {
+    background-color: #3498db; /* Change to your desired active menu item color */
+    color: #fff;
+  }
 }

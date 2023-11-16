@@ -77,5 +77,3 @@ export const editProductSuccess = (updates) => ({
   type: EDIT_PRODUCT_SUCCESS,
   payload: updates
 });
-
-

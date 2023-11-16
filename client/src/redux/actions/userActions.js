@@ -15,8 +15,6 @@ import {
 
 } from 'constants/constants';
 
-
-
 export const getUsers1 = (lastRef) => ({
   type: GET_USERS1,
   payload: lastRef
@@ -79,4 +77,3 @@ export const editUser1Success = (updates) => ({
   type: EDIT_USER1_SUCCESS,
   payload: updates
 });
-

@@ -4,7 +4,7 @@ import PropType from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setLoading } from 'redux/actions/miscActions';
-import { getUsers1 } from 'redux/actions/user1Actions';
+import { getUsers1 } from 'redux/actions/userActions';
 
 const User1List = (props) => {
   const {

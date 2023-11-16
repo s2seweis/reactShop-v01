@@ -1,23 +1,23 @@
 import { useDidMount } from 'hooks';
 import { useEffect, useState } from 'react';
-import firebase from '../services/firebase';
+import firebase from '../../services/firebase';
 
-const useRecommendedPosts = (itemsCount) => {
-  const [recommendedPosts, setRecommendedPosts] = useState([]);
+const useRecommendedUsers1 = (itemsCount) => {
+  const [recommendedUsers1, setRecommendedUsers1] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const didMount = useDidMount(true);
 
-  const fetchRecommendedPosts = async () => {
+  const fetchRecommendedUsers1 = async () => {
     try {
       setLoading(true);
       setError('');
 
-      const docs = await firebase.getRecommendedPosts(itemsCount);
+      const docs = await firebase.getRecommendedUsers1(itemsCount);
 
       if (docs.empty) {
         if (didMount) {
-          setError('No recommended posts found.');
+          setError('No recommended users1 found.');
           setLoading(false);
         }
       } else {
@@ -29,28 +29,28 @@ const useRecommendedPosts = (itemsCount) => {
         });
 
         if (didMount) {
-          setRecommendedPosts(items);
+          setRecommendedUsers1(items);
           setLoading(false);
         }
       }
     } catch (e) {
       if (didMount) {
-        setError('Failed to fetch recommended posts');
+        setError('Failed to fetch recommended users1');
         setLoading(false);
       }
     }
   };
 
   useEffect(() => {
-    if (recommendedPosts.length === 0 && didMount) {
-      fetchRecommendedPosts();
+    if (recommendedUsers1.length === 0 && didMount) {
+      fetchRecommendedUsers1();
     }
   }, []);
 
 
   return {
-    recommendedPosts, fetchRecommendedPosts, isLoading, error
+    recommendedUsers1, fetchRecommendedUsers1, isLoading, error
   };
 };
 
-export default useRecommendedPosts;
+export default useRecommendedUsers1;

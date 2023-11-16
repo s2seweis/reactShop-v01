@@ -7808,7 +7808,7 @@ var add_product_ProductForm = /*#__PURE__*/(0,react.lazy)(function () {
 });
 var AddProduct = function AddProduct() {
   (0,hooks/* useScrollTop */.j)();
-  (0,hooks/* useDocumentTitle */.jr)('Add New Product | Salinaka');
+  (0,hooks/* useDocumentTitle */.jr)('Add New Product | Sale !');
   var isLoading = (0,react_redux_es/* useSelector */.v9)(function (state) {
     return state.app.loading;
   });

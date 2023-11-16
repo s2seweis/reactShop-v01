@@ -19,7 +19,7 @@ import {
   getUsers1Success,
   removeUser1Success,
   searchUser1Success
-} from '../actions/user1Actions';
+} from '../actions/userActions';
 
 function* initRequest() {
   yield put(setLoading(true));

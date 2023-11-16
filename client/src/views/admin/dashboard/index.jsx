@@ -12,7 +12,7 @@ const Dashboard = () => {
   return (
     <div className="loader-new">
       <h2 style={{ textAlign: "center" }}
-      >Welcome to admin dashboard1</h2>
+      >Welcome to admin dashboard</h2>
       <div className="dropdown-new">
       </div>
     </div>

@@ -50,8 +50,6 @@ export const clearSearchState = () => ({
   type: CLEAR_SEARCH_STATE
 });
 
-
-
 export const addPostSuccess = (post) => ({
   type: ADD_POST_SUCCESS,
   payload: post
@@ -79,4 +77,3 @@ export const editPostSuccess = (updates) => ({
   type: EDIT_POST_SUCCESS,
   payload: updates
 });
-

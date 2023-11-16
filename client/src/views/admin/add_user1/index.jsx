@@ -3,7 +3,7 @@ import { useDocumentTitle, useScrollTop } from 'hooks';
 import React, { lazy, Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { addUser1 } from 'redux/actions/user1Actions';
+import { addUser1 } from 'redux/actions/userActions';
 
 const User1Form = lazy(() => import('../components_user1/User1Form'));
 

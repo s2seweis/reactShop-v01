@@ -6,7 +6,7 @@ import React, { useRef } from 'react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { useDispatch } from 'react-redux';
 import { useHistory, withRouter } from 'react-router-dom';
-import { removeUser1 } from 'redux/actions/user1Actions';
+import { removeUser1 } from 'redux/actions/userActions';
 import { useSelector } from 'react-redux';
 
 const User1Item = ({ user1 }) => {
@@ -54,25 +54,25 @@ const User1Item = ({ user1 }) => {
           <div className="grid-col">
             <span className="text-overflow-ellipsis">{user1.fullname || <Skeleton width={50} />}</span>
           </div>
-          <div className="grid-col">
+          {/* <div className="grid-col">
             <span>{user1.role || <Skeleton width={50} />}</span>
-          </div>
+          </div> */}
 
           <div className="grid-col">
             <span className="text-overflow-ellipsis">{user1.email || <Skeleton width={50} />}</span>
           </div>
 
-          <div className="grid-col">
-            <span className="text-overflow-ellipsis">{user1.address || <Skeleton width={50} />}</span>
-          </div>
+          {/* <div className="grid-col">
+            <span className="text-overflow-ellipsis">{user1.id || <Skeleton width={50} />}</span>
+          </div> */}
         
-          <div className="grid-col">
+          {/* <div className="grid-col">
             {user1.mobile ? (
               <h5>{user1.mobile.value}</h5>
             ) : (
               <h5 className="text-subtle text-italic">Mobile not set</h5>
             )}
-          </div>
+          </div> */}
 
           <div className="grid-col">
             <span>

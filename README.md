@@ -36,7 +36,7 @@ Before you begin, ensure you have the following software installed on your machi
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/s2seweis/testShop-CRUD-Salinaka.git
+   git clone https://github.com/s2seweis/ReactShop-v01.git
    ```
 
 2. Navigate to the project directory:

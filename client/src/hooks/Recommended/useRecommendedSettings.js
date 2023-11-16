@@ -1,6 +1,6 @@
 import { useDidMount } from 'hooks';
 import { useEffect, useState } from 'react';
-import firebase from '../services/firebase';
+import firebase from '../../services/firebase';
 
 const useRecommendedSettings = (itemsCount) => {
   const [recommendedSettings, setRecommendedSettings] = useState([]);

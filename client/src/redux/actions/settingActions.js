@@ -17,7 +17,6 @@ export const clearSettings = () => ({
   type: CLEAR_SETTINGS
 });
 
-
 // now here, loading the settings 
 
 // export const setSetting = (setting) => ({
@@ -47,15 +46,10 @@ export const addSettings = (settings) => ({
 //   }
 // });
 
-
-
 export const addSettingSuccess = (settings) => ({
   type: ADD_SETTING_SUCCESS,
   payload: settings
 });
-
-
-
 
 export const getSetting = (settings) => ({
   type: GET_SETTING,
@@ -66,8 +60,6 @@ export const getSettingSuccess = (settings) => ({
   type: GET_SETTING_SUCCESS,
   payload: settings
 });
-
-
 
 export const updateSetting = (newSettings) => ({
   type: UPDATE_SETTING,

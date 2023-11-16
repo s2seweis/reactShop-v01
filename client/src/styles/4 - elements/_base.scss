@@ -123,11 +123,13 @@ h6 {
   animation: fadeIn .5s ease;
   position: relative;
   justify-content: center;
-  width: 800px;
+  // width: 800px;
+  height: 100vh;
+  width: 100%;
   padding-right: 1rem;
 
   @media (max-width: $mobile) {
-    width: auto;
+    // width: auto;
   }
 
 
@@ -137,7 +139,7 @@ h6 {
   animation: fadeIn .5s ease;
   position: relative;
   justify-content: center;
-  margin-top: 22px;
+  margin-top: 26px;
 }
 
 .dropdown-content {

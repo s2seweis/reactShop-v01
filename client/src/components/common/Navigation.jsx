@@ -13,6 +13,7 @@ import MobileNavigation from './MobileNavigation';
 import SearchBar from './SearchBar';
 import MenuBurger from '../../components/common/MenuBurger';
 import '../../styles/menu/index.scss'
+import ToggleMenu from './ToggleMenu';
 
 const Navigation = () => {
   const navbar = useRef(null);
@@ -77,6 +78,13 @@ const Navigation = () => {
         <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.FEATURED_PRODUCTS}>Featured</NavLink></li>
         <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.RECOMMENDED_PRODUCTS}>Recommended</NavLink></li>
       </ul>
+
+      <ToggleMenu/>
+
+      
+
+    
+      
       {/* excluse component by a route */}
       {(pathname === ROUTE.SHOP || pathname === ROUTE.SEARCH) && (
         <FiltersToggle>
