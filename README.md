@@ -33,13 +33,13 @@ Before you begin, ensure you have the following software installed on your machi
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/react-shop-firestore-stripe
+   git clone https://github.com/s2seweis/testShop-CRUD-Salinaka.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd react-shop-firestore-stripe
+   cd testShop-CRUD-Salinaka
    ```
 
 3. Install dependencies for both the client and server:

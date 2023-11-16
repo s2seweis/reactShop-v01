@@ -11,25 +11,12 @@ Before you begin, ensure you have the following installed:
 
 ## Getting Started
 
-1. Clone this repository to your local machine:
-
-```bash
-git clone https://github.com/your-username/stripe-node-express-payments.git
-```
-
-2. Change into the project directory:
-
-```bash
-cd stripe-node-express-payments
-```
-
-3. Install dependencies:
+1. Install dependencies:
 
 ```bash
 npm install
 ```
-
-4. Set up your environment variables:
+2. Set up your environment variables:
 
    - Create a `.env` file in the root of your project.
    - Add your Stripe API keys:
@@ -37,6 +24,7 @@ npm install
      ```env
      STRIPE_SECRET_KEY=your_secret_key
      STRIPE_PUBLIC_KEY=your_public_key
+     STATIC_DIR=../client/public
      ```
 
      Replace `your_secret_key` and `your_public_key` with your actual Stripe API keys, which you can obtain from your [Stripe Dashboard](https://dashboard.stripe.com/).
@@ -46,10 +34,10 @@ npm install
 Run the application:
 
 ```bash
-npm start
+npm run server
 ```
 
-Visit `http://localhost:3000` in your web browser. You should see a simple payment form.
+Visit `http://localhost:4242` in your web browser. You should see a simple payment form.
 
 ## Implementation Details
 
