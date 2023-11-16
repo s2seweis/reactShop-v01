@@ -8,12 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { setPaymentDetails } from 'redux/actions/checkoutActions';
 
-// import { placeOrderInit } from 'redux/actions/orderActions';
-
-
-
-
-
 const Total = ({ isInternational, subtotal }) => {
   const { values, submitForm } = useFormikContext();
   const history = useHistory();
@@ -29,11 +23,6 @@ const Total = ({ isInternational, subtotal }) => {
   };
 
   const address = useSelector((state) => state.app.address);
-
-
-  // const { checkout } = useSelector((state) => ({
-  //   checkout: state.checkout
-  // }));
 
   return (
     <>
@@ -65,46 +54,12 @@ const Total = ({ isInternational, subtotal }) => {
           &nbsp;
           <ArrowRightOutlined />
         </button>
-
-        {/* <button
-          className="button button-icon"
-          type="submit"
-        >
-          Next Step
-          &nbsp;
-          <ArrowRightOutlined />
-        </button> */}
-
-        {/* <button
-          className="button"
-          disabled={false}
-          onClick={submitForm}
-          type="button">
-          <CheckOutlined />
-          &nbsp;
-          Confirm1
-        </button> */}
-
-
-        {/* <button
-          className="button button-muted"
-          onClick={() => history.push(CHECKOUT_STEP_2)}
-          type="button"
-        >
-          <ArrowLeftOutlined />
-          &nbsp;
-          Go Back
-        </button> */}
-
       </div>
     </>
 
   );
 
 }
-
-
-
 
 Total.propTypes = {
   isInternational: PropType.bool.isRequired,

@@ -18,8 +18,6 @@ const Ingredients1 = (option, option1, selectedSize, selectedColor, id, isItemOn
     ingredients: state.ingredients,
   }));
 
-  console.log(ingredients)
-
   const toppings2 = ingredients?.customers?.map((person) => ({ name: person.name, price: person.price })) || []
   const [checkedState, setCheckedState] = useState(
     new Array(toppings2?.length).fill(false));
@@ -41,7 +39,6 @@ const Ingredients1 = (option, option1, selectedSize, selectedColor, id, isItemOn
         if (currentState === true) {
           return sum
             + toppings2[index].price;
-          // console.log(sum);
         }
         return sum
           ;

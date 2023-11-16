@@ -8,7 +8,6 @@ import PropType from 'prop-types';
 import { history } from 'routers/AppRouter';
 import { clearBasket } from 'redux/actions/basketActions';
 
-
 function* handleError(e) {
   yield put(setLoading(false));
   yield put(setRequestStatus(e?.message || 'Failed to fetch products'));
@@ -20,7 +19,6 @@ function* handleAction(location, message, status) {
   yield call(displayActionMessage, message, status);
 }
 
-
 function* checkoutSaga({ type, payload }) {
   switch (type) {
     case SET_ORDER_DETAILS: {
@@ -28,19 +26,13 @@ function* checkoutSaga({ type, payload }) {
         // yield initRequest();
 
         const key = yield call(firebase.generateKey);
-        console.log(key)
-
         
         const order = {
           ...payload,
           instance: key
         };
 
-      
-
-
         yield call(firebase.addOrder, key, order);
-        console.log(key);
 
         // yield put(placeOrderSuccess({
         //   id: key,
@@ -61,7 +53,5 @@ function* checkoutSaga({ type, payload }) {
     }
   }
 }
-
-
 
 export default checkoutSaga;

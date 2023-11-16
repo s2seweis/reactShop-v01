@@ -51,5 +51,3 @@ EditUser1.propTypes = {
 };
 
 export default withRouter(EditUser1);
-
-// okay

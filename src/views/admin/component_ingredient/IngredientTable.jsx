@@ -3,7 +3,6 @@ import { LoadingOutlined } from '@ant-design/icons';
 import { useDocumentTitle, useScrollTop } from 'hooks';
 import React, { lazy, Suspense } from 'react';
 import IngredientTab from '../component_ingredient/components/IngredientTab';
-
 // const IngredientAccountTab = lazy(() => import('../component_ingredient/IngredientTab'));
 const EditIngredients = lazy(() => import('../component_ingredient/edit-ingredient'));
 const UserWishListTab = lazy(() => import('../component_ingredient/components/IngredientListTab'));
@@ -19,24 +18,14 @@ const Loader = () => (
 const UserAccount = () => {
   useScrollTop();
   useDocumentTitle('My Ingredients | Dign');
-
   return (
     <IngredientTab>
-
       <div index={0} label="General">
         <Suspense fallback={<Loader />}>
-
-
           {/* <IngredientAccountTab /> */}
-
-
           <EditIngredients />
-
-
         </Suspense>
       </div>
-
-
       <div index={2} label="Advanced">
         <Suspense fallback={<Loader />}>
           <UserWishListTab />

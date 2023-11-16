@@ -8,7 +8,6 @@ import {
   SEARCH_ORDER
   
 } from 'constants/constants';
-
 import { ADMIN_ORDERS } from 'constants/routes';
 import { displayActionMessage } from 'helpers/utils';
 import {
@@ -23,7 +22,6 @@ import {
   removeOrderSuccess,
   searchOrderSuccess
 } from '../actions/orderActions';
-
 
 function* initRequest() {
   yield put(setLoading(true));

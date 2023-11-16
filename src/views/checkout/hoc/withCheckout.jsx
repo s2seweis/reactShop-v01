@@ -42,5 +42,3 @@ const withCheckout = (Component) => withRouter((props) => {
 });
 
 export default withCheckout;
-
-

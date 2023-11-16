@@ -109,7 +109,7 @@ const createOrder = async (data, metadata, shipping) => {
     const savedOrder = await firestore.collection('orders1').doc().set(newOrder);
     console.log("Processed Order:", savedOrder);
   } catch (err) {
-    console.log("line:9", err);
+    console.log(err);
   }
 };
 
@@ -144,12 +144,10 @@ app.post('/webhook', async (req, res) => {
 
     stripe.customers
       .retrieve(data.metadata)
-    console.log("line:11", data.metadata)
       ?.then(async (metadata) => {
         try {
           // CREATE ORDER
           createOrder(metadata, data);
-          console.log("line:15", metadata)
         } catch (err) {
           console.log(typeof createOrder);
           console.log(err);

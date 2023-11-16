@@ -38,30 +38,13 @@ const SettingProfile = (props) => {
             Edit Settings
           </button>
         </div>
-
-
-        
         <div className="user-profile-details">
-
-
-
-          {/* <h2 className="user-profile-name">{settings.fullname}</h2> */}
-
-
-
-
           <span>Full Name</span>
           <br />
           <h5>{settings.fullname}</h5>
-
-
-      
           <span>Email</span>
           <br />
           <h5>{settings.email}</h5>
-
-
-
           <span>Address</span>
           <br />
           {settings.address ? (
@@ -69,8 +52,6 @@ const SettingProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Address not set</h5>
           )}
-
-
           <span>Address</span>
           <br />
           {settings.role ? (
@@ -78,9 +59,7 @@ const SettingProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Address not set</h5>
           )}
-
           {/* map object */}
-
           <span>Mobile</span>
           <br />
           {settings.mobile ? (
@@ -88,7 +67,6 @@ const SettingProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Mobile not set</h5>
           )}
-
           <span>Country</span>
           <br />
           {settings.mobile ? (
@@ -96,7 +74,6 @@ const SettingProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Mobile not set</h5>
           )}
-
           <span>Country Code</span>
           <br />
           {settings.mobile ? (
@@ -104,29 +81,6 @@ const SettingProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Mobile not set</h5>
           )}
-
-
-
-          {/* <span>Date Joined</span>
-          <br />
-          {settings.dateJoined ? (
-            <h5>{displayDate(settings.dateJoined)}</h5>
-          ) : (
-            <h5 className="text-subtle text-italic">Not available</h5>
-          )}
-
-          <span>Date Added</span>
-          <br />
-          {settings.dateAdded ? (
-            <h5>{displayDate(settings.dateAdded)}</h5>
-          ) : (
-            <h5 className="text-subtle text-italic">Not available</h5>
-          )} */}
-
-
-
-
-
         </div>
       </div>
     </div>

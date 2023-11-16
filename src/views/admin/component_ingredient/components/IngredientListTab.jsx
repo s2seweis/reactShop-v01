@@ -12,7 +12,6 @@ import { addIngredients, updateIngredient } from 'redux/actions/ingredientAction
 import * as Yup from 'yup';
 import ConfirmModal from '../edit-ingredient/ConfirmModal';
 import EditForm from '../edit-ingredient/EditForm';
-
 import { call, put, select } from 'redux-saga/effects';
 
 import { IngredientsNavbar } from '../../component_ingredient';
@@ -45,50 +44,9 @@ const UserWishListTab = (parameters) => {
     avatar: ingredients.avatar || {},
     banner: ingredients.banner || {},
 
-    // parameters1: ingredients?.parameters1 || [],
-
     parameters1: ingredients?.parameters1?.map((person) => ({ name: person.name, preis1: person.preis1 })) || []
 
-
-    // parameters1: [
-
-    //   {
-    //     name: "Käse", 
-    //     preis1: "0,80",
-    //     preis2: "1,10",
-    //     preis3: "1,80",
-    //     preis4: "3,00"
-    //   },
-
-    //   {
-    //     name: "Salami",
-    //     preis1: "0,80",
-    //     preis2: "1,10",
-    //     preis3: "1,80",
-    //     preis4: "3,00"
-    //   },
-
-    //   {
-    //     name: "Peperoniwurst",
-    //     preis1: "0,80",
-    //     preis2: "1,10",
-    //     preis3: "1,80",
-    //     preis4: "3,00"
-    //   },
-
-    //   {
-    //     name: "Schinken",
-    //     preis1: "0,80",
-    //     preis2: "1,10",
-    //     preis3: "1,80",
-    //     preis4: "3,00"
-    //   }
-    // ],
-    // avatar: {},
-    // banner: {}
   };
-
-  console.log(initFormikValues)
 
   const {
     imageFile,
@@ -108,11 +66,7 @@ const UserWishListTab = (parameters) => {
         // it stazys empty when updating it
         avatar: form.avatar,
         banner: form.banner,
-
         parameters1: form.parameters1 || [],
-
-        // parameters1: form?.parameters1?.map((person) => ({ name: person.name, preis1: person.preis1 })) || []
-
       },
       files: {
         bannerFile: imageFile.banner.file,
@@ -122,32 +76,6 @@ const UserWishListTab = (parameters) => {
     }));
   };
 
-  // const add = (form) => {
-  //   dispatch(addSettings({
-  //     adds: {
-  //       fullname: form.fullname,
-  //       email: form.email,
-  //       address: form.address,
-  //       mobile: form.mobile,
-
-  //     },
-  //     files: {
-  //       bannerFile: imageFile.banner.file,
-  //       avatarFile: imageFile.avatar.file
-  //     },
-
-  //   }));
-  // };
-
-
-
-
-  // const onConfirmUpdate = (form, password) => {
-  //   if (password) {
-  //     update(form, { email: form.email, password });
-  //   }
-  // };
-
   const onSubmitUpdate = (form) => {
     // check if data has changed
     const fieldsChanged = Object.keys(form).some((key) => ingredients[key] !== form[key]);
@@ -155,45 +83,17 @@ const UserWishListTab = (parameters) => {
 
     if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
       update(form);
-      // modal.onOpenModal();
     } else {
       console.log("failed to add: ");
     }
 
   };
 
-  // const onSubmitAdd = (form) => {
-  //   // check if data has changed
-  //   const fieldsChanged = Object.keys(form).some((key) => ingredients[key] !== form[key]);
+  return (
 
-  //   if (fieldsChanged) {
-  //     if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
-  //       add(form);
-  //       // modal.onOpenModal();
-  //     } else {
-  //       console.log("failed to add: ");
-  //     }
-  //   }
-  // };
-
-
-
-
-return (
-
-
-
-
-  <Boundary>
-
-
-
-
+    <Boundary>
       <IngredientsNavbar
-      // settingsCount={store.ingredients.items.length}
-      // totalSettingsCount={store.ingredients.total}
       />
-
       <div className="product-admin-items">
         <div className="edit-user">
           <h3 className="text-center">Edit Ingredient Details1</h3>
@@ -201,32 +101,15 @@ return (
             initialValues={initFormikValues}
             validateOnChange
             // validationSchema={FormSchema}
-
-
-
             onSubmit={onSubmitUpdate}
           // onSubmit={onSubmitAdd}
-
           // onSubmit={(onSubmitUpdate, {resetForm}) => {
           //   console.log(onSubmitUpdate);
           //   resetForm({ initFormikValues });
           // } }
-
-
-
-
-
           >
-
-
-
             {(values, setValues) => (
               <>
-
-
-
-
-
                 <div className="user-profile-banner">
                   <div className="user-profile-banner-wrapper">
                     <ImageLoader
@@ -283,96 +166,14 @@ return (
                     )}
                   </div>
                 </div>
-
-
-
-
                 <EditForm />
-
-
-
-                {/* <div className='fieldarray-top' >
-                  <h4>Add Sizes</h4>
-                  <FieldArray
-
-                    name="parameters1"
-                    // disabled={isLoading}
-                    className="fieldarray"
-
-                    render={arrayHelpers => (
-
-                      <div>
-                        {values.parameters1?.length > 0 &&
-                          values.parameters1.map((paramList, index) => (
-
-                            <div key={index}>
-                              {Object.keys(paramList).map(param => (
-
-                                <Field
-                                  key={`${param}`}
-                                  name={`parameters1.${index}.${param}`}
-                                  placeholder={`${index}.${param}`}
-                                  className="field-ingredients"
-
-                                />
-                              ))}
-                              <button
-                                type="button"
-                                onClick={() => arrayHelpers.remove(index)}
-                              >
-                                {" "}
-                                -{" "}
-                              </button>
-                            </div>
-
-                          ))}
-                        <button
-                          type="button"
-                          onClick={() =>
-                            arrayHelpers.push({ name: "", preis1: "", preis2: "", preis3: "", preis4: "" })
-                          }
-                        >
-                          {" "}
-                          +{" "}
-                        </button>
-                      </div>
-                    )}
-                  />
-
-                </div>
-
-                <pre>{JSON.stringify(values, null, 2)}</pre> */}
-
-
-
-
-
-
               </>
-
-
-
-
             )}
-
-
-
-
-
-
           </Formik>
-
-
-
-
         </div>
       </div>
     </Boundary>
-
-
-);
+  );
 };
-
-
 
 export default UserWishListTab;

@@ -36,130 +36,31 @@ const OrderItem = ({ order }) => {
       color="#5294e0"
       highlightColor="a1633f"
       duration={4}
-
-
     >
       <div
         className={`item item-s ${!order.id && 'item-loading'}`}
         ref={orderRef}
-
-
-
       >
-
-
-
-
-        {/* <div className="grid grid-count-4">
-
-
-
-
-          <div className="grid-col">
-
-            <h4>Date</h4>
-
-            
-          </div>
-
-
-          <div className="grid-col">
-
-            <h4>Address</h4>
-
-
-           
-
-          </div>
-
-
-
-
-          <div className="grid-col-break">
-
-            <h4>ID</h4>
-
-
-          </div>
-
-          <div className="grid-col">
-
-            <h4>Total</h4>
-
-          </div>
-
-
-
-
-
-
-
-        </div> */}
-
-
-
-        
         <div className="grid grid-count-orders">
-
-
-
-
           <div className="grid-col">
-
-            {/* <h4>Date</h4> */}
-
             <span>
               {order.dateAdded ? displayDate(order.dateAdded) : <Skeleton width={50} />}
-
             </span>
           </div>
-
-
           <div className="grid-col">
-
-            {/* <h4>Address</h4> */}
-
-
             <span>
               {order.shipping ? (
                 <span>{order.shipping.address}</span>
               ) : <Skeleton width={50} />}
             </span>
-
           </div>
-
-
-          {/* {order.shipping ? (
-              <h5>{order.shipping.address}</h5>
-            ) :  <Skeleton width={50} />} */}
-
-
           <div className="grid-col-break">
-
-            {/* <h4>ID</h4> */}
-
             <span>{order.id || <Skeleton width={50} />}</span>
-
           </div>
-
           <div className="grid-col">
-
-            {/* <h4>Total</h4> */}
-
             <span className="text-overflow-ellipsis">{order.subtotal || <Skeleton width={50} />}</span>
           </div>
-
-
-
-
-
-
-
         </div>
-
-
-
-
         {order.id && (
           <div className="item-action-order">
             <button

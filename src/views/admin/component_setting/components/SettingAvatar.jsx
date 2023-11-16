@@ -19,7 +19,6 @@ const UserNav = () => {
 
   const toggleDropdown = (e) => {
     const closest = e.target.closest('div.user-nav');
-
     try {
       if (!closest && userNav.current.classList.contains('user-sub-open')) {
         userNav.current.classList.remove('user-sub-open');
@@ -31,7 +30,6 @@ const UserNav = () => {
 
   useEffect(() => {
     document.addEventListener('click', toggleDropdown);
-
     return () => document.removeEventListener('click', toggleDropdown);
   }, []);
 

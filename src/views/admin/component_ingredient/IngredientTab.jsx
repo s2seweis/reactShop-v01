@@ -9,7 +9,6 @@ import { withRouter } from 'react-router-dom';
 
 const IngredientProfile = (props) => {
   // profile = users, in firebase
-  // const profile = useSelector((state) => state.profile);
   const ingredients = useSelector((state) => state.ingredients);
   const profile = useSelector((state) => state.profile);
 
@@ -39,30 +38,13 @@ const IngredientProfile = (props) => {
             Edit Ingredients2
           </button>
         </div>
-
-
-        
         <div className="user-profile-details">
-
-
-
-          {/* <h2 className="user-profile-name">{settings.fullname}</h2> */}
-
-
-
-
           <span>Full Name</span>
           <br />
           <h5>{profile.fullname}</h5>
-
-
-      
           <span>Email</span>
           <br />
           <h5>{ingredients.email}</h5>
-
-
-
           <span>Address</span>
           <br />
           {ingredients.address ? (
@@ -70,7 +52,6 @@ const IngredientProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Address not set</h5>
           )}
-
 
           <span>Address</span>
           <br />
@@ -81,7 +62,6 @@ const IngredientProfile = (props) => {
           )}
 
           {/* map object */}
-
           <span>Mobile</span>
           <br />
           {ingredients.mobile ? (
@@ -89,7 +69,6 @@ const IngredientProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Mobile not set</h5>
           )}
-
           <span>Country</span>
           <br />
           {ingredients.mobile ? (
@@ -97,7 +76,6 @@ const IngredientProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Mobile not set</h5>
           )}
-
           <span>Country Code</span>
           <br />
           {ingredients.mobile ? (
@@ -105,29 +83,6 @@ const IngredientProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Mobile not set</h5>
           )}
-
-
-
-          {/* <span>Date Joined</span>
-          <br />
-          {settings.dateJoined ? (
-            <h5>{displayDate(settings.dateJoined)}</h5>
-          ) : (
-            <h5 className="text-subtle text-italic">Not available</h5>
-          )}
-
-          <span>Date Added</span>
-          <br />
-          {settings.dateAdded ? (
-            <h5>{displayDate(settings.dateAdded)}</h5>
-          ) : (
-            <h5 className="text-subtle text-italic">Not available</h5>
-          )} */}
-
-
-
-
-
         </div>
       </div>
     </div>

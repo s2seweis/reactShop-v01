@@ -52,5 +52,3 @@ const AddUser1 = () => {
 };
 
 export default withRouter(AddUser1);
-
-// okay

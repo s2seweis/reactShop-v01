@@ -43,5 +43,3 @@ PostsNavbar.propTypes = {
 };
 
 export default PostsNavbar;
-
-// okay

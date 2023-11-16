@@ -11,16 +11,8 @@ import { addSettings, updateSetting } from 'redux/actions/settingActions';
 import * as Yup from 'yup';
 import ConfirmModal from './ConfirmModal';
 import EditForm from './EditForm';
-
 import { call, put, select } from 'redux-saga/effects';
-
 import { SettingsNavbar } from '../../component_setting';
-
-
-
-
-
-
 
 const FormSchema = Yup.object().shape({
   fullname: Yup.string(),
@@ -43,7 +35,6 @@ const FormSchema = Yup.object().shape({
 const EditSettings = () => {
   useDocumentTitle('Edit Account | Dign1 ');
   useScrollTop();
-
   // const modal = useModal();
   const dispatch = useDispatch();
 
@@ -75,8 +66,6 @@ const EditSettings = () => {
     onFileChange
   } = useFileHandler({ avatar: {}, banner: {} });
 
-
-
   const update = (form) => {
     dispatch(updateSetting({
       updates: {
@@ -95,36 +84,9 @@ const EditSettings = () => {
     }));
   };
 
-  // const add = (form) => {
-  //   dispatch(addSettings({
-  //     adds: {
-  //       fullname: form.fullname,
-  //       email: form.email,
-  //       address: form.address,
-  //       mobile: form.mobile,
-
-  //     },
-  //     files: {
-  //       bannerFile: imageFile.banner.file,
-  //       avatarFile: imageFile.avatar.file
-  //     },
-
-  //   }));
-  // };
-
-
-
-
-  // const onConfirmUpdate = (form, password) => {
-  //   if (password) {
-  //     update(form, { email: form.email, password });
-  //   }
-  // };
-
   const onSubmitUpdate = (form) => {
     // check if data has changed
     const fieldsChanged = Object.keys(form).some((key) => settings[key] !== form[key]);
-
 
     if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
       update(form);
@@ -135,33 +97,10 @@ const EditSettings = () => {
 
   };
 
-  // const onSubmitAdd = (form) => {
-  //   // check if data has changed
-  //   const fieldsChanged = Object.keys(form).some((key) => settings[key] !== form[key]);
-
-  //   if (fieldsChanged) {
-  //     if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
-  //       add(form);
-  //       // modal.onOpenModal();
-  //     } else {
-  //       console.log("failed to add: ");
-  //     }
-  //   }
-  // };
-
-
-
   return (
     <Boundary>
-
-
-
-
       <SettingsNavbar
-      // settingsCount={store.settings.items.length}
-      // totalSettingsCount={store.settings.total}
       />
-
       <div className="product-admin-items">
         <div className="edit-user">
           <h3 className="text-center">Edit Setting Details1</h3>
@@ -169,29 +108,10 @@ const EditSettings = () => {
             initialValues={initFormikValues}
             validateOnChange
             validationSchema={FormSchema}
-
-
-
             onSubmit={onSubmitUpdate}
-          // onSubmit={onSubmitAdd}
-
-          // onSubmit={(onSubmitUpdate, {resetForm}) => {
-          //   console.log(onSubmitUpdate);
-          //   resetForm({ initFormikValues });
-          // } }
-
-
-
-
-
           >
             {(resetForm) => (
               <>
-
-
-
-
-
                 <div className="user-profile-banner">
                   <div className="user-profile-banner-wrapper">
                     <ImageLoader
@@ -248,31 +168,10 @@ const EditSettings = () => {
                     )}
                   </div>
                 </div>
-
-
-
-
                 <EditForm />
-
-
-
-
-
-
               </>
-
-
-
-
             )}
-
-
-
           </Formik>
-
-
-
-
         </div>
       </div>
     </Boundary>

@@ -5,22 +5,15 @@ import { Field, useFormikContext } from 'formik';
 import PropType from 'prop-types';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { addSettings, updateSetting } from 'redux/actions/settingActions';
 import {
   useDocumentTitle, useFileHandler, useModal, useScrollTop
 } from 'hooks';
 
-
-
 const EditForm = ({ isLoading, authProvider }) => {
   const history = useHistory();
   const { values, submitForm, resetForm } = useFormikContext();
-
-
-
-
 
   return (
     <div className="user-profile-details">
@@ -68,17 +61,6 @@ const EditForm = ({ isLoading, authProvider }) => {
           &nbsp;
           Back to Settings
         </button>
-
-
-
-
-
-
-
-
-
-
-
         <button
           className="button w-100-mobile"
           // disabled={isLoading}
@@ -89,27 +71,6 @@ const EditForm = ({ isLoading, authProvider }) => {
           &nbsp;
           {isLoading ? 'Loading' : 'Update Settings'}
         </button>
-
-
-
-
-        
-
-
-
-
-
-      
-
-
-
-
-
-
-
-
-
-
       </div>
     </div>
   );

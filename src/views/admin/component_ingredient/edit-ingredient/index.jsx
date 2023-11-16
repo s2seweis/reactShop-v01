@@ -10,27 +10,14 @@ import { setLoading } from 'redux/actions/miscActions';
 import { addIngredients, updateIngredient } from 'redux/actions/ingredientActions';
 import * as Yup from 'yup';
 import ConfirmModal from './ConfirmModal';
-
-
 import { call, put, select } from 'redux-saga/effects';
-
 import { IngredientsNavbar } from '../../component_ingredient';
-
-import PropType from 'prop-types';
-
-
-
-
-
-
+import PropType from 'prop-types'
 import EditForm from './EditForm';
-
-
-
 
 const FormSchema = Yup.object().shape({
   fullname: Yup.string(),
-  
+
   email: Yup.string()
     .email('Email is not valid.'),
   // .required('Email is required.'),
@@ -48,8 +35,6 @@ const EditIngredients = () => {
 
   useDocumentTitle('Edit Account | Dign1 - Ingredients ');
   useScrollTop();
-
-
   const dispatch = useDispatch();
 
   useEffect(() => () => {
@@ -63,11 +48,6 @@ const EditIngredients = () => {
     isLoading: state.app.loading
   }));
 
-
-  
-
-  console.log(ingredients)
-
   const initFormikValues = {
     fullname: ingredients?.email || '',
     email: ingredients?.email || '',
@@ -76,30 +56,17 @@ const EditIngredients = () => {
     avatar: ingredients?.avatar || {},
     banner: ingredients?.banner || {},
 
-    // parameters1: ingredients?.parameters1 || [],
-
     parameters1: ingredients?.parameters1?.map((person) => ({ name: person.name, price: person.price.toFixed(2) })) || [],
-
-    parameters2: ingredients?.parameters2?.map((person) => ({ name: person.name, price: person.price })) ||  [],
-
-    parameters3: ingredients?.parameters3?.map((person) => ({ name: person.name, price: person.price })) ||  [],
-
-    parameters4: ingredients?.parameters4?.map((person) => ({ name: person.name, price: person.price })) ||  []
-
-
+    parameters2: ingredients?.parameters2?.map((person) => ({ name: person.name, price: person.price })) || [],
+    parameters3: ingredients?.parameters3?.map((person) => ({ name: person.name, price: person.price })) || [],
+    parameters4: ingredients?.parameters4?.map((person) => ({ name: person.name, price: person.price })) || []
   };
-
-  
-
-  console.log(initFormikValues.parameters1)
 
   const {
     imageFile,
     isFileLoading,
     onFileChange
   } = useFileHandler({ avatar: {}, banner: {} });
-
-
 
   const update = (form) => {
     dispatch(updateIngredient({
@@ -108,18 +75,14 @@ const EditIngredients = () => {
         email: form.email,
         address: form.address,
         mobile: form.mobile,
-        // it stazys empty when updating it
         avatar: form.avatar,
         banner: form.banner,
 
         // parameters1: form.parameters1 || [],
         parameters1: form?.parameters1?.map((person) => ({ name: person.name, price: Number(person.price) })) || [],
-        parameters2: form.parameters2 ||  [],
-        parameters3: form.parameters3 ||  [],
-        parameters4: form.parameters4 ||  [],
-
-        // parameters1: form?.parameters1?.map((person) => ({ name: person.name, price: person.price })) || []
-
+        parameters2: form.parameters2 || [],
+        parameters3: form.parameters3 || [],
+        parameters4: form.parameters4 || [],
       },
       files: {
         bannerFile: imageFile.banner.file,
@@ -129,12 +92,9 @@ const EditIngredients = () => {
     }));
   };
 
-  
-
   const onSubmitUpdate = (form) => {
     // check if data has changed
     const fieldsChanged = Object.keys(form).some((key) => ingredients[key] !== form[key]);
-
 
     if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
       update(form);
@@ -145,23 +105,8 @@ const EditIngredients = () => {
 
   };
 
-
-
-
-
-
-
   return (
     <Boundary>
-
-
-
-
-      {/* <IngredientsNavbar
-      settingsCount={store.ingredients.items.length}
-      totalSettingsCount={store.ingredients.total}
-      /> */}
-
       <div className="product-admin-items">
         <div className="edit-user">
           <h3 className="text-center">Edit Ingredient Details - Formik</h3>
@@ -169,176 +114,16 @@ const EditIngredients = () => {
             initialValues={initFormikValues}
             validateOnChange
             // validationSchema={FormSchema}
-
-
-
             onSubmit={onSubmitUpdate}
-
-        
-
-
-
-
-
           >
-
-
-
             {(values, setValues) => (
               <>
-
-
-
-
-
                 <div className="user-profile-banner">
-                  {/* <div className="user-profile-banner-wrapper">
-                    <ImageLoader
-                      alt="Banner"
-                      className="user-profile-banner-img"
-                      src={imageFile.banner.url || ingredients.banner}
-                    />
-                    {isFileLoading ? (
-                      <div className="loading-wrapper">
-                        <LoadingOutlined />
-                      </div>
-                    ) : (
-                      <label
-                        className="edit-button edit-banner-button"
-                        htmlFor="edit-banner"
-                      >
-                        <input
-                          accept="image/x-png,image/jpeg"
-                          // disabled={isLoading}
-                          hidden
-                          id="edit-banner"
-                          onChange={(e) => onFileChange(e, { name: 'banner', type: 'single' })}
-                          type="file"
-                        />
-                        <EditOutlined />
-                      </label>
-                    )}
-                  </div> */}
-                  {/* <div className="user-profile-avatar-wrapper">
-                    <ImageLoader
-                      alt="Avatar"
-                      className="user-profile-img"
-                      src={imageFile.avatar.url || ingredients.avatar}
-                    />
-                    {isFileLoading ? (
-                      <div className="loading-wrapper">
-                        <LoadingOutlined />
-                      </div>
-                    ) : (
-                      <label
-                        className="edit-button edit-avatar-button"
-                        htmlFor="edit-avatar"
-                      >
-                        <input
-                          accept="image/x-png,image/jpeg"
-                          // disabled={isLoading}
-                          hidden
-                          id="edit-avatar"
-                          onChange={(e) => onFileChange(e, { name: 'avatar', type: 'single' })}
-                          type="file"
-                        />
-                        <EditOutlined />
-                      </label>
-                    )}
-                  </div> */}
                 </div>
-
-
-
-
-                <EditForm  />
-
-
-             
-
-
-
-
-
-
-
-
-
-
-                {/* <div className='fieldarray-top' >
-                  <h4>Add Sizes</h4>
-                  <FieldArray
-
-                    name="parameters1"
-                    // disabled={isLoading}
-                    className="fieldarray"
-
-                    render={arrayHelpers => (
-
-                      <div>
-                        {values.parameters1?.length > 0 &&
-                          values.parameters1.map((paramList, index) => (
-
-                            <div key={index}>
-                              {Object.keys(paramList).map(param => (
-
-                                <Field
-                                  key={`${param}`}
-                                  name={`parameters1.${index}.${param}`}
-                                  placeholder={`${index}.${param}`}
-                                  className="field-ingredients"
-
-                                />
-                              ))}
-                              <button
-                                type="button"
-                                onClick={() => arrayHelpers.remove(index)}
-                              >
-                                {" "}
-                                -{" "}
-                              </button>
-                            </div>
-
-                          ))}
-                        <button
-                          type="button"
-                          onClick={() =>
-                            arrayHelpers.push({ name: "", price: "", preis2: "", preis3: "", preis4: "" })
-                          }
-                        >
-                          {" "}
-                          +{" "}
-                        </button>
-                      </div>
-                    )}
-                  />
-
-                </div> */}
-
-                {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
-
-
-
-
-
-
+                <EditForm />
               </>
-
-
-
-
-             )} 
-
-
-
-
-
-
+            )}
           </Formik>
-
-
-
-
         </div>
       </div>
     </Boundary>
@@ -348,24 +133,21 @@ const EditIngredients = () => {
 EditIngredients.propTypes = {
   ingredients: PropType.shape({
     preis1: PropType.number
-  //   name: PropType.string,
-  //   brand: PropType.string,
-  //   price: PropType.number,
-
-  //   sizes_new: PropType.object,
-
-  //   prices_new: PropType.object,
-
-  //   maxQuantity: PropType.number,
-  //   description: PropType.string,
-  //   keywords: PropType.arrayOf(PropType.string),
-  //   imageCollection: PropType.arrayOf(PropType.object),
-  //   sizes: PropType.arrayOf(PropType.string),
-  //   image: PropType.string,
-  //   imageUrl: PropType.string,
-  //   isFeatured: PropType.bool,
-  //   isRecommended: PropType.bool,
-  //   availableColors: PropType.arrayOf(PropType.string)
+    //   name: PropType.string,
+    //   brand: PropType.string,
+    //   price: PropType.number,
+    //   sizes_new: PropType.object,
+    //   prices_new: PropType.object,
+    //   maxQuantity: PropType.number,
+    //   description: PropType.string,
+    //   keywords: PropType.arrayOf(PropType.string),
+    //   imageCollection: PropType.arrayOf(PropType.object),
+    //   sizes: PropType.arrayOf(PropType.string),
+    //   image: PropType.string,
+    //   imageUrl: PropType.string,
+    //   isFeatured: PropType.bool,
+    //   isRecommended: PropType.bool,
+    //   availableColors: PropType.arrayOf(PropType.string)
 
 
   }).isRequired,

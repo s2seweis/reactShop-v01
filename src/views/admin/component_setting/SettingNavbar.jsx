@@ -14,11 +14,7 @@ SettingsNavbar = (props) => {
     <div className="product-admin-header">
       <h3 className="product-admin-header-title">
         Settings &nbsp;
-       
       </h3>
-     
-      
-      
     </div>
   );
 };

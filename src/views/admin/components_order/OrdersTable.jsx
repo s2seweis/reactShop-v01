@@ -9,17 +9,7 @@ const OrdersTable = ({ filteredOrders }) => (
 
     <div>
       {filteredOrders.length > 0 && (
-
-
-        // padding: 0 $s-size;
-
-
-
         <div className="grid grid-count-4-table">
-
-          {/* <div className="grid-col" /> */}
-
-
           <div className="grid-col">
             <h5>Date</h5>
           </div>
@@ -32,14 +22,7 @@ const OrdersTable = ({ filteredOrders }) => (
           <div className="grid-col">
             <h5>Total</h5>
           </div>
-
-
-          {/* <div className="grid-col">
-          <h5>Qty1</h5>
-        </div> */}
-
         </div>
-
       )}
       {filteredOrders.length === 0 ? new Array(10).fill({}).map((order, index) => (
         <OrderItem

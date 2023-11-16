@@ -7,18 +7,12 @@ import { useHistory } from 'react-router-dom';
 
 const 
 IngredientsNavbar = (props) => {
-  // const { ingredientsCount, totalIngredientsCount } = props;
   const history = useHistory();
-
   return (
     <div className="product-admin-header">
       <h3 className="product-admin-header-title">
         Ingredients 1 &nbsp;
-       
       </h3>
-     
-      
-      
     </div>
   );
 };

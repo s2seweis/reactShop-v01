@@ -11,22 +11,11 @@ import { useFileHandler } from 'hooks';
 import PropType from 'prop-types';
 import React from 'react';
 import * as Yup from 'yup';
-
 import FormikFieldArrayForm from 'components/common/FormikFieldArrayForm';
-
 import { ADMIN_PRODUCTS } from 'constants/routes';
-
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
-
 import { useHistory } from 'react-router-dom';
 import { SET_LAST_REF_KEY } from 'constants/constants';
-
-
-
-
-
-
-
 
 // Default brand names that I used. You can use what you want
 const brandOptions = [
@@ -72,30 +61,28 @@ const FormSchema = Yup.object().shape({
     .min(1, 'Please add a default color for this product.')
 });
 
-const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) => {
+const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters }) => {
+
+  const history = useHistory();
+
+
   const initFormikValues = {
     name: product?.name || '',
     brand: product?.brand || '',
     price: product?.price || 0,
-
     // info:https://formik.org/docs/guides/arrays
-
     sizes_new: {
       small: product?.sizes_new.small || 'small',
       medium: product?.sizes_new.medium || 'medium',
       large: product?.sizes_new.large || 'large',
       extra_large: product?.sizes_new.extra_large || 'extra large',
     },
-
     prices_new: {
       small: product?.prices_new.small || '5',
       medium: product?.prices_new.medium || '10',
       large: product?.prices_new.large || '15',
       extra_large: product?.prices_new.extra_large || '20',
     },
-
-    // small: product?.small || '',
-
     maxQuantity: product?.maxQuantity || 0,
     description: product?.description || '',
     keywords: product?.keywords || [],
@@ -105,20 +92,10 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
     availableColors: product?.availableColors || [],
     // tickets: product?.tickets,
 
-
-
     // https://stackoverflow.com/questions/40348171/es6-map-an-array-of-objects-to-return-an-array-of-objects-with-new-keys
-
     tickets: product?.tickets?.map((person) => ({ name: person.name, email: person.email })) || [],
-
-
     toggle: false,
-
-
-
   };
-  console.log(initFormikValues)
-  console.log(initFormikValues.tickets)
 
   const {
     imageFile,
@@ -126,9 +103,6 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
     onFileChange,
     removeImage
   } = useFileHandler({ image: product?.image || {}, imageCollection: product?.imageCollection || [] });
-
-  console.log(imageFile)
-
 
   const onSubmitForm = (form) => {
     if (imageFile.image.file ||
@@ -143,12 +117,9 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
         name_lower: form.name.toLowerCase(),
         dateAdded: new Date().getTime(),
         image: imageFile?.image?.file ||
-
           // product.imageUrl,
           product?.image,
-
         imageCollection: imageFile.imageCollection
-
       });
     } else {
       // eslint-disable-next-line no-alert
@@ -156,35 +127,10 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
     }
   };
 
-
-
-
-
-  // const tickets = product?.tickets.map(({ email, name, key, value, id }) => ({ [email]: name, [name]: email }))
-  // || []
-  // ;
-
-  // const tickets = product?.tickets
-  //   || []
-  //   ;
-
-
-  const history = useHistory();
-
-  console.log()
-
-
-
   return (
 
     <div className='product-tab-content'>
-
-
-
       <div>
-
-
-
         <Formik
           initialValues={initFormikValues}
           validateOnChange
@@ -193,8 +139,6 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
         >
           {({ values, setValues }) => (
             <Form className="product-form">
-
-
               <button
                 className="button-back-new button-muted w-100-mobile"
                 // disabled={authProvider !== 'password' || isLoading}
@@ -205,10 +149,6 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
                 &nbsp;
                 Back
               </button>
-
-
-
-
               <div className="product-form-inputs">
                 <div className="d-flex">
                   <div className="product-form-field">
@@ -257,8 +197,6 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
                       component={CustomInput}
                     />
                   </div>
-
-
                   &nbsp;
                   <div className="product-form-field">
                     <Field
@@ -271,38 +209,17 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
                     />
                   </div>
                 </div>
-
-
-                {/* ########################################### */}
-                {/* Test:1 Checkbox  */}
-                <div className='checkbox-ingredients' 
-                style={{ display: "flex", width:"300px", alignItems:"center" }}
+                <div className='checkbox-ingredients'
+                  style={{ display: "flex", width: "300px", alignItems: "center" }}
                 >
-                  <h3 style={{  marginTop:"20px" }}>Checkbox:</h3>
-                <label style={{ width: "100px", padding:"4rem", marginTop:"20px", marginLeft:"20px" }} >
-                  <Field type="checkbox" name="toggle"  />
-                  {`${values.toggle}`}
-                </label>
+                  <h3 style={{ marginTop: "20px" }}>Checkbox:</h3>
+                  <label style={{ width: "100px", padding: "4rem", marginTop: "20px", marginLeft: "20px" }} >
+                    <Field type="checkbox" name="toggle" />
+                    {`${values.toggle}`}
+                  </label>
                 </div>
-                
-
-                {/* Test:1 Checkbox  */}
-              {/* ########################################### */} 
-
-
-
-
-                {/* Test: adding price and size variations, becoming a table, later will become an own component (refactoring) + using formik dynamic forms */}
-
-
-                {/* Sizes */}
-
-
                 <div className="d-flex-vari-top">
-
-
                   <div className="d-flex-vari">
-
                     <div className="product-form-field-vari">
                       <Field
                         disabled={isLoading}
@@ -313,7 +230,6 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
                         component={CustomInput}
                       />
                     </div>
-
                     <div className="product-form-field-vari">
                       <Field
                         disabled={isLoading}
@@ -324,7 +240,6 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
                         component={CustomInput}
                       />
                     </div>
-
                     <div className="product-form-field-vari">
                       <Field
                         disabled={isLoading}
@@ -335,7 +250,6 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
                         component={CustomInput}
                       />
                     </div>
-
                     <div className="product-form-field-vari">
                       <Field
                         disabled={isLoading}
@@ -346,20 +260,8 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
                         component={CustomInput}
                       />
                     </div>
-
-
-
                   </div>
-
-
-
-                  {/* Prices */}
-
-
-
-
                   <div className="d-flex-vari">
-
                     <div className="product-form-field-vari">
                       <Field
                         disabled={isLoading}
@@ -370,7 +272,6 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
                         component={CustomInput}
                       />
                     </div>
-
                     <div className="product-form-field-vari">
                       <Field
                         disabled={isLoading}
@@ -381,7 +282,6 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
                         component={CustomInput}
                       />
                     </div>
-
                     <div className="product-form-field-vari">
                       <Field
                         disabled={isLoading}
@@ -392,7 +292,6 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
                         component={CustomInput}
                       />
                     </div>
-
                     <div className="product-form-field-vari">
                       <Field
                         disabled={isLoading}
@@ -403,17 +302,8 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
                         component={CustomInput}
                       />
                     </div>
-
-
-
                   </div>
-
                 </div>
-
-
-
-
-
                 <div className="d-flex">
                   <div className="product-form-field">
                     <CustomCreatableSelect
@@ -439,28 +329,9 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
                       label="* Sizes (Millimeter)"
                       options={sizeOptions}
                     />
-
-
-                    {/* <CustomCreatableSelect
-                    defaultValue={{ label: values.brand, value: values.brand }}
-                    name="brand"
-                    id="brand"
-                    options={brandOptions}
-                    disabled={isLoading}
-                    placeholder="Select/Create Brand"
-                    label="* Brand"
-                  /> */}
-
-
-
-
                   </div>
                 </div>
-
-
-
                 {/* this becoming sizes !!!! */}
-
                 <div className="product-form-field">
                   <FieldArray
                     name="availableColors"
@@ -468,36 +339,23 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
                     component={CustomColorInput}
                   />
                 </div>
-
-
-
-
-                {/* <h4>Add Sizes</h4> */}
-
-                {/* <FormikFieldArrayForm parameters={{ paramLists: tickets }} /> */}
                 <div className='fieldarray-top' >
                   <h4>Add Sizes - Still Required!!!!</h4>
                   <FieldArray
-
                     name="tickets"
                     disabled={isLoading}
                     className="fieldarray"
-
                     render={arrayHelpers => (
-
                       <div>
                         {values.tickets?.length > 0 &&
                           values.tickets.map((paramList, index) => (
-
                             <div key={index}>
                               {Object.keys(paramList).map(param => (
-
                                 <Field
                                   key={`${param}`}
                                   name={`tickets.${index}.${param}`}
                                   placeholder={`${index}.${param}`}
                                   className="field"
-
                                 />
                               ))}
                               <button
@@ -522,13 +380,7 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
                       </div>
                     )}
                   />
-
                 </div>
-
-                {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
-
-
-
                 <div className="product-form-field">
                   <span className="d-block padding-s">Image Collection</span>
                   {!isFileLoading && (
@@ -558,7 +410,6 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
                             alt=""
                             src={image.url}
                           />
-
                           <button
                             className="product-form-delete-image"
                             onClick={() => removeImage({ id: image.id, name: 'imageCollection' })}
@@ -568,7 +419,6 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
                             Delete
                             <i className="fa fa-times-circle" />
                           </button>
-
                         </div>
                       ))
                     )}
@@ -617,7 +467,6 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters}) 
                     {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
                     &nbsp;
                     {isLoading ? 'Saving Product' : 'Save Product1'}
-
                   </button>
                 </div>
               </div>
@@ -662,11 +511,8 @@ ProductForm.propTypes = {
     name: PropType.string,
     brand: PropType.string,
     price: PropType.number,
-
     sizes_new: PropType.object,
-
     prices_new: PropType.object,
-
     maxQuantity: PropType.number,
     description: PropType.string,
     keywords: PropType.arrayOf(PropType.string),
@@ -683,8 +529,3 @@ ProductForm.propTypes = {
 };
 
 export default ProductForm;
-
-
-
-// Extra: 
-// Checkbox for change the state to extraIngredients active, via setting it to true, ingredients will be called

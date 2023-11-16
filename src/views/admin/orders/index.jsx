@@ -6,9 +6,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { selectFilter } from 'selectors/selector_order';
-
 import { OrdersNavbar } from '../components_order';
-
 import OrdersTable from '../components_order/OrdersTable';
 
 const Orders = () => {

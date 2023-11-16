@@ -8,27 +8,12 @@ import { updateIngredientsSuccess } from '../actions/ingredientActions';
 import { addIngredientSuccess } from '../actions/ingredientActions';
 import { getIngredientSuccess } from '../actions/ingredientActions';
 import { setLoading, setRequestStatus } from 'redux/actions/miscActions';
-
 import { clearProfile, setProfile } from 'redux/actions/profileActions';
-
-
 import React, { useState } from 'react';
-
 import { useDispatch } from 'react-redux';
-
 import defaultAvatar from 'images/defaultAvatar.jpg';
 import defaultBanner from 'images/defaultBanner.jpg';
-
-
-
-
-
-
-// import firebase from 'firebase/app';
 import 'firebase/firestore';
-
-// import { doc, getDoc } from "firebase/firestore";
-
 
 function* initRequest() {
   yield put(setLoading(true));
@@ -46,30 +31,16 @@ function* handleAction(location, message, status) {
   yield call(displayActionMessage, message, status);
 }
 
-
-
 function* ingredientSaga({ type, payload }) {
   switch (type) {
 
     case ADD_INGREDIENT: {
       try {
         yield initRequest();
-
-
-        // Attempt: 1 .................................
-
-        // const state = yield select();
-
-
         const { avatarFile, bannerFile } = payload.files;
-
         yield put(setLoading(true));
-
         const key = yield call(firebase.generateKey);
-
-
         const ingredient = {
-          
           ...payload,
         };
 
@@ -78,32 +49,13 @@ function* ingredientSaga({ type, payload }) {
           const avatarURL = yield call(firebase.storeImage, key, 'avatar', avatarFile) ;
           const ingredientNew = { avatar: avatarURL, banner: bannerURL, ...payload.adds };
 
-          console.log("Current data: ", ingredientNew)
-
           yield call(firebase.addIngredient, key, ingredientNew);
           yield put(addIngredientSuccess(ingredient));
         } else {
           yield call(firebase.addIngredient, key, ingredient);
-          // yield put(updateSettingsSuccess(payload.setting));
         }
         
-
-
-        // yield call(firebase.
-        //   addSetting,
-        //   key,
-        //   setting);
-
-
-
-        
-
-
-        // yield handleAction(ADMIN_INGREDIENTS, 'Ingredients succesfully added', 'success');
-
-
         yield put(setLoading(false));
-        // yield call(history.push, SHOP)
       } catch (e) {
         yield handleError(e);
         yield handleAction(undefined, `Ingredient failed to add: ${e?.message}`, 'error');
@@ -111,35 +63,22 @@ function* ingredientSaga({ type, payload }) {
       break;
     }
 
-
-
     case UPDATE_INGREDIENT: {
       try {
         const state = yield select();
-        // const { email, password } = payload.credentials;
         const { avatarFile, bannerFile } = payload.files;
-
         yield put(setLoading(true));
-
-        // if email & password exist && the email has been edited
-        // update the email
-        // if (email && password && email !== state.profile.email) {
-        //   yield call(firebase.updateEmail, password, email);
-        // }
 
         if (avatarFile || bannerFile) {
           const bannerURL = bannerFile ? yield call(firebase.storeImage, state.auth.id, 'banner', bannerFile) : payload.updates.banner;
           const avatarURL = avatarFile ? yield call(firebase.storeImage, state.auth.id, 'avatar', avatarFile) : payload.updates.avatar;
           const updates = { ...payload.updates, avatar: avatarURL, banner: bannerURL };
 
-          console.log("Current data: ", updates)
-
           yield call(firebase.updateIngredient, state.auth.id, updates);
           yield put(updateIngredientsSuccess(updates));
         } else {
 
           // this part working
-          console.log("Current data: ", payload.updates)
           yield call(firebase.updateIngredient, state.auth.id, payload.updates);
           yield put(updateIngredientsSuccess(payload.updates));
         }
@@ -159,84 +98,23 @@ function* ingredientSaga({ type, payload }) {
       break;
     }
 
-
-
     case GET_INGREDIENT:
       try {
-
-
-
         const snapshot = yield call(firebase.docRef1);
-
-        // console.log("Current data: ", snapshot);
 
         if (snapshot.data()) { // if user exists in database
           const test = snapshot.data();
 
-          // console.log("Current data: ", test);
-
-          
           yield put(getIngredientSuccess(test));
-          
-          // yield put(setLoading(true));
-
-          // yield put(setSetting(user));
-
-
-
-
-          // yield put(setBasketItems(user.basket));
-          // yield put(setBasketItems(user.basket));
-          // yield put(signInSuccess({
-          //   id: payload.uid,
-          //   role: user.role,
-          //   provider: payload.providerData[0].providerId
-          // }));
         }
-
-
-
-        // settings.get().then((doc) => {
-        //   if (doc.exists) {
-        //     const data = doc.data();
-
-
-        //    put(getSettingSuccess(data))
-
-
-
-
-        //     console.log("Document data:", data);
-        //   } 
-
-        //   else {
-        //     // doc.data() will be undefined in this case
-        //     console.log("No such document!");
-        //   }
-        // })
-
-
-        // .catch((error) => {
-        //   console.log("Error getting document:", error);
-        // });
-
-
-
-
       }
-
-
-
 
       catch (e) {
         console.log(e);
         yield handleError(e);
       }
       break;
-
   }
-
-
 }
 
 export default ingredientSaga;

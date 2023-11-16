@@ -28,36 +28,29 @@ const btn = (light, dark) => css`
   }
 `
 
-
 const btnDefault = css`${btn('#ffffff', '#d5d5d5')} color: #555;`
-
 const btnPrimary = btn('#4f93ce', '#285f8f')
 const btnDanger = btn('#e27c79', '#c9302c')
 
 export default styled.div`
   font-family: sans-serif;
-
   h1 {
     text-align: center;
     color: #222;
   }
-
   h2 {
     text-align: center;
     color: #222;
   }
-
   & > div {
     text-align: center;
   }
-
   a {
     display: block;
     text-align: center;
     color: #222;
     margin-bottom: 10px;
   }
-
   p {
     max-width: 500px;
     margin: 10px auto;
@@ -95,7 +88,6 @@ export default styled.div`
       & > input,
       & > select,
       & > textarea {
-
 
 // for the width of the first field
 

@@ -11,7 +11,6 @@ import { Link } from 'react-router-dom';
 import { signIn } from 'redux/actions/authActions';
 import { setAuthenticating, setAuthStatus } from 'redux/actions/miscActions';
 import * as Yup from 'yup';
-
 import Preloader from '../../../components/common/Preloader'
 
 const SignInSchema = Yup.object().shape({
@@ -121,9 +120,6 @@ const SignIn = ({ history }) => {
                           &nbsp;
                           {isAuthenticating ? <LoadingOutlined /> : <ArrowRightOutlined />}
                         </button>
-
-
-
                       </div>
                     </Form>
                   )}
@@ -150,12 +146,7 @@ const SignIn = ({ history }) => {
           </div>
         </>
       )}
-
-
       <Preloader />
-
-
-
     </div>
   );
 };

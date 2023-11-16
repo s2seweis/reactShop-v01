@@ -17,7 +17,6 @@ WebFont.load({
 });
 
 const { store, persistor } = configureStore();
-// ###########
 const root = document.getElementById('app');
 
 // Render the preloader on initial load
@@ -42,4 +41,3 @@ if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     });
   });
 }
-

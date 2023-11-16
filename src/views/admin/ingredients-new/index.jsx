@@ -37,5 +37,3 @@ const Ingredients = () => {
 };
 
 export default withRouter(Ingredients);
-
-// top level of settings

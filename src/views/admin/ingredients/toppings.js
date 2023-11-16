@@ -15,11 +15,6 @@ export const toppings1 = [
  
 ];
 
-
-
-
-;
-
 export const toppings2 = [
   {
     name: "Capsicum",

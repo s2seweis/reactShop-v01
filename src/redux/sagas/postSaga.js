@@ -1,14 +1,11 @@
 /* eslint-disable indent */
 import {
-
   ADD_POST,
   EDIT_POST,
   GET_POSTS,
   REMOVE_POST,
   SEARCH_POST
-  
 } from 'constants/constants';
-
 import { ADMIN_POSTS } from 'constants/routes';
 import { displayActionMessage } from 'helpers/utils';
 import {
@@ -23,7 +20,6 @@ import {
   removePostSuccess,
   searchPostSuccess
 } from '../actions/postActions';
-
 
 function* initRequest() {
   yield put(setLoading(true));
@@ -72,19 +68,15 @@ function* postSaga({ type, payload }) {
         yield initRequest();
 
         const { imageCollection } = payload;
-        
         const key3 = yield call(firebase.generateKey3);
         const key2 = yield call(firebase.generateKey2);
         const key1 = yield call(firebase.generateKey1);
-        
         const downloadURL3 = yield call(firebase.storeImage3, key3, 'posts', payload.image3 );
         const downloadURL2 = yield call(firebase.storeImage2, key2, 'posts', payload.image2 );
         const downloadURL1 = yield call(firebase.storeImage1, key1, 'posts', payload.image1 );
-
         const image3 = { id3: key3, url: downloadURL3 };
         const image2 = { id2: key2, url: downloadURL2 };
         const image1 = { id1: key1, url: downloadURL1 };
-
         let images = [];
 
         if (imageCollection.length !== 0) {
@@ -96,7 +88,6 @@ function* postSaga({ type, payload }) {
           }));
         }
       
-
         const post = {
           ...payload,
           image1: downloadURL1,
@@ -108,8 +99,6 @@ function* postSaga({ type, payload }) {
         yield call(firebase.addPost, key2, post);
         yield put(addPostSuccess({
           id2: key2,
-          // id1: key1,
-          
           ...post
         }));
         yield handleAction(ADMIN_POSTS, 'Item succesfully added', 'success');
@@ -133,7 +122,6 @@ function* postSaga({ type, payload }) {
           } catch (e) {
             console.error('Failed to delete image ', e);
           }
-
           const url = yield call(firebase.storeImage, payload.id, 'posts', image);
           newUpdates = { ...newUpdates, image: url };
         }

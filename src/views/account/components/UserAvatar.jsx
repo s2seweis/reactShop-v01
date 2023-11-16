@@ -17,24 +17,6 @@ const UserNav = () => {
   const userNav = useRef(null);
   const dispatch = useDispatch();
 
-  // const toggleDropdown = (e) => {
-  //   const closest = e.target.closest('div.user-nav');
-
-  //   try {
-  //     if (!closest && userNav.current.classList.contains('user-sub-open')) {
-  //       userNav.current.classList.remove('user-sub-open');
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   document.addEventListener('click', toggleDropdown);
-
-  //   return () => document.removeEventListener('click', toggleDropdown);
-  // }, []);
-
   const onClickNav = () => {
     userNav.current.classList.toggle('user-sub-open');
   };

@@ -1,13 +1,10 @@
 /* eslint-disable indent */
-
 import {
-
   ADD_USER1,
   EDIT_USER1,
   GET_USERS1,
   REMOVE_USER1,
   SEARCH_USER1
-
 } from 'constants/constants';
 import { ADMIN_USERS1 } from 'constants/routes';
 import { displayActionMessage } from 'helpers/utils';
@@ -15,16 +12,13 @@ import {all, call, put, select} from 'redux-saga/effects';
 import { setLoading, setRequestStatus } from 'redux/actions/miscActions';
 import { history } from 'routers/AppRouter';
 import firebase from 'services/firebase';
-
 import {
-
   addUser1Success,
   clearSearchState, 
   editUser1Success, 
   getUsers1Success,
   removeUser1Success,
   searchUser1Success
-  
 } from '../actions/user1Actions';
 
 function* initRequest() {
@@ -114,45 +108,6 @@ function* user1Saga({ type, payload }) {
         const { image, imageCollection } = payload.updates;
         let newUpdates = { ...payload.updates };
 
-        // if (image.constructor === File && typeof image === 'object') {
-        //   try {
-        //     yield call(firebase.deleteImage, payload.id);
-        //   } catch (e) {
-        //     console.error('Failed to delete image ', e);
-        //   }
-
-        //   const url = yield call(firebase.storeImage, payload.id, 'users1', image);
-        //   newUpdates = { ...newUpdates, image: url };
-        // }
-
-        // if (imageCollection.length > 1) {
-        //   const existingUploads = [];
-        //   const newUploads = [];
-
-        //   imageCollection.forEach((img) => {
-        //     if (img.file) {
-        //       newUploads.push(img);
-        //     } else {
-        //       existingUploads.push(img);
-        //     }
-        //   });
-
-        //   const imageKeys = yield all(newUploads.map(() => firebase.generateKey));
-        //   const imageUrls = yield all(newUploads.map((img, i) => firebase.storeImage(imageKeys[i](), 'users1', img.file)));
-        //   const images = imageUrls.map((url, i) => ({
-        //     id: imageKeys[i](),
-        //     url
-        //   }));
-        //   newUpdates = { ...newUpdates, imageCollection: [...existingUploads, ...images] };
-        // } else {
-        //   newUpdates = {
-        //     ...newUpdates,
-        //     imageCollection: [{ id: new Date().getTime(), url: newUpdates.image }]
-        //   };
-          // add image thumbnail to image collection from newUpdates to
-          // make sure you're adding the url not the file object.
-        // }
-
         yield call(firebase.editUser1, payload.id, newUpdates);
         yield put(editUser1Success({
           id: payload.id,
@@ -212,5 +167,3 @@ function* user1Saga({ type, payload }) {
 }
 
 export default user1Saga;
-
-// okay

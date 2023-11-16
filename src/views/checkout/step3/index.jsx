@@ -8,11 +8,9 @@ import { Redirect } from 'react-router-dom';
 import * as Yup from 'yup';
 import { StepTracker } from '../components';
 import withCheckout from '../hoc/withCheckout';
-
 import CreditPayment from './CreditPayment';
 import PayPalPayment from './PayPalPayment';
 import CashPayment from './CashPayment';
-
 import Total from './Total';
 
 const FormSchema = Yup.object().shape({

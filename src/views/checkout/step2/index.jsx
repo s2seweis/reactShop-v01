@@ -53,10 +53,6 @@ const ShippingDetails = ({ profile, shipping, subtotal }) => {
     isDone: shipping.isDone || false
   };
 
-// console.log(initFormikValues.fullname)
-// console.log(subtotal)
-
-
   const onSubmitForm = (form) => {
     dispatch(setShippingDetails({
       fullname: form.fullname,
@@ -81,21 +77,13 @@ const ShippingDetails = ({ profile, shipping, subtotal }) => {
             validationSchema={FormSchema}
             onSubmit={onSubmitForm}
           >
-
             {() => (
-
               <Form>
-
                 <ShippingForm />
-
                 <br />
-
                 {/*  ---- TOTAL --------- */}
                 <ShippingTotal subtotal={subtotal} />
-
                 <br />
-
-                
                 {/*  ----- NEXT/PREV BUTTONS --------- */}
                 <div className="checkout-shipping-action">
                   <button
@@ -119,8 +107,6 @@ const ShippingDetails = ({ profile, shipping, subtotal }) => {
 
               </Form>
             )}
-
-
           </Formik>
         </div>
       </div>

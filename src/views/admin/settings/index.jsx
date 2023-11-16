@@ -22,10 +22,6 @@ const Settings = () => {
 
   return (
     <Boundary>
-      {/* <SettingsNavbar
-        settingsCount={store.settings.items.length}
-        totalSettingsCount={store.settings.total}
-      /> */}
       <div className="product-admin-items">
         <SettingList {...store}>
           <SettingAppliedFilters filter={store.filter} />
@@ -37,5 +33,3 @@ const Settings = () => {
 };
 
 export default withRouter(Settings);
-
-// top level of settings

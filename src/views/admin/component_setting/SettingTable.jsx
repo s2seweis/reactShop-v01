@@ -4,7 +4,7 @@ import { useDocumentTitle, useScrollTop } from 'hooks';
 import React, { lazy, Suspense } from 'react';
 import SettingTab from '../../../views/admin/component_setting/components/SettingTab';
 
-const SettingAccountTab = lazy(() => import('../component_setting/SettingTab'));
+// const SettingAccountTab = lazy(() => import('../component_setting/SettingTab'));
 const EditSettings = lazy(() => import('../component_setting/edit_setting'));
 const UserWishListTab = lazy(() => import('../component_setting/components/SettingListTab'));
 const UserOrdersTab = lazy(() => import('../../../views/account/components/UserOrdersTab'));
@@ -25,18 +25,10 @@ const UserAccount = () => {
 
       <div index={0} label="General">
         <Suspense fallback={<Loader />}>
-
-
-          {/* <SettingAccountTab /> */}
-
-
+          <SettingAccountTab />
           <EditSettings />
-
-
         </Suspense>
       </div>
-
-
       <div index={2} label="Taxes">
         <Suspense fallback={<Loader />}>
           <UserWishListTab />

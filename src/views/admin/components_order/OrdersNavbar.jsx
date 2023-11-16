@@ -19,22 +19,6 @@ const OrdersNavbar = (props) => {
       </h5>
       <SearchBar />
             &nbsp;
-      {/* <FiltersToogleMenu>
-        <button className="button-muted button-small" type="button">
-          <FilterOutlined />
-          &nbsp;More Filters
-        </button>
-      </FiltersToogleMenu> */}
-      
-  
-      {/* <button
-        className="button button-small"
-        onClick={() => history.push(ADD_MENU)}
-        type="button"
-      >
-        <PlusOutlined />
-        &nbsp; Add New Menu2
-      </button> */}
     </div>
   );
 };
@@ -45,5 +29,3 @@ OrdersNavbar.propTypes = {
 };
 
 export default OrdersNavbar;
-
-// okay

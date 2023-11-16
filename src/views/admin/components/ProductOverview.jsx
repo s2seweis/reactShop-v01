@@ -8,7 +8,6 @@ const SettingAccountTab = lazy(() => import('../component_setting/SettingTab'));
 const EditSettings = lazy(() => import('../component_setting/edit_setting'));
 const UserWishListTab = lazy(() => import('../component_setting/components/SettingListTab'));
 const UserOrdersTab = lazy(() => import('../../../views/account/components/UserOrdersTab'));
-
 const ProductForm = lazy(() => import('../../admin/components/ProductForm'));
 
 const Loader = () => (
@@ -27,21 +26,11 @@ const ProductOverview = () => {
 
       <div index={0} label="General">
         <Suspense fallback={<Loader />}>
-
-
           {/* <SettingAccountTab /> */}
-
-
           <ProductForm />
-
-          
           {/* <EditSettings /> */}
-
-
         </Suspense>
       </div>
-
-
       <div index={2} label="Advanced">
         <Suspense fallback={<Loader />}>
           <UserWishListTab />

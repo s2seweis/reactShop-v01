@@ -6,9 +6,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { selectFilter } from 'selectors/selector_post';
-
 import { PostsNavbar } from '../components_post';
-
 import PostsTable from '../components_post/PostsTable';
 
 const Posts = () => {

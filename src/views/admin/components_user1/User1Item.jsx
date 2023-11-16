@@ -7,15 +7,12 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { useDispatch } from 'react-redux';
 import { useHistory, withRouter } from 'react-router-dom';
 import { removeUser1 } from 'redux/actions/user1Actions';
-
 import { useSelector } from 'react-redux';
-
 
 const User1Item = ({ user1 }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user1Ref = useRef(null);
-
 
   const onClickEdit = () => {
     history.push(`${EDIT_USER1}/${user1.id}`);
@@ -68,10 +65,7 @@ const User1Item = ({ user1 }) => {
           <div className="grid-col">
             <span className="text-overflow-ellipsis">{user1.address || <Skeleton width={50} />}</span>
           </div>
-          {/* <div className="grid-col">
-            <span className="text-overflow-ellipsis">{user1.mobile || <Skeleton width={50} />}</span>
-          </div> */}
-
+        
           <div className="grid-col">
             {user1.mobile ? (
               <h5>{user1.mobile.value}</h5>
@@ -80,20 +74,12 @@ const User1Item = ({ user1 }) => {
             )}
           </div>
 
-
-          {/* <div className="grid-col">
-            <span>{user1.price ? displayMoney(user1.price) : <Skeleton width={30} />}</span>
-          </div> */}
-
           <div className="grid-col">
             <span>
               {user1.dateJoined ? displayDate(user1.dateJoined) : <Skeleton width={30} />}
             </span>
           </div>
-          
-          {/* <div className="grid-col">
-            <span>{user1.maxQuantity || <Skeleton width={20} />}</span>
-          </div> */}
+        
         </div>
         {user1.id && (
           <div className="item-action-user">
@@ -161,5 +147,3 @@ User1Item.propTypes = {
 };
 
 export default withRouter(User1Item);
-
-// okay

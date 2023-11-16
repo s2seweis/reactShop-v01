@@ -36,14 +36,9 @@ class Firebase {
 
   addUser = (id, user) => this.db.collection("users").doc(id).set(user);
 
-
-
-
-
   getUser = (id) => this.db.collection("users").doc(id).get();
 
   getSetting = (id) => this.db.collection("settings").doc(id).get();
-
 
   // get Settings Reference
 

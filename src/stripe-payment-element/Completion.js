@@ -15,12 +15,10 @@ const Completion = (props) => {
     const { auth } = useSelector((state) => ({
         auth: state.auth,
     }));
-    console.log(auth.id)
 
     const { checkout } = useSelector((state) => ({
         checkout: state.checkout,
     }));
-    console.log(checkout)
     const productItems = checkout.data.basket?.map((item) => {
         return {
 
@@ -105,11 +103,8 @@ const Completion = (props) => {
     }, [stripe]);
 
     const createOrder = async (paymentIntent) => {
-        console.log("line:6", paymentIntent);
 
         const key = firebase.generateKey();
-        console.log(key)
-
 
         const newOrder2 = {
             // amount: "50",
@@ -128,7 +123,6 @@ const Completion = (props) => {
 
         try {
             firebase.addOrder1(newOrder, key)
-            console.log("Processed Order:", newOrder);
             clearBasket()
         }
         catch (err) {

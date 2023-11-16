@@ -43,8 +43,6 @@ const UserProfile = (props) => {
           <br />
           <h5>{profile.email}</h5>
 
-
-
           <span>Address</span>
           <br />
           {profile.address ? (
@@ -52,7 +50,6 @@ const UserProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Address not set</h5>
           )}
-
 
           <span>Address</span>
           <br />
@@ -88,8 +85,6 @@ const UserProfile = (props) => {
             <h5 className="text-subtle text-italic">Mobile not set</h5>
           )}
 
-
-
           <span>Date Joined</span>
           <br />
           {profile.dateJoined ? (
@@ -105,10 +100,6 @@ const UserProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Not available</h5>
           )}
-
-
-
-
 
         </div>
       </div>

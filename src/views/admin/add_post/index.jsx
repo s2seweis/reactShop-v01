@@ -53,6 +53,3 @@ const AddPost = () => {
 };
 
 export default withRouter(AddPost);
-
-
-// okay

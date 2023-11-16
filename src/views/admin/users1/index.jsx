@@ -6,9 +6,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { selectFilter } from 'selectors/selector_user1';
-
 import { Users1Navbar } from '../components_user1';
-
 import Users1Table from '../components_user1/Users1Table';
 
 const Users1 = () => {

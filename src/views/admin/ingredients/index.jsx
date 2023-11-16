@@ -7,54 +7,22 @@ import React, { useEffect, useState, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setLoading } from 'redux/actions/miscActions';
 import { addIngredients, updateIngredient } from 'redux/actions/ingredientActions';
-
-
 import * as Yup from 'yup';
 import ConfirmModal from '../../admin/component_ingredient/edit-ingredient/ConfirmModal';
-
-
 import { call, put, select } from 'redux-saga/effects';
-
-
 import PropType from 'prop-types';
-
 import EditForm from '../ingredients/EditForm';
-
-
-
-
-// #############################################################################################
-
-
-
-
 import { render } from "react-dom";
 import Styles from "./Styles";
 import { Form, Field } from "react-final-form";
 import arrayMutators from "final-form-arrays";
 import { FieldArray } from "react-final-form-arrays";
-
 import { FiArrowLeftCircle, FiArrowRightCircle, FiArrowDownCircle, FiArrowUpCircle } from 'react-icons/fi';
-
-
-// #############################################################################################
-
-
-
-
-
-
-
-
-
-
 
 const IngredientsForm = (values) => {
 
   useDocumentTitle('Edit Account | Dign1 - Ingredients ');
   useScrollTop();
-
-
   const dispatch = useDispatch();
 
   useEffect(() => () => {
@@ -68,16 +36,11 @@ const IngredientsForm = (values) => {
     isLoading: state.app.loading
   }));
 
-
   const {
     imageFile,
     isFileLoading,
     onFileChange
   } = useFileHandler({ avatar: {}, banner: {} });
-
-
-
-  console.log(ingredients)
 
   const initFormikValues = {
     fullname: ingredients?.email || '',
@@ -86,29 +49,11 @@ const IngredientsForm = (values) => {
     mobile: ingredients?.mobile || {},
     avatar: ingredients?.avatar || {},
     banner: ingredients?.banner || {},
-
-    // parameters1: ingredients?.parameters1 || [],
-
     parameters1: ingredients?.parameters1?.map((person) => ({ name: person.name, price: person.price.toFixed(2) })) || [],
-
-
     parameters2: ingredients?.parameters2?.map((person) => ({ name: person.name, price: person.price })) || [],
-
     parameters3: ingredients?.parameters3?.map((person) => ({ name: person.name, price: person.price })) || [],
-
     parameters4: ingredients?.parameters4?.map((person) => ({ name: person.name, price: person.price })) || []
-
-
   };
-
-
-
-
-  console.log(initFormikValues)
-  console.log(initFormikValues.parameters1)
-
-
-
 
   const update = (form) => {
     dispatch(updateIngredient({
@@ -118,16 +63,12 @@ const IngredientsForm = (values) => {
         // address: form.address,
         // mobile: form.mobile,
         // it stazys empty when updating it
-
-
         // parameters1: form.parameters1 || [],
         parameters1: form?.parameters1?.map((person) => ({ name: person.name, price: Number(person.price) })) || [],
         parameters2: form.parameters2 || [],
         parameters3: form.parameters3 || [],
         parameters4: form.parameters4 || [],
-
         // parameters1: form?.parameters1?.map((person) => ({ name: person.name, price: person.price })) || []
-
       },
       files: {
         bannerFile: imageFile.banner.file,
@@ -137,13 +78,9 @@ const IngredientsForm = (values) => {
     }));
   };
 
-
-
   const onSubmitUpdate = (form) => {
     // check if data has changed
     const fieldsChanged = Object.keys(form).some((key) => ingredients[key] !== form[key]);
-
-
     if (fieldsChanged || (Boolean(imageFile.banner.file || imageFile.avatar.file))) {
       update(form);
       // modal.onOpenModal();
@@ -153,59 +90,22 @@ const IngredientsForm = (values) => {
 
   };
 
-
-
-
-
-
-  // #############################################################################################
-
-
-
-
   // small
   const [isActive, setIsActive] = useState(false);
-
   // Test Start
   const [favorite, setFavorite] = useState(false);
-  // Test End
-
-
-
   // medium
   const [isActive1, setIsActive1] = useState(false);
-
   // large
   const [isActive2, setIsActive2] = useState(false);
-
   // xl
   const [isActive3, setIsActive3] = useState(false);
-
-
-
-
   // ??????????????
   const [selected, setIsSelected] = useState("");
-
-
-  // #############################################################################################
-
-
-  // Test: React Final Form
-
-  // Submit the Form, values hast the form state
-
-
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
   const onSubmit = async values => {
-
-
-
     await sleep(300);
-
-
-
     dispatch(updateIngredient({
       updates: {
         // fullname: form.fullname,
@@ -213,17 +113,12 @@ const IngredientsForm = (values) => {
         // address: form.address,
         // mobile: form.mobile,
         // it stazys empty when updating it
-
-
         // parameters1: form.parameters1 || [],
         // customers: values,
-
         // parameters2: values.parameters2 || [],
         // parameters3: values.parameters3 || [],
         // parameters4: values.parameters4 || [],
-
         // parameters1: values?.parameters1?.map((person) => ({ name: person.name, price: person.price })) || []
-
       },
       files: {
         bannerFile: imageFile.banner.file,
@@ -232,93 +127,24 @@ const IngredientsForm = (values) => {
       // credentials
     }));
 
-
-
-
     window.alert(JSON.stringify(values, 0, 2));
-
-    console.log(values)
-
-
-
-
   };
 
-
-
-
-  // get the state from the database
-
   const test1 = { customers: ingredients.customers?.customers?.map((person) => ({ name: person.name, price: person.price })) || [] }
-  // console.log(test1)
-
-
-
-
-  // Test: React Final Form
-
-
-  // #############################################################################################
-
-
-
-
-
-
-
-
-
-
+  
   return (
     <Boundary>
-
-
-
-
-      {/* <IngredientsNavbar
-      settingsCount={store.ingredients.items.length}
-      totalSettingsCount={store.ingredients.total}
-      /> */}
-
-
-
-      {/* ############################################################################################# */}
-
-
-
-
       <div className="product-admin-items">
         <div className="edit-user">
           <h3 className="text-center"
             style={{ marginBottom: "30px" }}
           >Edit Ingredient Details - Parent/ React Final Form</h3>
-
-
-          
-
           <EditForm />
-
-
-
-
         </div>
       </div>
     </Boundary>
   );
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 IngredientsForm.propTypes = {
   ingredients: PropType.shape({
@@ -326,11 +152,8 @@ IngredientsForm.propTypes = {
     //   name: PropType.string,
     //   brand: PropType.string,
     //   price: PropType.number,
-
     //   sizes_new: PropType.object,
-
     //   prices_new: PropType.object,
-
     //   maxQuantity: PropType.number,
     //   description: PropType.string,
     //   keywords: PropType.arrayOf(PropType.string),
@@ -346,8 +169,6 @@ IngredientsForm.propTypes = {
   }).isRequired,
   onSubmit: PropType.func.isRequired,
   isLoading: PropType.bool.isRequired
-
-
 };
 
 export default IngredientsForm;

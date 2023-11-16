@@ -22,9 +22,6 @@ import { useHistory } from 'react-router-dom';
 import { ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import { ADMIN_POSTS } from 'constants/routes';
 
-
-
-
 // Default brand names that I used. You can use what you want
 const brandOptions = [
   { value: 'Salt Maalat', label: 'Salt Maalat' },
@@ -122,13 +119,6 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
 
   return (
     <div>
-
-
-
-
-
-
-
       <Formik
         initialValues={initFormikValues}
         validateOnChange
@@ -137,9 +127,6 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
       >
         {({ values, setValues }) => (
           <Form className="product-form">
-
-
-
             <button
               className="button-back-new button-muted w-100-mobile"
               // disabled={authProvider !== 'password' || isLoading}
@@ -150,9 +137,6 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
               &nbsp;
               Back
             </button>
-
-
-
             <div className="product-form-inputs">
               <div className="d-flex">
                 <div className="product-form-field">
@@ -262,7 +246,6 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
                   </label>
                 )}
               </div>
-
               <div className="product-form-collection">
                 <>
                   {imageFile2.imageCollection.length >= 1 && (
@@ -288,8 +271,6 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
                   )}
                 </>
               </div>
-
-
               <br />
               <div className="d-flex">
                 <div className="product-form-field">
@@ -324,21 +305,8 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
               <br />
               <br />
               <br />
-              {/* <div className="product-form-field product-form-submit">
-                <button
-                  className="button"
-                  disabled={isLoading}
-                  type="submit"
-                >
-                  {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
-                  &nbsp;
-                  {isLoading ? 'Saving Post' : 'Save Post'}
-                </button>
-              </div> */}
             </div>
-
             <div className="d-flex">
-
               {/* ----THUBMNAIL ----1 */}
               <div className="product-form-file">
                 <div className="product-form-field">
@@ -423,18 +391,7 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
                   )}
                 </div>
               </div>
-
-              {/* ----THUBMNAIL ----END */}
-
-
-
-
-
-
-
             </div>
-
-
             <div className="product-form-field product-form-submit">
               <button
                 className="button"
@@ -447,7 +404,6 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
                 {isLoading ? 'Saving Post' : 'Save Post'}
               </button>
             </div>
-
           </Form>
         )}
       </Formik>

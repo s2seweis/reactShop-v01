@@ -52,6 +52,3 @@ const AddOrder = () => {
 };
 
 export default withRouter(AddOrder);
-
-
-// okay

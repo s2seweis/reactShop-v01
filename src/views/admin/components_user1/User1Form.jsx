@@ -67,17 +67,7 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
     // isFeatured: user1?.isFeatured || false,
     // isRecommended: user1?.isRecommended || false,
     // availableColors: user1?.availableColors || [],
-
   };
-
-
-
-  // const {
-  //   imageFile,
-  //   isFileLoading,
-  //   onFileChange,
-  //   removeImage
-  // } = useFileHandler({ image: {}, imageCollection: user1?.imageCollection || [] });
 
   const onSubmitForm = (form) => {
     {
@@ -94,26 +84,7 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
     }
   };
 
-  // const onSubmitForm = (form) => {
-  //   if (imageFile.image.file || user1.imageUrl) {
-  //     onSubmit({
-  //       ...form,
-  //       // quantity: 1,
-  //       // due to firebase function billing policy, let's add lowercase version
-  //       // of name here instead in firebase functions
-  //       name_lower: form.fullname.toLowerCase(),
-  //       dateAdded: new Date().getTime(),
-  //       image: imageFile?.image?.file || user1.imageUrl,
-  //       imageCollection: imageFile.imageCollection
-  //     });
-  //   } else {
-  //     // eslint-disable-next-line no-alert
-  //     alert('User1 thumbnail image is required.');
-  //   }
-  // };
-
   const history = useHistory();
-
 
   return (
     <div>
@@ -125,8 +96,6 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
       >
         {({ values, setValues }) => (
           <Form className="product-form">
-
-
             <button
               className="button-back-new button-muted w-100-mobile"
               // disabled={authProvider !== 'password' || isLoading}
@@ -137,10 +106,6 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
               &nbsp;
               Back
             </button>
-
-
-
-
             <div className="product-form-inputs">
               <div className="d-flex">
                 <div className="product-form-field">
@@ -177,7 +142,6 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
                   component={CustomTextarea}
                 />
               </div>
-
               <div className="product-form-field">
                 <Field
                   disabled={isLoading}
@@ -187,145 +151,14 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
                   label="* Address:"
                   component={CustomTextarea}
                 />
-
-
                 <CustomMobileInput
                   defaultValue={values.mobile}
                   name="mobile"
                   disabled={isLoading}
                   label="Mobile Number (Will be used for checkout)"
                 />
-
               </div>
-              {/* <div className="d-flex">
-                <div className="product-form-field">
-                  <Field
-                    disabled={isLoading}
-                    name="price"
-                    id="price"
-                    type="number"
-                    label="* Price"
-                    component={CustomInput}
-                  />
-                </div>
-                &nbsp;
-                <div className="product-form-field">
-                  <Field
-                    disabled={isLoading}
-                    name="maxQuantity"
-                    type="number"
-                    id="maxQuantity"
-                    label="* Max Quantity"
-                    component={CustomInput}
-                  />
-                </div>
-              </div> */}
-              {/* <div className="d-flex">
-                <div className="product-form-field">
-                  <CustomCreatableSelect
-                    defaultValue={values.keywords.map((key) => ({ value: key, label: key }))}
-                    name="keywords"
-                    iid="keywords"
-                    isMulti
-                    disabled={isLoading}
-                    placeholder="Create/Select Keywords"
-                    label="* Keywords"
-                  />
-                </div>
-                &nbsp;
-                <div className="product-form-field">
-                  <CustomCreatableSelect
-                    defaultValue={values.keywords.map((key) => ({ value: key, label: key }))}
-                    name="sizes"
-                    iid="sizes"
-                    type="number"
-                    isMulti
-                    disabled={isLoading}
-                    placeholder="Create/Select Sizes"
-                    label="* Sizes (Millimeter)"
-                  />
-                </div>
-              </div> */}
-              {/* <div className="product-form-field">
-                <FieldArray
-                  name="availableColors"
-                  disabled={isLoading}
-                  component={CustomColorInput}
-                />
-              </div> */}
-              {/* <div className="product-form-field">
-                <span className="d-block padding-s">Image Collection</span>
-                {!isFileLoading && (
-                  <label htmlFor="product-input-file-collection">
-                    <input
-                      disabled={isLoading}
-                      hidden
-                      id="product-input-file-collection"
-                      multiple
-                      onChange={(e) => onFileChange(e, { name: 'imageCollection', type: 'multiple' })}
-                      readOnly={isLoading}
-                      type="file"
-                    />
-                    Choose Images
-                  </label>
-                )}
-              </div> */}
-              {/* <div className="product-form-collection">
-                <>
-                  {imageFile.imageCollection.length >= 1 && (
-                    imageFile.imageCollection.map((image) => (
-                      <div
-                        className="product-form-collection-image"
-                        key={image.id}
-                      >
-                        <ImageLoader
-                          alt=""
-                          src={image.url}
-                        />
-                        <button
-                          className="product-form-delete-image"
-                          onClick={() => removeImage({ id: image.id, name: 'imageCollection' })}
-                          title="Delete Image"
-                          type="button"
-                        >
-                          <i className="fa fa-times-circle" />
-                        </button>
-                      </div>
-                    ))
-                  )}
-                </>
-              </div> */}
               <br />
-              {/* <div className="d-flex">
-                <div className="product-form-field">
-                  <input
-                    checked={values.isFeatured}
-                    className=""
-                    id="featured"
-                    onChange={(e) => setValues({ ...values, isFeatured: e.target.checked })}
-                    type="checkbox"
-                  />
-                  <label htmlFor="featured">
-                    <h5 className="d-flex-grow-1 margin-0">
-                      &nbsp; Add to Featured &nbsp;
-                    </h5>
-                  </label>
-                </div>
-                <div className="product-form-field">
-                  <input
-                    checked={values.isRecommended}
-                    className=""
-                    id="recommended"
-                    onChange={(e) => setValues({ ...values, isRecommended: e.target.checked })}
-                    type="checkbox"
-                  />
-                  <label htmlFor="recommended">
-                    <h5 className="d-flex-grow-1 margin-0">
-                      &nbsp; Add to Recommended &nbsp;
-                    </h5>
-                  </label>
-                </div>
-              </div> */}
               <br />
               <br />
               <br />
@@ -340,46 +173,7 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
                   {isLoading ? 'Saving User' : 'Save User'}
                 </button>
               </div>
-              {/* <div className="product-form-field product-form-submit">
-                <button
-                  className="button"
-                  disabled={isLoading}
-                  type="submit"
-                >
-                  {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
-                  &nbsp;
-                  {isLoading ? 'Saving Product' : 'Zurück'}
-                </button>
-              </div> */}
             </div>
-            {/* ----THUBMNAIL ---- */}
-            {/* <div className="product-form-file">
-              <div className="product-form-field">
-                <span className="d-block padding-s">* Thumbnail</span>
-                {!isFileLoading && (
-                  <label htmlFor="product-input-file">
-                    <input
-                      disabled={isLoading}
-                      hidden
-                      id="product-input-file"
-                      onChange={(e) => onFileChange(e, { name: 'image', type: 'single' })}
-                      readOnly={isLoading}
-                      type="file"
-                    />
-                    Choose Image
-                  </label>
-                )}
-              </div>
-              <div className="product-form-image-wrapper">
-                {(imageFile.image.url || user1.image) && (
-                  <ImageLoader
-                    alt=""
-                    className="product-form-image-preview"
-                    src={imageFile.image.url || user1.image}
-                  />
-                )}
-              </div>
-            </div> */}
           </Form>
         )}
       </Formik>
@@ -410,5 +204,3 @@ User1Form.propTypes = {
 };
 
 export default User1Form;
-
-// okay

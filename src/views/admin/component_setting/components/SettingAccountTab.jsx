@@ -42,9 +42,6 @@ const UserProfile = (props) => {
           <span>Email</span>
           <br />
           <h5>{profile.email}</h5>
-
-
-
           <span>Address</span>
           <br />
           {profile.address ? (
@@ -52,8 +49,6 @@ const UserProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Address not set</h5>
           )}
-
-
           <span>Address</span>
           <br />
           {profile.role ? (
@@ -61,9 +56,7 @@ const UserProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Address not set</h5>
           )}
-
           {/* map object */}
-
           <span>Mobile</span>
           <br />
           {profile.mobile ? (
@@ -71,7 +64,6 @@ const UserProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Mobile not set</h5>
           )}
-
           <span>Country</span>
           <br />
           {profile.mobile ? (
@@ -79,7 +71,6 @@ const UserProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Mobile not set</h5>
           )}
-
           <span>Country Code</span>
           <br />
           {profile.mobile ? (
@@ -87,9 +78,6 @@ const UserProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Mobile not set</h5>
           )}
-
-
-
           <span>Date Joined</span>
           <br />
           {profile.dateJoined ? (
@@ -97,7 +85,6 @@ const UserProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Not available</h5>
           )}
-
           <span>Date Added</span>
           <br />
           {profile.dateAdded ? (
@@ -105,11 +92,6 @@ const UserProfile = (props) => {
           ) : (
             <h5 className="text-subtle text-italic">Not available</h5>
           )}
-
-
-
-
-
         </div>
       </div>
     </div>

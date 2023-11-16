@@ -1,30 +1,24 @@
 /* eslint-disable indent */
 import {
-
   ADD_PRODUCT,
   EDIT_PRODUCT,
   GET_PRODUCTS,
   REMOVE_PRODUCT,
   SEARCH_PRODUCT
-
 } from 'constants/constants';
-
 import { ADMIN_PRODUCTS } from 'constants/routes';
 import { displayActionMessage } from 'helpers/utils';
 import {all, call, put, select} from 'redux-saga/effects';
 import { setLoading, setRequestStatus } from 'redux/actions/miscActions';
 import { history } from 'routers/AppRouter';
 import firebase from 'services/firebase';
-
 import {
-
   addProductSuccess,
   clearSearchState, 
   editProductSuccess, 
   getProductsSuccess,
   removeProductSuccess,
   searchProductSuccess
-  
 } from '../actions/productActions';
 
 function* initRequest() {
@@ -59,12 +53,8 @@ function* productSaga({ type, payload }) {
             lastKey: result.lastKey ? result.lastKey : state.products.lastRefKey,
             total: result.total ? result.total : state.products.total
           }
-          
           ));
-          // yield put(setRequestStatus('TEST'));
         }
-        // yield put({ type: SET_LAST_REF_KEY, payload: result.lastKey });
-        // yield put(setLoading(false));
       } catch (e) {
         console.log(e);
         yield handleError(e);
@@ -74,7 +64,6 @@ function* productSaga({ type, payload }) {
     case ADD_PRODUCT: {
       try {
         yield initRequest();
-
         const { imageCollection } = payload;
         const key = yield call(firebase.generateKey);
         const downloadURL = yield call(firebase.storeImage, key, 'products', payload.image);
@@ -114,7 +103,6 @@ function* productSaga({ type, payload }) {
     case EDIT_PRODUCT: {
       try {
         yield initRequest();
-
         const { image, imageCollection } = payload.updates;
         let newUpdates = { ...payload.updates };
 

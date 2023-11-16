@@ -11,30 +11,17 @@ const Users1Navbar = (props) => {
 
   return (
     <div className="product-admin-header">
-
-
-
       <h5 className="product-admin-header-title"
-      
        style={{ 
           width: '200px', 
-         
-          // backgroundColor: 'red'
-          // color: 'red'
         }}
       
       >
         Users &nbsp;
-        {/* Users2 &nbsp; */}
         (
         {`${users1Count} / ${totalUsers1Count}`}
         )
       </h5>
-
-
-
-
-      {/* <SearchBar /> */}
             &nbsp;
       <FiltersToggle>
         <button className="button-muted button-small" type="button">
@@ -60,5 +47,3 @@ Users1Navbar.propTypes = {
 };
 
 export default Users1Navbar;
-
-// okay
