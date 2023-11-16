@@ -1,6 +1,5 @@
 Certainly! Here's a template for your README.md file:
 
-```markdown
 # React Shop with Firestore, Redux, Redux Saga, and Stripe Payment Integration
 
 Welcome to the React Shop project with Firestore, Redux, Redux Saga, and Stripe payment integration! This e-commerce web application is built with React for the client, utilizing Firestore for data storage, Redux for state management, Redux Saga for handling side effects, and Node.js with Express for the server, featuring secure payment processing through Stripe.
@@ -161,4 +160,3 @@ Gesetz123
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-```
