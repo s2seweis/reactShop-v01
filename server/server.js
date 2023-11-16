@@ -1,16 +1,12 @@
 // server.js
-
 const express = require('express');
 const app = express();
 const { resolve } = require('path');
 const env = require('dotenv').config({ path: './.env' });
 const apiRoutes = require('./routes/apiRoutes');
-// const firebaseService = require('./services/firebaseService');
-// const firebaseConfig = require('./config/firebaseConfig');
+const firebaseService = require('./services/firebaseService');
 
 // Initialize Firebase
-// firebaseService.initializeFirebase(firebaseConfig);
-
 app.use(express.static(process.env.STATIC_DIR));
 app.use(express.json());
 
