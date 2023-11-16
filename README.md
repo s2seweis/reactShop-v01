@@ -1,62 +1,105 @@
-# Dign | E-commerce react app
-Simple ecommerce react js app with firebase [typescript].
+Certainly! Here's a template for your README.md file:
 
-### [Live demo](https://swt-v02.netlify.app/)
+```markdown
+# React Shop with Firestore, Redux, Redux Saga, and Stripe Payment Integration
 
-![Dign screenshot]()
-### Adding Screenshots
-https://www.educative.io/answers/adding-images-to-readmemd-in-github
+Welcome to the React Shop project with Firestore, Redux, Redux Saga, and Stripe payment integration! This e-commerce web application is built with React for the client, utilizing Firestore for data storage, Redux for state management, Redux Saga for handling side effects, and Node.js with Express for the server, featuring secure payment processing through Stripe.
 
+## Table of Contents
 
-## Run Locally
-### 1. Install Dependencies
-```sh
-$ npm install
-```
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Configuration](#configuration)
+  - [client Configuration](#client-configuration)
+  - [Server Configuration](#server-configuration)
+- [features](#features)
+- [Usage](#usage)
+  - [Running the Application](#running-the-application)
+- [Folder Structure](#folder-structure)
+- [Authentication](#authentication)
+- [License](#license)
 
-### 2. Create a new firebase project
-Login to your google account and create a new firebase project [here](https://console.firebase.google.com/u/0/)
+## Getting Started
 
-Create an `env` file - Set filename`.env.prod` file for production and `.env.dev`for development and save it in the root of your project folder
-and add the following configuration details. You can either use the same configuration details for both development and production but it's best to make separate projects. It can be found on your firebase project settings.
+### Prerequisites
 
-```
-// SAMPLE CONFIG .env.dev, you should put the actual config details found on your project settings
+Before you begin, ensure you have the following software installed on your machine:
 
-FIREBASE_API_KEY=AIzaKJgkjhSdfSgkjhdkKJdkjowf
-FIREBASE_AUTH_DOMAIN=yourauthdomin.firebaseapp.com
-FIREBASE_DB_URL=https://yourdburl.firebaseio.com
-FIREBASE_PROJECT_ID=yourproject-id
-FIREBASE_STORAGE_BUCKET=yourstoragebucket.appspot.com
-FIREBASE_MSG_SENDER_ID=43597918523958
-FIREBASE_APP_ID=234598789798798fg3-034
+- Node.js and npm
+- Git
 
-``` 
+### Installation
 
-After setting up necessary configuration,
-create a **Database** and choose **Cloud Firestore** and start in test mode
+1. Clone the repository to your local machine:
 
-### 3. Run development server
-```sh 
-$ npm run dev-server
-```
+   ```bash
+   git clone https://github.com/your-username/react-shop-firestore-stripe
+   ```
 
----
+2. Navigate to the project directory:
 
-## Build the project
-```sh
-$ npm run build
-```
+   ```bash
+   cd react-shop-firestore-stripe
+   ```
 
-## How to add products or perform CRUD operations for Admin
-1. Navigate to your site to `/signup`
-2. Create an account for yourself
-3. Go to your firestore collection `users collection` and edit the account you've just created. Change the role from `USER` to `ADMIN`.
-4. Reload or sigin again to see the changes. 
+3. Install dependencies for both the client and server:
 
-**Firebase Admin to be integrated soon**
+   ```bash
+   # Install client dependencies
+   cd client
+   npm install
 
-## Features
+   # Install server dependencies
+   cd ../server
+   npm install
+   ```
+
+## Configuration
+
+### client Configuration
+
+1. Open the `client/src/services/config.js` file.
+
+2. Update the configuration settings as needed, including Firestore credentials and Stripe keys.
+
+### Server Configuration
+
+1. Open the `server/.env` file.
+
+2. Set your Stripe secret/public key inside of the .env:
+
+   ```env
+   STRIPE_SECRET_KEY=your_stripe_secret_key
+   STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+   STATIC_DIR=../client/public
+   ```
+   Replace `your_stripe_secret_key` with your actual Stripe secret key.
+
+### Firestore Configuration
+
+1. Create a new Firestore project on the [Firebase Console](https://console.firebase.google.com/).
+
+2. Obtain the Firestore configuration object from your Firebase project settings.
+
+3. Open the `client/src/services/config.js` file.
+
+4. Update the Firestore configuration:
+
+   ```javascript
+   const firebaseConfig = {
+     apiKey: "your_api_key",
+     authDomain: "your_auth_domain",
+     projectId: "your_project_id",
+     // ... other config properties
+   };
+   ```
+
+   Replace the placeholder values with your actual Firebase configuration.
+
+## Features 
+
+### Client
 
 * Admin CRUD operations
 * Firebase authentication
@@ -68,7 +111,42 @@ $ npm run build
 * Extrea Ingredients Component
 * Stripe Integration - via Express
 
-### Comment:
+### Server
+* Stripe Integration via Webhook
+
+## Usage
+
+### Running the Application
+
+1. Start the server server:
+
+   ```bash
+   cd server
+   npm start
+   ```
+
+   The server server will be running on http://localhost:5000.
+
+2. Start the client application:
+
+   ```bash
+   cd client
+   npm start
+   ```
+
+   The React app will be accessible at http://localhost:3000.
+
+## Folder Structure
+
+```
+/react-shop-firestore-stripe
+|-- /client           # React client code
+|-- /server            # Node.js and Express server code
+|-- .gitignore
+|-- README.md           # Project documentation
+```
+
+## Authentication
 
 ### Admin: 
 weissenborn20seb@gmail.com
@@ -79,5 +157,8 @@ Gesetz123
 weissenborn21@gmail.com 
 Password:
 Gesetz123
- 
 
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+```
