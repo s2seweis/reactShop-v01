@@ -3,7 +3,7 @@ import PropType from 'prop-types';
 import React from 'react';
 import { User1Item } from '.';
 
-const Users1Table = ({ filteredUsers1 }) => (
+const UsersTable = ({ filteredUsers1 }) => (
   <div>
     {filteredUsers1.length > 0 && (
       <div className="grid">
@@ -24,8 +24,8 @@ const Users1Table = ({ filteredUsers1 }) => (
   </div>
 );
 
-Users1Table.propTypes = {
+UsersTable.propTypes = {
   filteredUsers1: PropType.array.isRequired
 };
 
-export default Users1Table;
+export default UsersTable;

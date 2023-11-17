@@ -57,7 +57,7 @@ const Navigation = () => {
 
   if (store.user && store.user.role === 'ADMIN') {
     return null;
-  } if (window.screen.width <= 800) {
+  } if (window.screen.width <= 600) {
     return (
       <MobileNavigation
         // eslint-disable-next-line react/jsx-props-no-spreading
@@ -66,7 +66,7 @@ const Navigation = () => {
         pathname={pathname}
       />
     );
-  }
+  } else
   return (
     <nav className="navigation" ref={navbar}>
 
@@ -74,9 +74,9 @@ const Navigation = () => {
       <ul className="navigation-menu-main">
         <li><NavLink activeClassName="navigation-menu-active" exact to={ROUTE.HOME}>Home</NavLink></li>
         <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.SHOP}>Shop</NavLink></li>
-        <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.POST}>Post</NavLink></li>
-        <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.FEATURED_PRODUCTS}>Featured</NavLink></li>
-        <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.RECOMMENDED_PRODUCTS}>Recommended</NavLink></li>
+        {/* <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.POST}>Post</NavLink></li> */}
+        {/* <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.FEATURED_PRODUCTS}>Featured</NavLink></li> */}
+        {/* <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.RECOMMENDED_PRODUCTS}>Recommended</NavLink></li> */}
       </ul>
 
       <ToggleMenu/>

@@ -23,6 +23,7 @@
   @include mobile {
     grid-template-columns: repeat(1, 1fr) !important;
     grid-gap: 5rem;
+    margin-top: 100px;
   }
 }
 
@@ -60,7 +61,7 @@
   position: relative;
 
   @include mobile {
-    margin-top: 6rem;
+    // margin-top: 6rem;
   }
 }
 
@@ -227,7 +228,7 @@
 
 // PRODUCT MODAL -------------------------------------------------
 .product-view {
-  margin: 0 5rem;
+  // margin: 0 5rem;
 
   @include tablet {
     width: 100%;
@@ -250,8 +251,9 @@
 }
 
 .product-modal-image-wrapper {
+  margin-top: 15px;
   width: 30rem;
-  // height: 40rem;
+  height: min-content !important;
   height: inherit;
   flex-grow: 1;
   position: relative;
@@ -274,7 +276,7 @@
 }
 
 .product-modal-image-collection {
-  width: 150px;
+  // width: 150px;
   height: inherit;
   background: #fff;
   display: flex;
@@ -397,6 +399,7 @@
 .product-form-field {
   width: 100%;
   margin-right: 20px;
+  // margin-bottom: 20px;
 
 }
 
@@ -627,6 +630,7 @@
   position: relative;
   background: #f4f4f4;
   border: 1px solid #cacaca;
+  margin-bottom: 20px;
 }
 
 .product-form-collection {
@@ -796,7 +800,7 @@
   width: 100%;
   height: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-gap: 2rem;
 }
 
@@ -958,8 +962,8 @@
 
 .product-vari {
   // margin: 10px 0px;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   text-align: center;
   font-size: small;
   display: grid;

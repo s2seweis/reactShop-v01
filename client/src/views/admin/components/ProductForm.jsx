@@ -140,7 +140,8 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
           {({ values, setValues }) => (
             <Form className="product-form">
               <button
-                className="button-back-new button-muted w-100-mobile"
+                className=""
+                style={{padding:"5px"}}
                 // disabled={authProvider !== 'password' || isLoading}
                 onClick={() => history.push(ADMIN_PRODUCTS)}
                 type="button"
@@ -458,44 +459,47 @@ const ProductForm = ({ product, onSubmit, isLoading, authProvider, parameters })
                 <br />
                 <br />
                 <br />
-                <div className="product-form-field product-form-submit">
-                  <button
-                    className="button"
-                    disabled={isLoading}
-                    type="submit"
-                  >
-                    {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
-                    &nbsp;
-                    {isLoading ? 'Saving Product' : 'Save Product1'}
-                  </button>
-                </div>
-              </div>
-              {/* ----THUBMNAIL ---- */}
-              <div className="product-form-file">
-                <div className="product-form-field">
-                  <span className="d-block padding-s">* Thumbnail</span>
-                  {!isFileLoading && (
-                    <label htmlFor="product-input-file">
-                      <input
-                        disabled={isLoading}
-                        hidden
-                        id="product-input-file"
-                        onChange={(e) => onFileChange(e, { name: 'image', type: 'single' })}
-                        readOnly={isLoading}
-                        type="file"
-                      />
-                      Choose Image
-                    </label>
-                  )}
-                </div>
-                <div className="product-form-image-wrapper">
-                  {(imageFile.image.url || product.image) && (
-                    <ImageLoader
-                      alt=""
-                      className="product-form-image-preview"
-                      src={imageFile.image.url || product.image}
-                    />
-                  )}
+                <div className='product-form-box' style={{display:"flex", alignItems:"center", gap:"50px", margin:"", marginBottom:"20px", justifyContent:"center"}}>
+
+                  {/* ----THUBMNAIL ---- */}
+                  <div className="product-form-file">
+                    <div className="product-form-field">
+                      <span className="d-block padding-s">* Thumbnail</span>
+                      {!isFileLoading && (
+                        <label htmlFor="product-input-file">
+                          <input
+                            disabled={isLoading}
+                            hidden
+                            id="product-input-file"
+                            onChange={(e) => onFileChange(e, { name: 'image', type: 'single' })}
+                            readOnly={isLoading}
+                            type="file"
+                          />
+                          Choose Image
+                        </label>
+                      )}
+                    </div>
+                    <div className="product-form-image-wrapper">
+                      {(imageFile.image.url || product.image) && (
+                        <ImageLoader
+                          alt=""
+                          className="product-form-image-preview"
+                          src={imageFile.image.url || product.image}
+                        />
+                      )}
+                    </div>
+                  </div>
+                  <div className="product-form-field product-form-submit">
+                    <button
+                      className="button"
+                      disabled={isLoading}
+                      type="submit"
+                    >
+                      {isLoading ? <LoadingOutlined /> : <CheckOutlined />}
+                      &nbsp;
+                      {isLoading ? 'Saving Product' : 'Save Product'}
+                    </button>
+                  </div>
                 </div>
               </div>
             </Form>

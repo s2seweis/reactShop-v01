@@ -1,4 +1,5 @@
 .mobile-navigation {
+  // display: none;
   width: 100%;
   position: fixed;
   top: 0;
@@ -6,6 +7,9 @@
   background: #fff;
   z-index: map-get($z-index, 'navigation');
   box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+  @media (min-width: 600px) {
+    display: none !important;
+  }
 }
 
 .mobile-navigation-main {

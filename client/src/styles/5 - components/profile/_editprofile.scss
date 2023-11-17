@@ -8,9 +8,10 @@
   flex-direction: column;
   padding: 0;
   justify-content: center;
+  margin-top: 60px;
 
   @include mobile {
-    width: 90%;
+    // width: 90%;
     padding: 0;
   }
 

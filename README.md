@@ -173,3 +173,8 @@ This project is licensed under the [MIT License](LICENSE).
 <img src="assets/react-shop-5.png" alt="Example Image">
 <img src="assets/react-shop-6.png" alt="Example Image">
 </div>
+
+<div align="center">
+<img src="assets/react-shop-7.png" alt="Example Image">
+<img src="assets/react-shop-8.png" alt="Example Image">
+</div>

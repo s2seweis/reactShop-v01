@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { selectFilter } from 'selectors/selector_user1';
 import { Users1Navbar } from '../components_user1';
-import Users1Table from '../components_user1/Users1Table';
+import Users1Table from '../components_user1/UsersTable';
 
 const Users1 = () => {
   useDocumentTitle('User1 List | Shirts Sale! Admin');

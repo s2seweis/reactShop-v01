@@ -1,4 +1,5 @@
 .navigation {
+  // display: flex !important;
   width: 100%;
   // background: $background-color;
 background: #f0f0f0;
@@ -19,6 +20,7 @@ background: #f0f0f0;
   @include mobile {
     padding: 0 $s-size;
     position: fixed;
+    // display: none !important;
   }
 
   .logo {
@@ -70,8 +72,9 @@ background: #f0f0f0;
 }
 
 .navigation-menu-main {
-  padding-left: 50px;
-  margin-right: 2rem;
+  // padding-left: 50px;
+  // margin-right: 2rem;
+  // margin-left: 50px;
   flex-grow: 1;
 
   li {
@@ -171,11 +174,12 @@ background: #f0f0f0;
   }
 
   .navigation-menu-main a:hover {
-    color: #3498db; /* Change to your desired hover color */
+    color: #ffffff; /* Change to your desired hover color */
   }
 
   .navigation-menu-active {
     background-color: #3498db; /* Change to your desired active menu item color */
     color: #fff;
+    padding: 5px;
   }
 }

@@ -18,7 +18,7 @@ const Side = () => {
     <nav className="content-admin-wrapper-sidebar">
       <div style={{ display: 'flex', height: '100%' }}>
         <Sidebar
-          width={"170px"}
+          width={"140px"}
           collapsedWidth={"70px"}
           defaultCollapsed="true"
         >

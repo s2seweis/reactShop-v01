@@ -94,7 +94,7 @@ const PostItem = ({ post }) => {
               onClick={onClickEdit}
               type="button"
             >
-              Edit1
+              Edit Post
             </button>
             &nbsp;
             <button
@@ -102,7 +102,7 @@ const PostItem = ({ post }) => {
               onClick={onDeletePost}
               type="button"
             >
-              Delete
+              Delete Post
             </button>
             <div className="item-action-confirm">
               <h5>Are you sure you want to delete this?</h5>

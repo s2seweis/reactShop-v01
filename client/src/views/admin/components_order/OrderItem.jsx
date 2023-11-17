@@ -43,11 +43,13 @@ const OrderItem = ({ order }) => {
       >
         <div className="grid grid-count-orders">
           <div className="grid-col">
+              <span className="text-overflow-ellipsis">Date:</span>
             <span>
               {order.dateAdded ? displayDate(order.dateAdded) : <Skeleton width={50} />}
             </span>
           </div>
           <div className="grid-col">
+              <span className="text-overflow-ellipsis">Address:</span>
             <span>
               {order.shipping ? (
                 <span>{order.shipping.address}</span>
@@ -55,9 +57,11 @@ const OrderItem = ({ order }) => {
             </span>
           </div>
           <div className="grid-col-break">
+            <span className="text-overflow-ellipsis">Order ID:</span>
             <span>{order.id || <Skeleton width={50} />}</span>
           </div>
           <div className="grid-col">
+            <span className="text-overflow-ellipsis">Sub Total:</span>
             <span className="text-overflow-ellipsis">{order.subtotal || <Skeleton width={50} />}</span>
           </div>
         </div>

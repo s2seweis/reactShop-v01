@@ -5,7 +5,7 @@ import PropType from 'prop-types';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-const Users1Navbar = (props) => {
+const UsersNavbar = (props) => {
   const { users1Count, totalUsers1Count } = props;
   const history = useHistory();
 
@@ -41,9 +41,9 @@ const Users1Navbar = (props) => {
   );
 };
 
-Users1Navbar.propTypes = {
+UsersNavbar.propTypes = {
   users1Count: PropType.number.isRequired,
   totalUsers1Count: PropType.number.isRequired
 };
 
-export default Users1Navbar;
+export default UsersNavbar;

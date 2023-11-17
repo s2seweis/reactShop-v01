@@ -26,14 +26,17 @@ const MenuBurger = () => {
       >
         Home
       </a>
+      <a className="menu-item" href="/shop">
+        Shop
+      </a>
+      <a className="menu-item" href="/shop">
+        Recommended
+      </a>
       <a className="menu-item" href="/signin">
         Sign-In
       </a>
       <a className="menu-item" href="/">
         Contact
-      </a>
-      <a className="menu-item" href="/shop">
-        Shop
       </a>
       <a className="menu-item" href="/post">
         Posts

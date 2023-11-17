@@ -118,7 +118,7 @@ const ViewProduct = () => {
           <Link to={SHOP}>
             <h3 className="button-link d-inline-flex">
               <ArrowLeftOutlined />
-              &nbsp; Back to shop1
+              &nbsp; Back to shop
             </h3>
           </Link>
           <div className="product-modal">
@@ -180,6 +180,9 @@ const ViewProduct = () => {
                 </div>
               )}
               <div className='product-vari'>
+                <span style={{textAlign:"left"}} className="text-subtle">Choose Size (build for add ingredients)</span>
+                <br />
+                <br />
                 <Select
                   // placeholder="--Select Size--11"
                   onChange={handleChange2}
@@ -190,6 +193,7 @@ const ViewProduct = () => {
                 />
 
               </div>
+              
               <div> {option1?.trim() === "small" ?
                 <Ingredients1
                   option={option}

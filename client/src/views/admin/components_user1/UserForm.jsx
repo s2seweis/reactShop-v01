@@ -53,7 +53,7 @@ const FormSchema = Yup.object().shape({
   //   .min(1, 'Please add a default color for this user1.')
 });
 
-const User1Form = ({ user1, onSubmit, isLoading }) => {
+const UserForm = ({ user1, onSubmit, isLoading }) => {
   const initFormikValues = {
     fullname: user1?.fullname || '',
     role: user1?.role || '',
@@ -181,7 +181,7 @@ const User1Form = ({ user1, onSubmit, isLoading }) => {
   );
 };
 
-User1Form.propTypes = {
+UserForm.propTypes = {
   user1: PropType.shape({
     fullname: PropType.string,
     role: PropType.string,
@@ -203,4 +203,4 @@ User1Form.propTypes = {
   isLoading: PropType.bool.isRequired
 };
 
-export default User1Form;
+export default UserForm;

@@ -36,6 +36,7 @@
 .user-tab-new {
   // width: 800px;
   height: 100%;
+  width: 100%;
   // margin: 0 auto;
   // margin-top: 3rem;
   // background: $white;
@@ -140,13 +141,14 @@
   padding: $m-size;
   height: 100%;
   background: lemonchiffon;
-  width: 800px;
+  width: auto;
   border-radius: 25px;
 
 
   @include mobile {
-    padding: 0;
-    max-width: 250px;
+    padding: 10px;
+    // max-width: 250px;
+    width: auto;
   }
 }
 

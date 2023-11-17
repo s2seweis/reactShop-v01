@@ -52,13 +52,14 @@
   // margin-top: 30px;
 
   @media (max-width: $mobile) {
-    width: 290px;
+    // width: 290px;
     padding: 5px;
   }
 }
 
 .order-admin-items {
   display: flex;
+  justify-content: center;
 }
 
 .product-admin-filter-wrapper {

@@ -75,14 +75,15 @@ h6 {
   width: 100%;
   min-height: 100vh;
   position: relative;
-  padding: $top $pad-desktop;
+  // padding: $top $pad-desktop;
+  padding: 10rem 5rem;
   display: flex;
   animation: fadeIn .5s ease;
   justify-content: center;
 
 
   @media (max-width: $mobile) {
-    padding: 9rem $m-size;
+    padding: 1rem $m-size;
     flex-direction: column;
   }
 }

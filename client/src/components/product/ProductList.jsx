@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setLoading } from 'redux/actions/miscActions';
 import { getProducts } from 'redux/actions/productActions';
+import ProductsHero from 'views/featured/ProductsHero';
 
 const ProductList = (props) => {
   const {
@@ -46,6 +47,7 @@ const ProductList = (props) => {
   }
   return (
     <Boundary>
+      {/* <ProductsHero/> */}
       {children}
       {/* Show 'Show More' button if products length is less than total products */}
       {products.items.length < products.total && (

@@ -14,7 +14,6 @@ const ProductItem = ({ product }) => {
   const productRef = useRef(null);
 
   const onClickEdit = () => {
-    // history.push(`${ADMIN_PRODUCT_OVERVIEW}/${product.id}`);
     history.push(`${EDIT_PRODUCT}/${product.id}`);
   };
 
@@ -36,6 +35,7 @@ const ProductItem = ({ product }) => {
     <SkeletonTheme
       color="#e1e1e1"
       highlightColor="#f2f2f2"
+      duration={4}
     >
       <div
         className={`item item ${!product.id && 'item-loading'}`}
@@ -52,20 +52,25 @@ const ProductItem = ({ product }) => {
             ) : <Skeleton width={50} height={30} />}
           </div>
           <div className="grid-col">
+            <span className="text-overflow-ellipsis">Article:</span>
             <span className="text-overflow-ellipsis">{product.name || <Skeleton width={50} />}</span>
           </div>
           <div className="grid-col">
+            <span className="text-overflow-ellipsis">Brand:</span>
             <span>{product.brand || <Skeleton width={50} />}</span>
           </div>
           <div className="grid-col">
+            <span className="text-overflow-ellipsis">Price:</span>
             <span>{product.price ? displayMoney(product.price) : <Skeleton width={30} />}</span>
           </div>
           <div className="grid-col">
+            <span className="text-overflow-ellipsis">Created:</span>
             <span>
               {product.dateAdded ? displayDate(product.dateAdded) : <Skeleton width={30} />}
             </span>
           </div>
           <div className="grid-col">
+            <span className="text-overflow-ellipsis">Stock:</span>
             <span>{product.maxQuantity || <Skeleton width={20} />}</span>
           </div>
         </div>
@@ -76,7 +81,7 @@ const ProductItem = ({ product }) => {
               onClick={onClickEdit}
               type="button"
             >
-              Edit1
+              Edit Product
             </button>
             &nbsp;
             <button
@@ -84,7 +89,7 @@ const ProductItem = ({ product }) => {
               onClick={onDeleteProduct}
               type="button"
             >
-              Delete
+              Delete Product
             </button>
             <div className="item-action-confirm">
               <h5>Are you sure you want to delete this?</h5>

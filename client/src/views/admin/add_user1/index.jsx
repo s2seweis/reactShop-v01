@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { addUser1 } from 'redux/actions/userActions';
 
-const User1Form = lazy(() => import('../components_user1/User1Form'));
+const User1Form = lazy(() => import('../components_user1/UserForm'));
 
 const AddUser1 = () => {
   useScrollTop();

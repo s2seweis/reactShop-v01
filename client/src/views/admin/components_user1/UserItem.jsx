@@ -9,7 +9,7 @@ import { useHistory, withRouter } from 'react-router-dom';
 import { removeUser1 } from 'redux/actions/userActions';
 import { useSelector } from 'react-redux';
 
-const User1Item = ({ user1 }) => {
+const UserItem = ({ user1 }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const user1Ref = useRef(null);
@@ -36,6 +36,7 @@ const User1Item = ({ user1 }) => {
     <SkeletonTheme
       color="#e1e1e1"
       highlightColor="#f2f2f2"
+      duration={4}
     >
       <div
         className={`item item ${!user1.id && 'item-loading'}`}
@@ -52,6 +53,7 @@ const User1Item = ({ user1 }) => {
             ) : <Skeleton width={50} height={30} />}
           </div>
           <div className="grid-col">
+            <span className="text-overflow-ellipsis">Name:</span>
             <span className="text-overflow-ellipsis">{user1.fullname || <Skeleton width={50} />}</span>
           </div>
           {/* <div className="grid-col">
@@ -59,13 +61,14 @@ const User1Item = ({ user1 }) => {
           </div> */}
 
           <div className="grid-col">
-            <span className="text-overflow-ellipsis">{user1.email || <Skeleton width={50} />}</span>
+            <span className="text-overflow-ellipsis">Email:</span>
+            <span className="text-overflow-ellipsis">{user1.email.slice(0, 10) || <Skeleton width={50} />}</span>
           </div>
 
           {/* <div className="grid-col">
             <span className="text-overflow-ellipsis">{user1.id || <Skeleton width={50} />}</span>
           </div> */}
-        
+
           {/* <div className="grid-col">
             {user1.mobile ? (
               <h5>{user1.mobile.value}</h5>
@@ -75,11 +78,12 @@ const User1Item = ({ user1 }) => {
           </div> */}
 
           <div className="grid-col">
+            <span className="text-overflow-ellipsis">Date:</span>
             <span>
               {user1.dateJoined ? displayDate(user1.dateJoined) : <Skeleton width={30} />}
             </span>
           </div>
-        
+
         </div>
         {user1.id && (
           <div className="item-action-user">
@@ -88,7 +92,7 @@ const User1Item = ({ user1 }) => {
               onClick={onClickEdit}
               type="button"
             >
-              Edit1
+              Edit User
             </button>
             &nbsp;
             <button
@@ -96,7 +100,7 @@ const User1Item = ({ user1 }) => {
               onClick={onDeleteUser1}
               type="button"
             >
-              Delete
+              Delete User
             </button>
             <div className="item-action-confirm">
               <h5>Are you sure you want to delete this?</h5>
@@ -123,7 +127,7 @@ const User1Item = ({ user1 }) => {
   );
 };
 
-User1Item.propTypes = {
+UserItem.propTypes = {
   user1: PropType.shape({
     id: PropType.string,
     fullname: PropType.string,
@@ -146,4 +150,4 @@ User1Item.propTypes = {
   }).isRequired
 };
 
-export default withRouter(User1Item);
+export default withRouter(UserItem);

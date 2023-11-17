@@ -13,17 +13,17 @@ const ToggleMenu = () => {
 
   return (
     <div className="toggle-menu-container">
-      <button className="toggle-button" onClick={toggleMenu}>
-        Toggle Menu
+      <button style={{marginRight:"15px"}} className="toggle-button" onClick={toggleMenu}>
+        More
       </button>
       {menuOpen && (
-        <ul className="navigation-menu-main">
-          <li><NavLink activeClassName="navigation-menu-active" exact to={ROUTE.HOME}>Home</NavLink></li>
-          <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.SHOP}>Shop</NavLink></li>
-          <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.POST}>Post</NavLink></li>
-          <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.FEATURED_PRODUCTS}>Featured</NavLink></li>
-          <li><NavLink activeClassName="navigation-menu-active" to={ROUTE.RECOMMENDED_PRODUCTS}>Recommended</NavLink></li>
-        </ul>
+        <div className="navigation-menu-main" style={{width:"auto", padding:"10px"}}>
+          <div style={{padding:"5px"}}><NavLink activeClassName="navigation-menu-active" exact to={ROUTE.HOME}>Home</NavLink></div>
+          <div style={{padding:"5px"}}><NavLink activeClassName="navigation-menu-active" to={ROUTE.SHOP}>Shop</NavLink></div>
+          <div style={{padding:"5px"}}><NavLink activeClassName="navigation-menu-active" to={ROUTE.POST}>Post</NavLink></div>
+          <div style={{padding:"5px"}}><NavLink activeClassName="navigation-menu-active" to={ROUTE.FEATURED_PRODUCTS}>Featured</NavLink></div>
+          <div style={{padding:"5px"}}><NavLink activeClassName="navigation-menu-active" to={ROUTE.RECOMMENDED_PRODUCTS}>Recommended</NavLink></div>
+        </div>
       )}
     </div>
   );
