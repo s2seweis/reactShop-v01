@@ -37,8 +37,8 @@ const Home = () => {
               <strong>Clarity</strong>
             </h1>
             <p>
-              Buying eyewear should leave you happy and good-looking, with money in your pocket.
-              Glasses, sunglasses, and contacts—we’ve got your eyes covered.
+
+              "Welcome to [Your Shop Name], where style meets comfort! Discover a curated collection of fashion-forward shirts designed to elevate your wardrobe. 
             </p>
             <br />
             <Link to={SHOP} className="button-shop-now">

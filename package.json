@@ -1,0 +1,24 @@
+{
+    "name": "react-shop",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "engines": {
+      "node": "15.7.0",
+      "npm": "7.4.3"
+    },
+    "scripts": {
+      "client-install": "npm install --prefix client",
+      "server": "npm start --prefix server",
+      "client": "npm --prefix client run client",
+      "dev": "concurrently \"npm run server\" \"npm run client\"",
+      "start": "node server.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "classnames": "^2.3.2",
+      "concurrently": "^8.2.1",
+      "react-css-modules": "^4.7.11"
+    }
+  }
