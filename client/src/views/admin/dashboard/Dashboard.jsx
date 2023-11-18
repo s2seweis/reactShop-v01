@@ -18,6 +18,8 @@ const Dashboard = () => {
       <p className="dashboard-description">
         Our intuitive dashboard provides a centralized hub for managing key aspects of our application, empowering you to make informed decisions and maintain control over various functionalities.
       </p>
+    </div>
+      <div className="admin-dashboard-card">
       <div className="dashboard-features">
         <h3>Key Features:</h3>
         <ol>
@@ -30,6 +32,8 @@ const Dashboard = () => {
           <li>Activate yout own Blog: (Share your Thoughts with the world)</li>
         </ol>
       </div>
+    </div>
+      <div className="admin-dashboard-card" style={{marginBottom:"100px"}}>
       <div className="dashboard-get-started">
         <h3>How to Get Started:</h3>
         <ol>

@@ -15,7 +15,7 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const authPersistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth', 'profile', 'basket', 'checkout', 'ingredients', 'settings' ]
+  whitelist: ['auth', 'profile', 'basket', 'checkout', 'ingredients', 'settings', 'users' ]
 };
 
 export default () => {

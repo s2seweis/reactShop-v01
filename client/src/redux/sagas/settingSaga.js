@@ -1,5 +1,5 @@
 import { UPDATE_EMAIL, UPDATE_SETTINGS, ADD_SETTING, GET_SETTING, UPDATE_SETTING } from 'constants/constants';
-import { ADMIN_SETTINGS, ADMIN_USERS1 } from 'constants/routes';
+import { ADMIN_SETTINGS, ADMIN_USERS } from 'constants/routes';
 import { displayActionMessage } from 'helpers/utils';
 import { call, put, select } from 'redux-saga/effects';
 import { history } from 'routers/AppRouter';

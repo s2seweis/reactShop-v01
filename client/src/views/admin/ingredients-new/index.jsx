@@ -5,7 +5,7 @@ import { useDocumentTitle, useScrollTop } from 'hooks';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { selectFilter } from 'selectors/selector_new';
+import { selectFilter } from 'selectors/selector_setting';
 import { IngredientsNavbar } from '../component_ingredient';
 import IngredientsTable from '../component_ingredient/IngredientTable';
 

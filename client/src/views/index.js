@@ -7,7 +7,7 @@ export { default as AddProduct } from './admin/add_product';
 // export { default as AddSetting } from './admin/add-setting';
 export { default as AddOrder } from './admin/add_order';
 export { default as AddPost } from './admin/add_post';
-export { default as AddUser1 } from './admin/add_user1';
+export { default as AddUser } from './admin/add_user';
 export { default as Dashboard } from './admin/dashboard/Dashboard';
 export { default as Docs } from './admin/docs';
 export { default as Ingredients } from './admin/ingredients';
@@ -15,7 +15,7 @@ export { default as IngredientsNew } from './admin/ingredients-new';
 export { default as EditProduct } from './admin/edit_product';
 export { default as EditOrder } from './admin/edit_order';
 export { default as EditPost } from './admin/edit_post';
-export { default as EditUser1 } from './admin/edit_user1';
+export { default as EditUser } from './admin/edit_user';
 // Test:1 -------Start
 export { default as EditIngredients } from './admin/component_ingredient/edit-ingredient/index';
 // Test:1 -------End
@@ -23,7 +23,7 @@ export { default as EditIngredients } from './admin/component_ingredient/edit-in
 export { default as Products } from './admin/products';
 export { default as Orders } from './admin/orders';
 export { default as Posts } from './admin/posts';
-export { default as Users1 } from './admin/users1';
+export { default as Users } from './admin/users';
 export { default as Setting } from './admin/settings';
 export { default as ForgotPassword } from './auth/forgot_password';
 export { default as SignIn } from './auth/signin';

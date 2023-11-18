@@ -7,8 +7,8 @@ import { connect } from 'react-redux';
 import { Redirect, Route, BrowserRouter, Router, Switch } from 'react-router-dom';
 import { useState } from "react";
 import "../styles/side/index.css"
-import SideMenu, { menuItems } from "../components/common/SideMenu";
-import Side from "../components/common/Side";
+// import SideMenu, { menuItems } from "../components/common/Navigation/SideMenu";
+import Side from "../components/common/Navigation/Side";
 
 const AdminRoute = ({
   isAuth, role, component: Component, ...rest

@@ -55,10 +55,6 @@ const ProductItem = ({ product, isItemOnBasket, addToBasket }) => {
             <h5 className="product-card-name text-overflow-ellipsis margin-auto">
               {product.name || <Skeleton width={80} />}
             </h5>
-            <span className="text-subtle">Test</span>
-            <h5 className="product-card-name text-overflow-ellipsis margin-auto">
-              {product.name || <Skeleton width={80} />}
-            </h5>
             <p className="product-card-brand">
               {product.brand || <Skeleton width={60} />}
             </p>

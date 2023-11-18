@@ -9,7 +9,7 @@ import * as view from 'views';
 import AdminRoute from './AdminRoute';
 import ClientRoute from './ClientRoute';
 import PublicRoute from './PublicRoute';
-import MenuBurger from '../components/common/MenuBurger';
+import MenuBurger from '../components/common/Navigation/MenuBurger';
 import '../styles/menu/index.scss'
 
 export const history = createBrowserHistory();
@@ -156,8 +156,8 @@ const AppRouter = () => {
             path={ROUTES.ADMIN_POSTS}
           />
           <AdminRoute
-            component={view.Users1}
-            path={ROUTES.ADMIN_USERS1}
+            component={view.Users}
+            path={ROUTES.ADMIN_USERS}
           />
           <AdminRoute
             component={view.AddProduct}
@@ -172,8 +172,8 @@ const AppRouter = () => {
             path={ROUTES.ADD_POST}
           />
           <AdminRoute
-            component={view.AddUser1}
-            path={ROUTES.ADD_USER1}
+            component={view.AddUser}
+            path={ROUTES.ADD_USER}
           />
           <AdminRoute
             component={view.EditProduct}
@@ -188,8 +188,8 @@ const AppRouter = () => {
             path={`${ROUTES.EDIT_POST}/:id`}
           />
           <AdminRoute
-            component={view.EditUser1}
-            path={`${ROUTES.EDIT_USER1}/:id`}
+            component={view.EditUser}
+            path={`${ROUTES.EDIT_USER}/:id`}
           />
           <PublicRoute component={view.PageNotFound} />
         </Switch>

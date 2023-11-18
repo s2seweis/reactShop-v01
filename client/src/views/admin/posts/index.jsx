@@ -10,7 +10,7 @@ import { PostsNavbar } from '../components_post';
 import PostsTable from '../components_post/PostsTable';
 
 const Posts = () => {
-  useDocumentTitle('Product List | Shirts Sale! Admin');
+  useDocumentTitle('Post List | Shirts Sale! Admin');
   useScrollTop();
 
   const store = useSelector((state) => ({
@@ -19,6 +19,7 @@ const Posts = () => {
     isLoading: state.app.loading,
     posts: state.posts
   }));
+  console.log("line:400", store);
 
   return (
     <Boundary>

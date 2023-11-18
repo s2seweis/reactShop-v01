@@ -5,7 +5,7 @@ import { useDocumentTitle, useScrollTop } from 'hooks';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { selectFilter } from 'selectors/selector_new';
+import { selectFilter } from 'selectors/selector_setting';
 import { SettingsNavbar } from '../component_setting';
 import SettingsTable from '../component_setting/SettingTable';
 
@@ -19,13 +19,14 @@ const Settings = () => {
     isLoading: state.app.loading,
     settings: state.settings
   }));
+  console.log("line:3", store);
 
   return (
     <Boundary>
-      <div className="product-admin-items">
+      <div className="setting-admin-items">
         <SettingList {...store}>
-          <SettingAppliedFilters filter={store.filter} />
-          <SettingsTable filteredSettings={store.filteredSettings} />
+          {/* <SettingAppliedFilters filter={store.filter} /> */}
+          <SettingsTable filteredSettings={store.settings} />
         </SettingList>
       </div>
     </Boundary>

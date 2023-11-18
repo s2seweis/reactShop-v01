@@ -171,6 +171,12 @@
   width: 85%;
 }
 
+@media only screen and (max-width: 400px) {
+  .basket-item-img-wrapper {
+    display: none !important;
+  }
+}
+
 .order-item-img-wrapper {
   display: flex;
   align-items: center;

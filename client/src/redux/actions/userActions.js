@@ -1,79 +1,79 @@
 import {
  
-  ADD_USER1,
-  ADD_USER1_SUCCESS,
-  CANCEL_GET_USERS1,
+  ADD_USER,
+  ADD_USER_SUCCESS,
+  CANCEL_GET_USERS,
   CLEAR_SEARCH_STATE,
-  EDIT_USER1,
-  EDIT_USER1_SUCCESS,
-  GET_USERS1,
-  GET_USERS1_SUCCESS,
-  REMOVE_USER1,
-  REMOVE_USER1_SUCCESS,
-  SEARCH_USER1,
-  SEARCH_USER1_SUCCESS
+  EDIT_USER,
+  EDIT_USER_SUCCESS,
+  GET_USERS,
+  GET_USERS_SUCCESS,
+  REMOVE_USER,
+  REMOVE_USER_SUCCESS,
+  SEARCH_USER,
+  SEARCH_USER_SUCCESS
 
 } from 'constants/constants';
 
-export const getUsers1 = (lastRef) => ({
-  type: GET_USERS1,
+export const getUsers = (lastRef) => ({
+  type: GET_USERS,
   payload: lastRef
 });
 
-export const getUsers1Success = (users1) => ({
-  type: GET_USERS1_SUCCESS,
-  payload: users1
+export const getUsersSuccess = (users) => ({
+  type: GET_USERS_SUCCESS,
+  payload: users
 });
 
-export const cancelGetUsers1 = () => ({
-  type: CANCEL_GET_USERS1
+export const cancelGetUsers = () => ({
+  type: CANCEL_GET_USERS
 });
 
-export const addUser1 = (user1) => ({
-  type: ADD_USER1,
-  payload: user1
+export const addUser = (user) => ({
+  type: ADD_USER,
+  payload: user
 });
 
-export const searchUser1 = (searchKey) => ({
-  type: SEARCH_USER1,
+export const searchUser = (searchKey) => ({
+  type: SEARCH_USER,
   payload: {
     searchKey
   }
 });
 
-export const searchUser1Success = (users1) => ({
-  type: SEARCH_USER1_SUCCESS,
-  payload: users1
+export const searchUserSuccess = (users) => ({
+  type: SEARCH_USER_SUCCESS,
+  payload: users
 });
 
 export const clearSearchState = () => ({
   type: CLEAR_SEARCH_STATE
 });
 
-export const addUser1Success = (user1) => ({
-  type: ADD_USER1_SUCCESS,
-  payload: user1
+export const addUserSuccess = (user) => ({
+  type: ADD_USER_SUCCESS,
+  payload: user
 });
 
-export const removeUser1 = (id) => ({
-  type: REMOVE_USER1,
+export const removeUser = (id) => ({
+  type: REMOVE_USER,
   payload: id
 });
 
-export const removeUser1Success = (id) => ({
-  type: REMOVE_USER1_SUCCESS,
+export const removeUserSuccess = (id) => ({
+  type: REMOVE_USER_SUCCESS,
   payload: id
 });
 
-export const editUser1 = (id, updates) => ({
-  type: EDIT_USER1,
+export const editUser = (id, updates) => ({
+  type: EDIT_USER,
   payload: {
     id,
     updates
   }
 });
 
-export const editUser1Success = (updates) => ({
-  type: EDIT_USER1_SUCCESS,
+export const editUserSuccess = (updates) => ({
+  type: EDIT_USER_SUCCESS,
   payload: updates
 });

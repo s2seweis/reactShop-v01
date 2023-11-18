@@ -12,10 +12,10 @@ export { default as useSetting } from './useItems/useSetting';
 export { default as useIngredient } from './useItems/useIngredient';
 export { default as useOrder } from './useItems/useOrder';
 export { default as usePost } from './useItems/usePost';
-export { default as useUser1 } from './useItems/useUser1';
+export { default as useUser } from './useItems/useUser';
 export { default as useRecommendedProducts } from './Recommended/useRecommendedProducts';
 export { default as useRecommendedPosts } from './Recommended/useRecommendedPosts';
-export { default as useRecommendedUsers1 } from './Recommended/useRecommendedUsers1';
+export { default as useRecommendedUsers } from './Recommended/useRecommendedUsers';
 export { default as useRecommendedSettings } from './Recommended/useRecommendedSettings';
 export { default as useScrollTop } from './useScrollTop';
 

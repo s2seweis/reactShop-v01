@@ -88,7 +88,7 @@ const Basket = () => {
         <div className="basket-list">
           <div className="basket-header">
             <h3 className="basket-header-title">
-              My Basket1 &nbsp;
+              My Basket &nbsp;
               <span>
                 (
                 {` ${basket.length} ${basket.length > 1 ? 'items' : 'item'}`}
@@ -102,7 +102,7 @@ const Basket = () => {
                   onClick={onClickToggle}
                   role="presentation"
                 >
-                  Close1
+                  Close
                 </span>
               )}
             </BasketToggle>

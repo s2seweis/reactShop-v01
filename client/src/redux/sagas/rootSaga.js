@@ -6,7 +6,7 @@ import settingSaga from './settingSaga';
 import ingredientSaga from './ingredientSaga';
 import orderSaga from './orderSaga';
 import postSaga from './postSaga';
-import user1Saga from './userSaga';
+import userSaga from './userSaga';
 import checkoutSaga from './checkoutSaga';
 import profileSaga from './profileSaga';
 import basketSaga from './basketSaga';
@@ -60,12 +60,12 @@ function* rootSaga() {
   ], postSaga);
 
   yield takeLatest([
-    ACTION.ADD_USER1,
-    ACTION.SEARCH_USER1,
-    ACTION.REMOVE_USER1,
-    ACTION.EDIT_USER1,
-    ACTION.GET_USERS1
-  ], user1Saga);
+    ACTION.ADD_USER,
+    ACTION.SEARCH_USER,
+    ACTION.REMOVE_USER,
+    ACTION.EDIT_USER,
+    ACTION.GET_USERS
+  ], userSaga);
 
   yield takeLatest([
     ACTION.UPDATE_EMAIL,

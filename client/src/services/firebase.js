@@ -797,11 +797,11 @@ class Firebase {
 
   removePost = (id) => this.db.collection("posts").doc(id).delete();
 
-  // // USER1 ACTIONS --------------
+  // // USER ACTIONS --------------
 
-  getSingleUser1 = (id) => this.db.collection("users").doc(id).get();
+  getSingleUser = (id) => this.db.collection("users").doc(id).get();
 
-  getUsers1 = (lastRefKey) => {
+  getUsers = (lastRefKey) => {
     let didTimeout = false;
 
     return new Promise((resolve, reject) => {
@@ -815,15 +815,15 @@ class Firebase {
               .limit(12);
 
             const snapshot = await query.get();
-            const users1 = [];
+            const users = [];
             snapshot.forEach((doc) =>
-              users1.push({ id: doc.id, ...doc.data() })
+              users.push({ id: doc.id, ...doc.data() })
             );
             const lastKey = snapshot.docs[snapshot.docs.length - 1];
 
-            resolve({ users1, lastKey });
+            resolve({ users, lastKey });
           } catch (e) {
-            reject(e?.message || ":( Failed to fetch users1.");
+            reject(e?.message || ":( Failed to fetch users.");
           }
         } else {
           const timeout = setTimeout(() => {
@@ -842,29 +842,29 @@ class Firebase {
 
             clearTimeout(timeout);
             if (!didTimeout) {
-              const users1 = [];
+              const users = [];
               snapshot.forEach((doc) =>
-                users1.push({ id: doc.id, ...doc.data() })
+                users.push({ id: doc.id, ...doc.data() })
               );
               const lastKey = snapshot.docs[snapshot.docs.length - 1];
 
-              resolve({ users1, lastKey, total });
+              resolve({ users, lastKey, total });
             }
           } catch (e) {
             if (didTimeout) return;
-            reject(e?.message || ":( Failed to fetch users1.");
+            reject(e?.message || ":( Failed to fetch users.");
           }
         }
       })();
     });
   };
 
-  searchUsers1 = (searchKey) => {
+  searchUsers = (searchKey) => {
     let didTimeout = false;
 
     return new Promise((resolve, reject) => {
       (async () => {
-        const users1Ref = this.db.collection("users1");
+        const usersRef = this.db.collection("users");
 
         const timeout = setTimeout(() => {
           didTimeout = true;
@@ -872,12 +872,12 @@ class Firebase {
         }, 15000);
 
         try {
-          const searchedNameRef = users1Ref
+          const searchedNameRef = usersRef
             .orderBy("name_lower")
             .where("name_lower", ">=", searchKey)
             .where("name_lower", "<=", `${searchKey}\uf8ff`)
             .limit(12);
-          const searchedKeywordsRef = users1Ref
+          const searchedKeywordsRef = usersRef
             .orderBy("dateAdded", "desc")
             .where("keywords", "array-contains-any", searchKey.split(" "))
             .limit(12);
@@ -887,34 +887,34 @@ class Firebase {
 
           clearTimeout(timeout);
           if (!didTimeout) {
-            const searchedNameUsers1 = [];
-            const searchedKeywordsUsers1 = [];
+            const searchedNameUsers = [];
+            const searchedKeywordsUsers = [];
             let lastKey = null;
 
             if (!nameSnaps.empty) {
               nameSnaps.forEach((doc) => {
-                searchedNameUsers1.push({ id: doc.id, ...doc.data() });
+                searchedNameUsers.push({ id: doc.id, ...doc.data() });
               });
               lastKey = nameSnaps.docs[nameSnaps.docs.length - 1];
             }
 
             if (!keywordsSnaps.empty) {
               keywordsSnaps.forEach((doc) => {
-                searchedKeywordsUsers1.push({ id: doc.id, ...doc.data() });
+                searchedKeywordsUsers.push({ id: doc.id, ...doc.data() });
               });
             }
 
-            const mergedUsers1 = [
-              ...searchedNameUsers1,
-              ...searchedKeywordsUsers1,
+            const mergedUsers = [
+              ...searchedNameUsers,
+              ...searchedKeywordsUsers,
             ];
             const hash = {};
 
-            mergedUsers1.forEach((user1) => {
-              hash[user1.id] = user1;
+            mergedUsers.forEach((user) => {
+              hash[user.id] = user;
             });
 
-            resolve({ users1: Object.values(hash), lastKey });
+            resolve({ users: Object.values(hash), lastKey });
           }
         } catch (e) {
           if (didTimeout) return;
@@ -924,24 +924,24 @@ class Firebase {
     });
   };
 
-  getFeaturedUsers1 = (itemsCount = 12) =>
+  getFeaturedUsers = (itemsCount = 12) =>
     this.db
-      .collection("users1")
+      .collection("users")
       .where("isFeatured", "==", true)
       .limit(itemsCount)
       .get();
 
-  getRecommendedUsers1 = (itemsCount = 12) =>
+  getRecommendedUsers = (itemsCount = 12) =>
     this.db
-      .collection("users1")
+      .collection("users")
       .where("isRecommended", "==", true)
       .limit(itemsCount)
       .get();
 
-  addUser1 = (id, user1) =>
-    this.db.collection("users").doc(id).set(user1);
+  addUser = (id, user) =>
+    this.db.collection("users").doc(id).set(user);
 
-  generateKey = () => this.db.collection("users1").doc().id;
+  generateKey = () => this.db.collection("users").doc().id;
 
   storeImage = async (id, folder, imageFile) => {
     const snapshot = await this.storage.ref(folder).child(id).put(imageFile);
@@ -950,12 +950,12 @@ class Firebase {
     return downloadURL;
   };
 
-  deleteImage = (id) => this.storage.ref("users1").child(id).delete();
+  deleteImage = (id) => this.storage.ref("users").child(id).delete();
 
-  editUser1 = (id, updates) =>
+  editUser = (id, updates) =>
     this.db.collection("users").doc(id).update(updates);
 
-  removeUser1 = (id) => this.db.collection("users").doc(id).delete();
+  removeUser = (id) => this.db.collection("users").doc(id).delete();
 
 }
 

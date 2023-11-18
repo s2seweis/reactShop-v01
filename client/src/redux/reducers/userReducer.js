@@ -1,11 +1,11 @@
 import {
 
-  ADD_USER1_SUCCESS,
+  ADD_USER_SUCCESS,
   CLEAR_SEARCH_STATE, 
-  EDIT_USER1_SUCCESS,
-  GET_USERS1_SUCCESS, 
-  REMOVE_USER1_SUCCESS,
-  SEARCH_USER1_SUCCESS
+  EDIT_USER_SUCCESS,
+  GET_USERS_SUCCESS, 
+  REMOVE_USER_SUCCESS,
+  SEARCH_USER_SUCCESS
   
 } from 'constants/constants';
 
@@ -19,51 +19,51 @@ export default (state = {
   lastRefKey: null,
   total: 0,
   items: [],
-  searchedUsers1: initState
+  searchedUsers: initState
 }, action) => {
   switch (action.type) {
-    case GET_USERS1_SUCCESS:
+    case GET_USERS_SUCCESS:
       return {
         ...state,
         lastRefKey: action.payload.lastKey,
         total: action.payload.total,
-        items: [...state.items, ...action.payload.users1]
+        items: [...state.items, ...action.payload.users]
       };
-    case ADD_USER1_SUCCESS:
+    case ADD_USER_SUCCESS:
       return {
         ...state,
         items: [...state.items, action.payload]
       };
-    case SEARCH_USER1_SUCCESS:
+    case SEARCH_USER_SUCCESS:
       return {
         ...state,
-        searchedUsers1: {
+        searchedUsers: {
           lastRefKey: action.payload.lastKey,
           total: action.payload.total,
-          items: [...state.searchedUsers1.items, ...action.payload.users1]
+          items: [...state.searchedUsers.items, ...action.payload.users]
         }
       };
     case CLEAR_SEARCH_STATE:
       return {
         ...state,
-        searchedUsers1: initState
+        searchedUsers: initState
       };
-    case REMOVE_USER1_SUCCESS:
+    case REMOVE_USER_SUCCESS:
       return {
         ...state,
-        items: state.items.filter((user1) => user1.id !== action.payload)
+        items: state.items.filter((user) => user.id !== action.payload)
       };
-    case EDIT_USER1_SUCCESS:
+    case EDIT_USER_SUCCESS:
       return {
         ...state,
-        items: state.items.map((user1) => {
-          if (user1.id === action.payload.id) {
+        items: state.items.map((user) => {
+          if (user.id === action.payload.id) {
             return {
-              ...user1,
+              ...user,
               ...action.payload.updates
             };
           }
-          return user1;
+          return user;
         })
       };
     default:

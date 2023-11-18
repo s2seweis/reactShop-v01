@@ -8,7 +8,7 @@ import settingReducer from './settingReducer';
 import ingredientReducer from './ingredientReducer';
 import orderReducer from './orderReducer';
 import postReducer from './postReducer';
-import user1Reducer from './userReducer';
+import userReducer from './userReducer';
 import profileReducer from './profileReducer';
 
 const rootReducer = {
@@ -17,7 +17,7 @@ const rootReducer = {
   ingredients: ingredientReducer,
   orders: orderReducer,
   posts: postReducer,
-  users1: user1Reducer,
+  users: userReducer,
   basket: basketReducer,
   auth: authReducer,
   profile: profileReducer,

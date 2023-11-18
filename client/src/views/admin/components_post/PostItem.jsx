@@ -1,5 +1,4 @@
 import { ImageLoader } from 'components/common';
-// import { ImageLoader2 } from 'components/common/imageLoader2';
 import { EDIT_POST } from 'constants/routes';
 import { displayActionMessage, displayDate, displayMoney } from 'helpers/utils';
 import PropType from 'prop-types';

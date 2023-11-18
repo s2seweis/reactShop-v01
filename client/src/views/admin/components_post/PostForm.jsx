@@ -2,7 +2,6 @@
 import { CheckOutlined, LoadingOutlined } from '@ant-design/icons';
 import {
   ImageLoader,
-  ImageLoader2
 }
   from 'components/common';
 import {
@@ -264,6 +263,7 @@ const PostForm = ({ post, onSubmit, isLoading }) => {
                           title="Delete Image"
                           type="button"
                         >
+                          Delete
                           <i className="fa fa-times-circle" />
                         </button>
                       </div>

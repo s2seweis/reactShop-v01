@@ -21,7 +21,11 @@
 
   @include mobile {
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 12rem;
+  }
+
+  @include tablet {
+    width: 100%;
   }
 
   .loader {
