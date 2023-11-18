@@ -3,8 +3,8 @@
 Welcome to the React Shop project with Firestore, Redux, Redux Saga, and Stripe payment integration! This e-commerce web application is built with React for the client, utilizing Firestore for data storage, Redux for state management, Redux Saga for handling side effects, and Node.js with Express for the server, featuring secure payment processing through Stripe.
 
 <div align="center">
-<img src="preview-1.png" alt="Example Image">
-<img src="preview-2.png" alt="Example Image">
+<img src="assets/preview-1.png" alt="Example Image">
+<img src="assets/preview-2.png" alt="Example Image">
 </div>
 
 ## Table of Contents
@@ -165,13 +165,13 @@ Gesetz123
 This project is licensed under the [MIT License](LICENSE).
 
 <div align="center">
-<img src="preview-3.png" alt="Example Image">
-<img src="preview-4.png" alt="Example Image">
+<img src="assets/preview-3.png" alt="Example Image">
+<img src="assets/preview-4.png" alt="Example Image">
 </div>
 
 <div align="center">
-<img src="preview-5.png" alt="Example Image">
-<img src="preview-6.png" alt="Example Image">
+<img src="assets/preview-5.png" alt="Example Image">
+<img src="assets/preview-6.png" alt="Example Image">
 </div>
 
 ## Ideas and Thoughts for this Projects:
