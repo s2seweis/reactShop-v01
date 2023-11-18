@@ -14,7 +14,7 @@ import {
 } from 'constants/constants';
 
 import { SIGNIN as ROUTE_SIGNIN } from 'constants/routes';
-import defaultAvatar from 'images/defaultAvatar.jpg';
+import defaultAvatar from 'images/defaultAvatar.png';
 import defaultBanner from 'images/defaultBanner.jpg';
 import { call, put } from 'redux-saga/effects';
 import { signInSuccess, signOutSuccess } from 'redux/actions/authActions';

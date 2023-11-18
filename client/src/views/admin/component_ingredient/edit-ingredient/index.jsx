@@ -109,7 +109,7 @@ const EditIngredients = () => {
     <Boundary>
       <div className="product-admin-items">
         <div className="edit-user">
-          <h3 className="text-center">Edit Ingredient Details - Formik</h3>
+          <h3 className="text-center">Edit Ingredients (Formik)</h3>
           <Formik
             initialValues={initFormikValues}
             validateOnChange

@@ -42,7 +42,7 @@ Before you begin, ensure you have the following software installed on your machi
 2. Navigate to the project directory:
 
    ```bash
-   cd testShop-CRUD-Salinaka
+   cd react-shop-v01
    ```
 
 3. Install dependencies for both the client and server:
@@ -151,12 +151,12 @@ Before you begin, ensure you have the following software installed on your machi
 ## Authentication
 
 ### Admin: 
-weissenborn20seb@gmail.com
+durham@gmail.com
 Password:
 Gesetz123
 
 ### User:
-weissenborn21@gmail.com 
+ywain@gmail.com
 Password:
 Gesetz123
 
@@ -172,3 +172,20 @@ This project is licensed under the [MIT License](LICENSE).
 <div align="center">
 <img src="assets/react-shop-7.png" alt="Example Image">
 </div>
+
+## Ideas and Thoughts for this Projects:
+1. All Packages needs to be updated
+2. Improve the responsive experience 
+3. Improve the Mobile/ Tablet Design
+4. Style the Admin Panel new, make it look more appealing
+5. Add Forgot Password
+6. Sign In with Google and Facebook
+7. Integrate Chart.js for display important figures
+8. Convert Orders into PDF
+9. Add React to Print
+10. Improve the Add Ingredients Component
+11. Add Delivery by Area Component
+12. Customize the Payment Expierence with Stripe (Cash/ Credit Card/ Sorfort/ Paypal)  
+13. Add Contact Form with an Inbox
+14. Add a Order Handler Component ( useEffect Hook for check regulary for new Orders in the Database )
+15. Make an PWA out of it

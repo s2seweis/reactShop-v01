@@ -8,7 +8,7 @@ export { default as AddProduct } from './admin/add_product';
 export { default as AddOrder } from './admin/add_order';
 export { default as AddPost } from './admin/add_post';
 export { default as AddUser1 } from './admin/add_user1';
-export { default as Dashboard } from './admin/dashboard';
+export { default as Dashboard } from './admin/dashboard/Dashboard';
 export { default as Docs } from './admin/docs';
 export { default as Ingredients } from './admin/ingredients';
 export { default as IngredientsNew } from './admin/ingredients-new';

@@ -11,7 +11,7 @@ import { setLoading, setRequestStatus } from 'redux/actions/miscActions';
 import { clearProfile, setProfile } from 'redux/actions/profileActions';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import defaultAvatar from 'images/defaultAvatar.jpg';
+import defaultAvatar from 'images/defaultAvatar.png';
 import defaultBanner from 'images/defaultBanner.jpg';
 import 'firebase/firestore';
 

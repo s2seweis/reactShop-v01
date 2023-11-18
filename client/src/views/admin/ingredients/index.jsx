@@ -138,7 +138,7 @@ const IngredientsForm = (values) => {
         <div className="edit-user">
           <h3 className="text-center"
             style={{ marginBottom: "30px" }}
-          >Edit Ingredient Details - Parent/ React Final Form</h3>
+          >Edit Ingredients (Formik)</h3>
           <EditForm />
         </div>
       </div>
